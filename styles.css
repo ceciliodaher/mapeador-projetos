@@ -1401,3 +1401,240 @@ body {
         border-radius: 4px;
     }
 }
+
+/* Layout responsivo para seção 3 - Investimentos */
+/* Seção 3.1 - Obras Civis */
+#obrasCivisList .item-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.8fr 1fr 1fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Seção 3.2 - Máquinas e Equipamentos */
+#maquinasEquipamentosList .item-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.8fr 1fr 1fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Seção 3.3 - Instalações */
+#instalacoesList .item-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.8fr 1fr 1fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Seção 3.4 - Outros Investimentos */
+#outrosInvestimentosList .item-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.8fr 1fr 1fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Inputs das seções de investimento */
+#obrasCivisList .item-row input,
+#maquinasEquipamentosList .item-row input,
+#instalacoesList .item-row input,
+#outrosInvestimentosList .item-row input {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+}
+
+/* Media queries para seção 3 - Investimentos */
+@media (max-width: 1200px) {
+    #obrasCivisList .item-row,
+    #maquinasEquipamentosList .item-row,
+    #instalacoesList .item-row,
+    #outrosInvestimentosList .item-row {
+        grid-template-columns: 1.8fr 1.3fr 0.7fr 0.9fr 0.9fr 50px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #obrasCivisList .item-row,
+    #maquinasEquipamentosList .item-row,
+    #instalacoesList .item-row,
+    #outrosInvestimentosList .item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        grid-template-areas:
+            "descricao fornecedor"
+            "quantidade unitario"
+            "total remove";
+    }
+    
+    #obrasCivisList .item-description,
+    #maquinasEquipamentosList .item-description,
+    #instalacoesList .item-description,
+    #outrosInvestimentosList .item-description { grid-area: descricao; }
+    
+    #obrasCivisList .item-supplier,
+    #maquinasEquipamentosList .item-supplier,
+    #instalacoesList .item-supplier,
+    #outrosInvestimentosList .item-supplier { grid-area: fornecedor; }
+    
+    #obrasCivisList .item-quantity,
+    #maquinasEquipamentosList .item-quantity,
+    #instalacoesList .item-quantity,
+    #outrosInvestimentosList .item-quantity { grid-area: quantidade; }
+    
+    #obrasCivisList .item-unit-value,
+    #maquinasEquipamentosList .item-unit-value,
+    #instalacoesList .item-unit-value,
+    #outrosInvestimentosList .item-unit-value { grid-area: unitario; }
+    
+    #obrasCivisList .item-total-value,
+    #maquinasEquipamentosList .item-total-value,
+    #instalacoesList .item-total-value,
+    #outrosInvestimentosList .item-total-value { grid-area: total; }
+    
+    #obrasCivisList .btn-remove,
+    #maquinasEquipamentosList .btn-remove,
+    #instalacoesList .btn-remove,
+    #outrosInvestimentosList .btn-remove { grid-area: remove; }
+}
+
+@media (max-width: 768px) {
+    #obrasCivisList .item-row,
+    #maquinasEquipamentosList .item-row,
+    #instalacoesList .item-row,
+    #outrosInvestimentosList .item-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "descricao"
+            "fornecedor"
+            "quantidade"
+            "unitario"
+            "total"
+            "remove";
+        gap: 8px;
+    }
+}
+
+/* Layout responsivo para seção 9 - Especificações Técnicas */
+/* Seção 9.2 - Produtos e Serviços */
+#produtosList .item-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 0.8fr 1fr 0.8fr 0.8fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Seção 9.5 - Insumos e Matérias-Primas */
+#insumosList .item-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.8fr 1fr 0.8fr 0.8fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+/* Inputs das seções de especificações técnicas */
+#produtosList .item-row input,
+#produtosList .item-row select,
+#insumosList .item-row input,
+#insumosList .item-row select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+}
+
+/* Media queries para seção 9 - Especificações Técnicas */
+@media (max-width: 1200px) {
+    #produtosList .item-row {
+        grid-template-columns: 1.3fr 1.8fr 0.7fr 0.9fr 0.7fr 0.7fr 50px;
+        gap: 6px;
+    }
+    
+    #insumosList .item-row {
+        grid-template-columns: 1.3fr 0.9fr 0.7fr 0.9fr 0.7fr 0.7fr 50px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #produtosList .item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        grid-template-areas:
+            "nome descricao"
+            "unidade preco"
+            "atual futura"
+            "remove remove";
+    }
+    
+    #produtosList .produto-nome { grid-area: nome; }
+    #produtosList .produto-descricao { grid-area: descricao; }
+    #produtosList .produto-unidade { grid-area: unidade; }
+    #produtosList .produto-preco { grid-area: preco; }
+    #produtosList .produto-atual { grid-area: atual; }
+    #produtosList .produto-futura { grid-area: futura; }
+    #produtosList .btn-remove { grid-area: remove; }
+    
+    #insumosList .item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        grid-template-areas:
+            "nome tipo"
+            "unidade custo"
+            "atual futura"
+            "remove remove";
+    }
+    
+    #insumosList .insumo-nome { grid-area: nome; }
+    #insumosList .insumo-tipo { grid-area: tipo; }
+    #insumosList .insumo-unidade { grid-area: unidade; }
+    #insumosList .insumo-custo { grid-area: custo; }
+    #insumosList .insumo-atual { grid-area: atual; }
+    #insumosList .insumo-futura { grid-area: futura; }
+    #insumosList .btn-remove { grid-area: remove; }
+}
+
+@media (max-width: 768px) {
+    #produtosList .item-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nome"
+            "descricao"
+            "unidade"
+            "preco"
+            "atual"
+            "futura"
+            "remove";
+        gap: 8px;
+    }
+    
+    #insumosList .item-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nome"
+            "tipo"
+            "unidade"
+            "custo"
+            "atual"
+            "futura"
+            "remove";
+        gap: 8px;
+    }
+}
