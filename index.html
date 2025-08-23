@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coleta de Informações - Projeto CEI | Expertzy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="expertzy_logo.png" alt="Expertzy Logo" class="logo-image">
+                </div>
+                <div class="header-title">
+                    <h1 class="form-title">Coleta de Informações para Projeto</h1>
+                    <p class="form-subtitle">Crédito Especial para Investimento - SEEC-GO</p>
+                </div>
+                <div class="header-actions">
+                    <button type="button" id="importBtnHeader" class="btn-import-header">
+                        📥 Importar Dados JSON
+                    </button>
+                    <input type="file" id="importJsonFileHeader" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="form-header">
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Identificação</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Empreendimento</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Investimento</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Cronograma</div>
+                        </div>
+                        <div class="step" data-step="5">
+                            <div class="step-number">5</div>
+                            <div class="step-label">Detalhamento</div>
+                        </div>
+                        <div class="step" data-step="6">
+                            <div class="step-number">6</div>
+                            <div class="step-label">Documentos</div>
+                        </div>
+                        <div class="step" data-step="7">
+                            <div class="step-number">7</div>
+                            <div class="step-label">Acompanhamento</div>
+                        </div>
+                        <div class="step" data-step="8">
+                            <div class="step-number">8</div>
+                            <div class="step-label">Empresa</div>
+                        </div>
+                        <div class="step" data-step="9">
+                            <div class="step-number">9</div>
+                            <div class="step-label">Produção</div>
+                        </div>
+                        <div class="step" data-step="10">
+                            <div class="step-number">10</div>
+                            <div class="step-label">Mercado</div>
+                        </div>
+                        <div class="step" data-step="11">
+                            <div class="step-number">11</div>
+                            <div class="step-label">RH</div>
+                        </div>
+                        <div class="step" data-step="12">
+                            <div class="step-number">12</div>
+                            <div class="step-label">Financeiro</div>
+                        </div>
+                        <div class="step" data-step="13">
+                            <div class="step-number">13</div>
+                            <div class="step-label">Receitas</div>
+                        </div>
+                        <div class="step" data-step="14">
+                            <div class="step-number">14</div>
+                            <div class="step-label">Inovação</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="projectForm" class="project-form">
+                <!-- Seção 1: Identificação do Beneficiário -->
+                <div class="form-section active" data-section="1">
+                    <div class="section-header">
+                        <h2 class="section-title">1. Identificação do Beneficiário</h2>
+                        <p class="section-description">Informações básicas da empresa solicitante do benefício fiscal.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="razaoSocial">Razão Social *</label>
+                            <input type="text" id="razaoSocial" name="razaoSocial" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nomeFantasia">Nome Fantasia</label>
+                            <input type="text" id="nomeFantasia" name="nomeFantasia">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ *</label>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inscricaoEstadual">Inscrição Estadual *</label>
+                            <input type="text" id="inscricaoEstadual" name="inscricaoEstadual" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inscricaoMunicipal">Inscrição Municipal</label>
+                            <input type="text" id="inscricaoMunicipal" name="inscricaoMunicipal">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cnae">CNAE Principal *</label>
+                            <input type="text" id="cnae" name="cnae" placeholder="0000-0/00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endereco">Endereço *</label>
+                            <input type="text" id="endereco" name="endereco" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bairro">Bairro *</label>
+                            <input type="text" id="bairro" name="bairro" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cidade">Cidade *</label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uf">UF *</label>
+                            <select id="uf" name="uf" required>
+                                <option value="">Selecione</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cep">CEP *</label>
+                            <input type="text" id="cep" name="cep" placeholder="00000-000" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefone">Telefone *</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" name="website" placeholder="https://www.exemplo.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="responsavelLegal">Responsável Legal *</label>
+                            <input type="text" id="responsavelLegal" name="responsavelLegal" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cpfResponsavel">CPF do Responsável *</label>
+                            <input type="text" id="cpfResponsavel" name="cpfResponsavel" placeholder="000.000.000-00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cargoResponsavel">Cargo do Responsável *</label>
+                            <input type="text" id="cargoResponsavel" name="cargoResponsavel" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefoneResponsavel">Telefone do Responsável *</label>
+                            <input type="tel" id="telefoneResponsavel" name="telefoneResponsavel" placeholder="(00) 00000-0000" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emailResponsavel">E-mail do Responsável *</label>
+                            <input type="email" id="emailResponsavel" name="emailResponsavel" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="programasFiscais">Programas Fiscais que já participa</label>
+                            <input type="text" id="programasFiscais" name="programasFiscais" placeholder="Ex: Produzir, Fomentar, Progoiás">
+                            <small class="form-hint">Informe os programas dos quais já seja beneficiário</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 2: Descrição do Empreendimento -->
+                <div class="form-section" data-section="2">
+                    <div class="section-header">
+                        <h2 class="section-title">2. Descrição do Empreendimento</h2>
+                        <p class="section-description">Localização e características do complexo industrial.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nomeEmpreendimento">Nome do Empreendimento *</label>
+                            <input type="text" id="nomeEmpreendimento" name="nomeEmpreendimento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoEmpreendimento">Tipo de Empreendimento *</label>
+                            <select id="tipoEmpreendimento" name="tipoEmpreendimento" required>
+                                <option value="">Selecione</option>
+                                <option value="implantacao">Implantação</option>
+                                <option value="ampliacao">Ampliação</option>
+                                <option value="modernizacao">Modernização</option>
+                                <option value="diversificacao">Diversificação</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="setorAtividade">Setor de Atividade *</label>
+                            <select id="setorAtividade" name="setorAtividade" required>
+                                <option value="">Selecione</option>
+                                <option value="industria">Indústria</option>
+                                <option value="comercio">Comércio</option>
+                                <option value="servicos">Serviços</option>
+                                <option value="agronegocio">Agronegócio</option>
+                                <option value="tecnologia">Tecnologia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="descricaoDetalhada">Descrição Detalhada *</label>
+                            <textarea id="descricaoDetalhada" name="descricaoDetalhada" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="justificativa">Justificativa do Investimento *</label>
+                            <textarea id="justificativa" name="justificativa" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="objetivosPrincipais">Objetivos Principais *</label>
+                            <textarea id="objetivosPrincipais" name="objetivosPrincipais" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="metasQuantitativas">Metas Quantitativas *</label>
+                            <textarea id="metasQuantitativas" name="metasQuantitativas" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="publicoAlvo">Público Alvo *</label>
+                            <textarea id="publicoAlvo" name="publicoAlvo" rows="2" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="abrangenciaGeografica">Abrangência Geográfica *</label>
+                            <select id="abrangenciaGeografica" name="abrangenciaGeografica" required>
+                                <option value="">Selecione</option>
+                                <option value="local">Local</option>
+                                <option value="estadual">Estadual</option>
+                                <option value="nacional">Nacional</option>
+                                <option value="internacional">Internacional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="enderecoEmpreendimento">Endereço do Empreendimento *</label>
+                            <input type="text" id="enderecoEmpreendimento" name="enderecoEmpreendimento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="municipioEmpreendimento">Município do Empreendimento *</label>
+                            <input type="text" id="municipioEmpreendimento" name="municipioEmpreendimento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="latitudeEmpreendimento">Latitude</label>
+                            <input type="text" id="latitudeEmpreendimento" name="latitudeEmpreendimento" placeholder="Ex: -16.6868">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="longitudeEmpreendimento">Longitude</label>
+                            <input type="text" id="longitudeEmpreendimento" name="longitudeEmpreendimento" placeholder="Ex: -49.2644">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 3: Valor Total do Investimento -->
+                <div class="form-section" data-section="3">
+                    <div class="section-header">
+                        <h2 class="section-title">3. Valor Total do Investimento</h2>
+                        <p class="section-description">Montante previsto para obras civis, máquinas, equipamentos e instalações com detalhamento completo.</p>
+                    </div>
+                    
+                    <!-- Detalhamento de Obras Civis -->
+                    <div class="investment-detail-section">
+                        <h3 class="subsection-title">3.1 Obras Civis - Detalhamento</h3>
+                        <div id="obrasCivisList" class="detail-list">
+                            <!-- Items serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addInvestmentItem('obrasCivis')">
+                            + Adicionar Item de Obra Civil
+                        </button>
+                        <div class="subtotal">
+                            <label>Subtotal Obras Civis: <span id="subtotalObrasCivis">R$ 0,00</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Detalhamento de Máquinas e Equipamentos -->
+                    <div class="investment-detail-section">
+                        <h3 class="subsection-title">3.2 Máquinas e Equipamentos - Detalhamento</h3>
+                        <div id="maquinasEquipamentosList" class="detail-list">
+                            <!-- Items serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addInvestmentItem('maquinasEquipamentos')">
+                            + Adicionar Máquina/Equipamento
+                        </button>
+                        <div class="subtotal">
+                            <label>Subtotal Máquinas e Equipamentos: <span id="subtotalMaquinas">R$ 0,00</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Detalhamento de Instalações -->
+                    <div class="investment-detail-section">
+                        <h3 class="subsection-title">3.3 Instalações - Detalhamento</h3>
+                        <div id="instalacoesList" class="detail-list">
+                            <!-- Items serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addInvestmentItem('instalacoes')">
+                            + Adicionar Instalação
+                        </button>
+                        <div class="subtotal">
+                            <label>Subtotal Instalações: <span id="subtotalInstalacoes">R$ 0,00</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Detalhamento de Outros Investimentos -->
+                    <div class="investment-detail-section">
+                        <h3 class="subsection-title">3.4 Outros Investimentos - Detalhamento</h3>
+                        <div id="outrosInvestimentosList" class="detail-list">
+                            <!-- Items serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addInvestmentItem('outrosInvestimentos')">
+                            + Adicionar Outro Investimento
+                        </button>
+                        <div class="subtotal">
+                            <label>Subtotal Outros: <span id="subtotalOutros">R$ 0,00</span></label>
+                        </div>
+                    </div>
+                    
+                    <!-- Informações Financeiras -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="valorTotalInvestimento">Valor Total do Investimento (R$) *</label>
+                            <input type="text" id="valorTotalInvestimento" name="valorTotalInvestimento" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="percentualRecursosProprios">% Recursos Próprios *</label>
+                            <input type="number" id="percentualRecursosProprios" name="percentualRecursosProprios" min="0" max="100" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="valorRecursosProprios">Valor Recursos Próprios (R$) *</label>
+                            <input type="text" id="valorRecursosProprios" name="valorRecursosProprios" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="percentualFinanciamento">% Financiamento *</label>
+                            <input type="number" id="percentualFinanciamento" name="percentualFinanciamento" min="0" max="100" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="valorFinanciamento">Valor Financiamento (R$) *</label>
+                            <input type="text" id="valorFinanciamento" name="valorFinanciamento" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prazoCarencia">Prazo de Carência (meses)</label>
+                            <input type="number" id="prazoCarencia" name="prazoCarencia" min="0" max="24" step="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prazoAmortizacao">Prazo de Amortização (meses) *</label>
+                            <input type="number" id="prazoAmortizacao" name="prazoAmortizacao" min="6" max="120" step="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taxaJurosAnual">Taxa de Juros Anual (%) *</label>
+                            <input type="number" id="taxaJurosAnual" name="taxaJurosAnual" min="0" max="50" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="garantiasOferecidas">Garantias Oferecidas</label>
+                            <textarea id="garantiasOferecidas" name="garantiasOferecidas" rows="3" placeholder="Descreva as garantias que serão oferecidas"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Resumo e Totais -->
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <div class="calculation-result highlight">
+                                <h3>Resumo do Investimento</h3>
+                                <label>Valor Total do Investimento: <span id="valorTotal" class="total-value">R$ 0,00</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 4: Cronograma Físico-Financeiro -->
+                <div class="form-section" data-section="4">
+                    <div class="section-header">
+                        <h2 class="section-title">4. Cronograma Físico-Financeiro</h2>
+                        <p class="section-description">Cronograma detalhado com duração máxima de 36 meses.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dataInicio">Data de Início *</label>
+                            <input type="date" id="dataInicio" name="dataInicio" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataTermino">Data de Término *</label>
+                            <input type="date" id="dataTermino" name="dataTermino" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prazoExecucao">Prazo de Execução (meses) *</label>
+                            <input type="number" id="prazoExecucao" name="prazoExecucao" min="1" max="36" step="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inicioObrasCivis">Início das Obras Civis</label>
+                            <input type="date" id="inicioObrasCivis" name="inicioObrasCivis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="terminoObrasCivis">Término das Obras Civis</label>
+                            <input type="date" id="terminoObrasCivis" name="terminoObrasCivis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inicioInstalacaoMaquinas">Início da Instalação de Máquinas</label>
+                            <input type="date" id="inicioInstalacaoMaquinas" name="inicioInstalacaoMaquinas">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="terminoInstalacaoMaquinas">Término da Instalação de Máquinas</label>
+                            <input type="date" id="terminoInstalacaoMaquinas" name="terminoInstalacaoMaquinas">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="outrosInvestimentosCronograma">Outros Investimentos Previstos</label>
+                            <textarea id="outrosInvestimentosCronograma" name="outrosInvestimentosCronograma" rows="3" placeholder="Ex: Treinamento, licenças ambientais, infraestrutura"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 5: Detalhamento dos Investimentos -->
+                <div class="form-section" data-section="5">
+                    <div class="section-header">
+                        <h2 class="section-title">5. Detalhamento dos Investimentos</h2>
+                        <p class="section-description">Quantificação e especificação detalhada de cada investimento.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="especificacaoObras">Especificação das Obras Civis *</label>
+                            <textarea id="especificacaoObras" name="especificacaoObras" rows="4" required placeholder="Descreva detalhadamente as obras civis previstas"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="especificacaoMaquinas">Especificação de Máquinas e Equipamentos *</label>
+                            <textarea id="especificacaoMaquinas" name="especificacaoMaquinas" rows="4" required placeholder="Liste e descreva as máquinas e equipamentos"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="especificacaoInstalacoes">Especificação das Instalações *</label>
+                            <textarea id="especificacaoInstalacoes" name="especificacaoInstalacoes" rows="4" required placeholder="Detalhe as instalações necessárias"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="fornecedores">Principais Fornecedores</label>
+                            <textarea id="fornecedores" name="fornecedores" rows="3" placeholder="Liste os principais fornecedores e suas especialidades"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 6: Documentação Complementar -->
+                <div class="form-section" data-section="6">
+                    <div class="section-header">
+                        <h2 class="section-title">6. Documentação Complementar</h2>
+                        <p class="section-description">Upload dos documentos obrigatórios e complementares.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="projetoArquitetonico">Projeto Arquitetônico ou Layout Industrial</label>
+                            <div class="file-upload">
+                                <input type="file" id="projetoArquitetonico" name="projetoArquitetonico" accept=".pdf,.dwg,.jpg,.png">
+                                <label for="projetoArquitetonico" class="file-upload-label">
+                                    <span class="file-upload-text">Clique para selecionar arquivo</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="licencaAmbiental">Licença Ambiental (quando exigida)</label>
+                            <div class="file-upload">
+                                <input type="file" id="licencaAmbiental" name="licencaAmbiental" accept=".pdf">
+                                <label for="licencaAmbiental" class="file-upload-label">
+                                    <span class="file-upload-text">Clique para selecionar arquivo</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="certidoesNegativas">Certidões Negativas de Débitos</label>
+                            <div class="file-upload">
+                                <input type="file" id="certidoesNegativas" name="certidoesNegativas" accept=".pdf" multiple>
+                                <label for="certidoesNegativas" class="file-upload-label">
+                                    <span class="file-upload-text">Clique para selecionar arquivos</span>
+                                </label>
+                            </div>
+                            <small class="form-hint">Federal, Estadual e Municipal</small>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="balancosPatrimoniais">Balanços Patrimoniais (últimos 2 exercícios)</label>
+                            <div class="file-upload">
+                                <input type="file" id="balancosPatrimoniais" name="balancosPatrimoniais" accept=".pdf" multiple>
+                                <label for="balancosPatrimoniais" class="file-upload-label">
+                                    <span class="file-upload-text">Clique para selecionar arquivos</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="orcamentosPropostas">Orçamentos ou Propostas Comerciais</label>
+                            <div class="file-upload">
+                                <input type="file" id="orcamentosPropostas" name="orcamentosPropostas" accept=".pdf,.xlsx,.doc,.docx" multiple>
+                                <label for="orcamentosPropostas" class="file-upload-label">
+                                    <span class="file-upload-text">Clique para selecionar arquivos</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 7: Plano de Acompanhamento e Comprovação -->
+                <div class="form-section" data-section="7">
+                    <div class="section-header">
+                        <h2 class="section-title">7. Plano de Acompanhamento e Comprovação</h2>
+                        <p class="section-description">Metodologia de controle e relatórios para a SEEC-GO.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="metodologiaControle">Metodologia de Controle dos Investimentos *</label>
+                            <textarea id="metodologiaControle" name="metodologiaControle" rows="4" required placeholder="Descreva como será feito o controle e medição dos investimentos"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="procedimentosRelatorios">Procedimentos para Relatórios Semestrais *</label>
+                            <textarea id="procedimentosRelatorios" name="procedimentosRelatorios" rows="4" required placeholder="Detalhe como serão elaborados os relatórios semestrais à SEEC-GO"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="responsavelAcompanhamento">Responsável pelo Acompanhamento *</label>
+                            <input type="text" id="responsavelAcompanhamento" name="responsavelAcompanhamento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cargoResponsavel">Cargo/Função *</label>
+                            <input type="text" id="cargoResponsavel" name="cargoResponsavel" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emailResponsavel">E-mail do Responsável *</label>
+                            <input type="email" id="emailResponsavel" name="emailResponsavel" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefoneContatoResponsavel">Telefone de Contato *</label>
+                            <input type="tel" id="telefoneContatoResponsavel" name="telefoneContatoResponsavel" placeholder="(xx)xxxxx-xxxx" required>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Seção 8: Caracterização da Empresa -->
+                <div class="form-section" data-section="8">
+                    <div class="section-header">
+                        <h2 class="section-title">8. Caracterização da Empresa</h2>
+                        <p class="section-description">Informações sobre a empresa, histórico, estrutura e operações.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="historicoEmpresa">Histórico e Constituição da Empresa *</label>
+                            <textarea id="historicoEmpresa" name="historicoEmpresa" rows="4" required 
+                                placeholder="Descreva o histórico da empresa, ano de fundação, principais marcos e evolução"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="atividadePrincipal">Atividade Principal da Empresa *</label>
+                            <textarea id="atividadePrincipal" name="atividadePrincipal" rows="3" required 
+                                placeholder="Descreva detalhadamente a atividade principal da empresa"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="anoFundacao">Ano de Fundação *</label>
+                            <input type="number" id="anoFundacao" name="anoFundacao" min="1900" max="2025" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="formaJuridica">Forma Jurídica *</label>
+                            <select id="formaJuridica" name="formaJuridica" required>
+                                <option value="">Selecione</option>
+                                <option value="ltda">Sociedade Limitada (LTDA)</option>
+                                <option value="sa">Sociedade Anônima (S/A)</option>
+                                <option value="eireli">EIRELI</option>
+                                <option value="ei">Empresário Individual</option>
+                                <option value="mei">MEI</option>
+                                <option value="outras">Outras</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="porteEmpresa">Porte da Empresa *</label>
+                            <select id="porteEmpresa" name="porteEmpresa" required>
+                                <option value="">Selecione</option>
+                                <option value="mei">Microempreendedor Individual</option>
+                                <option value="micro">Microempresa</option>
+                                <option value="pequena">Pequena Empresa</option>
+                                <option value="media">Média Empresa</option>
+                                <option value="grande">Grande Empresa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regimeTributario">Regime Tributário *</label>
+                            <select id="regimeTributario" name="regimeTributario" required>
+                                <option value="">Selecione</option>
+                                <option value="simples">Simples Nacional</option>
+                                <option value="presumido">Lucro Presumido</option>
+                                <option value="real">Lucro Real</option>
+                                <option value="arbitrado">Lucro Arbitrado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="grupoEmpresarial">Grupo Empresarial</label>
+                            <textarea id="grupoEmpresarial" name="grupoEmpresarial" rows="3" 
+                                placeholder="Se faz parte de grupo empresarial, descreva as principais empresas e atividades"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="estruturaSocietaria">Estrutura Societária *</label>
+                            <textarea id="estruturaSocietaria" name="estruturaSocietaria" rows="4" required 
+                                placeholder="Descreva a composição societária, sócios principais e percentuais de participação"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="estruturaOrganizacional">Estrutura Organizacional *</label>
+                            <textarea id="estruturaOrganizacional" name="estruturaOrganizacional" rows="4" required 
+                                placeholder="Descreva a estrutura organizacional, principais áreas e departamentos"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="principaisClientes">Principais Clientes/Mercados *</label>
+                            <textarea id="principaisClientes" name="principaisClientes" rows="3" required 
+                                placeholder="Descreva os principais clientes e mercados atendidos"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="certificacoes">Certificações e Qualificações</label>
+                            <textarea id="certificacoes" name="certificacoes" rows="3" 
+                                placeholder="Liste certificações de qualidade, ISO, licenças especiais, etc."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 9: Produção e Operações -->
+                <div class="form-section" data-section="9">
+                    <div class="section-header">
+                        <h2 class="section-title">9. Produção e Operações</h2>
+                        <p class="section-description">Capacidade produtiva, processos e formulação de produtos.</p>
+                    </div>
+                    
+                    <!-- Capacidade Produtiva -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">9.1 Capacidade Produtiva</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="capacidadeAtual">Capacidade Produtiva Atual (unid/mês) *</label>
+                                <input type="number" id="capacidadeAtual" name="capacidadeAtual" step="1" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="capacidadeFutura">Capacidade Produtiva Futura (unid/mês) *</label>
+                                <input type="number" id="capacidadeFutura" name="capacidadeFutura" step="1" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="unidadeMedida">Unidade de Medida *</label>
+                                <input type="text" id="unidadeMedida" name="unidadeMedida" required placeholder="Ex: ton, m³, peças, litros">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="percentualUtilizacao">% Atual de Utilização da Capacidade *</label>
+                                <input type="number" id="percentualUtilizacao" name="percentualUtilizacao" min="0" max="100" step="1" required>
+                                <small class="form-hint">Digite apenas o número (ex: 85 para 85%)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produtos -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">9.2 Produtos e Serviços</h3>
+                        <div id="produtosList" class="detail-list">
+                            <!-- Produtos serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addProdutoItem()">
+                            + Adicionar Produto/Serviço
+                        </button>
+                    </div>
+
+                    <!-- Processo Produtivo -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">9.3 Processo Produtivo</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="descricaoProcesso">Descrição do Processo Produtivo *</label>
+                                <textarea id="descricaoProcesso" name="descricaoProcesso" rows="4" required 
+                                    placeholder="Descreva detalhadamente o processo produtivo, etapas principais e fluxo de produção"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="tecnologiaUtilizada">Tecnologia Utilizada *</label>
+                                <textarea id="tecnologiaUtilizada" name="tecnologiaUtilizada" rows="3" required 
+                                    placeholder="Descreva as tecnologias, equipamentos e métodos utilizados na produção"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tipoProcesso">Tipo de Processo *</label>
+                                <select id="tipoProcesso" name="tipoProcesso" required>
+                                    <option value="">Selecione</option>
+                                    <option value="continuo">Processo Contínuo</option>
+                                    <option value="lote">Produção por Lote</option>
+                                    <option value="unitario">Produção Unitária</option>
+                                    <option value="misto">Processo Misto</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="turnos">Número de Turnos *</label>
+                                <select id="turnos" name="turnos" required>
+                                    <option value="">Selecione</option>
+                                    <option value="1">1 Turno</option>
+                                    <option value="2">2 Turnos</option>
+                                    <option value="3">3 Turnos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="horasTrabalho">Horas de Trabalho/Dia *</label>
+                                <input type="number" id="horasTrabalho" name="horasTrabalho" min="1" max="24" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="diasUteis">Dias Úteis/Mês *</label>
+                                <input type="number" id="diasUteis" name="diasUteis" min="1" max="31" required value="22">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controle de Qualidade -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">9.4 Controle de Qualidade</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="procedimentosQualidade">Procedimentos de Controle de Qualidade *</label>
+                                <textarea id="procedimentosQualidade" name="procedimentosQualidade" rows="4" required 
+                                    placeholder="Descreva os procedimentos de controle de qualidade, testes e certificações"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="certificacoesQualidade">Certificações de Qualidade</label>
+                                <textarea id="certificacoesQualidade" name="certificacoesQualidade" rows="2" 
+                                    placeholder="ISO 9001, ISO 14001, outras certificações específicas do setor"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insumos e Matérias-Primas -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">9.5 Insumos e Matérias-Primas</h3>
+                        <div id="insumosList" class="detail-list">
+                            <!-- Insumos serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addInsumoItem()">
+                            + Adicionar Insumo/Matéria-Prima
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seção 10: Análise de Mercado -->
+                <div class="form-section" data-section="10">
+                    <div class="section-header">
+                        <h2 class="section-title">10. Análise de Mercado</h2>
+                        <p class="section-description">Informações sobre clientes, concorrentes e estratégias comerciais.</p>
+                    </div>
+
+                    <!-- Base de Clientes -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">10.1 Base de Clientes</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="perfilClientes">Perfil dos Clientes *</label>
+                                <textarea id="perfilClientes" name="perfilClientes" rows="3" required 
+                                    placeholder="Descreva o perfil típico dos seus clientes (pessoa física, jurídica, porte, setor)"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="numeroClientes">Número Atual de Clientes *</label>
+                                <input type="number" id="numeroClientes" name="numeroClientes" min="0" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ticketMedio">Ticket Médio (R$) *</label>
+                                <input type="text" id="ticketMedio" name="ticketMedio" required>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Principais Clientes -->
+                        <h4 class="subsection-title">Principais Clientes</h4>
+                        <div id="clientesList" class="detail-list">
+                            <!-- Clientes serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addClienteItem()">
+                            + Adicionar Cliente Principal
+                        </button>
+                    </div>
+
+                    <!-- Análise de Concorrentes -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">10.2 Análise de Concorrentes</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="ambienteCompetitivo">Ambiente Competitivo *</label>
+                                <textarea id="ambienteCompetitivo" name="ambienteCompetitivo" rows="3" required 
+                                    placeholder="Descreva o nível de concorrência no seu mercado (alta, média, baixa) e principais características"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Concorrentes -->
+                        <h4 class="subsection-title">Principais Concorrentes</h4>
+                        <div id="concorrentesList" class="detail-list">
+                            <!-- Concorrentes serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addConcorrenteItem()">
+                            + Adicionar Concorrente
+                        </button>
+                    </div>
+
+                    <!-- Distribuição Regional -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">10.3 Distribuição Regional</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="abrangenciaLocal">Mercado Local (%) *</label>
+                                <input type="number" id="abrangenciaLocal" name="abrangenciaLocal" min="0" max="100" step="1" required>
+                                <small class="form-hint">% das vendas na cidade/região</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="abrangenciaEstadual">Mercado Estadual (%) *</label>
+                                <input type="number" id="abrangenciaEstadual" name="abrangenciaEstadual" min="0" max="100" step="1" required>
+                                <small class="form-hint">% das vendas no estado</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="abrangenciaNacional">Mercado Nacional (%)</label>
+                                <input type="number" id="abrangenciaNacional" name="abrangenciaNacional" min="0" max="100" step="1">
+                                <small class="form-hint">% das vendas em outros estados</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="abrangenciaInternacional">Mercado Internacional (%)</label>
+                                <input type="number" id="abrangenciaInternacional" name="abrangenciaInternacional" min="0" max="100" step="1">
+                                <small class="form-hint">% das vendas para outros países</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeções de Vendas -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">10.4 Projeções e Estratégias</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="crescimentoEsperado">Crescimento Esperado Ano 1 (%) *</label>
+                                <input type="number" id="crescimentoEsperado" name="crescimentoEsperado" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="metaFaturamento">Meta Faturamento Ano 1 (R$) *</label>
+                                <input type="text" id="metaFaturamento" name="metaFaturamento" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="projectionType">Tipo de Projeção de Crescimento</label>
+                                <select id="projectionType" name="projectionType">
+                                    <option value="uniforme">Crescimento Uniforme</option>
+                                    <option value="variavel">Crescimento Variável</option>
+                                </select>
+                            </div>
+
+                            <div id="projectionsContainer" class="full-width"></div>
+                            
+                            <div class="form-group full-width">
+                                <label for="estrategiasVendas">Estratégias de Vendas *</label>
+                                <textarea id="estrategiasVendas" name="estrategiasVendas" rows="3" required 
+                                    placeholder="Descreva suas principais estratégias de vendas e marketing"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="canaisDistribuicao">Canais de Distribuição *</label>
+                                <textarea id="canaisDistribuicao" name="canaisDistribuicao" rows="3" required 
+                                    placeholder="Descreva como seus produtos/serviços chegam aos clientes (venda direta, distribuidores, e-commerce, etc.)"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="diferencialCompetitivo">Diferencial Competitivo *</label>
+                                <textarea id="diferencialCompetitivo" name="diferencialCompetitivo" rows="3" required 
+                                    placeholder="O que diferencia sua empresa dos concorrentes?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 11: Recursos Humanos -->
+                <div class="form-section" data-section="11">
+                    <div class="section-header">
+                        <h2 class="section-title">11. Recursos Humanos</h2>
+                        <p class="section-description">Estrutura organizacional, quadro de funcionários e políticas de RH.</p>
+                    </div>
+
+                    <!-- Estrutura Atual -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">11.1 Estrutura Organizacional Atual</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="totalFuncionarios">Total de Funcionários Atuais *</label>
+                                <input type="number" id="totalFuncionarios" name="totalFuncionarios" min="0" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="funcionariosCLT">Funcionários CLT *</label>
+                                <input type="number" id="funcionariosCLT" name="funcionariosCLT" min="0" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="funcionariosTerceirizados">Funcionários Terceirizados</label>
+                                <input type="number" id="funcionariosTerceirizados" name="funcionariosTerceirizados" min="0" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="funcionariosEstagiarios">Estagiários/Aprendizes</label>
+                                <input type="number" id="funcionariosEstagiarios" name="funcionariosEstagiarios" min="0" step="1">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="estruturaOrganizacionalRH">Descrição da Estrutura Organizacional *</label>
+                                <textarea id="estruturaOrganizacionalRH" name="estruturaOrganizacionalRH" rows="3" required 
+                                    placeholder="Descreva a hierarquia, departamentos e como a empresa está organizada"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quadro de Funcionários por Função -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">11.2 Quadro de Funcionários por Função</h3>
+                        <div id="funcionariosList" class="detail-list">
+                            <!-- Funcionários serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addFuncionarioItem()">
+                            + Adicionar Cargo/Função
+                        </button>
+                    </div>
+
+                    <!-- Políticas de RH -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">11.3 Políticas e Benefícios</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="beneficiosOferecidos">Benefícios Oferecidos</label>
+                                <textarea id="beneficiosOferecidos" name="beneficiosOferecidos" rows="3" 
+                                    placeholder="Vale alimentação, vale transporte, plano de saúde, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="programasTreinamento">Programas de Treinamento</label>
+                                <textarea id="programasTreinamento" name="programasTreinamento" rows="3" 
+                                    placeholder="Descreva os programas de capacitação e desenvolvimento profissional"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="rotatividade">Taxa de Rotatividade Anual (%)</label>
+                                <input type="number" id="rotatividade" name="rotatividade" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="absenteismo">Taxa de Absenteísmo (%)</label>
+                                <input type="number" id="absenteismo" name="absenteismo" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Planos de Contratação -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">11.4 Planos de Contratação Futuros</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="novasContratacoes">Novas Contratações Previstas (próximos 12 meses)</label>
+                                <input type="number" id="novasContratacoes" name="novasContratacoes" min="0" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investimentoRH">Investimento Previsto em RH (R$)</label>
+                                <input type="text" id="investimentoRH" name="investimentoRH" readonly>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="justificativaContratacoes">Justificativa para Novas Contratações</label>
+                                <textarea id="justificativaContratacoes" name="justificativaContratacoes" rows="3" 
+                                    placeholder="Explique a necessidade de novas contratações relacionada ao projeto de investimento"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Contratações Planejadas -->
+                        <h4 class="subsection-title">Detalhamento das Contratações Planejadas</h4>
+                        <div id="contratacoesList" class="detail-list">
+                            <!-- Contratações serão adicionadas dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addContratacaoItem()">
+                            + Adicionar Contratação Planejada
+                        </button>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="encargosBeneficios">Encargos e Benefícios (%)</label>
+                                <input type="number" id="encargosBeneficios" name="encargosBeneficios" min="0" step="0.1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 12: Informações Financeiras -->
+                <div class="form-section" data-section="12">
+                    <div class="section-header">
+                        <h2 class="section-title">12. Informações Financeiras</h2>
+                        <p class="section-description">Demonstrações contábeis, estrutura de capital e situação financeira.</p>
+                    </div>
+
+                    <!-- Demonstrações Contábeis -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">12.1 Demonstrações Contábeis</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="anoBase">Ano Base das Demonstrações *</label>
+                                <input type="number" id="anoBase" name="anoBase" min="2020" max="2025" step="1" required value="2024">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regimeContabil">Regime Contábil *</label>
+                                <select id="regimeContabil" name="regimeContabil" required>
+                                    <option value="">Selecione</option>
+                                    <option value="competencia">Competência</option>
+                                    <option value="caixa">Caixa</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Balanço Patrimonial -->
+                        <h4 class="subsection-title">Balanço Patrimonial (Últimos 3 Anos)</h4>
+                        <div id="balancoList" class="detail-list">
+                            <!-- Balanços serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addBalancoItem()">
+                            + Adicionar Ano do Balanço
+                        </button>
+                    </div>
+
+                    <!-- Estrutura de Capital -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">12.2 Estrutura de Capital e Sócios</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="capitalSocial">Capital Social Total (R$) *</label>
+                                <input type="number" id="capitalSocial" name="capitalSocial" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="capitalIntegralizado">Capital Integralizado (R$) *</label>
+                                <input type="number" id="capitalIntegralizado" name="capitalIntegralizado" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="numeroSocios">Número de Sócios *</label>
+                                <input type="number" id="numeroSocios" name="numeroSocios" min="1" step="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dataUltimaAlteracao">Data da Última Alteração Contratual</label>
+                                <input type="date" id="dataUltimaAlteracao" name="dataUltimaAlteracao">
+                            </div>
+                        </div>
+
+                        <!-- Composição Societária -->
+                        <h4 class="subsection-title">Composição Societária</h4>
+                        <div id="sociosList" class="detail-list">
+                            <!-- Sócios serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addSocioItem()">
+                            + Adicionar Sócio
+                        </button>
+                    </div>
+
+                    <!-- Endividamento -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">12.3 Endividamento e Obrigações</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="endividamentoTotal">Endividamento Total (R$)</label>
+                                <input type="number" id="endividamentoTotal" name="endividamentoTotal" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="endividamentoCurto">Curto Prazo (R$)</label>
+                                <input type="number" id="endividamentoCurto" name="endividamentoCurto" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="endividamentoLongo">Longo Prazo (R$)</label>
+                                <input type="number" id="endividamentoLongo" name="endividamentoLongo" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="garantiasOferecidas">Garantias Oferecidas</label>
+                                <select id="garantiasOferecidas" name="garantiasOferecidas">
+                                    <option value="">Selecione</option>
+                                    <option value="aval">Aval dos Sócios</option>
+                                    <option value="hipoteca">Hipoteca</option>
+                                    <option value="penhor">Penhor</option>
+                                    <option value="fianca">Fiança Bancária</option>
+                                    <option value="outras">Outras</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Detalhamento de Dívidas -->
+                        <h4 class="subsection-title">Detalhamento das Principais Dívidas</h4>
+                        <div id="dividasList" class="detail-list">
+                            <!-- Dívidas serão adicionadas dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addDividaItem()">
+                            + Adicionar Dívida
+                        </button>
+                    </div>
+
+                    <!-- Fluxo de Caixa -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">12.4 Fluxo de Caixa e Projeções</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="saldoCaixa">Saldo Atual em Caixa/Bancos (R$) *</label>
+                                <input type="number" id="saldoCaixa" name="saldoCaixa" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="receitaMediaMensal">Receita Média Mensal (R$) *</label>
+                                <input type="number" id="receitaMediaMensal" name="receitaMediaMensal" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="despesaMediaMensal">Despesa Média Mensal (R$) *</label>
+                                <input type="number" id="despesaMediaMensal" name="despesaMediaMensal" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="capacidadePagamento">Capacidade de Pagamento Mensal (R$)</label>
+                                <input type="number" id="capacidadePagamento" name="capacidadePagamento" step="0.01" readonly>
+                                <small class="form-hint">Calculado automaticamente: Receita - Despesa</small>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="fonteRecursosProprios">Fonte dos Recursos Próprios *</label>
+                                <textarea id="fonteRecursosProprios" name="fonteRecursosProprios" rows="3" required 
+                                    placeholder="Descreva a origem dos recursos próprios para o investimento (capital social, lucros acumulados, etc.)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 13: Receitas e Custos -->
+                <div class="form-section" data-section="13">
+                    <div class="section-header">
+                        <h2 class="section-title">13. Receitas e Custos</h2>
+                        <p class="section-description">Composição de receitas, estrutura de custos e estratégias de precificação.</p>
+                    </div>
+
+                    <!-- Composição de Receitas -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">13.1 Composição de Receitas</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="receitaBrutaAnual">Receita Bruta Anual (R$) *</label>
+                                <input type="number" id="receitaBrutaAnual" name="receitaBrutaAnual" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="receitaLiquidaAnual">Receita Líquida Anual (R$) *</label>
+                                <input type="number" id="receitaLiquidaAnual" name="receitaLiquidaAnual" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="principalFonteReceita">Principal Fonte de Receita (%)</label>
+                                <input type="number" id="principalFonteReceita" name="principalFonteReceita" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sazonalidadeReceitas">Sazonalidade das Receitas</label>
+                                <select id="sazonalidadeReceitas" name="sazonalidadeReceitas">
+                                    <option value="">Selecione</option>
+                                    <option value="alta">Alta</option>
+                                    <option value="media">Média</option>
+                                    <option value="baixa">Baixa</option>
+                                    <option value="nenhuma">Nenhuma</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="detalhamentoProdutosServicos">Detalhamento de Produtos/Serviços por Receita</label>
+                                <textarea id="detalhamentoProdutosServicos" name="detalhamentoProdutosServicos" rows="4" 
+                                    placeholder="Descreva os principais produtos/serviços e sua participação percentual na receita total"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Histórico de Faturamento -->
+                        <h4 class="subsection-title">Histórico de Faturamento (Últimos 36 Meses)</h4>
+                        <div id="faturamentoList" class="detail-list">
+                            <!-- Faturamento será adicionado dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addFaturamentoItem()">
+                            + Adicionar Período de Faturamento
+                        </button>
+                    </div>
+
+                    <!-- Estrutura de Custos -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">13.2 Estrutura de Custos</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="custosFixosMensais">Custos Fixos Mensais (R$) *</label>
+                                <input type="number" id="custosFixosMensais" name="custosFixosMensais" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="custosVariaveisMensais">Custos Variáveis Mensais (R$) *</label>
+                                <input type="number" id="custosVariaveisMensais" name="custosVariaveisMensais" min="0" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="margemLucro">Margem de Lucro Atual (%)</label>
+                                <input type="number" id="margemLucro" name="margemLucro" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pontoEquilibrio">Ponto de Equilíbrio Mensal (R$)</label>
+                                <input type="number" id="pontoEquilibrio" name="pontoEquilibrio" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="principaisCustos">Principais Componentes de Custos</label>
+                                <textarea id="principaisCustos" name="principaisCustos" rows="4" 
+                                    placeholder="Descreva os principais custos (matéria-prima, mão de obra, energia, etc.) e sua participação percentual"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Detalhamento de Custos -->
+                        <h4 class="subsection-title">Detalhamento de Custos por Categoria</h4>
+                        <div id="custosList" class="detail-list">
+                            <!-- Custos serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addCustoItem()">
+                            + Adicionar Categoria de Custo
+                        </button>
+                    </div>
+
+                    <!-- Lista de Fornecedores -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">13.3 Lista de Fornecedores</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="numeroFornecedores">Número Total de Fornecedores</label>
+                                <input type="number" id="numeroFornecedores" name="numeroFornecedores" min="0" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fornecedorPrincipal">Fornecedor Principal (% das Compras)</label>
+                                <input type="number" id="fornecedorPrincipal" name="fornecedorPrincipal" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="prazoMedioPagamento">Prazo Médio de Pagamento (dias)</label>
+                                <input type="number" id="prazoMedioPagamento" name="prazoMedioPagamento" min="0" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="concentracaoFornecedores">Concentração de Fornecedores</label>
+                                <select id="concentracaoFornecedores" name="concentracaoFornecedores">
+                                    <option value="">Selecione</option>
+                                    <option value="alta">Alta (poucos fornecedores)</option>
+                                    <option value="media">Média (concentração equilibrada)</option>
+                                    <option value="baixa">Baixa (muitos fornecedores)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Fornecedores -->
+                        <h4 class="subsection-title">Principais Fornecedores</h4>
+                        <div id="fornecedoresList" class="detail-list">
+                            <!-- Fornecedores serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addFornecedorItem()">
+                            + Adicionar Fornecedor
+                        </button>
+                    </div>
+
+                    <!-- Estratégia de Precificação -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">13.4 Estratégia de Precificação</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="metodoPrecificacao">Método de Precificação Principal *</label>
+                                <select id="metodoPrecificacao" name="metodoPrecificacao" required>
+                                    <option value="">Selecione</option>
+                                    <option value="custo-mais-margem">Custo + Margem</option>
+                                    <option value="valor-percebido">Valor Percebido</option>
+                                    <option value="concorrencia">Baseado na Concorrência</option>
+                                    <option value="penetracao">Penetração de Mercado</option>
+                                    <option value="premium">Preço Premium</option>
+                                    <option value="dinamico">Preço Dinâmico</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="margemMediaProdutos">Margem Média dos Produtos (%)</label>
+                                <input type="number" id="margemMediaProdutos" name="margemMediaProdutos" min="0" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="frequenciaReajuste">Frequência de Reajuste de Preços</label>
+                                <select id="frequenciaReajuste" name="frequenciaReajuste">
+                                    <option value="">Selecione</option>
+                                    <option value="mensal">Mensal</option>
+                                    <option value="trimestral">Trimestral</option>
+                                    <option value="semestral">Semestral</option>
+                                    <option value="anual">Anual</option>
+                                    <option value="conforme-necessario">Conforme Necessário</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="elasticidadePreco">Elasticidade de Preço</label>
+                                <select id="elasticidadePreco" name="elasticidadePreco">
+                                    <option value="">Selecione</option>
+                                    <option value="alta">Alta (sensível a mudanças)</option>
+                                    <option value="media">Média (moderadamente sensível)</option>
+                                    <option value="baixa">Baixa (pouco sensível)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="estrategiaPrecificacao">Estratégia Detalhada de Precificação</label>
+                                <textarea id="estrategiaPrecificacao" name="estrategiaPrecificacao" rows="4" 
+                                    placeholder="Descreva como são formados os preços, critérios de diferenciação, descontos praticados, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="impactoProjetoPrecificacao">Impacto do Projeto na Precificação</label>
+                                <textarea id="impactoProjetoPrecificacao" name="impactoProjetoPrecificacao" rows="3" 
+                                    placeholder="Como o projeto de investimento afetará a estratégia de precificação?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 14: Projetos de Inovação -->
+                <div class="form-section" data-section="14">
+                    <div class="section-header">
+                        <h2 class="section-title">14. Projetos de Inovação</h2>
+                        <p class="section-description">Iniciativas de P&D, upgrades tecnológicos e projetos de sustentabilidade.</p>
+                    </div>
+
+                    <!-- Iniciativas de P&D -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">14.1 Iniciativas de Pesquisa e Desenvolvimento</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="temPD">A empresa possui iniciativas de P&D? *</label>
+                                <select id="temPD" name="temPD" required>
+                                    <option value="">Selecione</option>
+                                    <option value="sim">Sim</option>
+                                    <option value="nao">Não</option>
+                                    <option value="planejado">Planejado para o futuro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investimentoPD">Investimento Anual em P&D (R$)</label>
+                                <input type="number" id="investimentoPD" name="investimentoPD" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="percentualPD">% da Receita Investida em P&D</label>
+                                <input type="number" id="percentualPD" name="percentualPD" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="equipePD">Número de Profissionais em P&D</label>
+                                <input type="number" id="equipePD" name="equipePD" min="0" step="1">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="areasInovacao">Principais Áreas de Inovação</label>
+                                <textarea id="areasInovacao" name="areasInovacao" rows="3" 
+                                    placeholder="Descreva as principais áreas onde a empresa investe em inovação (produtos, processos, serviços, etc.)"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="parcerias">Parcerias para Inovação</label>
+                                <textarea id="parcerias" name="parcerias" rows="3" 
+                                    placeholder="Universidades, centros de pesquisa, outras empresas, incubadoras, etc."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Projetos P&D -->
+                        <h4 class="subsection-title">Projetos de P&D em Andamento ou Planejados</h4>
+                        <div id="projetosPDList" class="detail-list">
+                            <!-- Projetos P&D serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addProjetoPDItem()">
+                            + Adicionar Projeto de P&D
+                        </button>
+                    </div>
+
+                    <!-- Upgrades Tecnológicos -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">14.2 Upgrades Tecnológicos</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="tecnologiaAtual">Nível Tecnológico Atual *</label>
+                                <select id="tecnologiaAtual" name="tecnologiaAtual" required>
+                                    <option value="">Selecione</option>
+                                    <option value="basico">Básico</option>
+                                    <option value="intermediario">Intermediário</option>
+                                    <option value="avancado">Avançado</option>
+                                    <option value="estado-da-arte">Estado da Arte</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="automacao">Nível de Automação (%)</label>
+                                <input type="number" id="automacao" name="automacao" min="0" max="100" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sistemaGestao">Sistema de Gestão (ERP)</label>
+                                <select id="sistemaGestao" name="sistemaGestao">
+                                    <option value="">Selecione</option>
+                                    <option value="nao-possui">Não Possui</option>
+                                    <option value="basico">Sistema Básico</option>
+                                    <option value="intermediario">Sistema Intermediário</option>
+                                    <option value="avancado">Sistema Avançado (ERP Completo)</option>
+                                    <option value="personalizado">Sistema Personalizado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investimentoTech">Investimento Anual em Tecnologia (R$)</label>
+                                <input type="number" id="investimentoTech" name="investimentoTech" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="tecnologiasUtilizadas">Principais Tecnologias Utilizadas</label>
+                                <textarea id="tecnologiasUtilizadas" name="tecnologiasUtilizadas" rows="3" 
+                                    placeholder="Software, equipamentos, sistemas de controle, IoT, IA, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="upgradesPrevistos">Upgrades Tecnológicos Previstos</label>
+                                <textarea id="upgradesPrevistos" name="upgradesPrevistos" rows="3" 
+                                    placeholder="Quais melhorias tecnológicas estão planejadas para os próximos anos?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Upgrades -->
+                        <h4 class="subsection-title">Upgrades Tecnológicos Planejados</h4>
+                        <div id="upgradesList" class="detail-list">
+                            <!-- Upgrades serão adicionados dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addUpgradeItem()">
+                            + Adicionar Upgrade Planejado
+                        </button>
+                    </div>
+
+                    <!-- Melhorias de Processos -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">14.3 Melhorias de Processos</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="metodologiasMelhoria">Metodologias de Melhoria Utilizadas</label>
+                                <select id="metodologiasMelhoria" name="metodologiasMelhoria" multiple>
+                                    <option value="lean">Lean Manufacturing</option>
+                                    <option value="six-sigma">Six Sigma</option>
+                                    <option value="kaizen">Kaizen</option>
+                                    <option value="5s">5S</option>
+                                    <option value="pdca">PDCA</option>
+                                    <option value="agile">Metodologias Ágeis</option>
+                                    <option value="iso">Normas ISO</option>
+                                    <option value="nenhuma">Nenhuma</option>
+                                </select>
+                                <small class="form-hint">Segure Ctrl para selecionar múltiplas opções</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="certificacoes">Certificações de Qualidade</label>
+                                <input type="text" id="certificacoes" name="certificacoes" 
+                                    placeholder="ISO 9001, ISO 14001, etc.">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="indicadoresKPI">Principais KPIs Monitorados</label>
+                                <textarea id="indicadoresKPI" name="indicadoresKPI" rows="2" 
+                                    placeholder="Produtividade, qualidade, eficiência, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="frequenciaAnalise">Frequência de Análise de Processos</label>
+                                <select id="frequenciaAnalise" name="frequenciaAnalise">
+                                    <option value="">Selecione</option>
+                                    <option value="continua">Contínua</option>
+                                    <option value="mensal">Mensal</option>
+                                    <option value="trimestral">Trimestral</option>
+                                    <option value="semestral">Semestral</option>
+                                    <option value="anual">Anual</option>
+                                    <option value="esporadica">Esporádica</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="melhorias_implementadas">Melhorias Implementadas Recentemente</label>
+                                <textarea id="melhorias_implementadas" name="melhorias_implementadas" rows="3" 
+                                    placeholder="Descreva as principais melhorias implementadas nos últimos 2 anos e seus resultados"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Melhorias -->
+                        <h4 class="subsection-title">Melhorias de Processos Planejadas</h4>
+                        <div id="melhoriasList" class="detail-list">
+                            <!-- Melhorias serão adicionadas dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addMelhoriaItem()">
+                            + Adicionar Melhoria Planejada
+                        </button>
+                    </div>
+
+                    <!-- Iniciativas de Sustentabilidade -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">14.4 Iniciativas de Sustentabilidade</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="temSustentabilidade">Possui iniciativas de sustentabilidade? *</label>
+                                <select id="temSustentabilidade" name="temSustentabilidade" required>
+                                    <option value="">Selecione</option>
+                                    <option value="sim">Sim</option>
+                                    <option value="nao">Não</option>
+                                    <option value="planejado">Planejado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investimentoSustentabilidade">Investimento Anual em Sustentabilidade (R$)</label>
+                                <input type="number" id="investimentoSustentabilidade" name="investimentoSustentabilidade" min="0" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="energiaRenovavel">Uso de Energia Renovável (%)</label>
+                                <input type="number" id="energiaRenovavel" name="energiaRenovavel" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gestaoResiduos">Sistema de Gestão de Resíduos</label>
+                                <select id="gestaoResiduos" name="gestaoResiduos">
+                                    <option value="">Selecione</option>
+                                    <option value="nao-possui">Não Possui</option>
+                                    <option value="basico">Separação Básica</option>
+                                    <option value="intermediario">Reciclagem</option>
+                                    <option value="avancado">Economia Circular</option>
+                                    <option value="certificado">Certificado (ISO 14001)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="acoesAmbientais">Principais Ações Ambientais</label>
+                                <textarea id="acoesAmbientais" name="acoesAmbientais" rows="3" 
+                                    placeholder="Redução de consumo, reciclagem, tratamento de efluentes, compensação de carbono, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="impactoProjetoSustentabilidade">Impacto do Projeto na Sustentabilidade</label>
+                                <textarea id="impactoProjetoSustentabilidade" name="impactoProjetoSustentabilidade" rows="3" 
+                                    placeholder="Como o projeto de investimento contribuirá para a sustentabilidade da empresa?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Iniciativas -->
+                        <h4 class="subsection-title">Iniciativas de Sustentabilidade</h4>
+                        <div id="sustentabilidadeList" class="detail-list">
+                            <!-- Iniciativas serão adicionadas dinamicamente -->
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addSustentabilidadeItem()">
+                            + Adicionar Iniciativa
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn">Anterior</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Próximo</button>
+                    <button type="button" class="btn btn-success" id="previewBtn" style="display: none;">Prévia</button>
+                </div>
+            </form>
+
+            <!-- Modal de Prévia -->
+            <div class="modal" id="previewModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Prévia dos Dados</h3>
+                        <span class="modal-close">&times;</span>
+                    </div>
+                    <div class="modal-body" id="previewContent">
+                        <!-- Conteúdo da prévia será inserido aqui -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="editBtn">Editar</button>
+                        <button type="button" class="btn btn-success" id="exportExcelBtn">Exportar Excel</button>
+                        <button type="button" class="btn btn-danger" id="exportPDFBtn">Exportar PDF</button>
+                        <button type="button" class="btn btn-info" id="exportJSONBtn">Exportar JSON</button>
+                        <button type="button" class="btn btn-warning" id="exportCSVBtn">Exportar CSV</button>
+                        <button type="button" class="btn btn-primary" id="saveBtn">Salvar Rascunho</button>
+                        <button type="button" class="btn btn-secondary" id="importBtn">📥 Importar JSON</button>
+                        <input type="file" id="importJsonFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="expertzy_logo.png" alt="Expertzy Logo" class="footer-logo-image">
+                </div>
+                <p>© 2024 Expertzy - Inteligência Tributária. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script src="import-functions.js"></script>
+</body>
+</html>

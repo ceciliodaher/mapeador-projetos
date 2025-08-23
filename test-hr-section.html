@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Seção RH</title>
+    <script>
+        // Test HR section calculations
+        function testHRCalculations() {
+            const tests = [];
+            
+            // Test 1: Calculate investment with employees
+            const salaries = [3500, 5200, 9000, 4000];
+            const quantities = [30, 8, 3, 5];
+            const encargos = 85; // 85% de encargos
+            
+            let totalBase = 0;
+            for (let i = 0; i < salaries.length; i++) {
+                totalBase += salaries[i] * quantities[i];
+            }
+            
+            const totalWithEncargos = totalBase * (1 + (encargos / 100));
+            const totalContratacoes = quantities.reduce((a, b) => a + b, 0);
+            
+            tests.push({
+                name: "Cálculo de Investimento RH",
+                expected: {
+                    totalContratacoes: 46,
+                    investimentoBase: 173600,
+                    investimentoComEncargos: 321160
+                },
+                actual: {
+                    totalContratacoes: totalContratacoes,
+                    investimentoBase: totalBase,
+                    investimentoComEncargos: totalWithEncargos
+                },
+                passed: totalContratacoes === 46 && totalBase === 173600 && totalWithEncargos === 321160
+            });
+            
+            // Test 2: Data collection structure
+            const mockData = {
+                funcionarios: [
+                    {cargo: "Operador", quantidade: "120", salario: "2800", escolaridade: "medio", tipo: "CLT"},
+                    {cargo: "Técnico", quantidade: "25", salario: "4200", escolaridade: "tecnico", tipo: "CLT"}
+                ],
+                contratacoes: [
+                    {cargo: "Operador CNC", quantidade: "30", salario: "3500", previsao: "2024-10", prioridade: "Alta"},
+                    {cargo: "Técnico Automação", quantidade: "8", salario: "5200", previsao: "2024-11", prioridade: "Alta"}
+                ]
+            };
+            
+            tests.push({
+                name: "Estrutura de Dados",
+                expected: "Dados completos com funcionários e contratações",
+                actual: mockData.funcionarios.length > 0 && mockData.contratacoes.length > 0 ? "OK" : "Falha",
+                passed: mockData.funcionarios.length === 2 && mockData.contratacoes.length === 2
+            });
+            
+            return tests;
+        }
+        
+        // Run tests on page load
+        window.onload = function() {
+            const results = testHRCalculations();
+            const output = document.getElementById('results');
+            
+            results.forEach(test => {
+                const div = document.createElement('div');
+                div.style.margin = '10px';
+                div.style.padding = '10px';
+                div.style.border = test.passed ? '2px solid green' : '2px solid red';
+                div.innerHTML = `
+                    <h3>${test.name}: ${test.passed ? '✅ PASSOU' : '❌ FALHOU'}</h3>
+                    <p><strong>Esperado:</strong> ${JSON.stringify(test.expected, null, 2)}</p>
+                    <p><strong>Obtido:</strong> ${JSON.stringify(test.actual, null, 2)}</p>
+                `;
+                output.appendChild(div);
+            });
+            
+            // Summary
+            const passed = results.filter(t => t.passed).length;
+            const total = results.length;
+            const summary = document.createElement('h2');
+            summary.innerHTML = `Resumo: ${passed}/${total} testes passaram`;
+            summary.style.color = passed === total ? 'green' : 'red';
+            output.insertBefore(summary, output.firstChild);
+        };
+    </script>
+</head>
+<body>
+    <h1>Teste da Seção de Recursos Humanos</h1>
+    <div id="results"></div>
+</body>
+</html>

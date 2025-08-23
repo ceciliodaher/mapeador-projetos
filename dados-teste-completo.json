@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "sistemaVersao": "14 Seções",
+    "dataImportacao": "2025-08-22",
+    "empresa": "EMPRESA TESTE MANUAL COMPLETO LTDA",
+    "geradoPor": "Claude Code - Teste Completo"
+  },
+  "dados": {
+    "razaoSocial": "EMPRESA TESTE MANUAL COMPLETO LTDA",
+    "nomeFantasia": "Teste Manual Complete",
+    "cnpj": "12.345.678/0001-99",
+    "inscricaoEstadual": "123456789",
+    "inscricaoMunicipal": "987654321",
+    "endereco": "Rua do Teste Manual, 1234",
+    "bairro": "Centro Empresarial",
+    "cidade": "Goiânia",
+    "uf": "GO",
+    "cep": "74000-000",
+    "telefone": "(62) 99999-9999",
+    "email": "teste@empresamanual.com.br",
+    "website": "https://www.empresamanual.com.br",
+    "responsavelLegal": "Maria Silva Santos",
+    "cpfResponsavel": "987.654.321-00",
+    "cargoResponsavel": "Diretora Executiva",
+    "telefoneResponsavel": "(62) 88888-8888",
+    "emailResponsavel": "maria@empresamanual.com.br",
+    "programasFiscais": "PRODUZIR, FOMENTAR, COMPETE",
+    
+    "nomeEmpreendimento": "Projeto Industrial Teste Manual Completo",
+    "tipoEmpreendimento": "implantacao",
+    "descricaoDetalhada": "Projeto completo para teste manual de todas as funcionalidades do sistema CEI, incluindo validação de exportações em múltiplos formatos",
+    "municipio": "Anápolis",
+    "loteamento": "Distrito Agroindustrial de Anápolis",
+    "enderecoEmpreendimento": "Quadra A, Lote 10, DAIA",
+    "ufEmpreendimento": "GO",
+    "cepEmpreendimento": "75000-000",
+    "cnae": "2599-3",
+    "atividadeEconomica": "Fabricação de produtos diversos para teste",
+    "justificativaEstrategica": "Validação completa do sistema CEI com teste real de exportações",
+    
+    "valorTotal": "8000000",
+    "valorFinanciamento": "6400000",
+    "contrapartida": "1600000",
+    "percentualFinanciamento": "80",
+    "prazoCarencia": "18",
+    "prazoAmortizacao": "144",
+    "taxaJuros": "9,5",
+    
+    "dataInicioObras": "2025-06-01",
+    "prazoExecucao": "30",
+    "dataInicioOperacao": "2027-12-01",
+    "cronogramaDetalhado": "Mês 1-8: Preparação do terreno e fundações\nMês 9-20: Construção civil e infraestrutura\nMês 21-28: Instalação de máquinas e equipamentos\nMês 29-30: Testes finais e comissionamento",
+    "cronogramaDesembolso": "40% na assinatura do contrato\n35% na conclusão da fase civil\n25% na entrega e aceitação final",
+    "cronogramaFisico": "1º Semestre: 20% de execução\n2º Semestre: 35% de execução\n3º Semestre: 30% de execução\n4º Semestre: 15% de execução final",
+    
+    "licencaAmbiental": "LAI nº 2025/001 - SEMAD/GO",
+    "licencaOperacao": "Em processo de solicitação",
+    "outrasLicencas": "Licença Corpo de Bombeiros - Processo 2025/789",
+    
+    "metodologiaAcompanhamento": "Relatórios mensais com vistorias técnicas",
+    "indicadoresDesempenho": "Progresso físico, financeiro e marcos de qualidade",
+    "frequenciaRelatorios": "Mensal",
+    "responsavelAcompanhamento": "Equipe técnica + consultoria externa",
+    "sistemaControle": "Dashboard integrado em tempo real",
+    
+    "historicoEmpresa": "Empresa fundada em 2022, especializada em soluções industriais inovadoras",
+    "porteEmpresa": "medio",
+    "numeroFuncionarios": "200",
+    "estruturaSocietaria": "Sociedade Limitada com 3 sócios",
+    "experienciaSetor": "10 anos de experiência acumulada dos sócios",
+    
+    "capacidadeProducaoAnual": "80000",
+    "processosProductivos": "Linha de produção automatizada com controle digital",
+    "tecnologiasUtilizadas": "Robótica, IoT, sistemas integrados de gestão",
+    "turnosTrabalho": "2 turnos de 8 horas",
+    "sazonalidade": "Produção constante ao longo do ano",
+    
+    "mercadoAlvo": "Indústria automotiva, eletroeletrônicos, agronegócios",
+    "concorrentesPrincipais": "3 empresas nacionais e importadores",
+    "vantagensCompetitivas": "Localização estratégica, tecnologia avançada, custos competitivos",
+    "estrategiasMarketing": "Participação em feiras, marketing digital, parcerias estratégicas",
+    "canaisDistribuicao": "Vendas diretas, distribuidores regionais, e-commerce B2B",
+    
+    "estruturaOrganizacional": "Direção executiva, 4 gerências, 8 supervisões, operadores",
+    "planosContratacao": "80 novos funcionários nos primeiros 18 meses",
+    "programasCapacitacao": "Treinamentos técnicos, segurança, qualidade, liderança",
+    "politicasRH": "Plano de carreira, participação nos resultados, benefícios estendidos",
+    
+    "receitaProjetada": "35000000",
+    "custoOperacional": "24000000",
+    "margemLucro": "31",
+    "ebitdaProjetado": "8000000",
+    "pontoEquilibrio": "18 meses após início da operação",
+    
+    "receitaBrutaAnual": "40000000",
+    "custosVariaveis": "20000000",
+    "custosFixos": "12000000",
+    "despesasAdministrativas": "4000000",
+    "resultadoOperacional": "4000000",
+    
+    "projetosInovacao": "Desenvolvimento de componentes inteligentes com sensores IoT integrados",
+    "investimentoPD": "800000",
+    "parceriasTecnologicas": "UFG, SENAI-GO, IEL-GO",
+    "certificacoes": "ISO 9001, ISO 14001, em processo ISO 45001",
+    "sustentabilidade": "Sistema de energia solar, tratamento de efluentes, economia circular"
+  },
+  "dinamicos": {
+    "obrasCivis": [
+      {
+        "descricao": "Galpão Industrial Principal",
+        "valor": "3000000"
+      },
+      {
+        "descricao": "Escritórios Administrativos",
+        "valor": "1200000"
+      }
+    ],
+    "maquinasEquipamentos": [
+      {
+        "descricao": "Linha de Produção Automatizada",
+        "valor": "2800000"
+      },
+      {
+        "descricao": "Sistema de Controle de Qualidade",
+        "valor": "800000"
+      }
+    ],
+    "instalacoes": [
+      {
+        "descricao": "Sistema Elétrico e Automação",
+        "valor": "600000"
+      }
+    ],
+    "outrosInvestimentos": [
+      {
+        "descricao": "Capital de Giro Inicial",
+        "valor": "400000"
+      }
+    ]
+  }
+}

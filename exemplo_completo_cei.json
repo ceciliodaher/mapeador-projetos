@@ -1,0 +1,753 @@
+{
+  "metadata": {
+    "versao": "14_secoes",
+    "dataExportacao": "2024-01-15T10:30:00.000Z",
+    "empresa": "Indústria Exemplo S/A",
+    "geradoPor": "Expertzy - Sistema CEI"
+  },
+  "dados": {
+    "razaoSocial": "Indústria Exemplo S/A",
+    "nomeFantasia": "Exemplo Manufatura",
+    "cnpj": "12.345.678/0001-95",
+    "inscricaoEstadual": "10.123.456-7",
+    "inscricaoMunicipal": "987.654.321",
+    "cnae": "2511-0/00",
+    "endereco": "Avenida Industrial, 1500",
+    "bairro": "Distrito Industrial",
+    "cidade": "Goiânia",
+    "uf": "GO",
+    "cep": "74000-000",
+    "telefone": "(62) 3333-4444",
+    "email": "contato@exemploind.com.br",
+    "website": "https://www.exemploind.com.br",
+    "responsavelLegal": "João Carlos Silva",
+    "cpfResponsavel": "123.456.789-00",
+    "cargoResponsavel": "Diretor Presidente",
+    "telefoneResponsavel": "(62) 98888-7777",
+    "emailResponsavel": "joao.silva@exemploind.com.br",
+    "programasFiscais": "Produzir, Fomentar, Progoiás",
+    
+    "nomeEmpreendimento": "Expansão da Planta Industrial",
+    "tipoEmpreendimento": "ampliacao",
+    "setorAtividade": "industria",
+    "descricaoDetalhada": "Projeto de expansão da capacidade produtiva através da construção de novo galpão industrial de 5.000m², aquisição de 10 novas máquinas CNC de última geração, modernização do sistema de automação industrial e implementação de sistema integrado de gestão (ERP). O projeto visa aumentar a capacidade produtiva em 150% e reduzir custos operacionais em 30%.",
+    "justificativa": "A demanda crescente do mercado nacional e oportunidades de exportação exigem ampliação da capacidade produtiva. O projeto permitirá atender novos clientes, melhorar a eficiência operacional e criar 85 novos empregos diretos, contribuindo significativamente para o desenvolvimento econômico regional.",
+    "objetivosPrincipais": "1. Aumentar capacidade produtiva de 1.000 para 2.500 ton/mês; 2. Reduzir custos operacionais em 30%; 3. Criar 85 novos empregos diretos; 4. Iniciar exportações para Mercosul; 5. Obter certificação ISO 9001 e ISO 14001",
+    "metasQuantitativas": "Produção: 2.500 ton/mês até dez/2025; Faturamento: crescimento de 180% em 3 anos; Market share: de 12% para 22% no estado de Goiás; Exportação: 15% da produção até 2026; ROI: 24 meses",
+    "publicoAlvo": "Indústrias de construção civil, metalúrgicas, empresas de infraestrutura, construtoras de grande porte e órgãos públicos",
+    "abrangenciaGeografica": "nacional",
+    "enderecoEmpreendimento": "Rodovia GO-020, Km 15",
+    "municipioEmpreendimento": "Aparecida de Goiânia",
+    "latitudeEmpreendimento": "-16.8230",
+    "longitudeEmpreendimento": "-49.2437",
+    
+    "valorTotalInvestimento": "15000000.00",
+    "percentualRecursosProprios": "30",
+    "valorRecursosProprios": "4500000.00",
+    "percentualFinanciamento": "70",
+    "valorFinanciamento": "10500000.00",
+    "prazoCarencia": "6",
+    "prazoAmortizacao": "60",
+    "taxaJurosAnual": "8.5",
+    "garantiasOferecidas": "Hipoteca do imóvel industrial avaliado em R$ 8.000.000,00; Alienação fiduciária das máquinas adquiridas; Aval dos sócios majoritários",
+    
+    "dataInicio": "2024-03-01",
+    "dataTermino": "2025-08-31",
+    "prazoExecucao": "18",
+    "inicioObrasCivis": "2024-03-15",
+    "terminoObrasCivis": "2024-09-30",
+    "inicioInstalacaoMaquinas": "2024-10-01",
+    "terminoInstalacaoMaquinas": "2025-03-31",
+    "outrosInvestimentosCronograma": "Treinamento de equipe: 2025/04-05; Certificações: 2025/06-08; Marketing de lançamento: 2025/07-08",
+    
+    "especificacaoObras": "Construção de galpão industrial de 5.000m² com estrutura metálica, pé direito de 12m, piso industrial de alta resistência (fck 30MPa), instalações elétricas trifásicas 380V, sistema de combate a incêndio com sprinklers, vestiários, refeitório para 150 pessoas, escritórios administrativos de 500m², sistema de tratamento de efluentes industriais",
+    "especificacaoMaquinas": "5 Centros de usinagem CNC 5 eixos marca DMG MORI; 3 Tornos CNC marca HAAS; 2 Fresadoras CNC marca MAZAK; 1 Centro de corte a laser fibra 6kW; 2 Prensas hidráulicas 500 ton; 3 Robôs industriais ABB para soldagem; Sistema de pintura eletrostática automatizado",
+    "especificacaoInstalacoes": "Sistema de ar comprimido 200HP com secador e filtros; Cabine primária 2.500 kVA; Sistema de exaustão industrial; Ponte rolante 20 ton; Sistema de climatização para área de precisão; Laboratório de qualidade com equipamentos de metrologia; Sistema de CFTV e controle de acesso",
+    "fornecedores": "DMG MORI Brasil (máquinas CNC); HAAS do Brasil (tornos); ABB Robotics (robôs); Metalúrgica União (estruturas metálicas); Construtora Goiás (obras civis); Siemens (automação); TOTVS (sistema ERP)",
+    
+    "metodologiaControle": "Implementação de metodologia PMI com uso de MS Project para cronograma físico-financeiro. Reuniões semanais do comitê de acompanhamento. Relatórios mensais de progresso com indicadores KPI. Auditoria trimestral por empresa independente. Sistema de gestão de riscos com matriz de probabilidade e impacto. Dashboard online para acompanhamento em tempo real.",
+    "procedimentosRelatorios": "Relatórios semestrais conforme modelo SEEC-GO contendo: execução física (%) com registro fotográfico; execução financeira com notas fiscais; indicadores de desempenho; criação de empregos com CAGED; cumprimento de metas; certificações obtidas. Envio via sistema SEI com assinatura digital até dia 10 de janeiro e julho.",
+    "responsavelAcompanhamento": "Maria Fernanda Costa",
+    "cargoResponsavel": "Gerente de Projetos",
+    "email": "maria.costa@exemploind.com.br",
+    "telefone": "(62) 98765-4321",
+    
+    "historicoEmpresa": "Fundada em 1995 por três engenheiros metalúrgicos, a Indústria Exemplo S/A iniciou suas atividades com foco em estruturas metálicas para construção civil. Em 2005, expandiu para o setor de autopeças. Em 2015, obteve certificação ISO 9001. Em 2020, mesmo durante a pandemia, manteve crescimento de 15% ao ano. Atualmente é líder regional em seu segmento com 250 funcionários.",
+    "atividadePrincipal": "Fabricação de estruturas metálicas, componentes para indústria automotiva, peças técnicas sob encomenda e serviços de usinagem de precisão. Especializada em produção de médio e grande porte com foco em qualidade e prazo de entrega.",
+    "anoFundacao": "1995",
+    "formaJuridica": "sa",
+    "porteEmpresa": "media",
+    "regimeTributario": "real",
+    "grupoEmpresarial": "Faz parte do Grupo Industrial Centro-Oeste, que inclui mais 3 empresas: Logística Exemplo Ltda (transporte), Exemplo Comércio Ltda (distribuição) e Exemplo Serviços Técnicos (manutenção industrial)",
+    "estruturaSocietaria": "Capital social de R$ 10.000.000,00 dividido em: João Carlos Silva (40%), Maria Helena Silva (30%), Fundo de Investimento Industrial (20%), Outros acionistas (10%). Conselho de Administração com 5 membros, sendo 2 independentes.",
+    "estruturaOrganizacional": "Presidência, 4 diretorias (Industrial, Comercial, Financeira, Administrativa), 12 gerências, 35 supervisores, 180 operadores diretos, 35 administrativos. Estrutura matricial para projetos especiais. Comitês de Qualidade, Segurança e Inovação.",
+    "principaisClientes": "Construtora OAS (15%), MRV Engenharia (12%), Volkswagen do Brasil (18%), ArcelorMittal (10%), Prefeitura de Goiânia (8%), Vale S/A (7%), outros 150 clientes (30%)",
+    "certificacoes": "ISO 9001:2015 (Qualidade), OHSAS 18001 (Segurança), Em processo: ISO 14001 (Ambiental), IATF 16949 (Automotiva)",
+    
+    "capacidadeAtual": "1000",
+    "capacidadeFutura": "2500",
+    "unidadeMedida": "toneladas/mês",
+    "percentualUtilizacao": "92",
+    "descricaoProcesso": "Processo inicia com recebimento e inspeção de matéria-prima (chapas e barras de aço). Segue para corte (laser/plasma), conformação (dobra/calandragem), usinagem (torneamento/fresamento), soldagem (MIG/MAG/TIG), tratamento superficial (jateamento/pintura), montagem final, inspeção de qualidade e expedição. Processo controlado por MES integrado ao ERP.",
+    "tecnologiaUtilizada": "Máquinas CNC com CAD/CAM, corte a laser de fibra óptica, soldagem robotizada, pintura eletrostática automatizada, metrologia 3D, software de simulação de processos",
+    "tipoProcesso": "lotes",
+    "turnos": "3",
+    "horasTrabalho": "22",
+    "diasUteis": "22",
+    "procedimentosQualidade": "Inspeção de recebimento com certificado de qualidade do fornecedor. Controle estatístico de processo (CEP) em pontos críticos. Inspeção por amostragem conforme NBR 5426. Ensaios destrutivos e não-destrutivos. Rastreabilidade total por lote. Laboratório próprio de metrologia calibrado pelo INMETRO. Auditorias internas mensais.",
+    "certificacoesQualidade": "ISO 9001:2015 válida até 12/2025, Certificado INMETRO para produtos regulamentados",
+    
+    "perfilClientes": "60% grandes empresas (faturamento > R$ 300mi/ano), 25% médias empresas, 10% governo, 5% exportação. Setores: construção civil (40%), automotivo (30%), mineração (15%), infraestrutura (15%)",
+    "numeroClientes": "165",
+    "ticketMedio": "85000.00",
+    "ambienteCompetitivo": "Mercado em crescimento de 12% a.a. Existem 8 concorrentes diretos em GO, sendo 3 de grande porte. Nossa empresa detém 12% do market share estadual. Principais barreiras: capital intensivo, certificações, relacionamento com grandes clientes.",
+    "abrangenciaLocal": "25",
+    "abrangenciaEstadual": "45",
+    "abrangenciaNacional": "28",
+    "abrangenciaInternacional": "2",
+    "crescimentoEsperado": "35",
+    "metaFaturamento": "180000000.00",
+    "estrategiasVendas": "Equipe própria de 12 vendedores técnicos, participação em 6 feiras setoriais/ano, marketing digital com geração de leads B2B, programa de fidelidade para grandes clientes, parcerias com escritórios de engenharia",
+    "canaisDistribuicao": "Venda direta (75%), representantes comerciais (15%), e-commerce B2B (5%), licitações (5%)",
+    "diferencialCompetitivo": "Prazo de entrega 30% menor que concorrência, customização de produtos, assistência técnica 24/7, financiamento próprio para clientes, única com certificação para setor automotivo em GO",
+    
+    "totalFuncionarios": "250",
+    "funcionariosCLT": "230",
+    "funcionariosTerceirizados": "15",
+    "funcionariosEstagiarios": "5",
+    "estruturaOrganizacionalRH": "RH corporativo com 6 profissionais: 1 gerente, 2 analistas de RH, 1 analista de DP, 1 assistente, 1 técnico de segurança do trabalho. Áreas: Recrutamento e Seleção, Treinamento e Desenvolvimento, Departamento Pessoal, Segurança do Trabalho, Benefícios",
+    "beneficiosOferecidos": "Plano de saúde Unimed (coparticipação 20%), Plano odontológico, Vale alimentação R$ 600/mês, Vale transporte ou estacionamento, Seguro de vida, PLR até 2 salários, Ginástica laboral, Refeitório no local",
+    "programasTreinamento": "Programa de integração 40h, Treinamento técnico mensal 8h, Programa de liderança anual, Cursos de aperfeiçoamento externos, Incentivo educacional (50% graduação, 30% pós), Treinamento de segurança NR-12 e NR-35",
+    "rotatividade": "8.5",
+    "absenteismo": "2.3",
+    "novasContratacoes": "85",
+    "investimentoRH": "450000.00",
+    "justificativaContratacoes": "Ampliação da capacidade produtiva exige 50 novos operadores especializados, 15 técnicos de manutenção, 10 profissionais administrativos, 8 engenheiros e 2 gerentes. Contratações escalonadas conforme cronograma de implantação.",
+    
+    "anoBase": "2023",
+    "regimeContabil": "competencia",
+    "capitalSocial": "10000000.00",
+    "capitalIntegralizado": "10000000.00",
+    "numeroSocios": "12",
+    "dataUltimaAlteracao": "2023-04-15",
+    "endividamentoTotal": "8500000.00",
+    "endividamentoCurto": "3200000.00",
+    "endividamentoLongo": "5300000.00",
+    "garantiasOferecidas": "imoveis",
+    "saldoCaixa": "2100000.00",
+    "receitaMediaMensal": "5800000.00",
+    "despesaMediaMensal": "5200000.00",
+    "capacidadePagamento": "600000.00",
+    "fonteRecursosProprios": "Lucros acumulados dos últimos 3 exercícios (R$ 2.500.000), venda de ativo imobilizado obsoleto (R$ 800.000), aporte de capital dos sócios (R$ 1.200.000)",
+    
+    "receitaBrutaAnual": "69600000.00",
+    "receitaLiquidaAnual": "58000000.00",
+    "principalFonteReceita": "65",
+    "sazonalidadeReceitas": "baixa",
+    "detalhamentoProdutosServicos": "Estruturas metálicas pesadas (35% receita): vigas, pilares, treliças; Componentes automotivos (30%): suportes, brackets, chassis; Peças usinadas sob encomenda (20%): eixos, engrenagens, flanges; Serviços de terceirização (15%): usinagem, corte, dobra",
+    "custosFixosMensais": "1850000.00",
+    "custosVariaveisMensais": "3350000.00",
+    "margemLucro": "18.5",
+    "pontoEquilibrio": "4200000.00",
+    "principaisCustos": "Matéria-prima (aço) 45% do custo total - alta volatilidade de preços; Mão de obra direta 22% - pressão por reajustes acima da inflação; Energia elétrica 8% - tarifa industrial elevada; Manutenção 6% - equipamentos importados com peças em dólar; Impostos 12% - alta carga tributária; Outros 7%",
+    "numeroFornecedores": "45",
+    "fornecedorPrincipal": "35",
+    "prazoMedioPagamento": "45",
+    "concentracaoFornecedores": "media",
+    "metodoPrecificacao": "markup",
+    "margemMediaProdutos": "22.5",
+    "frequenciaReajuste": "trimestral",
+    "elasticidadePreco": "media",
+    "estrategiaPrecificacao": "Precificação baseada em markup sobre custo total mais margem de contribuição desejada. Análise competitiva trimestral. Contratos com clientes grandes incluem cláusula de reajuste por variação do aço (INCC). Desconto por volume acima de 50 ton/mês. Política de preços diferenciada por canal e prazo de pagamento.",
+    "impactoProjetoPrecificacao": "Redução de 15% no custo unitário permitirá pricing mais competitivo mantendo margem. Possibilidade de oferecer descontos de até 8% para conquistar novos clientes. Meta de aumentar margem líquida de 18,5% para 22% em 24 meses.",
+    
+    "temPD": "sim",
+    "investimentoPD": "850000.00",
+    "percentualPD": "1.2",
+    "equipePD": "8",
+    "areasInovacao": "Desenvolvimento de ligas especiais mais leves e resistentes; Automação de processos de soldagem; Indústria 4.0 com IoT na produção; Novos revestimentos anticorrosivos; Design generativo com IA para otimização estrutural",
+    "parcerias": "Universidade Federal de Goiás (UFG) - Engenharia Metalúrgica; Instituto SENAI de Inovação; IPT São Paulo para ensaios especiais; Startup de IA para otimização de corte",
+    "tecnologiaAtual": "avancada",
+    "automacao": "65",
+    "sistemaGestao": "sap",
+    "investimentoTech": "2200000.00",
+    "tecnologiasUtilizadas": "CAD/CAM SolidWorks e AutoCAD; MES para chão de fábrica; WMS para gestão de almoxarifado; CRM Salesforce; BI com PowerBI; Manutenção preditiva com sensores IoT",
+    "upgradesPrevistos": "Implementação de Digital Twin para simulação; Realidade aumentada para manutenção; Machine Learning para previsão de demanda; Blockchain para rastreabilidade da cadeia de suprimentos",
+    "metodologiasMelhoria": "lean,sixsigma,kaizen",
+    "certificacoes": "ISO 9001:2015, OHSAS 18001",
+    "indicadoresKPI": "OEE, Lead Time, Taxa de Retrabalho, Custo por Tonelada, Satisfação do Cliente (NPS), Prazo de Entrega (OTIF)",
+    "frequenciaAnalise": "mensal",
+    "melhorias_implementadas": "Redução de 40% no setup através de SMED; Diminuição de 25% no retrabalho com Poka-Yoke; Aumento de 30% na produtividade com células de manufatura; Redução de 50% no lead time com kanban",
+    
+    "temSustentabilidade": "sim",
+    "investimentoSustentabilidade": "650000.00",
+    "energiaRenovavel": "25",
+    "gestaoResiduos": "reciclagem",
+    "acoesAmbientais": "Sistema de captação de água da chuva para uso industrial; Painéis solares de 500kWp no telhado; Programa de reciclagem de 100% dos resíduos metálicos; Reflorestamento de 10 hectares em APP; Substituição de solventes por produtos à base d'água; Programa de carona solidária para funcionários",
+    "impactoProjetoSustentabilidade": "Redução de 30% no consumo de energia por tonelada produzida; Diminuição de 40% no consumo de água; Zero resíduo para aterro até 2025; Redução de 25% nas emissões de CO2; Certificação ISO 14001 até dezembro/2025; Economia anual de R$ 380.000 em utilidades"
+  },
+  "dinamicos": {
+    "investimentos": {
+      "obrasCivis": [
+        {
+          "descricao": "Construção do Galpão Principal",
+          "fornecedor": "Construtora Goiás Ltda",
+          "quantidade": 5000,
+          "valorUnitario": 800.00,
+          "valorTotal": 4000000.00
+        },
+        {
+          "descricao": "Piso Industrial de Alta Resistência",
+          "fornecedor": "Pisos Especiais GO",
+          "quantidade": 5000,
+          "valorUnitario": 120.00,
+          "valorTotal": 600000.00
+        },
+        {
+          "descricao": "Estrutura Metálica e Cobertura",
+          "fornecedor": "Metalúrgica União",
+          "quantidade": 450,
+          "valorUnitario": 2000.00,
+          "valorTotal": 900000.00
+        }
+      ],
+      "maquinasEquipamentos": [
+        {
+          "descricao": "Centro de Usinagem CNC 5 eixos DMG MORI",
+          "fornecedor": "DMG MORI Brasil",
+          "quantidade": 5,
+          "valorUnitario": 850000.00,
+          "valorTotal": 4250000.00
+        },
+        {
+          "descricao": "Torno CNC HAAS ST-30",
+          "fornecedor": "HAAS do Brasil",
+          "quantidade": 3,
+          "valorUnitario": 420000.00,
+          "valorTotal": 1260000.00
+        },
+        {
+          "descricao": "Centro de Corte Laser Fibra 6kW",
+          "fornecedor": "Trumpf Brasil",
+          "quantidade": 1,
+          "valorUnitario": 1800000.00,
+          "valorTotal": 1800000.00
+        },
+        {
+          "descricao": "Robô de Solda ABB IRB 6700",
+          "fornecedor": "ABB Robotics",
+          "quantidade": 3,
+          "valorUnitario": 380000.00,
+          "valorTotal": 1140000.00
+        }
+      ],
+      "instalacoes": [
+        {
+          "descricao": "Sistema de Ar Comprimido 200HP",
+          "fornecedor": "Atlas Copco",
+          "quantidade": 1,
+          "valorUnitario": 280000.00,
+          "valorTotal": 280000.00
+        },
+        {
+          "descricao": "Cabine Primária 2500 kVA",
+          "fornecedor": "WEG Equipamentos",
+          "quantidade": 1,
+          "valorUnitario": 350000.00,
+          "valorTotal": 350000.00
+        },
+        {
+          "descricao": "Ponte Rolante 20 ton",
+          "fornecedor": "Pontes Rolantes Brasil",
+          "quantidade": 2,
+          "valorUnitario": 180000.00,
+          "valorTotal": 360000.00
+        }
+      ],
+      "outrosInvestimentos": [
+        {
+          "descricao": "Sistema ERP TOTVS Manufatura",
+          "fornecedor": "TOTVS S/A",
+          "quantidade": 1,
+          "valorUnitario": 450000.00,
+          "valorTotal": 450000.00
+        },
+        {
+          "descricao": "Treinamento e Capacitação da Equipe",
+          "fornecedor": "SENAI Goiás",
+          "quantidade": 85,
+          "valorUnitario": 2000.00,
+          "valorTotal": 170000.00
+        },
+        {
+          "descricao": "Certificação ISO 14001",
+          "fornecedor": "Bureau Veritas",
+          "quantidade": 1,
+          "valorUnitario": 60000.00,
+          "valorTotal": 60000.00
+        }
+      ]
+    },
+    "produtos": [
+      {
+        "nome": "Estrutura Metálica Pesada",
+        "descricao": "Vigas, pilares e treliças para construção civil",
+        "unidade": "tonelada",
+        "preco": 4500.00,
+        "atual": 350,
+        "futura": 875
+      },
+      {
+        "nome": "Componentes Automotivos",
+        "descricao": "Suportes, brackets e chassis para montadoras",
+        "unidade": "peça",
+        "preco": 250.00,
+        "atual": 8000,
+        "futura": 20000
+      },
+      {
+        "nome": "Peças Usinadas Especiais",
+        "descricao": "Eixos, flanges e engrenagens sob encomenda",
+        "unidade": "peça",
+        "preco": 800.00,
+        "atual": 500,
+        "futura": 1250
+      },
+      {
+        "nome": "Serviços de Terceirização",
+        "descricao": "Corte, dobra e usinagem para terceiros",
+        "unidade": "hora",
+        "preco": 180.00,
+        "atual": 800,
+        "futura": 1600
+      }
+    ],
+    "insumos": [
+      {
+        "nome": "Chapa de Aço Carbono",
+        "tipo": "mp",
+        "unidade": "tonelada",
+        "custo": 3200.00,
+        "atual": 450,
+        "futura": 1125
+      },
+      {
+        "nome": "Barra de Aço Trefilado",
+        "tipo": "mp",
+        "unidade": "tonelada",
+        "custo": 3800.00,
+        "atual": 200,
+        "futura": 500
+      },
+      {
+        "nome": "Eletrodo de Solda",
+        "tipo": "is",
+        "unidade": "kg",
+        "custo": 18.00,
+        "atual": 2000,
+        "futura": 5000
+      },
+      {
+        "nome": "Tinta Industrial",
+        "tipo": "is",
+        "unidade": "litro",
+        "custo": 35.00,
+        "atual": 800,
+        "futura": 2000
+      },
+      {
+        "nome": "Energia Elétrica",
+        "tipo": "ee",
+        "unidade": "MWh",
+        "custo": 450.00,
+        "atual": 280,
+        "futura": 580
+      }
+    ],
+    "clientes": [
+      {
+        "nome": "Volkswagen do Brasil",
+        "documento": "59.104.422/0001-50",
+        "localizacao": "São Bernardo do Campo/SP",
+        "percentual": 18,
+        "tipo": "pj"
+      },
+      {
+        "nome": "Construtora OAS",
+        "documento": "14.310.577/0001-04",
+        "localizacao": "Salvador/BA",
+        "percentual": 15,
+        "tipo": "pj"
+      },
+      {
+        "nome": "MRV Engenharia",
+        "documento": "08.343.492/0001-20",
+        "localizacao": "Belo Horizonte/MG",
+        "percentual": 12,
+        "tipo": "pj"
+      },
+      {
+        "nome": "ArcelorMittal Brasil",
+        "documento": "17.469.701/0001-77",
+        "localizacao": "Belo Horizonte/MG",
+        "percentual": 10,
+        "tipo": "pj"
+      }
+    ],
+    "concorrentes": [
+      {
+        "nome": "Metalúrgica Goiás S/A",
+        "localizacao": "Goiânia/GO",
+        "porte": "grande",
+        "diferencial": "Maior capacidade instalada",
+        "nivel": "alto"
+      },
+      {
+        "nome": "Aços Centro-Oeste",
+        "localizacao": "Aparecida de Goiânia/GO",
+        "porte": "medio",
+        "diferencial": "Preços competitivos",
+        "nivel": "medio"
+      },
+      {
+        "nome": "Industrial Brasília",
+        "localizacao": "Brasília/DF",
+        "porte": "grande",
+        "diferencial": "Proximidade com governo federal",
+        "nivel": "medio"
+      }
+    ],
+    "funcionarios": [
+      {
+        "cargo": "Operador de Produção",
+        "quantidade": "120",
+        "salario": "2800.00",
+        "escolaridade": "medio",
+        "tipo": "clt"
+      },
+      {
+        "cargo": "Técnico de Manutenção",
+        "quantidade": "25",
+        "salario": "4200.00",
+        "escolaridade": "tecnico",
+        "tipo": "clt"
+      },
+      {
+        "cargo": "Engenheiro de Produção",
+        "quantidade": "8",
+        "salario": "8500.00",
+        "escolaridade": "superior",
+        "tipo": "clt"
+      },
+      {
+        "cargo": "Supervisor de Produção",
+        "quantidade": "15",
+        "salario": "5500.00",
+        "escolaridade": "superior",
+        "tipo": "clt"
+      },
+      {
+        "cargo": "Analista Administrativo",
+        "quantidade": "18",
+        "salario": "3800.00",
+        "escolaridade": "superior",
+        "tipo": "clt"
+      }
+    ],
+    "contratacoes": [
+      {
+        "cargo": "Operador de CNC",
+        "quantidade": "30",
+        "salario": "3500.00",
+        "previsao": "2024-10",
+        "prioridade": "alta"
+      },
+      {
+        "cargo": "Técnico de Automação",
+        "quantidade": "8",
+        "salario": "5200.00",
+        "previsao": "2024-11",
+        "prioridade": "alta"
+      },
+      {
+        "cargo": "Engenheiro de Processos",
+        "quantidade": "3",
+        "salario": "9000.00",
+        "previsao": "2024-09",
+        "prioridade": "media"
+      },
+      {
+        "cargo": "Analista de Qualidade",
+        "quantidade": "5",
+        "salario": "4000.00",
+        "previsao": "2025-01",
+        "prioridade": "media"
+      }
+    ],
+    "balancos": [
+      {
+        "ano": "2021",
+        "ativo": "28500000.00",
+        "passivo": "12300000.00",
+        "patrimonio": "16200000.00",
+        "receita": "48500000.00",
+        "lucro": "3200000.00"
+      },
+      {
+        "ano": "2022",
+        "ativo": "32800000.00",
+        "passivo": "14200000.00",
+        "patrimonio": "18600000.00",
+        "receita": "58200000.00",
+        "lucro": "4800000.00"
+      },
+      {
+        "ano": "2023",
+        "ativo": "38500000.00",
+        "passivo": "16500000.00",
+        "patrimonio": "22000000.00",
+        "receita": "69600000.00",
+        "lucro": "6200000.00"
+      }
+    ],
+    "socios": [
+      {
+        "nome": "João Carlos Silva",
+        "documento": "123.456.789-00",
+        "participacao": "40",
+        "valor": "4000000.00",
+        "tipo": "administrador"
+      },
+      {
+        "nome": "Maria Helena Silva",
+        "documento": "987.654.321-00",
+        "participacao": "30",
+        "valor": "3000000.00",
+        "tipo": "quotista"
+      },
+      {
+        "nome": "Fundo Industrial Centro-Oeste",
+        "documento": "12.345.678/0001-90",
+        "participacao": "20",
+        "valor": "2000000.00",
+        "tipo": "acionista"
+      }
+    ],
+    "dividas": [
+      {
+        "credor": "Banco do Brasil",
+        "tipo": "financiamento",
+        "original": "5000000.00",
+        "saldo": "3200000.00",
+        "vencimento": "2026-12-15",
+        "taxa": "8.5"
+      },
+      {
+        "credor": "BNDES",
+        "tipo": "financiamento",
+        "original": "3000000.00",
+        "saldo": "2100000.00",
+        "vencimento": "2027-06-30",
+        "taxa": "6.5"
+      },
+      {
+        "credor": "Fornecedores Diversos",
+        "tipo": "fornecedor",
+        "original": "1500000.00",
+        "saldo": "1200000.00",
+        "vencimento": "2024-03-31",
+        "taxa": "0"
+      }
+    ],
+    "faturamento": [
+      {
+        "periodo": "2023-10",
+        "valor": "5200000.00",
+        "observacoes": "Mês típico"
+      },
+      {
+        "periodo": "2023-11",
+        "valor": "6100000.00",
+        "observacoes": "Aumento sazonal fim de ano"
+      },
+      {
+        "periodo": "2023-12",
+        "valor": "6800000.00",
+        "observacoes": "Pico de vendas"
+      },
+      {
+        "periodo": "2024-01",
+        "valor": "4800000.00",
+        "observacoes": "Redução típica de janeiro"
+      }
+    ],
+    "custos": [
+      {
+        "categoria": "materia-prima",
+        "descricao": "Aço e derivados",
+        "valor": "2340000.00",
+        "tipo": "variavel",
+        "observacoes": "45% do custo total"
+      },
+      {
+        "categoria": "mao-obra",
+        "descricao": "Folha de pagamento produção",
+        "valor": "1144000.00",
+        "tipo": "fixo",
+        "observacoes": "Incluindo encargos"
+      },
+      {
+        "categoria": "energia",
+        "descricao": "Energia elétrica industrial",
+        "valor": "416000.00",
+        "tipo": "variavel",
+        "observacoes": "Tarifa industrial GO"
+      },
+      {
+        "categoria": "manutencao",
+        "descricao": "Manutenção preventiva e corretiva",
+        "valor": "312000.00",
+        "tipo": "fixo",
+        "observacoes": "Contrato terceirizado"
+      }
+    ],
+    "fornecedores": [
+      {
+        "nome": "ArcelorMittal Distribuição",
+        "cnpj": "17.469.701/0001-77",
+        "produto": "Chapas e barras de aço",
+        "participacao": "35",
+        "prazo": "45",
+        "condicoes": "30/60/90 dias"
+      },
+      {
+        "nome": "Gerdau Aços Longos",
+        "cnpj": "07.358.761/0001-69",
+        "produto": "Barras e perfis de aço",
+        "participacao": "25",
+        "prazo": "30",
+        "condicoes": "À vista com 5% desconto"
+      },
+      {
+        "nome": "White Martins",
+        "cnpj": "35.820.448/0001-36",
+        "produto": "Gases industriais",
+        "participacao": "8",
+        "prazo": "30",
+        "condicoes": "Boleto 30 dias"
+      }
+    ],
+    "projetosPD": [
+      {
+        "nome": "Liga Leve de Alta Resistência",
+        "status": "em-andamento",
+        "investimento": "280000.00",
+        "prazo": "18",
+        "parceiro": "UFG - Engenharia Metalúrgica",
+        "descricao": "Desenvolvimento de liga 30% mais leve"
+      },
+      {
+        "nome": "Automação com IA para Corte",
+        "status": "planejado",
+        "investimento": "350000.00",
+        "prazo": "12",
+        "parceiro": "Startup TechCut",
+        "descricao": "Otimização de aproveitamento de chapas com IA"
+      },
+      {
+        "nome": "Revestimento Nanocerâmico",
+        "status": "em-andamento",
+        "investimento": "220000.00",
+        "prazo": "24",
+        "parceiro": "IPT São Paulo",
+        "descricao": "Proteção anticorrosiva avançada"
+      }
+    ],
+    "upgrades": [
+      {
+        "tipo": "software",
+        "descricao": "Upgrade ERP para versão cloud",
+        "fornecedor": "TOTVS",
+        "investimento": "180000.00",
+        "prazo": "2024-06",
+        "beneficios": "Redução de 40% no tempo de processamento"
+      },
+      {
+        "tipo": "automacao",
+        "descricao": "Sistema MES para chão de fábrica",
+        "fornecedor": "Siemens",
+        "investimento": "420000.00",
+        "prazo": "2024-09",
+        "beneficios": "Rastreabilidade total e redução de 25% em retrabalho"
+      },
+      {
+        "tipo": "iot",
+        "descricao": "Sensores IoT para manutenção preditiva",
+        "fornecedor": "IBM",
+        "investimento": "280000.00",
+        "prazo": "2025-01",
+        "beneficios": "Redução de 50% em paradas não programadas"
+      }
+    ],
+    "melhorias": [
+      {
+        "area": "Produção - Linha de Corte",
+        "tipo": "reducao-tempo",
+        "descricao": "Implementação de SMED",
+        "investimento": "45000.00",
+        "economia": "180000.00",
+        "prazo": "3"
+      },
+      {
+        "area": "Qualidade",
+        "tipo": "melhoria-qualidade",
+        "descricao": "Sistema Poka-Yoke em soldagem",
+        "investimento": "85000.00",
+        "economia": "320000.00",
+        "prazo": "6"
+      },
+      {
+        "area": "Logística Interna",
+        "tipo": "eliminacao-desperdicio",
+        "descricao": "Implementação de Kanban",
+        "investimento": "25000.00",
+        "economia": "150000.00",
+        "prazo": "2"
+      }
+    ],
+    "sustentabilidade": [
+      {
+        "tipo": "energia",
+        "descricao": "Instalação de painéis solares 500kWp",
+        "investimento": "1800000.00",
+        "economia": "240000.00",
+        "prazo": "8",
+        "impacto": "Redução de 180 ton CO2/ano"
+      },
+      {
+        "tipo": "agua",
+        "descricao": "Sistema de captação de água da chuva",
+        "investimento": "120000.00",
+        "economia": "35000.00",
+        "prazo": "6",
+        "impacto": "Economia de 5000 m³/ano"
+      },
+      {
+        "tipo": "residuos",
+        "descricao": "Central de reciclagem de resíduos metálicos",
+        "investimento": "250000.00",
+        "economia": "180000.00",
+        "prazo": "4",
+        "impacto": "100% resíduos metálicos reciclados"
+      },
+      {
+        "tipo": "certificacao",
+        "descricao": "Certificação ISO 14001",
+        "investimento": "80000.00",
+        "economia": "0.00",
+        "prazo": "12",
+        "impacto": "Melhoria imagem e acesso a novos mercados"
+      }
+    ]
+  }
+}
