@@ -2565,13 +2565,29 @@ function exportToPDF() {
         yPosition += lineHeight * 2;
     }
     
+    // Configuração das colunas
+    const pageWidth = doc.internal.pageSize.width;
+    const columnPositions = {
+        labelX: margin,
+        valueX: margin + (pageWidth * 0.4),
+        labelWidth: (pageWidth * 0.4) - margin - 5,
+        valueWidth: (pageWidth * 0.6) - margin - 5
+    };
+
     // Função para adicionar seção
     function addSection(title, fields) {
-        checkPageBreak(lineHeight * 2);
+        checkPageBreak(lineHeight * 3);
+        
+        // Título da seção
         doc.setFontSize(14);
         doc.setFont(undefined, 'bold');
         doc.text(title, margin, yPosition);
-        yPosition += lineHeight * 1.5;
+        yPosition += lineHeight;
+        
+        // Linha separadora abaixo do título
+        doc.setDrawColor(200, 200, 200);
+        doc.line(margin, yPosition, pageWidth - margin, yPosition);
+        yPosition += lineHeight;
         
         doc.setFontSize(10);
         doc.setFont(undefined, 'normal');
@@ -2599,27 +2615,28 @@ function exportToPDF() {
             // Sempre mostrar campos, mesmo se vazios (com "Não informado")
             if (value !== '') {
                 checkPageBreak();
+                
+                // Coluna 1: Label (negrito)
                 doc.setFont(undefined, 'bold');
-                doc.text(`${field.label}:`, margin, yPosition);
+                const labelLines = doc.splitTextToSize(field.label + ':', columnPositions.labelWidth);
+                doc.text(labelLines, columnPositions.labelX, yPosition);
+                
+                // Coluna 2: Valor (normal)
                 doc.setFont(undefined, 'normal');
+                const valueLines = doc.splitTextToSize(value.toString(), columnPositions.valueWidth);
+                doc.text(valueLines, columnPositions.valueX, yPosition);
                 
-                // Quebrar texto longo e melhorar espaçamento
-                const textWidth = doc.internal.pageSize.width - margin * 2 - 50;
-                const lines = doc.splitTextToSize(value.toString(), textWidth);
+                // Calcular quantas linhas usar (máximo entre label e value)
+                const maxLines = Math.max(labelLines.length, valueLines.length);
+                yPosition += lineHeight * maxLines;
                 
-                if (lines.length === 1) {
-                    doc.text(lines[0], margin + 50, yPosition);
-                    yPosition += lineHeight;
-                } else {
-                    lines.forEach((line, index) => {
-                        if (index === 0) {
-                            doc.text(line, margin + 50, yPosition);
-                        } else {
-                            checkPageBreak();
-                            doc.text(line, margin + 5, yPosition);
-                        }
-                        yPosition += lineHeight;
-                    });
+                // Linha pontilhada sutil entre os campos
+                if (field !== fields[fields.length - 1]) {
+                    doc.setDrawColor(240, 240, 240);
+                    doc.setLineDashPattern([1, 2], 0);
+                    doc.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
+                    doc.setLineDashPattern([], 0); // Reset dash pattern
+                    yPosition += 3;
                 }
             }
         });

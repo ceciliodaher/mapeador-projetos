@@ -77,6 +77,12 @@ function handleJsonImport(event) {
                                 applyUniversalFormatting(document);
                             }
                             
+                            // Recalcular investimento RH após importação
+                            console.log('💼 Recalculando investimento RH...');
+                            if (typeof calculateRHInvestmentAnual === 'function') {
+                                calculateRHInvestmentAnual();
+                            }
+                            
                             // Aplicar formatação de telefone especificamente
                             const phoneFields = document.querySelectorAll('input[type="tel"], input[id*="telefone"], input[id*="Telefone"]');
                             phoneFields.forEach(field => {
@@ -246,6 +252,22 @@ function loadDynamicDataSafe(dynamicData) {
         if (typeof loadDynamicData === 'function') {
             loadDynamicData(dynamicData);
         }
+        
+        // Recalcular valores após carregamento dos dados dinâmicos
+        setTimeout(() => {
+            console.log('🔄 Recalculando campos após carregamento dinâmico...');
+            
+            // Recalcular investimento RH
+            if (typeof calculateRHInvestmentAnual === 'function') {
+                calculateRHInvestmentAnual();
+            }
+            
+            // Recalcular totais de investimento se necessário
+            if (typeof updateTotals === 'function') {
+                updateTotals();
+            }
+        }, 1000);
+        
     } catch (error) {
         console.warn('⚠️ Erro no carregamento de dados dinâmicos:', error.message);
     }
