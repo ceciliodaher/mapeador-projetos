@@ -54,10 +54,16 @@ function setupEventListeners() {
     const exportJSONBtn = document.getElementById('exportJSONBtn');
     const exportCSVBtn = document.getElementById('exportCSVBtn');
     const saveBtn = document.getElementById('saveBtn');
+    const saveStepBtn = document.getElementById('saveStepBtn');
     
     exportJSONBtn.addEventListener('click', exportToJSON);
     exportCSVBtn.addEventListener('click', exportToCSV);
     saveBtn.addEventListener('click', saveToLocalStorage);
+    
+    // Botão de salvar etapa atual
+    if (saveStepBtn) {
+        saveStepBtn.addEventListener('click', saveCurrentStepToJSON);
+    }
     
     // Botão e funcionalidade de importação (modal)
     const importBtn = document.getElementById('importBtn');
@@ -690,7 +696,8 @@ function calculateRHInvestmentAnual() {
         
         const quantidade = parseInt(quantidadeInput?.value) || 0;
         const salario = parseMonetaryValue(salarioInput?.value);
-        const percentualEncargos = parseFloat(encargosInput?.value) || 0;
+        // Se não há encargos definidos, usar 80% como padrão para cálculos farmacêuticos
+        const percentualEncargos = parseFloat(encargosInput?.value) || 80;
         
         const subtotalMensalBase = quantidade * salario;
         const subtotalMensalComEncargos = subtotalMensalBase * (1 + (percentualEncargos / 100));
@@ -855,10 +862,28 @@ function removeDividaItem(itemId) {
 
 // Função auxiliar para formatar moeda
 function formatCurrency(value) {
+    // Se o valor já está formatado, retornar como está
+    if (typeof value === 'string' && value.includes('R$')) {
+        return value;
+    }
+    
+    // Se o valor está vazio ou inválido, retornar valor padrão
+    if (value === null || value === undefined || value === '' || isNaN(value)) {
+        return 'Não informado';
+    }
+    
+    // Converter string para número se necessário
+    const numericValue = typeof value === 'string' ? parseFloat(cleanMonetaryValue(value)) : value;
+    
+    // Verificar se é um número válido
+    if (isNaN(numericValue)) {
+        return 'Valor inválido';
+    }
+    
     return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
-    }).format(value);
+    }).format(numericValue);
 }
 
 // Função auxiliar para limpar valores monetários de forma consistente
@@ -870,6 +895,51 @@ function cleanMonetaryValue(value) {
         .replace(/\s/g, '')
         .replace(/\./g, '') // Remove pontos de milhar
         .replace(',', '.'); // Converte vírgula decimal para ponto
+}
+
+// Função robusta para limpar e processar valores
+function cleanAndParseValue(value, type = 'currency') {
+    // Tratar valores vazios, nulos ou undefined
+    if (value === null || value === undefined || value === '') {
+        return type === 'currency' ? 'Não informado' : '';
+    }
+    
+    // Se já é um número válido, retornar
+    if (typeof value === 'number' && !isNaN(value)) {
+        return type === 'currency' ? formatCurrency(value) : value;
+    }
+    
+    // Processar strings
+    if (typeof value === 'string') {
+        // Se é valor monetário
+        if (type === 'currency') {
+            // Se já está formatado, retornar como está
+            if (value.includes('R$') && !value.includes('NaN')) {
+                return value;
+            }
+            
+            // Tentar limpar e converter
+            const cleaned = cleanMonetaryValue(value);
+            const parsed = parseFloat(cleaned);
+            
+            if (isNaN(parsed) || parsed === 0) {
+                return 'Não informado';
+            }
+            
+            return formatCurrency(parsed);
+        }
+        
+        // Se é percentual
+        if (type === 'percentage') {
+            const numValue = parseFloat(value.replace('%', ''));
+            return isNaN(numValue) ? '' : `${numValue}%`;
+        }
+        
+        // Outros tipos de string
+        return value.trim();
+    }
+    
+    return type === 'currency' ? 'Não informado' : '';
 }
 
 // Função melhorada para parse de valores monetários
@@ -1456,6 +1526,45 @@ function showSection(step) {
 function updateProgressBar() {
     const progress = (currentStep / totalSteps) * 100;
     progressFill.style.width = `${progress}%`;
+    
+    // Atualizar texto de progresso
+    updateProgressInfo();
+}
+
+function updateProgressInfo() {
+    const progressText = document.getElementById('progressText');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const saveStatus = document.getElementById('saveStatus');
+    
+    if (progressText) {
+        progressText.textContent = `Etapa ${currentStep} de ${totalSteps}`;
+    }
+    
+    if (progressPercentage) {
+        const percentage = Math.round((currentStep / totalSteps) * 100);
+        progressPercentage.textContent = `${percentage}%`;
+    }
+    
+    if (saveStatus) {
+        // Verificar quantas seções têm dados
+        const completedSections = [];
+        for (let i = 1; i <= totalSteps; i++) {
+            if (hasSectionData(i)) {
+                completedSections.push(i);
+            }
+        }
+        
+        if (completedSections.length === 0) {
+            saveStatus.textContent = '💾 Auto-save ativo';
+            saveStatus.className = 'save-status';
+        } else if (completedSections.length === totalSteps) {
+            saveStatus.textContent = '✅ Formulário completo';
+            saveStatus.className = 'save-status saved';
+        } else {
+            saveStatus.textContent = `💾 ${completedSections.length}/${totalSteps} seções salvas`;
+            saveStatus.className = 'save-status';
+        }
+    }
 }
 
 function updateNavigationButtons() {
@@ -1726,16 +1835,228 @@ function collectFormData() {
 
 // Prévia dos dados
 function showPreview() {
-    if (!validateCurrentSection()) {
-        return;
-    }
+    console.log('🔍 showPreview() iniciado');
     
-    const data = collectFormData();
-    generatePreviewContent(data);
-    previewModal.classList.add('active');
+    // Coletar problemas de validação sem bloquear
+    const validationIssues = collectValidationIssues();
+    
+    if (validationIssues.length > 0) {
+        console.log('⚠️ Problemas encontrados:', validationIssues.length);
+        showValidationConfirmationModal(validationIssues);
+    } else {
+        console.log('✅ Nenhum problema encontrado, gerando preview');
+        generateAndShowPreview();
+    }
 }
 
-function generatePreviewContent(data) {
+function generateAndShowPreview(validationIssues = []) {
+    const data = collectFormData();
+    generatePreviewContent(data, validationIssues);
+    previewModal.classList.add('active');
+    console.log('🎉 Modal de preview ativado');
+}
+
+// Função para coletar todos os problemas de validação
+function collectValidationIssues() {
+    const issues = [];
+    
+    // Percorrer todas as seções (1 a 14)
+    for (let section = 1; section <= totalSteps; section++) {
+        const sectionElement = form.querySelector(`[data-section="${section}"]`);
+        if (!sectionElement) continue;
+        
+        const sectionIssues = {
+            section: section,
+            sectionTitle: getSectionTitle(section),
+            problems: []
+        };
+        
+        // Verificar campos obrigatórios
+        const requiredInputs = sectionElement.querySelectorAll('input[required], textarea[required], select[required]');
+        requiredInputs.forEach(input => {
+            if (!input.value || input.value.trim() === '') {
+                sectionIssues.problems.push({
+                    field: input.id || input.name,
+                    label: getFieldLabel(input),
+                    type: 'missing',
+                    message: 'Campo obrigatório não preenchido'
+                });
+            }
+        });
+        
+        // Validações específicas por seção
+        switch (section) {
+            case 1:
+                // Validação CNPJ
+                const cnpjField = sectionElement.querySelector('#cnpj');
+                if (cnpjField && cnpjField.value && !isValidCNPJ(cnpjField.value)) {
+                    sectionIssues.problems.push({
+                        field: 'cnpj',
+                        label: 'CNPJ',
+                        type: 'invalid',
+                        message: 'CNPJ inválido'
+                    });
+                }
+                break;
+                
+            case 4:
+                // Validação de datas do cronograma
+                const dataInicio = sectionElement.querySelector('#dataInicio');
+                const dataFim = sectionElement.querySelector('#dataFim');
+                if (dataInicio && dataFim && dataInicio.value && dataFim.value) {
+                    const inicio = new Date(dataInicio.value);
+                    const fim = new Date(dataFim.value);
+                    const diffMonths = (fim.getFullYear() - inicio.getFullYear()) * 12 + fim.getMonth() - inicio.getMonth();
+                    
+                    if (diffMonths > 36) {
+                        sectionIssues.problems.push({
+                            field: 'dataFim',
+                            label: 'Data de Fim',
+                            type: 'invalid',
+                            message: 'Prazo excede 36 meses permitidos'
+                        });
+                    }
+                }
+                break;
+        }
+        
+        // Se há problemas nesta seção, adicionar à lista
+        if (sectionIssues.problems.length > 0) {
+            issues.push(sectionIssues);
+        }
+    }
+    
+    return issues;
+}
+
+// Função auxiliar para obter título da seção
+function getSectionTitle(sectionNumber) {
+    const titles = {
+        1: 'Identificação do Beneficiário',
+        2: 'Descrição do Empreendimento', 
+        3: 'Valor Total do Investimento',
+        4: 'Cronograma Físico-Financeiro',
+        5: 'Detalhamento dos Investimentos',
+        6: 'Documentação Complementar',
+        7: 'Plano de Acompanhamento',
+        8: 'Recursos Humanos',
+        9: 'Encargos e Benefícios',
+        10: 'Distribuição Geográfica',
+        11: 'Indicadores Econômicos',
+        12: 'Sustentabilidade Ambiental',
+        13: 'Cronograma de Desembolso',
+        14: 'Projetos de Inovação'
+    };
+    return titles[sectionNumber] || `Seção ${sectionNumber}`;
+}
+
+// Função auxiliar para obter label do campo
+function getFieldLabel(input) {
+    // Procurar por label associado
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    if (label) return label.textContent.replace('*', '').trim();
+    
+    // Procurar por placeholder
+    if (input.placeholder) return input.placeholder;
+    
+    // Usar ID como fallback
+    return input.id || input.name || 'Campo';
+}
+
+// Função para exibir modal de confirmação de validação
+function showValidationConfirmationModal(validationIssues) {
+    const validationModal = document.getElementById('validationConfirmationModal');
+    const validationContent = document.getElementById('validationIssuesContent');
+    const fixIssuesBtn = document.getElementById('fixIssuesBtn');
+    const continueWithIssuesBtn = document.getElementById('continueWithIssuesBtn');
+    const validationModalClose = document.getElementById('validationModalClose');
+    
+    // Gerar conteúdo HTML com os problemas
+    let html = `
+        <div class="validation-summary">
+            <p><strong>Foram encontrados ${getTotalProblemsCount(validationIssues)} problemas em ${validationIssues.length} seções:</strong></p>
+        </div>
+        <div class="validation-issues">
+    `;
+    
+    validationIssues.forEach(sectionIssue => {
+        html += `
+            <div class="validation-section">
+                <h4 class="validation-section-title">
+                    Seção ${sectionIssue.section}: ${sectionIssue.sectionTitle}
+                </h4>
+                <ul class="validation-problems-list">
+        `;
+        
+        sectionIssue.problems.forEach(problem => {
+            const icon = problem.type === 'missing' ? '❌' : '⚠️';
+            html += `
+                <li class="validation-problem ${problem.type}">
+                    ${icon} <strong>${problem.label}:</strong> ${problem.message}
+                </li>
+            `;
+        });
+        
+        html += `
+                </ul>
+            </div>
+        `;
+    });
+    
+    html += `
+        </div>
+        <div class="validation-options">
+            <p><strong>O que você gostaria de fazer?</strong></p>
+            <ul>
+                <li>🔧 <strong>Corrigir Dados:</strong> Navegar para a primeira seção com problemas para correção</li>
+                <li>📋 <strong>Continuar com Preview:</strong> Gerar prévia destacando os campos problemáticos</li>
+            </ul>
+        </div>
+    `;
+    
+    validationContent.innerHTML = html;
+    
+    // Configurar event listeners para os botões
+    fixIssuesBtn.onclick = () => {
+        validationModal.classList.remove('active');
+        // Navegar para a primeira seção com problemas
+        const firstProblemSection = validationIssues[0].section;
+        goToStep(firstProblemSection);
+        console.log(`🔧 Navegando para seção ${firstProblemSection} para correção`);
+    };
+    
+    continueWithIssuesBtn.onclick = () => {
+        validationModal.classList.remove('active');
+        // Gerar preview com os problemas destacados
+        generateAndShowPreview(validationIssues);
+        console.log('📋 Gerando preview com problemas destacados');
+    };
+    
+    validationModalClose.onclick = () => {
+        validationModal.classList.remove('active');
+    };
+    
+    // Mostrar o modal
+    validationModal.classList.add('active');
+}
+
+// Função auxiliar para contar total de problemas
+function getTotalProblemsCount(validationIssues) {
+    return validationIssues.reduce((total, section) => total + section.problems.length, 0);
+}
+
+function generatePreviewContent(data, validationIssues = []) {
+    // Criar mapa de problemas para facilitar busca
+    const problemsMap = new Map();
+    validationIssues.forEach(sectionIssue => {
+        sectionIssue.problems.forEach(problem => {
+            problemsMap.set(problem.field, {
+                type: problem.type,
+                message: problem.message,
+                section: sectionIssue.section
+            });
+        });
+    });
     const sections = [
         {
             title: '1. Identificação do Beneficiário',
@@ -1942,6 +2263,27 @@ function generatePreviewContent(data) {
     ];
 
     let html = '';
+    
+    // Adicionar legenda se há problemas
+    if (validationIssues.length > 0) {
+        html += `
+            <div class="preview-legend">
+                <h4>📋 Legenda dos Destaques:</h4>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-color missing"></span>
+                        <span>❌ Campos obrigatórios não preenchidos</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color invalid"></span>
+                        <span>⚠️ Dados com formato incorreto</span>
+                    </div>
+                </div>
+                <p class="legend-note"><strong>Total:</strong> ${getTotalProblemsCount(validationIssues)} problemas em ${validationIssues.length} seções</p>
+            </div>
+        `;
+    }
+    
     sections.forEach(section => {
         html += `<div class="preview-section">
             <h4 class="preview-title">${section.title}</h4>
@@ -1949,7 +2291,19 @@ function generatePreviewContent(data) {
         
         section.fields.forEach(field => {
             let value = data[field.key] || '';
+            let problemClass = '';
+            let problemIcon = '';
+            let problemMessage = '';
             
+            // Verificar se há problema com este campo
+            const fieldProblem = problemsMap.get(field.key);
+            if (fieldProblem) {
+                problemClass = fieldProblem.type;
+                problemIcon = fieldProblem.type === 'missing' ? '❌' : '⚠️';
+                problemMessage = fieldProblem.message;
+            }
+            
+            // Formatação do valor
             if (field.format === 'currency' && value) {
                 value = formatCurrency(parseFloat(value));
             } else if (field.format === 'date' && value) {
@@ -1963,12 +2317,23 @@ function generatePreviewContent(data) {
                 }
             }
             
-            if (value) {
-                html += `<div class="preview-item">
-                    <div class="preview-label">${field.label}</div>
-                    <div class="preview-value">${value}</div>
-                </div>`;
+            // Se campo está vazio e tem problema, mostrar placeholder
+            if (!value && fieldProblem && fieldProblem.type === 'missing') {
+                value = '[Campo não preenchido]';
+            } else if (!value && !fieldProblem) {
+                // Campos opcionais vazios não são mostrados
+                return;
+            } else if (value && fieldProblem && fieldProblem.type === 'invalid') {
+                value += ' [Dados incorretos]';
             }
+            
+            html += `<div class="preview-item ${problemClass}">
+                <div class="preview-label">
+                    ${problemIcon} ${field.label}
+                    ${problemMessage ? `<div class="problem-message">${problemMessage}</div>` : ''}
+                </div>
+                <div class="preview-value">${value}</div>
+            </div>`;
         });
         
         html += `</div></div>`;
@@ -2214,8 +2579,8 @@ function exportToPDF() {
         fields.forEach(field => {
             let value = data[field.key] || '';
             
-            if (field.format === 'currency' && value) {
-                value = formatCurrency(parseFloat(value));
+            if (field.format === 'currency') {
+                value = cleanAndParseValue(value, 'currency');
             } else if (field.format === 'date' && value) {
                 value = new Date(value).toLocaleDateString('pt-BR');
             } else if (field.format === 'file') {
@@ -2225,26 +2590,34 @@ function exportToPDF() {
                 } else {
                     value = 'Nenhum arquivo selecionado';
                 }
+            } else if (field.key.includes('Percentual') || field.key.includes('percentual') || field.label.includes('%')) {
+                value = cleanAndParseValue(value, 'percentage');
+            } else if (!value) {
+                value = 'Não informado';
             }
             
-            if (value) {
+            // Sempre mostrar campos, mesmo se vazios (com "Não informado")
+            if (value !== '') {
                 checkPageBreak();
                 doc.setFont(undefined, 'bold');
                 doc.text(`${field.label}:`, margin, yPosition);
                 doc.setFont(undefined, 'normal');
                 
-                // Quebrar texto longo
-                const textWidth = doc.internal.pageSize.width - margin * 2 - 40;
+                // Quebrar texto longo e melhorar espaçamento
+                const textWidth = doc.internal.pageSize.width - margin * 2 - 50;
                 const lines = doc.splitTextToSize(value.toString(), textWidth);
                 
                 if (lines.length === 1) {
-                    doc.text(lines[0], margin + 40, yPosition);
+                    doc.text(lines[0], margin + 50, yPosition);
                     yPosition += lineHeight;
                 } else {
-                    yPosition += lineHeight;
-                    lines.forEach(line => {
-                        checkPageBreak();
-                        doc.text(line, margin + 5, yPosition);
+                    lines.forEach((line, index) => {
+                        if (index === 0) {
+                            doc.text(line, margin + 50, yPosition);
+                        } else {
+                            checkPageBreak();
+                            doc.text(line, margin + 5, yPosition);
+                        }
                         yPosition += lineHeight;
                     });
                 }
@@ -2283,11 +2656,14 @@ function exportToPDF() {
         {
             title: '3. VALOR TOTAL DO INVESTIMENTO',
             fields: [
-                { label: 'Obras Civis', key: 'valorObrasCivis', format: 'currency' },
-                { label: 'Máquinas e Equipamentos', key: 'valorMaquinas', format: 'currency' },
-                { label: 'Instalações', key: 'valorInstalacoes', format: 'currency' },
-                { label: 'Outros Investimentos', key: 'outrosInvestimentos', format: 'currency' },
-                { label: 'Valor da Operação', key: 'valorOperacao', format: 'currency' }
+                { label: 'Valor Total do Investimento', key: 'valorTotalInvestimento', format: 'currency' },
+                { label: 'Recursos Próprios (%)', key: 'percentualRecursosProprios' },
+                { label: 'Valor Recursos Próprios', key: 'valorRecursosProprios', format: 'currency' },
+                { label: 'Financiamento (%)', key: 'percentualFinanciamento' },
+                { label: 'Valor Financiamento', key: 'valorFinanciamento', format: 'currency' },
+                { label: 'Taxa de Juros Anual (%)', key: 'taxaJurosAnual' },
+                { label: 'Prazo de Carência (meses)', key: 'prazoCarencia' },
+                { label: 'Prazo de Amortização (meses)', key: 'prazoAmortizacao' }
             ]
         },
         {
@@ -3045,6 +3421,193 @@ function saveToLocalStorage() {
         console.error('Erro ao salvar:', error);
         alert('Erro ao salvar os dados. Verifique se há espaço suficiente no navegador.');
     }
+}
+
+// ========================================
+// SISTEMA DE SALVAMENTO POR ETAPAS
+// ========================================
+
+// Salvar etapa atual como JSON para download
+function saveCurrentStepToJSON() {
+    try {
+        const data = collectFormData();
+        const dynamicData = collectDynamicData();
+        const progressMetadata = collectProgressMetadata();
+        
+        const stepData = {
+            metadata: {
+                sistemaVersao: "14 Seções - Salvamento por Etapas",
+                tipoSalvamento: "etapa_parcial",
+                etapaAtual: currentStep,
+                nomeEtapa: getSectionName(currentStep),
+                dataExportacao: new Date().toISOString(),
+                empresa: data.razaoSocial || data.cnpj || "Empresa",
+                geradoPor: "Expertzy - Sistema CEI",
+                progresso: progressMetadata
+            },
+            dados: data,
+            dinamicos: dynamicData
+        };
+        
+        const filename = generateStepFileName(data);
+        downloadJSON(stepData, filename);
+        
+        // Mostrar confirmação
+        showStepSaveConfirmation(currentStep, filename);
+        
+    } catch (error) {
+        console.error('Erro ao salvar etapa:', error);
+        alert('Erro ao salvar a etapa atual. Tente novamente.');
+    }
+}
+
+// Gerar nome do arquivo baseado na etapa
+function generateStepFileName(data) {
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-'); // HH-MM-SS
+    
+    // Usar razão social ou CNPJ como identificador
+    let empresaId = 'Empresa';
+    if (data.razaoSocial && data.razaoSocial.trim()) {
+        empresaId = data.razaoSocial.trim()
+            .replace(/[^\w\s-]/g, '') // Remove caracteres especiais
+            .replace(/\s+/g, '_') // Substitui espaços por underscore
+            .substring(0, 20); // Limita tamanho
+    } else if (data.cnpj && data.cnpj.trim()) {
+        empresaId = data.cnpj.replace(/[^\d]/g, ''); // Apenas números do CNPJ
+    }
+    
+    const stepName = getSectionName(currentStep).replace(/\s+/g, '_');
+    
+    return `CEI_${empresaId}_Etapa${currentStep.toString().padStart(2, '0')}_${stepName}_${dateStr}_${timeStr}.json`;
+}
+
+// Obter nome da seção atual
+function getSectionName(step) {
+    const sectionNames = {
+        1: 'Identificacao_Beneficiario',
+        2: 'Descricao_Empreendimento', 
+        3: 'Valor_Total_Investimento',
+        4: 'Cronograma_Fisico_Financeiro',
+        5: 'Detalhamento_Investimentos',
+        6: 'Documentacao_Complementar',
+        7: 'Plano_Acompanhamento',
+        8: 'Especificacoes_Tecnicas',
+        9: 'Analise_Mercado',
+        10: 'Recursos_Humanos',
+        11: 'Informacoes_Financeiras',
+        12: 'Receitas_Custos',
+        13: 'Projetos_Inovacao',
+        14: 'Formulario_Completo'
+    };
+    
+    return sectionNames[step] || `Secao_${step}`;
+}
+
+// Coletar metadata de progresso
+function collectProgressMetadata() {
+    const completedSections = [];
+    const sectionTimestamps = {};
+    
+    // Verificar quais seções têm dados preenchidos
+    for (let i = 1; i <= totalSteps; i++) {
+        if (hasSectionData(i)) {
+            completedSections.push(i);
+            sectionTimestamps[`secao_${i}`] = new Date().toISOString();
+        }
+    }
+    
+    return {
+        etapaAtual: currentStep,
+        etapasTotais: totalSteps,
+        secoesPreenchidas: completedSections,
+        percentualProgresso: Math.round((completedSections.length / totalSteps) * 100),
+        timestampSecoes: sectionTimestamps,
+        ultimoSalvamento: new Date().toISOString()
+    };
+}
+
+// Verificar se uma seção tem dados preenchidos
+function hasSectionData(sectionNumber) {
+    const sectionElement = document.querySelector(`[data-section="${sectionNumber}"]`);
+    if (!sectionElement) return false;
+    
+    // Verificar inputs preenchidos
+    const inputs = sectionElement.querySelectorAll('input, textarea, select');
+    for (let input of inputs) {
+        if (input.type === 'file') continue; // Ignorar file inputs
+        if (input.value && input.value.trim() !== '') {
+            return true;
+        }
+    }
+    
+    // Verificar listas dinâmicas
+    const lists = sectionElement.querySelectorAll('.detail-list');
+    for (let list of lists) {
+        if (list.children.length > 0) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Função para download de JSON
+function downloadJSON(data, filename) {
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    
+    // Cleanup
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Mostrar confirmação de salvamento de etapa
+function showStepSaveConfirmation(step, filename) {
+    const message = document.createElement('div');
+    message.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, var(--success) 0%, #34ce57 100%);
+        color: white;
+        padding: 20px 30px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        z-index: 10000;
+        box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3);
+        text-align: center;
+        min-width: 300px;
+    `;
+    
+    message.innerHTML = `
+        <div style="margin-bottom: 10px;">✅ Etapa ${step} salva com sucesso!</div>
+        <div style="font-size: 14px; opacity: 0.9; font-weight: 400;">
+            Arquivo: ${filename}
+        </div>
+    `;
+    
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        message.style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+            document.body.removeChild(message);
+        }, 300);
+    }, 3000);
 }
 
 // Coletar dados dinâmicos das listas
