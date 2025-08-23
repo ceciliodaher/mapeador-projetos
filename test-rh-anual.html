@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste RH Anual - Valores Corretos</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+        .container { 
+            background: #f9f9f9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+        }
+        .form-group { 
+            margin: 15px 0; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+        }
+        input, select { 
+            padding: 8px; 
+            width: 200px; 
+            margin-right: 10px; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #FF002D; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #e6002a;
+        }
+        .investment-item { 
+            background: #fff; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border: 1px solid #ddd;
+            border-radius: 5px; 
+        }
+        .item-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .resultado { 
+            background: #e8f5e9; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 5px; 
+            border: 2px solid #4caf50;
+        }
+        .resultado h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .debug { 
+            background: #fff3cd; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 5px; 
+            font-family: monospace; 
+            font-size: 12px;
+            border: 1px solid #ffc107;
+        }
+        .esperado {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 2px solid #2196f3;
+        }
+        .btn-remove {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste Cálculo RH Anual - Dados do PDF</h1>
+    
+    <div class="esperado">
+        <h3>Valores Esperados (baseado no PDF)</h3>
+        <p><strong>Total Contratações:</strong> 46 pessoas (30+8+3+5)</p>
+        <p><strong>Custo Mensal Base:</strong> R$ 193.600,00</p>
+        <p><strong>Com 85% Encargos:</strong> R$ 358.160,00/mês</p>
+        <p><strong>Valor Anual Total:</strong> R$ 4.297.920,00</p>
+    </div>
+
+    <div class="container">
+        <h2>Contratações Planejadas</h2>
+        
+        <div id="contratacoesList" class="detail-list">
+            <!-- Contratações serão adicionadas aqui -->
+        </div>
+        
+        <button onclick="addContratacaoItem()">+ Adicionar Contratação</button>
+        
+        <div class="form-group">
+            <label for="encargosBeneficios">Encargos e Benefícios (%)</label>
+            <input type="number" id="encargosBeneficios" value="85" min="0" step="0.1">
+        </div>
+        
+        <div class="resultado">
+            <h3>Resultados Calculados</h3>
+            <p><strong>Novas Contratações (próximos 12 meses):</strong> <span id="novasContratacoes">0</span></p>
+            <p><strong>Investimento Previsto em RH (R$) - ANUAL:</strong> <span id="investimentoRH">R$ 0,00</span></p>
+        </div>
+        
+        <div class="debug">
+            <h4>Debug Console</h4>
+            <div id="debugOutput">Console será exibido aqui...</div>
+        </div>
+        
+        <button onclick="preencherDadosPDF()">🚀 Preencher com Dados do PDF</button>
+        <button onclick="limparDados()">🗑️ Limpar Tudo</button>
+    </div>
+
+    <script>
+        // Interceptar console.log para mostrar na tela
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const debugOutput = document.getElementById('debugOutput');
+            if (debugOutput) {
+                debugOutput.innerHTML += args.join(' ') + '<br>';
+                debugOutput.scrollTop = debugOutput.scrollHeight;
+            }
+        };
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function parseMonetaryValue(value) {
+            if (!value) return 0;
+            if (typeof value === 'number') return value;
+            
+            let cleanValue = value.toString()
+                .replace(/R\$/g, '')
+                .replace(/\s/g, '')
+                .trim();
+            
+            // Formato brasileiro: ponto para milhar, vírgula para decimal
+            cleanValue = cleanValue.replace(/\./g, '').replace(',', '.');
+            
+            const parsed = parseFloat(cleanValue);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+
+        function applyMoneyFormatting(input) {
+            input.addEventListener('blur', function() {
+                const value = parseMonetaryValue(this.value);
+                if (value > 0) {
+                    this.value = formatCurrency(value);
+                }
+            });
+            
+            input.addEventListener('focus', function() {
+                const value = parseMonetaryValue(this.value);
+                if (value > 0) {
+                    this.value = value.toString();
+                }
+            });
+        }
+
+        let contratacaoId = 0;
+
+        function addContratacaoItem(cargo = '', quantidade = '', salario = '', previsao = '', prioridade = '') {
+            contratacaoId++;
+            const list = document.getElementById('contratacoesList');
+            
+            const itemHtml = `
+                <div class="investment-item" data-id="${contratacaoId}">
+                    <div class="item-row">
+                        <input type="text" placeholder="Cargo/Função" class="contratacao-cargo" value="${cargo}" />
+                        <input type="number" placeholder="Quantidade" class="contratacao-quantidade" min="1" step="1" value="${quantidade}" />
+                        <input type="text" placeholder="Salário Previsto (R$)" class="contratacao-salario" value="${salario}" />
+                        <input type="month" placeholder="Previsão" class="contratacao-previsao" value="${previsao}" />
+                        <select class="contratacao-prioridade">
+                            <option value="">Prioridade</option>
+                            <option value="alta" ${prioridade === 'alta' ? 'selected' : ''}>Alta</option>
+                            <option value="media" ${prioridade === 'media' ? 'selected' : ''}>Média</option>
+                            <option value="baixa" ${prioridade === 'baixa' ? 'selected' : ''}>Baixa</option>
+                        </select>
+                        <button type="button" class="btn-remove" onclick="removeContratacaoItem(${contratacaoId})">×</button>
+                    </div>
+                </div>
+            `;
+            
+            list.insertAdjacentHTML('beforeend', itemHtml);
+            
+            // Aplicar formatação e event listeners
+            const newItem = list.querySelector(`[data-id="${contratacaoId}"]`);
+            const salarioInput = newItem.querySelector('.contratacao-salario');
+            const quantidadeInput = newItem.querySelector('.contratacao-quantidade');
+
+            if (salarioInput) {
+                applyMoneyFormatting(salarioInput);
+                salarioInput.addEventListener('input', calculateRHInvestmentAnual);
+            }
+            if (quantidadeInput) {
+                quantidadeInput.addEventListener('input', calculateRHInvestmentAnual);
+            }
+
+            calculateRHInvestmentAnual();
+        }
+
+        function removeContratacaoItem(itemId) {
+            const item = document.querySelector(`[data-id="${itemId}"]`);
+            if (item) {
+                item.remove();
+                calculateRHInvestmentAnual();
+            }
+        }
+
+        // Função principal - EXATAMENTE como no código real
+        function calculateRHInvestmentAnual() {
+            console.log('=== INICIO CALCULO RH ANUAL ===');
+            
+            const contratacoesList = document.getElementById('contratacoesList');
+            if (!contratacoesList) {
+                console.log('Lista de contratações não encontrada');
+                return;
+            }
+            
+            const items = contratacoesList.querySelectorAll('.investment-item');
+            console.log(`Encontrados ${items.length} itens de contratação`);
+            
+            let totalContratacoes = 0;
+            let custoMensalBase = 0;
+            
+            // Processar cada contratação
+            items.forEach((item, index) => {
+                const quantidadeInput = item.querySelector('.contratacao-quantidade');
+                const salarioInput = item.querySelector('.contratacao-salario');
+                
+                const quantidade = parseInt(quantidadeInput?.value) || 0;
+                const salario = parseMonetaryValue(salarioInput?.value);
+                
+                const subtotalMensal = quantidade * salario;
+                
+                console.log(`Item ${index + 1}:`, {
+                    quantidade,
+                    salario,
+                    subtotalMensal
+                });
+                
+                totalContratacoes += quantidade;
+                custoMensalBase += subtotalMensal;
+            });
+            
+            // Calcular encargos
+            const encargosInput = document.getElementById('encargosBeneficios');
+            const percentualEncargos = parseFloat(encargosInput?.value) || 0;
+            
+            const custoMensalComEncargos = custoMensalBase * (1 + (percentualEncargos / 100));
+            const custoAnualTotal = custoMensalComEncargos * 12;
+            
+            console.log('RESUMO CALCULO:', {
+                totalContratacoes,
+                custoMensalBase,
+                percentualEncargos: percentualEncargos + '%',
+                custoMensalComEncargos,
+                custoAnualTotal
+            });
+            
+            // Atualizar campos na interface
+            const novasContratacoesInput = document.getElementById('novasContratacoes');
+            if (novasContratacoesInput) {
+                novasContratacoesInput.value = totalContratacoes;
+                console.log(`Campo novasContratacoes atualizado: ${totalContratacoes}`);
+            }
+            
+            const investimentoRHInput = document.getElementById('investimentoRH');
+            if (investimentoRHInput) {
+                investimentoRHInput.value = formatCurrency(custoAnualTotal);
+                console.log(`Campo investimentoRH atualizado: ${formatCurrency(custoAnualTotal)}`);
+            }
+            
+            console.log('=== FIM CALCULO RH ANUAL ===');
+        }
+
+        function preencherDadosPDF() {
+            limparDados();
+            console.log('Preenchendo com dados do PDF...');
+            
+            // Dados exatos do PDF
+            addContratacaoItem('Operador de CNC', '30', '3500', '2024-10', 'alta');
+            addContratacaoItem('Técnico de Automação', '8', '5200', '2024-11', 'alta');
+            addContratacaoItem('Engenheiro de Processos', '3', '9000', '2024-09', 'media');
+            addContratacaoItem('Analista de Qualidade', '5', '4000', '2025-01', 'media');
+        }
+
+        function limparDados() {
+            document.getElementById('contratacoesList').innerHTML = '';
+            document.getElementById('debugOutput').innerHTML = 'Console limpo...<br>';
+            calculateRHInvestmentAnual();
+        }
+
+        // Event listener para encargos
+        document.addEventListener('DOMContentLoaded', function() {
+            const encargosInput = document.getElementById('encargosBeneficios');
+            if (encargosInput) {
+                encargosInput.addEventListener('input', calculateRHInvestmentAnual);
+            }
+        });
+    </script>
+</body>
+</html>

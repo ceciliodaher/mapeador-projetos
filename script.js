@@ -153,7 +153,7 @@ function setupCalculations() {
 
     const encargosBeneficiosInput = document.getElementById('encargosBeneficios');
     if (encargosBeneficiosInput) {
-        encargosBeneficiosInput.addEventListener('input', calculateInvestimentoRH);
+        encargosBeneficiosInput.addEventListener('input', calculateRHInvestmentAnual);
     }
 
     calculateProjections();
@@ -595,13 +595,14 @@ function addContratacaoItem() {
 
     if (salarioInput) {
         applyMoneyFormatting(salarioInput);
-        salarioInput.addEventListener('input', calculateInvestimentoRH);
+        salarioInput.addEventListener('input', calculateRHInvestmentAnual);
     }
     if (quantidadeInput) {
-        quantidadeInput.addEventListener('input', calculateInvestimentoRH);
+        quantidadeInput.addEventListener('input', calculateRHInvestmentAnual);
     }
 
-    calculateInvestimentoRH();
+    calculateRHInvestmentAnual();
+
 }
 
 // Remover contratação planejada
@@ -609,35 +610,75 @@ function removeContratacaoItem(itemId) {
     const item = document.querySelector(`[data-id="${itemId}"]`);
     if (item) {
         item.remove();
-        calculateInvestimentoRH();
+        calculateRHInvestmentAnual();
     }
 }
 
-function calculateInvestimentoRH() {
+// Calcular investimento anual em RH baseado nas contratações planejadas
+function calculateRHInvestmentAnual() {
+    console.log('=== INICIO CALCULO RH ANUAL ===');
+    
     const contratacoesList = document.getElementById('contratacoesList');
+    if (!contratacoesList) {
+        console.log('Lista de contratações não encontrada');
+        return;
+    }
+    
     const items = contratacoesList.querySelectorAll('.investment-item');
-    let totalInvestimento = 0;
+    console.log(`Encontrados ${items.length} itens de contratação`);
+    
     let totalContratacoes = 0;
-
-    items.forEach(item => {
-        const quantidade = parseInt(item.querySelector('.contratacao-quantidade').value) || 0;
-        const salario = parseMonetaryValue(item.querySelector('.contratacao-salario').value);
-        totalInvestimento += quantidade * salario;
+    let custoMensalBase = 0;
+    
+    // Processar cada contratação
+    items.forEach((item, index) => {
+        const quantidadeInput = item.querySelector('.contratacao-quantidade');
+        const salarioInput = item.querySelector('.contratacao-salario');
+        
+        const quantidade = parseInt(quantidadeInput?.value) || 0;
+        const salario = parseMonetaryValue(salarioInput?.value);
+        
+        const subtotalMensal = quantidade * salario;
+        
+        console.log(`Item ${index + 1}:`, {
+            quantidade,
+            salario,
+            subtotalMensal
+        });
+        
         totalContratacoes += quantidade;
+        custoMensalBase += subtotalMensal;
     });
-
-    const encargosBeneficios = parseFloat(document.getElementById('encargosBeneficios').value) || 0;
-    const investimentoTotalComEncargos = totalInvestimento * (1 + (encargosBeneficios / 100));
-
+    
+    // Calcular encargos
+    const encargosInput = document.getElementById('encargosBeneficios');
+    const percentualEncargos = parseFloat(encargosInput?.value) || 0;
+    
+    const custoMensalComEncargos = custoMensalBase * (1 + (percentualEncargos / 100));
+    const custoAnualTotal = custoMensalComEncargos * 12;
+    
+    console.log('RESUMO CALCULO:', {
+        totalContratacoes,
+        custoMensalBase,
+        percentualEncargos: percentualEncargos + '%',
+        custoMensalComEncargos,
+        custoAnualTotal
+    });
+    
+    // Atualizar campos na interface
     const novasContratacoesInput = document.getElementById('novasContratacoes');
     if (novasContratacoesInput) {
         novasContratacoesInput.value = totalContratacoes;
+        console.log(`Campo novasContratacoes atualizado: ${totalContratacoes}`);
     }
-
+    
     const investimentoRHInput = document.getElementById('investimentoRH');
     if (investimentoRHInput) {
-        investimentoRHInput.value = formatCurrency(investimentoTotalComEncargos);
+        investimentoRHInput.value = formatCurrency(custoAnualTotal);
+        console.log(`Campo investimentoRH atualizado: ${formatCurrency(custoAnualTotal)}`);
     }
+    
+    console.log('=== FIM CALCULO RH ANUAL ===');
 }
 
 // Adicionar balanço
