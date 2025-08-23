@@ -273,6 +273,82 @@ body {
     border-radius: 4px;
 }
 
+/* Layout específico para contratações RH */
+#contratacoesList .item-row {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 1.2fr 1.2fr 0.8fr 1fr 1fr 60px;
+    gap: 8px;
+    align-items: center;
+    padding: 5px;
+}
+
+#contratacoesList .item-row input,
+#contratacoesList .item-row select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+}
+
+#contratacoesList .item-row .btn-remove {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsivo para contratações */
+@media (max-width: 1200px) {
+    #contratacoesList .item-row {
+        grid-template-columns: 1.5fr 0.7fr 1fr 1fr 0.7fr 0.9fr 0.9fr 50px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #contratacoesList .item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        grid-template-areas:
+            "cargo quantidade"
+            "salario tipo"
+            "encargos previsao"
+            "prioridade remove";
+    }
+    
+    #contratacoesList .contratacao-cargo { grid-area: cargo; }
+    #contratacoesList .contratacao-quantidade { grid-area: quantidade; }
+    #contratacoesList .contratacao-salario { grid-area: salario; }
+    #contratacoesList .contratacao-tipo { grid-area: tipo; }
+    #contratacoesList .contratacao-encargos { grid-area: encargos; }
+    #contratacoesList .contratacao-previsao { grid-area: previsao; }
+    #contratacoesList .contratacao-prioridade { grid-area: prioridade; }
+    #contratacoesList .btn-remove { grid-area: remove; }
+}
+
+@media (max-width: 768px) {
+    #contratacoesList .item-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "cargo"
+            "quantidade"
+            "salario"
+            "tipo"
+            "encargos"
+            "previsao"
+            "prioridade"
+            "remove";
+    }
+}
+
 .item-description {
     flex: 2 !important;
 }

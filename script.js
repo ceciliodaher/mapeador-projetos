@@ -615,12 +615,18 @@ function addContratacaoItem() {
 // Atualizar encargos baseado no tipo de contratação
 function updateEncargos(itemId) {
     const item = document.querySelector(`[data-id="${itemId}"]`);
-    if (!item) return;
+    if (!item) {
+        console.warn(`Item com ID ${itemId} não encontrado`);
+        return;
+    }
     
     const tipoSelect = item.querySelector('.contratacao-tipo');
     const encargosInput = item.querySelector('.contratacao-encargos');
     
-    if (!tipoSelect || !encargosInput) return;
+    if (!tipoSelect || !encargosInput) {
+        console.warn(`Campos tipo ou encargos não encontrados no item ${itemId}`);
+        return;
+    }
     
     // Percentuais técnicos baseados na legislação brasileira
     const encargosPorTipo = {
@@ -630,12 +636,22 @@ function updateEncargos(itemId) {
     };
     
     const tipo = tipoSelect.value;
+    
     if (tipo && encargosPorTipo[tipo]) {
-        encargosInput.value = encargosPorTipo[tipo];
-        console.log(`Encargos atualizados para ${tipo}: ${encargosPorTipo[tipo]}%`);
+        // Só atualizar se o campo de encargos estiver vazio ou for zero
+        const encargosAtual = parseFloat(encargosInput.value) || 0;
         
-        // Recalcular totais
-        calculateRHInvestmentAnual();
+        if (encargosAtual === 0) {
+            encargosInput.value = encargosPorTipo[tipo];
+            console.log(`✅ Encargos auto-preenchidos para ${tipo}: ${encargosPorTipo[tipo]}%`);
+            
+            // Recalcular totais
+            calculateRHInvestmentAnual();
+        } else {
+            console.log(`ℹ️ Encargos já preenchidos (${encargosAtual}%), mantendo valor`);
+        }
+    } else if (tipo) {
+        console.warn(`Tipo "${tipo}" não reconhecido. Tipos válidos: clt, direcao, terceirizado`);
     }
 }
 
@@ -3282,13 +3298,26 @@ function loadDynamicData(dynamicData) {
                 addContratacaoItem();
                 const lastItem = contratacoesList.lastElementChild;
                 if (lastItem) {
+                    const itemId = lastItem.getAttribute('data-id');
+                    
                     lastItem.querySelector('.contratacao-cargo').value = contratacao.cargo || '';
                     lastItem.querySelector('.contratacao-quantidade').value = contratacao.quantidade || '';
                     lastItem.querySelector('.contratacao-salario').value = contratacao.salario || '';
                     lastItem.querySelector('.contratacao-tipo').value = contratacao.tipo || '';
-                    lastItem.querySelector('.contratacao-encargos').value = contratacao.encargos || '';
                     lastItem.querySelector('.contratacao-previsao').value = contratacao.previsao || '';
                     lastItem.querySelector('.contratacao-prioridade').value = contratacao.prioridade || '';
+                    
+                    // Auto-preencher encargos baseado no tipo OU usar valor salvo
+                    const tipoValue = contratacao.tipo;
+                    const encargosValue = contratacao.encargos;
+                    
+                    if (encargosValue) {
+                        // Se já tem encargos salvos, usar eles
+                        lastItem.querySelector('.contratacao-encargos').value = encargosValue;
+                    } else if (tipoValue) {
+                        // Se não tem encargos mas tem tipo, auto-preencher
+                        updateEncargos(itemId);
+                    }
                 }
             });
         }
