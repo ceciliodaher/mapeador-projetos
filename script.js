@@ -151,10 +151,6 @@ function setupCalculations() {
         projectionTypeInput.addEventListener('change', calculateProjections);
     }
 
-    const encargosBeneficiosInput = document.getElementById('encargosBeneficios');
-    if (encargosBeneficiosInput) {
-        encargosBeneficiosInput.addEventListener('input', calculateRHInvestmentAnual);
-    }
 
     calculateProjections();
 }
@@ -573,7 +569,14 @@ function addContratacaoItem() {
             <div class="item-row">
                 <input type="text" placeholder="Cargo/Função" class="contratacao-cargo" />
                 <input type="number" placeholder="Quantidade" class="contratacao-quantidade" min="1" step="1" />
-                <input type="text" placeholder="Salário Previsto (R$)" class="contratacao-salario" />
+                <input type="text" placeholder="Salário Base (R$)" class="contratacao-salario" />
+                <select class="contratacao-tipo" onchange="updateEncargos(${itemId})">
+                    <option value="">Tipo Contratação</option>
+                    <option value="clt">CLT</option>
+                    <option value="direcao">Honorários Direção</option>
+                    <option value="terceirizado">Terceirizado</option>
+                </select>
+                <input type="number" placeholder="Encargos %" class="contratacao-encargos" min="0" max="100" step="0.1" />
                 <input type="month" placeholder="Previsão" class="contratacao-previsao" />
                 <select class="contratacao-prioridade">
                     <option value="">Prioridade</option>
@@ -588,10 +591,11 @@ function addContratacaoItem() {
     
     list.insertAdjacentHTML('beforeend', itemHtml);
     
-    // Aplicar formatação monetária ao salário
+    // Aplicar formatação e event listeners
     const newItem = list.querySelector(`[data-id="${itemId}"]`);
     const salarioInput = newItem.querySelector('.contratacao-salario');
     const quantidadeInput = newItem.querySelector('.contratacao-quantidade');
+    const encargosInput = newItem.querySelector('.contratacao-encargos');
 
     if (salarioInput) {
         applyMoneyFormatting(salarioInput);
@@ -600,9 +604,39 @@ function addContratacaoItem() {
     if (quantidadeInput) {
         quantidadeInput.addEventListener('input', calculateRHInvestmentAnual);
     }
+    if (encargosInput) {
+        encargosInput.addEventListener('input', calculateRHInvestmentAnual);
+    }
 
     calculateRHInvestmentAnual();
 
+}
+
+// Atualizar encargos baseado no tipo de contratação
+function updateEncargos(itemId) {
+    const item = document.querySelector(`[data-id="${itemId}"]`);
+    if (!item) return;
+    
+    const tipoSelect = item.querySelector('.contratacao-tipo');
+    const encargosInput = item.querySelector('.contratacao-encargos');
+    
+    if (!tipoSelect || !encargosInput) return;
+    
+    // Percentuais técnicos baseados na legislação brasileira
+    const encargosPorTipo = {
+        'clt': 85,           // CLT: INSS 20% + FGTS 8% + 13º 8.33% + Férias 11.11% + demais encargos
+        'direcao': 70,       // Direção: INSS limitado + benefícios executivos
+        'terceirizado': 30   // Terceirizado: ISS + PIS/COFINS + IR
+    };
+    
+    const tipo = tipoSelect.value;
+    if (tipo && encargosPorTipo[tipo]) {
+        encargosInput.value = encargosPorTipo[tipo];
+        console.log(`Encargos atualizados para ${tipo}: ${encargosPorTipo[tipo]}%`);
+        
+        // Recalcular totais
+        calculateRHInvestmentAnual();
+    }
 }
 
 // Remover contratação planejada
@@ -630,39 +664,42 @@ function calculateRHInvestmentAnual() {
     let totalContratacoes = 0;
     let custoMensalBase = 0;
     
-    // Processar cada contratação
+    // Processar cada contratação com encargos individuais
+    let custoMensalComEncargos = 0;
+    
     items.forEach((item, index) => {
         const quantidadeInput = item.querySelector('.contratacao-quantidade');
         const salarioInput = item.querySelector('.contratacao-salario');
+        const encargosInput = item.querySelector('.contratacao-encargos');
         
         const quantidade = parseInt(quantidadeInput?.value) || 0;
         const salario = parseMonetaryValue(salarioInput?.value);
+        const percentualEncargos = parseFloat(encargosInput?.value) || 0;
         
-        const subtotalMensal = quantidade * salario;
+        const subtotalMensalBase = quantidade * salario;
+        const subtotalMensalComEncargos = subtotalMensalBase * (1 + (percentualEncargos / 100));
         
         console.log(`Item ${index + 1}:`, {
             quantidade,
             salario,
-            subtotalMensal
+            percentualEncargos: percentualEncargos + '%',
+            subtotalMensalBase,
+            subtotalMensalComEncargos
         });
         
         totalContratacoes += quantidade;
-        custoMensalBase += subtotalMensal;
+        custoMensalBase += subtotalMensalBase;
+        custoMensalComEncargos += subtotalMensalComEncargos;
     });
     
-    // Calcular encargos
-    const encargosInput = document.getElementById('encargosBeneficios');
-    const percentualEncargos = parseFloat(encargosInput?.value) || 0;
-    
-    const custoMensalComEncargos = custoMensalBase * (1 + (percentualEncargos / 100));
     const custoAnualTotal = custoMensalComEncargos * 12;
     
     console.log('RESUMO CALCULO:', {
         totalContratacoes,
         custoMensalBase,
-        percentualEncargos: percentualEncargos + '%',
         custoMensalComEncargos,
-        custoAnualTotal
+        custoAnualTotal,
+        observacao: 'Encargos individuais por contratação'
     });
     
     // Atualizar campos na interface
@@ -2996,11 +3033,13 @@ function collectDynamicData() {
     const contratacoes = [];
     document.querySelectorAll('#contratacoesList .investment-item').forEach(item => {
         contratacoes.push({
-            cargo: item.querySelector('input[name="contratacao_cargo[]"]')?.value || '',
-            quantidade: item.querySelector('input[name="contratacao_quantidade[]"]')?.value || '',
-            salario: item.querySelector('input[name="contratacao_salario[]"]')?.value || '',
-            previsao: item.querySelector('input[name="contratacao_previsao[]"]')?.value || '',
-            prioridade: item.querySelector('select[name="contratacao_prioridade[]"]')?.value || ''
+            cargo: item.querySelector('.contratacao-cargo')?.value || '',
+            quantidade: item.querySelector('.contratacao-quantidade')?.value || '',
+            salario: item.querySelector('.contratacao-salario')?.value || '',
+            tipo: item.querySelector('.contratacao-tipo')?.value || '',
+            encargos: item.querySelector('.contratacao-encargos')?.value || '',
+            previsao: item.querySelector('.contratacao-previsao')?.value || '',
+            prioridade: item.querySelector('.contratacao-prioridade')?.value || ''
         });
     });
     if (contratacoes.length > 0) dynamicData.contratacoes = contratacoes;
@@ -3246,6 +3285,8 @@ function loadDynamicData(dynamicData) {
                     lastItem.querySelector('.contratacao-cargo').value = contratacao.cargo || '';
                     lastItem.querySelector('.contratacao-quantidade').value = contratacao.quantidade || '';
                     lastItem.querySelector('.contratacao-salario').value = contratacao.salario || '';
+                    lastItem.querySelector('.contratacao-tipo').value = contratacao.tipo || '';
+                    lastItem.querySelector('.contratacao-encargos').value = contratacao.encargos || '';
                     lastItem.querySelector('.contratacao-previsao').value = contratacao.previsao || '';
                     lastItem.querySelector('.contratacao-prioridade').value = contratacao.prioridade || '';
                 }
@@ -3312,9 +3353,10 @@ function loadDynamicData(dynamicData) {
         }
     }
     
-    // Após carregar todos os dados, recalcular subtotais
+    // Após carregar todos os dados, recalcular subtotais e RH
     setTimeout(() => {
         calculateSubtotals();
+        calculateRHInvestmentAnual();
     }, 100);
 }
 

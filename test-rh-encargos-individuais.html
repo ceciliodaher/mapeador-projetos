@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste RH - Encargos Individuais</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 1400px; 
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .container { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group { 
+            margin: 15px 0; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+        }
+        input, select { 
+            padding: 8px; 
+            margin-right: 10px; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #FF002D; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 4px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #e6002a;
+        }
+        .investment-item { 
+            background: #f9f9f9; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border: 1px solid #ddd;
+            border-radius: 5px; 
+        }
+        .item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 1fr 1fr 60px;
+            gap: 10px;
+            align-items: center;
+        }
+        .resultado { 
+            background: #e8f5e9; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 5px; 
+            border: 2px solid #4caf50;
+        }
+        .resultado h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .debug { 
+            background: #fff3cd; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 5px; 
+            font-family: monospace; 
+            font-size: 12px;
+            border: 1px solid #ffc107;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .tipos-info {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 2px solid #2196f3;
+        }
+        .btn-remove {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .header {
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 1fr 1fr 60px;
+            display: grid;
+            gap: 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste RH - Encargos Individuais por Tipo de Contratação</h1>
+    
+    <div class="tipos-info">
+        <h3>Tipos de Contratação e Encargos</h3>
+        <p><strong>CLT:</strong> 85% (INSS, FGTS, 13º, Férias, SAT, etc.)</p>
+        <p><strong>Honorários Direção:</strong> 70% (INSS limitado + benefícios executivos)</p>
+        <p><strong>Terceirizado:</strong> 30% (ISS, PIS/COFINS, IR - sem encargos trabalhistas)</p>
+    </div>
+
+    <div class="container">
+        <h2>Contratações Planejadas</h2>
+        
+        <div class="header">
+            <span>Cargo/Função</span>
+            <span>Qtd</span>
+            <span>Salário Base</span>
+            <span>Tipo Contratação</span>
+            <span>Encargos %</span>
+            <span>Previsão</span>
+            <span>Prioridade</span>
+            <span>Ação</span>
+        </div>
+        
+        <div id="contratacoesList" class="detail-list">
+            <!-- Contratações serão adicionadas aqui -->
+        </div>
+        
+        <button onclick="addContratacaoItem()">+ Adicionar Contratação</button>
+        
+        <div class="resultado">
+            <h3>Resultados Calculados</h3>
+            <p><strong>Novas Contratações (próximos 12 meses):</strong> <span id="novasContratacoes">0</span></p>
+            <p><strong>Investimento Previsto em RH (R$) - ANUAL:</strong> <span id="investimentoRH">R$ 0,00</span></p>
+        </div>
+        
+        <div class="debug">
+            <h4>Debug Console</h4>
+            <div id="debugOutput">Console será exibido aqui...</div>
+        </div>
+        
+        <button onclick="preencherDadosCompletos()">🚀 Preencher Dados Completos</button>
+        <button onclick="testarTiposEncargos()">🔬 Testar Tipos de Encargos</button>
+        <button onclick="limparTudo()">🗑️ Limpar Tudo</button>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        // Interceptar console.log para mostrar na tela
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const debugOutput = document.getElementById('debugOutput');
+            if (debugOutput) {
+                debugOutput.innerHTML += args.join(' ') + '<br>';
+                debugOutput.scrollTop = debugOutput.scrollHeight;
+            }
+        };
+
+        function preencherDadosCompletos() {
+            limparTudo();
+            console.log('=== PREENCHENDO DADOS COMPLETOS ===');
+            
+            // Simular dados com diferentes tipos de contratação
+            const dados = [
+                ['Operador de CNC', 31, 3500, 'clt'],
+                ['Técnico de Automação', 8, 5200, 'clt'], 
+                ['Engenheiro de Processos', 3, 9000, 'direcao'],
+                ['Analista de Qualidade', 5, 4000, 'terceirizado']
+            ];
+            
+            dados.forEach(([cargo, qtd, salario, tipo]) => {
+                addContratacaoItem();
+                const lastItem = document.querySelector('#contratacoesList .investment-item:last-child');
+                if (lastItem) {
+                    lastItem.querySelector('.contratacao-cargo').value = cargo;
+                    lastItem.querySelector('.contratacao-quantidade').value = qtd;
+                    lastItem.querySelector('.contratacao-salario').value = salario;
+                    lastItem.querySelector('.contratacao-tipo').value = tipo;
+                    
+                    // Trigger mudança de tipo para preencher encargos
+                    const event = new Event('change');
+                    lastItem.querySelector('.contratacao-tipo').dispatchEvent(event);
+                }
+            });
+        }
+
+        function testarTiposEncargos() {
+            limparTudo();
+            console.log('=== TESTANDO DIFERENTES TIPOS DE ENCARGOS ===');
+            
+            // Um exemplo de cada tipo
+            const tipos = [
+                ['CLT - Operador', 10, 3000, 'clt'],
+                ['Direção - Gerente', 2, 15000, 'direcao'],
+                ['Terceirizado - Consultor', 5, 8000, 'terceirizado']
+            ];
+            
+            tipos.forEach(([cargo, qtd, salario, tipo]) => {
+                addContratacaoItem();
+                const lastItem = document.querySelector('#contratacoesList .investment-item:last-child');
+                if (lastItem) {
+                    lastItem.querySelector('.contratacao-cargo').value = cargo;
+                    lastItem.querySelector('.contratacao-quantidade').value = qtd;
+                    lastItem.querySelector('.contratacao-salario').value = salario;
+                    lastItem.querySelector('.contratacao-tipo').value = tipo;
+                    
+                    const event = new Event('change');
+                    lastItem.querySelector('.contratacao-tipo').dispatchEvent(event);
+                }
+            });
+        }
+
+        function limparTudo() {
+            document.getElementById('contratacoesList').innerHTML = '';
+            document.getElementById('debugOutput').innerHTML = 'Console limpo...<br>';
+            calculateRHInvestmentAnual();
+        }
+
+        // Teste automático ao carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== SISTEMA DE ENCARGOS INDIVIDUAIS CARREGADO ===');
+            preencherDadosCompletos();
+        });
+    </script>
+</body>
+</html>
