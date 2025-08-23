@@ -1145,12 +1145,12 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="capitalSocial">Capital Social Total (R$) *</label>
-                                <input type="number" id="capitalSocial" name="capitalSocial" min="0" step="0.01" required>
+                                <input type="text" id="capitalSocial" name="capitalSocial" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="capitalIntegralizado">Capital Integralizado (R$) *</label>
-                                <input type="number" id="capitalIntegralizado" name="capitalIntegralizado" min="0" step="0.01" required>
+                                <input type="text" id="capitalIntegralizado" name="capitalIntegralizado" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
@@ -1180,17 +1180,17 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="endividamentoTotal">Endividamento Total (R$)</label>
-                                <input type="number" id="endividamentoTotal" name="endividamentoTotal" min="0" step="0.01">
+                                <input type="text" id="endividamentoTotal" name="endividamentoTotal" class="money-input">
                             </div>
                             
                             <div class="form-group">
                                 <label for="endividamentoCurto">Curto Prazo (R$)</label>
-                                <input type="number" id="endividamentoCurto" name="endividamentoCurto" min="0" step="0.01">
+                                <input type="text" id="endividamentoCurto" name="endividamentoCurto" class="money-input">
                             </div>
                             
                             <div class="form-group">
                                 <label for="endividamentoLongo">Longo Prazo (R$)</label>
-                                <input type="number" id="endividamentoLongo" name="endividamentoLongo" min="0" step="0.01">
+                                <input type="text" id="endividamentoLongo" name="endividamentoLongo" class="money-input">
                             </div>
                             
                             <div class="form-group">
@@ -1222,22 +1222,22 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="saldoCaixa">Saldo Atual em Caixa/Bancos (R$) *</label>
-                                <input type="number" id="saldoCaixa" name="saldoCaixa" step="0.01" required>
+                                <input type="text" id="saldoCaixa" name="saldoCaixa" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="receitaMediaMensal">Receita Média Mensal (R$) *</label>
-                                <input type="number" id="receitaMediaMensal" name="receitaMediaMensal" min="0" step="0.01" required>
+                                <input type="text" id="receitaMediaMensal" name="receitaMediaMensal" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="despesaMediaMensal">Despesa Média Mensal (R$) *</label>
-                                <input type="number" id="despesaMediaMensal" name="despesaMediaMensal" min="0" step="0.01" required>
+                                <input type="text" id="despesaMediaMensal" name="despesaMediaMensal" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="capacidadePagamento">Capacidade de Pagamento Mensal (R$)</label>
-                                <input type="number" id="capacidadePagamento" name="capacidadePagamento" step="0.01" readonly>
+                                <input type="text" id="capacidadePagamento" name="capacidadePagamento" class="money-input" readonly>
                                 <small class="form-hint">Calculado automaticamente: Receita - Despesa</small>
                             </div>
 
@@ -1263,17 +1263,24 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="receitaBrutaAnual">Receita Bruta Anual (R$) *</label>
-                                <input type="number" id="receitaBrutaAnual" name="receitaBrutaAnual" min="0" step="0.01" required>
+                                <input type="text" id="receitaBrutaAnual" name="receitaBrutaAnual" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="receitaLiquidaAnual">Receita Líquida Anual (R$) *</label>
-                                <input type="number" id="receitaLiquidaAnual" name="receitaLiquidaAnual" min="0" step="0.01" required>
+                                <input type="text" id="receitaLiquidaAnual" name="receitaLiquidaAnual" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="principalFonteReceita">Principal Fonte de Receita (%)</label>
-                                <input type="number" id="principalFonteReceita" name="principalFonteReceita" min="0" max="100" step="0.1">
+                                <label for="principalFonteReceita">
+                                    Principal Fonte de Receita - Participação (%)
+                                    <span class="tooltip-icon" data-tooltip="Informe qual percentual (%) do seu faturamento total vem da sua principal fonte de receita (produto ou serviço que mais vende). Ex: Se estruturas metálicas representam 65% das suas vendas, digite 65.">?</span>
+                                </label>
+                                <input type="text" id="principalFonteReceita" name="principalFonteReceita" 
+                                       placeholder="Ex: 45.5"
+                                       class="percentage-input"
+                                       inputmode="decimal"
+                                       pattern="[0-9]*[.,]?[0-9]*">
                             </div>
                             
                             <div class="form-group">
@@ -1310,12 +1317,12 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="custosFixosMensais">Custos Fixos Mensais (R$) *</label>
-                                <input type="number" id="custosFixosMensais" name="custosFixosMensais" min="0" step="0.01" required>
+                                <input type="text" id="custosFixosMensais" name="custosFixosMensais" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="custosVariaveisMensais">Custos Variáveis Mensais (R$) *</label>
-                                <input type="number" id="custosVariaveisMensais" name="custosVariaveisMensais" min="0" step="0.01" required>
+                                <input type="text" id="custosVariaveisMensais" name="custosVariaveisMensais" class="money-input" required>
                             </div>
                             
                             <div class="form-group">
@@ -1325,7 +1332,7 @@
                             
                             <div class="form-group">
                                 <label for="pontoEquilibrio">Ponto de Equilíbrio Mensal (R$)</label>
-                                <input type="number" id="pontoEquilibrio" name="pontoEquilibrio" min="0" step="0.01">
+                                <input type="text" id="pontoEquilibrio" name="pontoEquilibrio" class="money-input">
                             </div>
                             
                             <div class="form-group full-width">
@@ -1467,12 +1474,12 @@
                             
                             <div class="form-group">
                                 <label for="investimentoPD">Investimento Anual em P&D (R$)</label>
-                                <input type="number" id="investimentoPD" name="investimentoPD" min="0" step="0.01">
+                                <input type="text" id="investimentoPD" name="investimentoPD" class="money-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group">
                                 <label for="percentualPD">% da Receita Investida em P&D</label>
-                                <input type="number" id="percentualPD" name="percentualPD" min="0" max="100" step="0.1">
+                                <input type="text" id="percentualPD" name="percentualPD" class="percentage-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group">
@@ -1520,7 +1527,7 @@
                             
                             <div class="form-group">
                                 <label for="automacao">Nível de Automação (%)</label>
-                                <input type="number" id="automacao" name="automacao" min="0" max="100" step="1">
+                                <input type="text" id="automacao" name="automacao" class="percentage-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group">
@@ -1537,7 +1544,7 @@
                             
                             <div class="form-group">
                                 <label for="investimentoTech">Investimento Anual em Tecnologia (R$)</label>
-                                <input type="number" id="investimentoTech" name="investimentoTech" min="0" step="0.01">
+                                <input type="text" id="investimentoTech" name="investimentoTech" class="money-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group full-width">
@@ -1640,12 +1647,12 @@
                             
                             <div class="form-group">
                                 <label for="investimentoSustentabilidade">Investimento Anual em Sustentabilidade (R$)</label>
-                                <input type="number" id="investimentoSustentabilidade" name="investimentoSustentabilidade" min="0" step="0.01">
+                                <input type="text" id="investimentoSustentabilidade" name="investimentoSustentabilidade" class="money-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group">
                                 <label for="energiaRenovavel">Uso de Energia Renovável (%)</label>
-                                <input type="number" id="energiaRenovavel" name="energiaRenovavel" min="0" max="100" step="0.1">
+                                <input type="text" id="energiaRenovavel" name="energiaRenovavel" class="percentage-input" inputmode="decimal">
                             </div>
                             
                             <div class="form-group">

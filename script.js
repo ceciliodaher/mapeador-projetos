@@ -743,11 +743,11 @@ function addBalancoItem() {
         <div class="investment-item" data-id="${itemId}">
             <div class="item-row">
                 <input type="number" placeholder="Ano" class="balanco-ano" min="2020" max="2025" step="1" />
-                <input type="number" placeholder="Ativo Total (R$)" class="balanco-ativo" min="0" step="0.01" />
-                <input type="number" placeholder="Passivo Total (R$)" class="balanco-passivo" min="0" step="0.01" />
-                <input type="number" placeholder="Patrimônio Líquido (R$)" class="balanco-patrimonio" min="0" step="0.01" />
-                <input type="number" placeholder="Receita Bruta (R$)" class="balanco-receita" min="0" step="0.01" />
-                <input type="number" placeholder="Lucro Líquido (R$)" class="balanco-lucro" step="0.01" />
+                <input type="text" placeholder="Ativo Total (R$)" class="balanco-ativo money-input" />
+                <input type="text" placeholder="Passivo Total (R$)" class="balanco-passivo money-input" />
+                <input type="text" placeholder="Patrimônio Líquido (R$)" class="balanco-patrimonio money-input" />
+                <input type="text" placeholder="Receita Bruta (R$)" class="balanco-receita money-input" />
+                <input type="text" placeholder="Lucro Líquido (R$)" class="balanco-lucro money-input" />
                 <button type="button" class="btn-remove" onclick="removeBalancoItem(${itemId})">×</button>
             </div>
         </div>
@@ -780,7 +780,7 @@ function addSocioItem() {
                 <input type="text" placeholder="Nome do Sócio" class="socio-nome" />
                 <input type="text" placeholder="CPF/CNPJ" class="socio-documento" />
                 <input type="number" placeholder="% Participação" class="socio-participacao" min="0" max="100" step="0.01" />
-                <input type="number" placeholder="Valor da Participação (R$)" class="socio-valor" min="0" step="0.01" />
+                <input type="text" placeholder="Valor da Participação (R$)" class="socio-valor money-input" />
                 <select class="socio-tipo">
                     <option value="">Tipo</option>
                     <option value="administrador">Administrador</option>
@@ -828,8 +828,8 @@ function addDividaItem() {
                     <option value="impostos">Impostos</option>
                     <option value="outros">Outros</option>
                 </select>
-                <input type="number" placeholder="Valor Original (R$)" class="divida-original" min="0" step="0.01" />
-                <input type="number" placeholder="Saldo Devedor (R$)" class="divida-saldo" min="0" step="0.01" />
+                <input type="text" placeholder="Valor Original (R$)" class="divida-original money-input" />
+                <input type="text" placeholder="Saldo Devedor (R$)" class="divida-saldo money-input" />
                 <input type="date" placeholder="Vencimento" class="divida-vencimento" />
                 <input type="number" placeholder="Taxa (%)" class="divida-taxa" min="0" step="0.01" />
                 <button type="button" class="btn-remove" onclick="removeDividaItem(${itemId})">×</button>
@@ -913,9 +913,26 @@ function parseMonetaryValue(value) {
 function applyUniversalFormatting(container = document) {
     const form = container.querySelector ? container : document;
     
-    // 1. Campos monetários, percentuais e inteiros
+    // 1. PRIMEIRO: Processar campos percentuais (prioridade máxima)
+    const percentageInputFields = form.querySelectorAll('input.percentage-input');
+    percentageInputFields.forEach(input => {
+        applyPercentageFormatting(input);
+    });
+
+    // 2. SEGUNDO: Campos monetários com classe money-input (type="text")
+    const moneyInputFields = form.querySelectorAll('input.money-input, input[type="text"].money-input');
+    moneyInputFields.forEach(input => {
+        applyMonetaryFormatting(input);
+    });
+
+    // 3. TERCEIRO: Campos numéricos restantes (type="number")
     const numericFields = form.querySelectorAll('input[type="number"]');
     numericFields.forEach(input => {
+        // Pular se já foi processado como percentage-input
+        if (input.classList.contains('percentage-input')) {
+            return;
+        }
+        
         if (isMonetaryField(input)) {
             applyMonetaryFormatting(input);
         } else if (isPercentageField(input)) {
@@ -925,12 +942,17 @@ function applyUniversalFormatting(container = document) {
         }
     });
 
-    // 2. Validação especial para distribuição regional
+    // 4. Validação especial para distribuição regional
     validateRegionalDistribution(form);
 }
 
 // Identificar campos monetários
 function isMonetaryField(input) {
+    // Excluir campos que são especificamente percentuais
+    if (input.classList.contains('percentage-input')) {
+        return false;
+    }
+    
     const monetaryPatterns = [
         'preco', 'custo', 'valor', 'Valor', 'investimento', 'receita', 'despesa', 
         'faturamento', 'ticket', 'salario', 'remuneracao', 'economia', 'meta',
@@ -1075,7 +1097,32 @@ function applyPercentageFormatting(input) {
     });
     
     input.addEventListener('input', function(e) {
-        e.target.value = e.target.value.replace(/[^\d.,]/g, '');
+        let value = e.target.value;
+        
+        // Permitir apenas números, vírgula e ponto
+        value = value.replace(/[^\d.,]/g, '');
+        
+        // Converter vírgula para ponto
+        value = value.replace(',', '.');
+        
+        // Limitar a um ponto decimal
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        
+        // Limitar a 1 casa decimal
+        if (parts[1] && parts[1].length > 1) {
+            value = parts[0] + '.' + parts[1].substring(0, 1);
+        }
+        
+        e.target.value = value;
+        
+        // Validação em tempo real para não passar de 100
+        const numValue = parseFloat(value);
+        if (!isNaN(numValue) && numValue > 100) {
+            e.target.value = '100';
+        }
     });
 }
 
@@ -2409,7 +2456,7 @@ function addFaturamentoItem() {
                 </div>
                 <div class="form-group">
                     <label>Faturamento (R$)</label>
-                    <input type="number" name="faturamento_valor[]" min="0" step="0.01" required>
+                    <input type="text" name="faturamento_valor[]" class="money-input" required>
                 </div>
                 <div class="form-group">
                     <label>Observações</label>
@@ -2451,7 +2498,7 @@ function addCustoItem() {
                 </div>
                 <div class="form-group">
                     <label>Valor Mensal (R$) *</label>
-                    <input type="number" name="custo_valor[]" min="0" step="0.01" required>
+                    <input type="text" name="custo_valor[]" class="money-input" required>
                 </div>
                 <div class="form-group">
                     <label>Participação no Custo Total (%)</label>
@@ -2506,7 +2553,7 @@ function addFornecedorItem() {
                 </div>
                 <div class="form-group">
                     <label>Valor Médio Mensal (R$)</label>
-                    <input type="number" name="fornecedor_valor[]" min="0" step="0.01">
+                    <input type="text" name="fornecedor_valor[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Prazo de Pagamento (dias)</label>
@@ -2566,7 +2613,7 @@ function addProjetoPDItem() {
                 </div>
                 <div class="form-group">
                     <label>Investimento Previsto (R$)</label>
-                    <input type="number" name="projeto_investimento[]" min="0" step="0.01">
+                    <input type="text" name="projeto_investimento[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Duração Prevista (meses)</label>
@@ -2643,7 +2690,7 @@ function addUpgradeItem() {
                 </div>
                 <div class="form-group">
                     <label>Investimento Estimado (R$)</label>
-                    <input type="number" name="upgrade_investimento[]" min="0" step="0.01">
+                    <input type="text" name="upgrade_investimento[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Prazo de Implementação</label>
@@ -2700,11 +2747,11 @@ function addMelhoriaItem() {
                 </div>
                 <div class="form-group">
                     <label>Investimento Necessário (R$)</label>
-                    <input type="number" name="melhoria_investimento[]" min="0" step="0.01">
+                    <input type="text" name="melhoria_investimento[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Economia Anual Estimada (R$)</label>
-                    <input type="number" name="melhoria_economia[]" min="0" step="0.01">
+                    <input type="text" name="melhoria_economia[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Prazo de Implementação</label>
@@ -2777,11 +2824,11 @@ function addSustentabilidadeItem() {
                 </div>
                 <div class="form-group">
                     <label>Investimento (R$)</label>
-                    <input type="number" name="sustentabilidade_investimento[]" min="0" step="0.01">
+                    <input type="text" name="sustentabilidade_investimento[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Economia Anual (R$)</label>
-                    <input type="number" name="sustentabilidade_economia[]" min="0" step="0.01">
+                    <input type="text" name="sustentabilidade_economia[]" class="money-input">
                 </div>
                 <div class="form-group">
                     <label>Redução de Impacto (%)</label>
