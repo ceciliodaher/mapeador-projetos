@@ -555,6 +555,22 @@
                         <p class="section-description">Upload dos documentos obrigatórios e complementares.</p>
                     </div>
                     
+                    <!-- Mensagem de Segurança -->
+                    <div class="alert alert-warning" style="background-color: #FFF9C4; border: 2px solid #F9A825; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: start; gap: 10px;">
+                            <span style="font-size: 24px;">🔒</span>
+                            <div>
+                                <strong style="color: #F57C00; font-size: 16px;">Atenção - Segurança de Dados</strong>
+                                <p style="margin: 8px 0 0 0; color: #333;">
+                                    Por motivos de segurança dos dados, o upload de arquivos ainda não foi implementado nesta versão. 
+                                    Por favor, envie todos os documentos desta seção por e-mail para 
+                                    <strong style="color: #091A30;">contato@expertzy.com.br</strong>. 
+                                    Continue preenchendo o formulário normalmente - os campos abaixo servem para identificar quais documentos você enviará.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="form-grid">
                         <div class="form-group full-width">
                             <label for="projetoArquitetonico">Projeto Arquitetônico ou Layout Industrial</label>
@@ -929,30 +945,111 @@
                     <!-- Distribuição Regional -->
                     <div class="subsection">
                         <h3 class="subsection-title">10.3 Distribuição Regional</h3>
+                        
+                        <!-- Destino das Vendas -->
+                        <h4 class="subsection-title">Destino das Vendas</h4>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="abrangenciaLocal">Mercado Local (%) *</label>
-                                <input type="number" id="abrangenciaLocal" name="abrangenciaLocal" min="0" max="100" step="1" required>
-                                <small class="form-hint">% das vendas na cidade/região</small>
+                                <label for="vendasGoias">Goiás (%) *</label>
+                                <input type="number" id="vendasGoias" name="vendasGoias" min="0" max="100" step="0.1" required>
+                                <small class="form-hint">% das vendas dentro do estado de Goiás</small>
                             </div>
                             
                             <div class="form-group">
-                                <label for="abrangenciaEstadual">Mercado Estadual (%) *</label>
-                                <input type="number" id="abrangenciaEstadual" name="abrangenciaEstadual" min="0" max="100" step="1" required>
-                                <small class="form-hint">% das vendas no estado</small>
+                                <label for="vendasNorte">Região Norte (%)</label>
+                                <input type="number" id="vendasNorte" name="vendasNorte" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para a região Norte</small>
                             </div>
                             
                             <div class="form-group">
-                                <label for="abrangenciaNacional">Mercado Nacional (%)</label>
-                                <input type="number" id="abrangenciaNacional" name="abrangenciaNacional" min="0" max="100" step="1">
-                                <small class="form-hint">% das vendas em outros estados</small>
+                                <label for="vendasNordeste">Região Nordeste (%)</label>
+                                <input type="number" id="vendasNordeste" name="vendasNordeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para a região Nordeste</small>
                             </div>
                             
                             <div class="form-group">
-                                <label for="abrangenciaInternacional">Mercado Internacional (%)</label>
-                                <input type="number" id="abrangenciaInternacional" name="abrangenciaInternacional" min="0" max="100" step="1">
-                                <small class="form-hint">% das vendas para outros países</small>
+                                <label for="vendasCentroOeste">Outros Estados Centro-Oeste (%)</label>
+                                <input type="number" id="vendasCentroOeste" name="vendasCentroOeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para MT, MS, DF</small>
                             </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasSudeste">Região Sudeste (%)</label>
+                                <input type="number" id="vendasSudeste" name="vendasSudeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para a região Sudeste</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasSul">Região Sul (%)</label>
+                                <input type="number" id="vendasSul" name="vendasSul" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para a região Sul</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasZonaFranca">Zona Franca de Manaus (%)</label>
+                                <input type="number" id="vendasZonaFranca" name="vendasZonaFranca" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para a Zona Franca de Manaus</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasExportacao">Exportação (%)</label>
+                                <input type="number" id="vendasExportacao" name="vendasExportacao" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas para exportação</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Origem dos Insumos -->
+                        <h4 class="subsection-title">Origem dos Insumos</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="insumosGoias">Goiás (%) *</label>
+                                <input type="number" id="insumosGoias" name="insumosGoias" min="0" max="100" step="0.1" required>
+                                <small class="form-hint">% dos insumos adquiridos em Goiás</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosNorte">Região Norte (%)</label>
+                                <input type="number" id="insumosNorte" name="insumosNorte" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos adquiridos da região Norte</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosNordeste">Região Nordeste (%)</label>
+                                <input type="number" id="insumosNordeste" name="insumosNordeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos adquiridos da região Nordeste</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosCentroOeste">Outros Estados Centro-Oeste (%)</label>
+                                <input type="number" id="insumosCentroOeste" name="insumosCentroOeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos adquiridos de MT, MS, DF</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosSudeste">Região Sudeste (%)</label>
+                                <input type="number" id="insumosSudeste" name="insumosSudeste" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos adquiridos da região Sudeste</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosSul">Região Sul (%)</label>
+                                <input type="number" id="insumosSul" name="insumosSul" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos adquiridos da região Sul</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insumosImportacao">Importação (%)</label>
+                                <input type="number" id="insumosImportacao" name="insumosImportacao" min="0" max="100" step="0.1">
+                                <small class="form-hint">% dos insumos importados</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Campos para compatibilidade com versão anterior -->
+                        <div class="form-grid" style="display: none;">
+                            <input type="number" id="abrangenciaLocal" name="abrangenciaLocal" min="0" max="100" step="1">
+                            <input type="number" id="abrangenciaEstadual" name="abrangenciaEstadual" min="0" max="100" step="1">
+                            <input type="number" id="abrangenciaNacional" name="abrangenciaNacional" min="0" max="100" step="1">
+                            <input type="number" id="abrangenciaInternacional" name="abrangenciaInternacional" min="0" max="100" step="1">
                         </div>
                     </div>
 
@@ -1461,6 +1558,143 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Informações Tributárias -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">13.5 Informações Tributárias e ICMS</h3>
+                        
+                        <!-- 13.5.1 - Operações Internas em Goiás -->
+                        <h4 class="subsection-title">13.5.1 Operações Internas em Goiás</h4>
+                        
+                        <!-- Vendas Internas Goiás -->
+                        <h5 class="subsection-subtitle">Vendas Internas Goiás</h5>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="vendasGoiasReducao10">Redução 10% - Produção Própria (%)</label>
+                                <input type="number" id="vendasGoiasReducao10" name="vendasGoiasReducao10" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas GO com redução p/ 10% da base (ICMS = 1,9%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasGoiasReducao11">Redução 11% - Revenda (%)</label>
+                                <input type="number" id="vendasGoiasReducao11" name="vendasGoiasReducao11" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas GO com redução p/ 11% da base (ICMS = 2,09%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vendasGoiasAliquotaCheia">Alíquota Cheia 19% (%)</label>
+                                <input type="number" id="vendasGoiasAliquotaCheia" name="vendasGoiasAliquotaCheia" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das vendas GO sem redução (ICMS = 19%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="totalVendasGoias">Total Vendas GO (%)</label>
+                                <input type="number" id="totalVendasGoias" name="totalVendasGoias" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">Soma dos percentuais acima (deve ser 100%)</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Compras Internas Goiás -->
+                        <h5 class="subsection-subtitle">Compras Internas Goiás</h5>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="comprasGoiasFabricante">Redução 10% - Fabricante (%)</label>
+                                <input type="number" id="comprasGoiasFabricante" name="comprasGoiasFabricante" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das compras GO de fabricantes (crédito ICMS = 1,9%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="comprasGoiasDistribuidor">Redução 11% - Distribuidor (%)</label>
+                                <input type="number" id="comprasGoiasDistribuidor" name="comprasGoiasDistribuidor" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das compras GO de distribuidores (crédito ICMS = 2,09%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="comprasGoiasAliquotaCheia">Alíquota Cheia 19% (%)</label>
+                                <input type="number" id="comprasGoiasAliquotaCheia" name="comprasGoiasAliquotaCheia" min="0" max="100" step="0.1">
+                                <small class="form-hint">% das compras GO sem redução (crédito ICMS = 19%)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="totalComprasGoias">Total Compras GO (%)</label>
+                                <input type="number" id="totalComprasGoias" name="totalComprasGoias" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">Soma dos percentuais acima (deve ser 100%)</small>
+                            </div>
+                        </div>
+                        
+                        <!-- 13.5.2 - Regime Tributário e Incentivos -->
+                        <h4 class="subsection-title">13.5.2 Regime Tributário e Incentivos</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="regimeTributario">Regime Tributário da Empresa *</label>
+                                <select id="regimeTributario" name="regimeTributario" required>
+                                    <option value="">Selecione</option>
+                                    <option value="simples">Simples Nacional</option>
+                                    <option value="presumido">Lucro Presumido</option>
+                                    <option value="real">Lucro Real</option>
+                                    <option value="arbitrado">Lucro Arbitrado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="aliquotaICMSMedia">Alíquota ICMS Média Efetiva (%)</label>
+                                <input type="number" id="aliquotaICMSMedia" name="aliquotaICMSMedia" min="0" max="30" step="0.01" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">Calculada automaticamente com base na distribuição regional</small>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="incentivosFiscaisAplicados">Incentivos Fiscais Já Aplicados</label>
+                                <textarea id="incentivosFiscaisAplicados" name="incentivosFiscaisAplicados" rows="3" 
+                                    placeholder="Liste todos os incentivos fiscais que a empresa já utiliza (Produzir, Fomentar, ICMS Ecológico, etc.)"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="situacoesIncentivos">Situações de Aplicação dos Incentivos</label>
+                                <textarea id="situacoesIncentivos" name="situacoesIncentivos" rows="3" 
+                                    placeholder="Descreva em quais operações, produtos ou situações cada incentivo fiscal é aplicado"></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- 13.5.3 - Estimativas de ICMS -->
+                        <h4 class="subsection-title">13.5.3 Estimativas de ICMS</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="icmsDebitoMensal">ICMS Débito - Vendas (R$/mês)</label>
+                                <input type="text" id="icmsDebitoMensal" name="icmsDebitoMensal" class="money-input" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">ICMS devido nas vendas (calculado automaticamente)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="icmsCreditoMensal">ICMS Crédito - Compras (R$/mês)</label>
+                                <input type="text" id="icmsCreditoMensal" name="icmsCreditoMensal" class="money-input" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">ICMS a recuperar nas compras (calculado automaticamente)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="icmsLiquidoMensal">ICMS Líquido a Recolher (R$/mês)</label>
+                                <input type="text" id="icmsLiquidoMensal" name="icmsLiquidoMensal" class="money-input" readonly style="background: #e8f5e8;">
+                                <small class="form-hint">Débito - Crédito = Valor a recolher (calculado automaticamente)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="icmsProjetadoMensal">ICMS Projetado com Projeto (R$/mês)</label>
+                                <input type="text" id="icmsProjetadoMensal" name="icmsProjetadoMensal" class="money-input" readonly style="background: #f5f5f5;">
+                                <small class="form-hint">ICMS estimado após implementação do projeto</small>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="impactoTributarioProjeto">Impacto Tributário do Projeto</label>
+                                <textarea id="impactoTributarioProjeto" name="impactoTributarioProjeto" rows="3" 
+                                    placeholder="Como o projeto afetará a carga tributária da empresa? Haverá economia ou aumento de tributos?"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="beneficiosCEIEsperados">Benefícios CEI Esperados</label>
+                                <textarea id="beneficiosCEIEsperados" name="beneficiosCEIEsperados" rows="3" 
+                                    placeholder="Que benefícios fiscais espera obter com o Crédito Especial para Investimento?"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Seção 14: Projetos de Inovação -->
@@ -1700,6 +1934,28 @@
                         <button type="button" class="btn-add-item" onclick="addSustentabilidadeItem()">
                             + Adicionar Iniciativa
                         </button>
+                    </div>
+                </div>
+
+                <!-- Instruções Finais de Envio -->
+                <div class="final-instructions" style="background-color: #E8F5E9; border: 2px solid #4CAF50; border-radius: 8px; padding: 20px; margin: 30px 0;">
+                    <div style="display: flex; align-items: start; gap: 15px;">
+                        <span style="font-size: 28px;">✅</span>
+                        <div>
+                            <strong style="color: #2E7D32; font-size: 18px;">Próximos Passos</strong>
+                            <p style="margin: 10px 0; color: #333; line-height: 1.6;">
+                                Após preencher todas as seções:
+                            </p>
+                            <ol style="margin: 10px 0 0 20px; color: #333; line-height: 1.8;">
+                                <li>Clique no botão <strong>"Prévia"</strong> para revisar todos os dados</li>
+                                <li>Exporte o projeto em <strong>PDF</strong> e <strong>JSON</strong> usando os botões na prévia</li>
+                                <li>Envie os arquivos exportados junto com os documentos da Seção 6 para: 
+                                    <strong style="color: #091A30;">contato@expertzy.com.br</strong></li>
+                            </ol>
+                            <p style="margin: 15px 0 0 0; color: #666; font-size: 14px;">
+                                💡 <em>Dica: Mantenha uma cópia do arquivo JSON para futuras edições do projeto.</em>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
