@@ -2492,6 +2492,45 @@ function exportToExcel() {
     wsData.push(['Método Precificação:', data.metodoPrecificacao || '']);
     wsData.push([]);
     
+    // Seção 13.5 - Informações Tributárias e ICMS
+    wsData.push(['13.5 INFORMAÇÕES TRIBUTÁRIAS E ICMS']);
+    wsData.push(['Distribuição Regional de Vendas:']);
+    wsData.push(['  Goiás (%):', data.vendasGoias || '']);
+    wsData.push(['  Norte (%):', data.vendasNorte || '']);
+    wsData.push(['  Nordeste (%):', data.vendasNordeste || '']);
+    wsData.push(['  Centro-Oeste (%):', data.vendasCentroOeste || '']);
+    wsData.push(['  Sudeste (%):', data.vendasSudeste || '']);
+    wsData.push(['  Sul (%):', data.vendasSul || '']);
+    wsData.push(['  Zona Franca Manaus (%):', data.vendasZonaFranca || '']);
+    wsData.push(['  Exportação (%):', data.vendasExportacao || '']);
+    wsData.push(['Origem dos Insumos:']);
+    wsData.push(['  Goiás (%):', data.insumosGoias || '']);
+    wsData.push(['  Norte (%):', data.insumosNorte || '']);
+    wsData.push(['  Nordeste (%):', data.insumosNordeste || '']);
+    wsData.push(['  Centro-Oeste (%):', data.insumosCentroOeste || '']);
+    wsData.push(['  Sudeste (%):', data.insumosSudeste || '']);
+    wsData.push(['  Sul (%):', data.insumosSul || '']);
+    wsData.push(['  Importação (%):', data.insumosImportacao || '']);
+    wsData.push(['Vendas Internas Goiás:']);
+    wsData.push(['  Redução 10% - Produção Própria (%):', data.vendasGoiasReducao10 || '']);
+    wsData.push(['  Redução 11% - Revenda (%):', data.vendasGoiasReducao11 || '']);
+    wsData.push(['  Alíquota Cheia 19% (%):', data.vendasGoiasAliquotaCheia || '']);
+    wsData.push(['Compras Internas Goiás:']);
+    wsData.push(['  Redução 10% - Fabricante (%):', data.comprasGoiasFabricante || '']);
+    wsData.push(['  Redução 11% - Distribuidor (%):', data.comprasGoiasDistribuidor || '']);
+    wsData.push(['  Alíquota Cheia 19% (%):', data.comprasGoiasAliquotaCheia || '']);
+    wsData.push(['Regime Tributário:', data.regimeTributario || '']);
+    wsData.push(['Alíquota ICMS Média Efetiva (%):', data.aliquotaICMSMedia || '']);
+    wsData.push(['Incentivos Fiscais Aplicados:', data.incentivosFiscaisAplicados || '']);
+    wsData.push(['Situações dos Incentivos:', data.situacoesIncentivos || '']);
+    wsData.push(['ICMS Débito Mensal:', data.icmsDebitoMensal || '']);
+    wsData.push(['ICMS Crédito Mensal:', data.icmsCreditoMensal || '']);
+    wsData.push(['ICMS Líquido Mensal:', data.icmsLiquidoMensal || '']);
+    wsData.push(['ICMS Projetado Mensal:', data.icmsProjetadoMensal || '']);
+    wsData.push(['Impacto Tributário do Projeto:', data.impactoTributarioProjeto || '']);
+    wsData.push(['Benefícios CEI Esperados:', data.beneficiosCEIEsperados || '']);
+    wsData.push([]);
+    
     // Seção 14
     wsData.push(['14. PROJETOS DE INOVAÇÃO']);
     wsData.push(['Possui P&D:', data.temPD || '']);
@@ -2794,6 +2833,34 @@ function exportToPDF() {
                 { label: 'Custos Variáveis Mensais', key: 'custosVariaveisMensais', format: 'currency' },
                 { label: 'Margem de Lucro (%)', key: 'margemLucro' },
                 { label: 'Método Precificação', key: 'metodoPrecificacao' }
+            ]
+        },
+        {
+            title: '13.5 INFORMAÇÕES TRIBUTÁRIAS E ICMS',
+            fields: [
+                { label: 'Vendas Goiás (%)', key: 'vendasGoias' },
+                { label: 'Vendas Norte (%)', key: 'vendasNorte' },
+                { label: 'Vendas Nordeste (%)', key: 'vendasNordeste' },
+                { label: 'Vendas Centro-Oeste (%)', key: 'vendasCentroOeste' },
+                { label: 'Vendas Sudeste (%)', key: 'vendasSudeste' },
+                { label: 'Vendas Sul (%)', key: 'vendasSul' },
+                { label: 'Vendas ZFM (%)', key: 'vendasZonaFranca' },
+                { label: 'Exportação (%)', key: 'vendasExportacao' },
+                { label: 'Insumos Goiás (%)', key: 'insumosGoias' },
+                { label: 'Vendas GO Red. 10% (%)', key: 'vendasGoiasReducao10' },
+                { label: 'Vendas GO Red. 11% (%)', key: 'vendasGoiasReducao11' },
+                { label: 'Vendas GO Alíquota Cheia (%)', key: 'vendasGoiasAliquotaCheia' },
+                { label: 'Compras GO Fabricante (%)', key: 'comprasGoiasFabricante' },
+                { label: 'Compras GO Distribuidor (%)', key: 'comprasGoiasDistribuidor' },
+                { label: 'Compras GO Alíquota Cheia (%)', key: 'comprasGoiasAliquotaCheia' },
+                { label: 'Regime Tributário', key: 'regimeTributario' },
+                { label: 'Alíquota ICMS Média (%)', key: 'aliquotaICMSMedia' },
+                { label: 'Incentivos Fiscais', key: 'incentivosFiscaisAplicados' },
+                { label: 'ICMS Débito Mensal', key: 'icmsDebitoMensal' },
+                { label: 'ICMS Crédito Mensal', key: 'icmsCreditoMensal' },
+                { label: 'ICMS Líquido Mensal', key: 'icmsLiquidoMensal' },
+                { label: 'ICMS Projetado Mensal', key: 'icmsProjetadoMensal' },
+                { label: 'Benefícios CEI Esperados', key: 'beneficiosCEIEsperados' }
             ]
         },
         {
@@ -3305,6 +3372,7 @@ function exportToCSV() {
         { title: 'RECURSOS HUMANOS', fields: ['funcionariosAtuais', 'estruturaOrganizacional', 'beneficiosOferecidos', 'novasContratacoes'] },
         { title: 'INFORMAÇÕES FINANCEIRAS', fields: ['anoBase', 'regimeContabil', 'capitalSocial', 'saldoCaixa', 'receitaMediaMensal', 'despesaMediaMensal'] },
         { title: 'RECEITAS E CUSTOS', fields: ['receitaBrutaAnual', 'receitaLiquidaAnual', 'custosFixosMensais', 'custosVariaveisMensais', 'margemLucro'] },
+        { title: 'INFORMAÇÕES TRIBUTÁRIAS ICMS', fields: ['vendasGoias', 'vendasGoiasReducao10', 'vendasGoiasReducao11', 'comprasGoiasFabricante', 'comprasGoiasDistribuidor', 'regimeTributario', 'aliquotaICMSMedia', 'icmsLiquidoMensal', 'icmsProjetadoMensal', 'incentivosFiscaisAplicados'] },
         { title: 'PROJETOS DE INOVAÇÃO', fields: ['temPD', 'investimentoPD', 'tecnologiaAtual', 'automacao', 'temSustentabilidade'] }
     ];
     
@@ -4124,3 +4192,327 @@ function showRecoveryDialog(timestamp) {
         document.body.removeChild(modal);
     });
 }
+
+// ===========================================
+// FUNÇÕES DE CÁLCULO DE ICMS TRIBUTÁRIO GOIÁS
+// ===========================================
+
+// Alíquotas ICMS Goiás e interestaduais
+const ALIQUOTAS_ICMS_GOIAS = {
+    goias: {
+        normal: 19,        // 19% - interna normal
+        reducao10: 10,     // 10% - alíquota efetiva (produção própria/fabricante)
+        reducao11: 11      // 11% - alíquota efetiva (revenda/distribuidor)
+    },
+    vendas_interestaduais: {
+        todos_estados: 12  // 12% - vendas de GO para todos os outros estados
+    },
+    compras_interestaduais: {
+        // Compras de outros estados para Goiás
+        sul_sudeste_exceto_es: 7,  // 7% - SP, RJ, MG, SC, RS, PR
+        norte_nordeste_co_es: 12   // 12% - Norte, Nordeste, Centro-Oeste + Espírito Santo
+    },
+    especiais: {
+        zonaFranca: 0,     // 0% - Zona Franca de Manaus
+        exportacao: 0      // 0% - Exportação
+    }
+};
+
+// Função para validar e somar percentuais de Goiás
+function validateGoiasPercentages() {
+    // Validar vendas Goiás
+    const vendasReducao10 = parseFloat(document.getElementById('vendasGoiasReducao10')?.value || 0);
+    const vendasReducao11 = parseFloat(document.getElementById('vendasGoiasReducao11')?.value || 0);
+    const vendasAliquotaCheia = parseFloat(document.getElementById('vendasGoiasAliquotaCheia')?.value || 0);
+    const totalVendas = vendasReducao10 + vendasReducao11 + vendasAliquotaCheia;
+    
+    document.getElementById('totalVendasGoias').value = totalVendas.toFixed(1);
+    
+    // Validar compras Goiás
+    const comprasFabricante = parseFloat(document.getElementById('comprasGoiasFabricante')?.value || 0);
+    const comprasDistribuidor = parseFloat(document.getElementById('comprasGoiasDistribuidor')?.value || 0);
+    const comprasAliquotaCheia = parseFloat(document.getElementById('comprasGoiasAliquotaCheia')?.value || 0);
+    const totalCompras = comprasFabricante + comprasDistribuidor + comprasAliquotaCheia;
+    
+    document.getElementById('totalComprasGoias').value = totalCompras.toFixed(1);
+    
+    // Alertar se percentuais não somam 100%
+    if (totalVendas > 0 && Math.abs(totalVendas - 100) > 0.1) {
+        document.getElementById('totalVendasGoias').style.color = 'red';
+    } else {
+        document.getElementById('totalVendasGoias').style.color = 'inherit';
+    }
+    
+    if (totalCompras > 0 && Math.abs(totalCompras - 100) > 0.1) {
+        document.getElementById('totalComprasGoias').style.color = 'red';
+    } else {
+        document.getElementById('totalComprasGoias').style.color = 'inherit';
+    }
+}
+
+// Função para calcular ICMS médio efetivo ponderado
+function calculateICMSMedioGoias() {
+    try {
+        // Distribuição regional de vendas (percentuais)
+        const vendasGoias = parseFloat(document.getElementById('vendasGoias')?.value || 0);
+        const vendasNorte = parseFloat(document.getElementById('vendasNorte')?.value || 0);
+        const vendasNordeste = parseFloat(document.getElementById('vendasNordeste')?.value || 0);
+        const vendasCentroOeste = parseFloat(document.getElementById('vendasCentroOeste')?.value || 0);
+        const vendasSudeste = parseFloat(document.getElementById('vendasSudeste')?.value || 0);
+        const vendasSul = parseFloat(document.getElementById('vendasSul')?.value || 0);
+        const vendasZonaFranca = parseFloat(document.getElementById('vendasZonaFranca')?.value || 0);
+        const vendasExportacao = parseFloat(document.getElementById('vendasExportacao')?.value || 0);
+        
+        // Distribuição das vendas em Goiás por tipo de redução (percentuais)
+        const vendasReducao10 = parseFloat(document.getElementById('vendasGoiasReducao10')?.value || 0);
+        const vendasReducao11 = parseFloat(document.getElementById('vendasGoiasReducao11')?.value || 0);
+        const vendasAliquotaCheia = parseFloat(document.getElementById('vendasGoiasAliquotaCheia')?.value || 0);
+        
+        let aliquotaEfetiva = 0;
+        const totalVendas = vendasGoias + vendasNorte + vendasNordeste + vendasCentroOeste + vendasSudeste + vendasSul + vendasZonaFranca + vendasExportacao;
+        
+        if (totalVendas > 0) {
+            // ICMS de vendas em Goiás (usando alíquotas efetivas corretas)
+            const icmsGoias = (vendasGoias / 100) * (
+                (vendasReducao10 / 100) * ALIQUOTAS_ICMS_GOIAS.goias.reducao10 +      // 10%
+                (vendasReducao11 / 100) * ALIQUOTAS_ICMS_GOIAS.goias.reducao11 +      // 11%
+                (vendasAliquotaCheia / 100) * ALIQUOTAS_ICMS_GOIAS.goias.normal       // 19%
+            );
+            
+            // ICMS de vendas interestaduais (12% para todos os estados)
+            const icmsInterestaduais = 
+                (vendasNorte / 100) * ALIQUOTAS_ICMS_GOIAS.vendas_interestaduais.todos_estados +
+                (vendasNordeste / 100) * ALIQUOTAS_ICMS_GOIAS.vendas_interestaduais.todos_estados +
+                (vendasCentroOeste / 100) * ALIQUOTAS_ICMS_GOIAS.vendas_interestaduais.todos_estados +
+                (vendasSudeste / 100) * ALIQUOTAS_ICMS_GOIAS.vendas_interestaduais.todos_estados +
+                (vendasSul / 100) * ALIQUOTAS_ICMS_GOIAS.vendas_interestaduais.todos_estados;
+            
+            // ICMS de vendas especiais (ZFM e exportação = 0%)
+            const icmsEspeciais = 
+                (vendasZonaFranca / 100) * ALIQUOTAS_ICMS_GOIAS.especiais.zonaFranca +
+                (vendasExportacao / 100) * ALIQUOTAS_ICMS_GOIAS.especiais.exportacao;
+            
+            aliquotaEfetiva = icmsGoias + icmsInterestaduais + icmsEspeciais;
+        }
+        
+        // Atualizar campo de alíquota ICMS média
+        const aliquotaField = document.getElementById('aliquotaICMSMedia');
+        if (aliquotaField) {
+            aliquotaField.value = aliquotaEfetiva.toFixed(3);
+        }
+        
+        return aliquotaEfetiva;
+        
+    } catch (error) {
+        console.warn('Erro no cálculo de ICMS médio Goiás:', error);
+        return 0;
+    }
+}
+
+// Função para calcular ICMS débito (vendas)
+function calculateICMSDebito() {
+    try {
+        const receitaAnual = parseFloat(document.getElementById('receitaBrutaAnual')?.value?.replace(/[^\d,]/g, '').replace(',', '.') || 0);
+        const aliquotaEfetiva = parseFloat(document.getElementById('aliquotaICMSMedia')?.value || 0);
+        
+        if (receitaAnual > 0 && aliquotaEfetiva > 0) {
+            const icmsDebitoAnual = receitaAnual * (aliquotaEfetiva / 100);
+            const icmsDebitoMensal = icmsDebitoAnual / 12;
+            
+            // Atualizar campo
+            const debitoField = document.getElementById('icmsDebitoMensal');
+            if (debitoField) {
+                debitoField.value = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(icmsDebitoMensal);
+            }
+            
+            return icmsDebitoMensal;
+        }
+        
+        return 0;
+    } catch (error) {
+        console.warn('Erro no cálculo de ICMS débito:', error);
+        return 0;
+    }
+}
+
+// Função para calcular ICMS crédito (compras)
+function calculateICMSCredito() {
+    try {
+        const custosVariaveis = parseFloat(document.getElementById('custosVariaveisMensais')?.value?.replace(/[^\d,]/g, '').replace(',', '.') || 0);
+        const custosFixos = parseFloat(document.getElementById('custosFixosMensais')?.value?.replace(/[^\d,]/g, '').replace(',', '.') || 0);
+        const totalCompras = custosVariaveis + custosFixos; // Aproximação
+        
+        // Distribuição regional de compras (percentuais)
+        const insumosGoias = parseFloat(document.getElementById('insumosGoias')?.value || 0);
+        const insumosNorte = parseFloat(document.getElementById('insumosNorte')?.value || 0);
+        const insumosNordeste = parseFloat(document.getElementById('insumosNordeste')?.value || 0);
+        const insumosCentroOeste = parseFloat(document.getElementById('insumosCentroOeste')?.value || 0);
+        const insumosSudeste = parseFloat(document.getElementById('insumosSudeste')?.value || 0);
+        const insumosSul = parseFloat(document.getElementById('insumosSul')?.value || 0);
+        
+        // Distribuição das compras em Goiás por tipo de redução (percentuais)
+        const comprasFabricante = parseFloat(document.getElementById('comprasGoiasFabricante')?.value || 0);
+        const comprasDistribuidor = parseFloat(document.getElementById('comprasGoiasDistribuidor')?.value || 0);
+        const comprasAliquotaCheia = parseFloat(document.getElementById('comprasGoiasAliquotaCheia')?.value || 0);
+        
+        let creditoTotal = 0;
+        
+        if (totalCompras > 0) {
+            // ICMS crédito de compras em Goiás (usando alíquotas efetivas corretas)
+            if (insumosGoias > 0) {
+                const comprasGoiasValor = totalCompras * (insumosGoias / 100);
+                const icmsCreditoGoias = comprasGoiasValor * (
+                    (comprasFabricante / 100) * (ALIQUOTAS_ICMS_GOIAS.goias.reducao10 / 100) +      // 10%
+                    (comprasDistribuidor / 100) * (ALIQUOTAS_ICMS_GOIAS.goias.reducao11 / 100) +   // 11%
+                    (comprasAliquotaCheia / 100) * (ALIQUOTAS_ICMS_GOIAS.goias.normal / 100)       // 19%
+                );
+                creditoTotal += icmsCreditoGoias;
+            }
+            
+            // ICMS crédito de compras interestaduais
+            // Norte, Nordeste, Centro-Oeste: 12%
+            const comprasNorte = totalCompras * (insumosNorte / 100) * (ALIQUOTAS_ICMS_GOIAS.compras_interestaduais.norte_nordeste_co_es / 100);
+            const comprasNordeste = totalCompras * (insumosNordeste / 100) * (ALIQUOTAS_ICMS_GOIAS.compras_interestaduais.norte_nordeste_co_es / 100);
+            const comprasCentroOeste = totalCompras * (insumosCentroOeste / 100) * (ALIQUOTAS_ICMS_GOIAS.compras_interestaduais.norte_nordeste_co_es / 100);
+            
+            // Sul e Sudeste (exceto ES): 7%
+            // Nota: Para simplificar, assumimos que todo Sul/Sudeste é 7% (exceto ES que seria 12%)
+            const comprasSudeste = totalCompras * (insumosSudeste / 100) * (ALIQUOTAS_ICMS_GOIAS.compras_interestaduais.sul_sudeste_exceto_es / 100);
+            const comprasSul = totalCompras * (insumosSul / 100) * (ALIQUOTAS_ICMS_GOIAS.compras_interestaduais.sul_sudeste_exceto_es / 100);
+            
+            creditoTotal += comprasNorte + comprasNordeste + comprasCentroOeste + comprasSudeste + comprasSul;
+            
+            // Atualizar campo
+            const creditoField = document.getElementById('icmsCreditoMensal');
+            if (creditoField) {
+                creditoField.value = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(creditoTotal);
+            }
+            
+            return creditoTotal;
+        }
+        
+        return 0;
+    } catch (error) {
+        console.warn('Erro no cálculo de ICMS crédito:', error);
+        return 0;
+    }
+}
+
+// Função para calcular ICMS líquido (débito - crédito)
+function calculateICMSLiquido() {
+    try {
+        const debito = calculateICMSDebito();
+        const credito = calculateICMSCredito();
+        const liquido = debito - credito;
+        
+        const liquidoField = document.getElementById('icmsLiquidoMensal');
+        if (liquidoField) {
+            liquidoField.value = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(Math.max(0, liquido)); // Não pode ser negativo
+        }
+        
+        return Math.max(0, liquido);
+    } catch (error) {
+        console.warn('Erro no cálculo de ICMS líquido:', error);
+        return 0;
+    }
+}
+
+// Função para calcular ICMS projetado
+function calculateICMSProjetado() {
+    try {
+        const metaFaturamento = parseFloat(document.getElementById('metaFaturamento')?.value?.replace(/[^\d,]/g, '').replace(',', '.') || 0);
+        const aliquotaEfetiva = parseFloat(document.getElementById('aliquotaICMSMedia')?.value || 0);
+        
+        if (metaFaturamento > 0 && aliquotaEfetiva > 0) {
+            const icmsProjetadoAnual = metaFaturamento * (aliquotaEfetiva / 100);
+            const icmsProjetadoMensal = icmsProjetadoAnual / 12;
+            
+            const projetadoField = document.getElementById('icmsProjetadoMensal');
+            if (projetadoField) {
+                projetadoField.value = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(icmsProjetadoMensal);
+            }
+            
+            return icmsProjetadoMensal;
+        }
+        
+        return 0;
+    } catch (error) {
+        console.warn('Erro no cálculo de ICMS projetado:', error);
+        return 0;
+    }
+}
+
+// Function para recalcular tudo
+function recalculateICMS() {
+    validateGoiasPercentages();
+    calculateICMSMedioGoias();
+    calculateICMSDebito();
+    calculateICMSCredito();
+    calculateICMSLiquido();
+    calculateICMSProjetado();
+}
+
+// Função para adicionar event listeners ICMS (reutilizável após import)
+function addICMSEventListeners() {
+    // Campos de distribuição regional
+    const vendasFields = [
+        'vendasGoias', 'vendasNorte', 'vendasNordeste', 'vendasCentroOeste', 
+        'vendasSudeste', 'vendasSul', 'vendasZonaFranca', 'vendasExportacao'
+    ];
+    
+    // Campos de vendas internas Goiás
+    const vendasGoiasFields = [
+        'vendasGoiasReducao10', 'vendasGoiasReducao11', 'vendasGoiasAliquotaCheia'
+    ];
+    
+    // Campos de compras internas Goiás
+    const comprasGoiasFields = [
+        'comprasGoiasFabricante', 'comprasGoiasDistribuidor', 'comprasGoiasAliquotaCheia'
+    ];
+    
+    // Campos financeiros
+    const financeFields = [
+        'receitaBrutaAnual', 'metaFaturamento', 'custosVariaveisMensais', 'custosFixosMensais', 'insumosGoias'
+    ];
+    
+    // Campos de insumos regionais (para cálculo de crédito)
+    const insumosFields = [
+        'insumosNorte', 'insumosNordeste', 'insumosCentroOeste', 'insumosSudeste', 'insumosSul'
+    ];
+    
+    // Adicionar listeners para todos os campos relevantes
+    [...vendasFields, ...vendasGoiasFields, ...comprasGoiasFields, ...financeFields, ...insumosFields].forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            // Remover listeners existentes para evitar duplicação
+            const newField = field.cloneNode(true);
+            field.parentNode.replaceChild(newField, field);
+            
+            // Adicionar novos listeners
+            newField.addEventListener('blur', recalculateICMS);
+            newField.addEventListener('input', function() {
+                // Validação em tempo real para campos de percentual
+                if (vendasGoiasFields.includes(fieldId) || comprasGoiasFields.includes(fieldId)) {
+                    validateGoiasPercentages();
+                }
+            });
+        }
+    });
+}
+
+// Event listeners para campos de ICMS Goiás
+document.addEventListener('DOMContentLoaded', function() {
+    addICMSEventListeners();
+});

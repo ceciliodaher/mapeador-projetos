@@ -83,6 +83,18 @@ function handleJsonImport(event) {
                                 calculateRHInvestmentAnual();
                             }
                             
+                            // Recalcular ICMS após importação
+                            console.log('🧮 Recalculando ICMS...');
+                            if (typeof recalculateICMS === 'function') {
+                                recalculateICMS();
+                            }
+                            
+                            // Reagendar event listeners ICMS
+                            console.log('🎛️ Reagendando listeners ICMS...');
+                            if (typeof addICMSEventListeners === 'function') {
+                                addICMSEventListeners();
+                            }
+                            
                             // Aplicar formatação de telefone especificamente
                             const phoneFields = document.querySelectorAll('input[type="tel"], input[id*="telefone"], input[id*="Telefone"]');
                             phoneFields.forEach(field => {
@@ -260,6 +272,11 @@ function loadDynamicDataSafe(dynamicData) {
             // Recalcular investimento RH
             if (typeof calculateRHInvestmentAnual === 'function') {
                 calculateRHInvestmentAnual();
+            }
+            
+            // Recalcular ICMS após carregamento dinâmico
+            if (typeof recalculateICMS === 'function') {
+                recalculateICMS();
             }
             
             // Recalcular totais de investimento se necessário
