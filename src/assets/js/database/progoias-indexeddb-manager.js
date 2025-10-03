@@ -33,8 +33,20 @@ class ProGoiasIndexedDBManager {
       };
 
       request.onupgradeneeded = (event) => {
-        console.log('🔧 Criando/atualizando schema IndexedDB ProGoiás...');
-        this.createStores(event.target.result);
+        const db = event.target.result;
+        const oldVersion = event.oldVersion;
+        const newVersion = event.newVersion;
+
+        console.log(`🔧 Migrando IndexedDB ProGoiás: v${oldVersion} → v${newVersion}`);
+
+        // Migration v1 → v2: Adicionar stores de produtos/insumos
+        if (oldVersion < 2) {
+          console.log('  📦 Aplicando migration v1 → v2 (stores de produtos/insumos)');
+          this.createStores(db);
+        } else {
+          // Apenas criar stores faltantes (instalação limpa)
+          this.createStores(db);
+        }
       };
     });
   }

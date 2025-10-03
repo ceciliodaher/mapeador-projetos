@@ -5,7 +5,7 @@
    ===================================== */
 
 const DB_NAME_PROGOIAS = 'incentivos_progoias';
-const DB_VERSION_PROGOIAS = 1;
+const DB_VERSION_PROGOIAS = 2; // v2: Adiciona 6 stores de produtos/insumos
 
 /**
  * Definição das stores para formulário ProGoiás
@@ -46,6 +46,82 @@ const STORES_PROGOIAS = {
       { name: 'timestamp', keyPath: 'timestamp', unique: false }
     ],
     description: 'Histórico de ações do usuário (auditoria)'
+  },
+
+  // === V2: STORES DE PRODUTOS E INSUMOS ===
+
+  PRODUTOS: {
+    name: 'produtos_progoias',
+    keyPath: 'id',
+    autoIncrement: false,
+    indexes: [
+      { name: 'projectId', keyPath: 'projectId', unique: false },
+      { name: 'nome', keyPath: 'nome', unique: false },
+      { name: 'ativo', keyPath: 'ativo', unique: false },
+      { name: 'ncm', keyPath: 'ncm', unique: false }
+    ],
+    description: 'Produtos do projeto com escalonamento individual'
+  },
+
+  INSUMOS: {
+    name: 'insumos_progoias',
+    keyPath: 'id',
+    autoIncrement: false,
+    indexes: [
+      { name: 'projectId', keyPath: 'projectId', unique: false },
+      { name: 'nome', keyPath: 'nome', unique: false },
+      { name: 'tipo', keyPath: 'tipo', unique: false },
+      { name: 'isGeral', keyPath: 'isGeral', unique: false },
+      { name: 'scalingMode', keyPath: 'scalingMode', unique: false }
+    ],
+    description: 'Insumos do projeto com modo de escalonamento'
+  },
+
+  RECEITAS: {
+    name: 'produto_insumo_map',
+    keyPath: 'id',
+    autoIncrement: false,
+    indexes: [
+      { name: 'produtoId', keyPath: 'produtoId', unique: false },
+      { name: 'insumoId', keyPath: 'insumoId', unique: false },
+      { name: 'produtoInsumo', keyPath: ['produtoId', 'insumoId'], unique: true }
+    ],
+    description: 'Receitas - quantidade de insumo por unidade de produto'
+  },
+
+  ESCALONAMENTO_PRODUTOS: {
+    name: 'escalonamento_produtos',
+    keyPath: ['produtoId', 'ano'],
+    autoIncrement: false,
+    indexes: [
+      { name: 'projectId', keyPath: 'projectId', unique: false },
+      { name: 'produtoId', keyPath: 'produtoId', unique: false },
+      { name: 'updatedAt', keyPath: 'updatedAt', unique: false }
+    ],
+    description: 'Cache desnormalizado de escalonamento calculado por produto'
+  },
+
+  ESCALONAMENTO_INSUMOS: {
+    name: 'escalonamento_insumos',
+    keyPath: ['insumoId', 'ano'],
+    autoIncrement: false,
+    indexes: [
+      { name: 'projectId', keyPath: 'projectId', unique: false },
+      { name: 'insumoId', keyPath: 'insumoId', unique: false },
+      { name: 'updatedAt', keyPath: 'updatedAt', unique: false }
+    ],
+    description: 'Cache desnormalizado de demanda agregada de insumos'
+  },
+
+  CONFIG_ESCALONAMENTO: {
+    name: 'config_escalonamento_progoias',
+    keyPath: 'projectId',
+    autoIncrement: false,
+    indexes: [
+      { name: 'escalationMode', keyPath: 'escalationMode', unique: false },
+      { name: 'updatedAt', keyPath: 'updatedAt', unique: false }
+    ],
+    description: 'Configuração: escalonamento global vs individual'
   }
 };
 
