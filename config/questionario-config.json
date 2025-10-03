@@ -1,0 +1,202 @@
+{
+  "programType": "QUESTIONARIO_MAPEAMENTO",
+  "version": "1.0",
+  "description": "Questionário estruturado para mapeamento de projetos e necessidades de financiamento",
+  "totalSteps": 10,
+
+  "requiredFields": {
+    "1": [
+      "razaoSocial",
+      "cnpj",
+      "regimeTributario",
+      "faturamentoAnual",
+      "numeroFuncionarios",
+      "localizacaoAtual"
+    ],
+    "2": [
+      "listaProjetos"
+    ],
+    "3": [
+      "fichasDetalhadasProjetos"
+    ],
+    "4": [
+      "matrizSinergias"
+    ],
+    "5": [
+      "necessidadesAdicionais"
+    ],
+    "6": [
+      "planejamentoTemporal"
+    ],
+    "7": [
+      "aspectosTributarios"
+    ],
+    "8": [
+      "importacaoExportacao"
+    ],
+    "9": [
+      "observacoes"
+    ],
+    "10": [
+      "declaracao",
+      "nomeResponsavel",
+      "cargoResponsavel",
+      "dataPreenchimento"
+    ]
+  },
+
+  "sectionTitles": {
+    "1": "Informações Gerais da Empresa",
+    "2": "Mapeamento dos Projetos",
+    "3": "Fichas Detalhadas por Projeto",
+    "4": "Matriz de Projetos e Sinergias",
+    "5": "Necessidades Adicionais",
+    "6": "Planejamento Temporal Consolidado",
+    "7": "Aspectos Tributários e Contratuais",
+    "8": "Importação e Exportação",
+    "9": "Observações Finais",
+    "10": "Declaração e Confirmação"
+  },
+
+  "validationRules": {
+    "minProjetos": 1,
+    "maxProjetos": 20,
+    "minFaturamento": 0,
+    "cnpjPattern": "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$",
+    "emailPattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+    "phonePattern": "^\\(\\d{2}\\)\\s?\\d{4,5}\\-?\\d{4}$"
+  },
+
+  "classificacaoInovacao": {
+    "criterios": {
+      "categoriaInovacao": {
+        "produto_novo": 30,
+        "processo_novo": 25,
+        "metodo_organizacional": 20,
+        "melhoria_significativa": 15,
+        "melhoria_incremental": 5
+      },
+      "alcanceInovacao": {
+        "novo_mundo": 25,
+        "novo_nacional": 20,
+        "novo_regional": 15,
+        "novo_empresa": 10
+      },
+      "setoresPrioritarios": {
+        "peso_por_setor": 4,
+        "maximo": 20
+      },
+      "propriedadeIntelectual": {
+        "patente_registrada": 15,
+        "patente_deposito": 10,
+        "software_registrado": 8,
+        "marca": 5
+      },
+      "parceriasICT": {
+        "formalizada": 10,
+        "em_negociacao": 5
+      }
+    },
+    "threshold": {
+      "inovacao": 50,
+      "comum": 49
+    }
+  },
+
+  "setoresPrioritarios": [
+    "Biotecnologia",
+    "Agricultura Orgânica",
+    "Nanotecnologia",
+    "Geotecnologia",
+    "Tecnologias da Informação e Comunicação (TIC)",
+    "Internet das Coisas (IoT)",
+    "Indústria 4.0",
+    "Cidades Inteligentes",
+    "Segurança Cibernética",
+    "Tecnologia Assistiva",
+    "Insumos e Equipamentos para Saúde",
+    "Energias Renováveis"
+  ],
+
+  "estagiosDesenvolvimento": [
+    "conceitual",
+    "estudo_viabilidade",
+    "desenvolvimento_prototipo",
+    "prototipo_testes",
+    "prototipo_validado",
+    "pre_producao",
+    "producao_inicial",
+    "producao_escala"
+  ],
+
+  "tiposRelacionamento": [
+    "subordinacao",
+    "sinergia",
+    "complementaridade",
+    "independente"
+  ],
+
+  "categoriasNecessidades": [
+    "maquinas_equipamentos",
+    "capital_giro",
+    "infraestrutura",
+    "recursos_humanos",
+    "tecnologia",
+    "treinamento"
+  ],
+
+  "prioridades": [
+    "alta",
+    "media",
+    "baixa"
+  ],
+
+  "exportFormats": [
+    "json",
+    "pdf"
+  ],
+
+  "autoSave": {
+    "enabled": true,
+    "intervalSeconds": 30,
+    "debounceSeconds": 3,
+    "maxAutoSaves": 10
+  },
+
+  "analiseConfig": {
+    "requireChecksum": true,
+    "analystKeyHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analystModeParam": "_analyst_mode",
+    "analystKeyParam": "_analyst_key"
+  },
+
+  "navigation": {
+    "freeNavigation": true,
+    "allowIncompleteNavigation": true,
+    "validateOnlyOnSubmit": true,
+    "showSectionIndicators": true
+  },
+
+  "ui": {
+    "progressBarEnabled": true,
+    "navigationButtons": {
+      "prev": "Anterior",
+      "next": "Próximo",
+      "finish": "Finalizar"
+    },
+    "saveIndicator": {
+      "enabled": true,
+      "position": "top-right"
+    }
+  },
+
+  "messages": {
+    "welcome": "Bem-vindo ao Questionário de Mapeamento de Projetos",
+    "completion": "Questionário concluído com sucesso! Você pode agora exportar os dados.",
+    "autoSaveSuccess": "Dados salvos automaticamente",
+    "autoSaveError": "Erro ao salvar automaticamente. Verifique sua conexão.",
+    "validationError": "Por favor, preencha todos os campos obrigatórios",
+    "exportSuccess": "Arquivo exportado com sucesso",
+    "exportError": "Erro ao exportar arquivo"
+  }
+}

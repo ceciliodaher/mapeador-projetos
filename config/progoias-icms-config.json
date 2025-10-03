@@ -1,0 +1,111 @@
+{
+  "versao": "1.0.0",
+  "descricao": "Configuração estrutural para ProGoiás - SEM alíquotas fixas (alíquotas são dinâmicas por produto/insumo)",
+
+  "aliquotasReferencia": {
+    "descricao": "Alíquotas de referência - INFORMATIVO APENAS (não utilizadas em cálculos)",
+    "goias": {
+      "padrao": 19,
+      "reducoes": [10, 11],
+      "observacao": "Alíquota interna 19% com possibilidade de redução para 10% ou 11% conforme benefício fiscal"
+    },
+    "interestaduais": {
+      "padrao": 12,
+      "reducoes": [7, 4],
+      "observacao": "Alíquota interestadual 12%, com reduções para 7% ou 4% conforme NCM"
+    },
+    "exportacao": 0,
+    "importacao": {
+      "variavel": true,
+      "observacao": "ICMS importação varia conforme operação ou pode ser diferido"
+    }
+  },
+
+  "tiposInsumo": {
+    "MP": "Matéria-Prima",
+    "IS": "Insumo Secundário",
+    "ME": "Material de Embalagem",
+    "EE": "Energia Elétrica"
+  },
+
+  "regioes": {
+    "origem": ["goias", "noNeCo", "suSe", "importacao"],
+    "destino": ["goias", "noNeCo", "suSe", "exportacao"],
+    "nomes": {
+      "goias": "Goiás",
+      "noNeCo": "Estados NO, NE e CO",
+      "suSe": "Estados SU e SE",
+      "exportacao": "Exportação",
+      "importacao": "Importação"
+    }
+  },
+
+  "escalonamento": {
+    "anos": ["ano1", "ano2", "ano3", "ano4"],
+    "anosProjeca": 15,
+    "labels": {
+      "ano1": "Ano 1",
+      "ano2": "Ano 2",
+      "ano3": "Ano 3",
+      "ano4": "Ano 4"
+    }
+  },
+
+  "beneficio": {
+    "percentualProgoias": 0.67,
+    "investimentoMinimo": 0.15,
+    "descricao": "67% de crédito sobre ICMS líquido gerado + 15% de investimento mínimo sobre o benefício"
+  },
+
+  "validacoes": {
+    "toleranciaPercentual": 0.01,
+    "aliquotaMinima": 0,
+    "aliquotaMaxima": 100,
+    "camposObrigatoriosProduto": [
+      "nome",
+      "unidade",
+      "preco",
+      "ncm",
+      "quantidadeFutura"
+    ],
+    "camposObrigatoriosInsumo": [
+      "nome",
+      "tipo",
+      "unidade",
+      "custoUnitario",
+      "quantidadeFutura"
+    ],
+    "camposObrigatoriosEscalonamento": ["ano1", "ano2", "ano3", "ano4"],
+    "camposObrigatoriosDestinoVendas": [
+      "goiasPerc",
+      "goiasAliq",
+      "noNeCoPerc",
+      "noNeCoAliq",
+      "suSePerc",
+      "suSeAliq",
+      "exportacaoPerc",
+      "exportacaoAliq"
+    ],
+    "camposObrigatoriosOrigemCompras": [
+      "goiasPerc",
+      "goiasAliq",
+      "noNeCoPerc",
+      "noNeCoAliq",
+      "suSePerc",
+      "suSeAliq",
+      "importacaoPerc",
+      "importacaoAliq"
+    ]
+  },
+
+  "mensagensErro": {
+    "configNaoCarregada": "Configuração não carregada. Execute loadConfig() primeiro.",
+    "campoObrigatorio": "{tipo} '{nome}': campo '{campo}' é obrigatório",
+    "percentualInvalido": "{tipo} '{nome}': {campo} soma {soma}%, deve somar 100%",
+    "tipoInvalido": "{tipo} '{nome}': tipo '{valor}' inválido. Tipos válidos: {validos}",
+    "aliquotaInvalida": "{tipo} '{nome}': alíquota '{campo}' deve estar entre {min}% e {max}%",
+    "aliquotaObrigatoria": "{tipo} '{nome}': alíquota de ICMS '{campo}' é obrigatória",
+    "semDados": "Nenhum {tipo} cadastrado. Impossível calcular {operacao}",
+    "valorForaIntervalo": "{campo} deve estar entre {min} e {max}"
+  }
+}

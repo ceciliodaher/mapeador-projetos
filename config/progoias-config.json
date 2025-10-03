@@ -1,0 +1,54 @@
+{
+  "programType": "ProGoiás",
+  "version": "1.0",
+  "totalSteps": 17,
+  "requiredFields": {
+    "1": ["razaoSocial", "cnpj", "inscricaoEstadual"],
+    "2": ["dadosProjeto", "atividadePrincipal"],
+    "3": ["investimentosDetalhados", "valorTotal"],
+    "4": ["organogramaEmpresa"],
+    "5": ["balancosPatrimoniais"],
+    "6": ["fluxogramaProducao"],
+    "7": ["capacidadesProducao"],
+    "8": ["formulacaoProdutos"],
+    "9": ["insumosMateriasPrimas"],
+    "10": ["quadroEmpregados", "empregosDiretos"],
+    "11": ["analiseClientesMercado"],
+    "12": ["endividamento"],
+    "13": ["fornecedoresPrincipais"],
+    "14": ["clientesPrincipais"],
+    "15": ["analiseConcorrentes"],
+    "16": ["questionarioProGoias"],
+    "17": ["documentacaoProcuracao"]
+  },
+  "validationRules": {
+    "empregosMinimos": 10,
+    "prazoMaximo": 60,
+    "atividadeIndustrial": true
+  },
+  "documents": [
+    "Balanços Patrimoniais (últimos 3 anos)",
+    "Demonstrativo de Resultados (últimos 3 anos)",
+    "Fluxograma de Produção",
+    "Layout das Instalações",
+    "Organograma da Empresa",
+    "Estudo de Mercado",
+    "Relação de Fornecedores",
+    "Relação de Clientes",
+    "Análise de Concorrentes",
+    "Procuração (se aplicável)"
+  ],
+  "exportFormats": ["json", "pdf", "excel", "csv"],
+  "fileUpload": {
+    "maxSizeMB": 15,
+    "allowedTypes": ["application/pdf", "image/jpeg", "image/png", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+  },
+  "specificRequirements": {
+    "balancoYears": 3,
+    "marketAnalysisRequired": true,
+    "supplierAnalysisRequired": true,
+    "competitorAnalysisRequired": true,
+    "organogramRequired": true,
+    "productionFlowRequired": true
+  }
+}

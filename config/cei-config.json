@@ -1,0 +1,39 @@
+{
+  "programType": "CEI",
+  "version": "1.0",
+  "totalSteps": 14,
+  "requiredFields": {
+    "1": ["razaoSocial", "cnpj", "inscricaoEstadual"],
+    "2": ["descricaoEmpreendimento", "endereco", "municipio"],
+    "3": ["valorTotalInvestimento", "obrasCivis", "maquinasEquipamentos"],
+    "4": ["dataInicio", "dataTermino", "prazoExecucao"],
+    "5": ["detalhamentoInvestimentos"],
+    "6": ["documentacaoComplementar"],
+    "7": ["planoAcompanhamento"],
+    "8": ["definicaoRH"],
+    "9": ["encargosRH"],
+    "10": ["composicaoAnualRH"],
+    "11": ["encargosIndividuaisRH"],
+    "12": ["setorIndustrial"],
+    "13": ["informacoesMercado"],
+    "14": ["projetosInovacao"]
+  },
+  "validationRules": {
+    "investimentoMinimo": 500000,
+    "prazoMaximo": 36,
+    "percentualMinimo": 15
+  },
+  "documents": [
+    "Projeto Arquitetônico ou Layout Industrial",
+    "Licença Ambiental (quando exigida)",
+    "Certidões Negativas de Débitos (Federal, Estadual e Municipal)",
+    "Balanços Patrimoniais (últimos 3 exercícios)",
+    "Orçamentos ou Propostas Comerciais",
+    "Cronograma Físico-Financeiro Detalhado"
+  ],
+  "exportFormats": ["json", "pdf", "excel", "csv"],
+  "fileUpload": {
+    "maxSizeMB": 10,
+    "allowedTypes": ["application/pdf", "image/jpeg", "image/png", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
+  }
+}
