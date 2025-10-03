@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário ProGoiás - Coleta de Informações | Expertzy</title>
+    <link rel="stylesheet" href="../assets/css/styles-base.css">
+    <link rel="stylesheet" href="../assets/css/progoias-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../assets/images/expertzy_logo.png" alt="Expertzy Logo" class="logo-image">
+                </div>
+                <div class="header-title">
+                    <h1 class="form-title">Coleta de Informações para Projeto</h1>
+                    <p class="form-subtitle">ProGoiás - Programa de Desenvolvimento Industrial</p>
+                </div>
+                <div class="header-actions">
+                    <a href="selector.html" class="btn btn-secondary">
+                        ← Voltar à Seleção
+                    </a>
+                    <a href="../../index.html" class="btn btn-secondary">
+                        🏠 Portal
+                    </a>
+                    <button type="button" id="importBtnHeader" class="btn btn-secondary">
+                        📥 Importar Dados JSON
+                    </button>
+                    <input type="file" id="importJsonFileHeader" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="form-header">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <div class="progress-stats">
+                            <span id="progressText">Etapa 1 de 10</span>
+                            <span id="progressPercentage">10%</span>
+                        </div>
+                        <div class="save-status">
+                            <span id="saveStatus">💾 Auto-save ativo</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Empresa</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Projeto</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Investimentos</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Cronograma</div>
+                        </div>
+                        <div class="step" data-step="5">
+                            <div class="step-number">5</div>
+                            <div class="step-label">Produtos</div>
+                        </div>
+                        <div class="step" data-step="6">
+                            <div class="step-number">6</div>
+                            <div class="step-label">Insumos</div>
+                        </div>
+                        <div class="step" data-step="7">
+                            <div class="step-number">7</div>
+                            <div class="step-label">RH</div>
+                        </div>
+                        <div class="step" data-step="8">
+                            <div class="step-number">8</div>
+                            <div class="step-label">Mercado</div>
+                        </div>
+                        <div class="step" data-step="9">
+                            <div class="step-number">9</div>
+                            <div class="step-label">ICMS 🔒</div>
+                        </div>
+                        <div class="step" data-step="10">
+                            <div class="step-number">10</div>
+                            <div class="step-label">Documentos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="projectForm" class="project-form">
+                <!-- Seção 1: Identificação da Empresa -->
+                <div class="form-section active" data-section="1" id="section-1" role="tabpanel" aria-labelledby="tab-1">
+                    <div class="section-header">
+                        <h2 class="section-title">1. A Empresa</h2>
+                        <p class="section-description">Dados da empresa requerente conforme modelo ProGoiás.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="razaoSocial">Razão Social *</label>
+                            <input type="text" id="razaoSocial" name="razaoSocial" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ *</label>
+                            <input type="text" id="cnpj" name="cnpj" data-format="cnpj" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço *</label>
+                            <textarea id="endereco" name="endereco" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataConstituicao">Data de Constituição *</label>
+                            <input type="date" id="dataConstituicao" name="dataConstituicao" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tempoAtividade">Tempo de Atividade (anos)</label>
+                            <input type="number" id="tempoAtividade" name="tempoAtividade" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="capitalSubscrito">Capital Subscrito (R$)</label>
+                            <input type="text" id="capitalSubscrito" name="capitalSubscrito" data-format="currency">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="capitalIntegralizado">Capital Integralizado (R$)</label>
+                            <input type="text" id="capitalIntegralizado" name="capitalIntegralizado" data-format="currency">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regimeTributario">Regime Tributário *</label>
+                            <select id="regimeTributario" name="regimeTributario" required>
+                                <option value="">Selecione</option>
+                                <option value="lucro-real">Lucro Real</option>
+                                <option value="lucro-presumido">Lucro Presumido</option>
+                                <option value="simples-nacional">Simples Nacional</option>
+                            </select>
+                        </div>
+
+                        <!-- Composição Societária -->
+                        <div class="form-group full-width">
+                            <h3>Composição Societária</h3>
+                            <div id="socios-container">
+                                <div class="socio-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="socio1Nome">Nome do Sócio 1 *</label>
+                                            <input type="text" id="socio1Nome" name="socio1Nome" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="socio1Participacao">% Capital *</label>
+                                            <input type="number" id="socio1Participacao" name="socio1Participacao" min="0" max="100" step="0.01" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addSocio" class="btn btn-secondary">+ Adicionar Sócio</button>
+                        </div>
+
+                        <!-- Administração Atual -->
+                        <div class="form-group full-width">
+                            <h3>Administração Atual</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="admin1Nome">Nome *</label>
+                                    <input type="text" id="admin1Nome" name="admin1Nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="admin1Cargo">Cargo *</label>
+                                    <input type="text" id="admin1Cargo" name="admin1Cargo" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contatos -->
+                        <div class="form-group full-width">
+                            <h3>Contatos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contatoEmpresa">Nome do Contato na Empresa *</label>
+                                    <input type="text" id="contatoEmpresa" name="contatoEmpresa" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cargoContato">Cargo *</label>
+                                    <input type="text" id="cargoContato" name="cargoContato" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefoneContato">Telefones *</label>
+                                    <input type="tel" id="telefoneContato" name="telefoneContato" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 2: Descrição do Projeto -->
+                <div class="form-section" data-section="2" id="section-2" role="tabpanel" aria-labelledby="tab-2">
+                    <div class="section-header">
+                        <h2 class="section-title">2. Projeto</h2>
+                        <p class="section-description">Descrição detalhada do projeto ProGoiás.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="tipoProjeto">Tipo de Projeto *</label>
+                            <select id="tipoProjeto" name="tipoProjeto" required>
+                                <option value="">Selecione</option>
+                                <option value="implantacao">Implantação</option>
+                                <option value="ampliacao">Ampliação</option>
+                                <option value="revitalizacao">Revitalização</option>
+                                <option value="capacidade-ociosa">Capacidade Ociosa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricaoProjeto">Descrição do Projeto *</label>
+                            <textarea id="descricaoProjeto" name="descricaoProjeto" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="objetivosProjeto">Objetivos do Projeto *</label>
+                            <textarea id="objetivosProjeto" name="objetivosProjeto" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="justificativaProjeto">Justificativa do Projeto *</label>
+                            <textarea id="justificativaProjeto" name="justificativaProjeto" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localProjeto">Localização do Projeto *</label>
+                            <textarea id="localProjeto" name="localProjeto" rows="3" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 3: Investimentos -->
+                <div class="form-section" data-section="3" id="section-3" role="tabpanel" aria-labelledby="tab-3">
+                    <div class="section-header">
+                        <h2 class="section-title">3. Investimentos</h2>
+                        <p class="section-description">Detalhamento dos investimentos por categoria conforme modelo ProGoiás.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Obras Civis -->
+                        <div class="form-group full-width">
+                            <h3>Obras Civis</h3>
+                            <div class="investment-category">
+                                <div class="form-group">
+                                    <label for="terrenos">Terrenos (R$)</label>
+                                    <input type="text" id="terrenos" name="terrenos" data-format="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="obrasPreliminares">Obras Preliminares (R$)</label>
+                                    <input type="text" id="obrasPreliminares" name="obrasPreliminares" data-format="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="obrasCivis">Obras Civis e Instalações Prediais (R$)</label>
+                                    <input type="text" id="obrasCivis" name="obrasCivis" data-format="currency">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Máquinas e Equipamentos -->
+                        <div class="form-group full-width">
+                            <h3>Máquinas e Equipamentos</h3>
+                            <div id="maquinas-container">
+                                <div class="maquina-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Descrição</label>
+                                            <input type="text" name="maquinaDescricao1" placeholder="Ex: Máquina 1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Modelo</label>
+                                            <input type="text" name="maquinaModelo1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Quantidade</label>
+                                            <input type="number" name="maquinaQuantidade1" min="1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Valor Unitário (R$)</label>
+                                            <input type="text" name="maquinaValor1" data-format="currency">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addMaquina" class="btn btn-secondary">+ Adicionar Máquina</button>
+                        </div>
+
+                        <!-- Equipamentos de Informática -->
+                        <div class="form-group full-width">
+                            <h3>Equipamentos de Informática</h3>
+                            <div class="form-group">
+                                <label for="equipamentosInformatica">Valor Total (R$)</label>
+                                <input type="text" id="equipamentosInformatica" name="equipamentosInformatica" data-format="currency">
+                            </div>
+                        </div>
+
+                        <!-- Veículos -->
+                        <div class="form-group full-width">
+                            <h3>Veículos</h3>
+                            <div class="form-group">
+                                <label for="veiculos">Valor Total (R$)</label>
+                                <input type="text" id="veiculos" name="veiculos" data-format="currency">
+                            </div>
+                        </div>
+
+                        <!-- Móveis e Utensílios -->
+                        <div class="form-group full-width">
+                            <h3>Móveis e Utensílios</h3>
+                            <div class="form-group">
+                                <label for="moveisUtensilios">Valor Total (R$)</label>
+                                <input type="text" id="moveisUtensilios" name="moveisUtensilios" data-format="currency">
+                            </div>
+                        </div>
+
+                        <!-- Outros Investimentos -->
+                        <div class="form-group full-width">
+                            <h3>Outros</h3>
+                            <div class="form-group">
+                                <label for="intangiveis">Intangíveis (R$)</label>
+                                <input type="text" id="intangiveis" name="intangiveis" data-format="currency">
+                            </div>
+                            <div class="form-group">
+                                <label for="marcasPatentes">Marcas, Patentes (R$)</label>
+                                <input type="text" id="marcasPatentes" name="marcasPatentes" data-format="currency">
+                            </div>
+                            <div class="form-group">
+                                <label for="demaisInvestimentos">Demais Investimentos (R$)</label>
+                                <input type="text" id="demaisInvestimentos" name="demaisInvestimentos" data-format="currency">
+                            </div>
+                        </div>
+
+                        <!-- Total Automático -->
+                        <div class="form-group full-width">
+                            <div class="total-calculation">
+                                <h3>Total de Investimentos: <span id="totalInvestimentos" class="total-value">R$ 0,00</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 4: Cronograma -->
+                <div class="form-section" data-section="4" id="section-4" role="tabpanel" aria-labelledby="tab-4">
+                    <div class="section-header">
+                        <h2 class="section-title">4. Cronograma</h2>
+                        <p class="section-description">Cronograma físico-financeiro do projeto (máximo 36 meses).</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dataInicioAtividades">Data Prevista para Início das Atividades *</label>
+                            <input type="date" id="dataInicioAtividades" name="dataInicioAtividades" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataConclusaoInvestimentos">Data Prevista para Conclusão dos Investimentos *</label>
+                            <input type="date" id="dataConclusaoInvestimentos" name="dataConclusaoInvestimentos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracaoProjeto">Duração do Projeto (meses)</label>
+                            <input type="number" id="duracaoProjeto" name="duracaoProjeto" min="1" max="36" readonly>
+                        </div>
+
+                        <!-- Cronograma Detalhado -->
+                        <div class="form-group full-width">
+                            <h3>Cronograma Físico-Financeiro</h3>
+                            <div class="cronograma-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Período</th>
+                                            <th>Descrição</th>
+                                            <th>Valor (R$)</th>
+                                            <th>% Realização</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cronograma-tbody">
+                                        <tr>
+                                            <td>
+                                                <select name="cronogramaPeriodo1">
+                                                    <option value="">Selecione</option>
+                                                    <option value="mes1">Mês 1</option>
+                                                    <option value="mes2">Mês 2</option>
+                                                    <option value="mes3">Mês 3</option>
+                                                    <!-- Outros meses serão adicionados dinamicamente -->
+                                                </select>
+                                            </td>
+                                            <td><input type="text" name="cronogramaDescricao1" placeholder="Ex: Fase 1 - Obras preliminares"></td>
+                                            <td><input type="text" name="cronogramaValor1" data-format="currency"></td>
+                                            <td><input type="number" name="cronogramaPercentual1" min="0" max="100" step="0.1">%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" id="addCronograma" class="btn btn-secondary">+ Adicionar Período</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 5: Produtos e Vendas -->
+                <div class="form-section" data-section="5" id="section-5" role="tabpanel" aria-labelledby="tab-5">
+                    <div class="section-header">
+                        <h2 class="section-title">5. Produtos</h2>
+                        <p class="section-description">Produtos fabricados e projeções de vendas para cálculo de ICMS.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <h3>Capacidade Produtiva</h3>
+                            <div id="produtos-container">
+                                <div class="produto-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Produto *</label>
+                                            <input type="text" name="produto1Nome" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Unidade *</label>
+                                            <input type="text" name="produto1Unidade" placeholder="Ex: kg, t, pç" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Preço Unitário (R$) *</label>
+                                            <input type="text" name="produto1Preco" data-format="currency" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Código NCM *</label>
+                                            <input type="text" name="produto1NCM" pattern="[0-9]{8}" maxlength="8" required>
+                                        </div>
+                                    </div>
+                                    <h4>Produção Anual Atual</h4>
+                                    <div class="form-group">
+                                        <label>Quantidade</label>
+                                        <input type="number" name="produto1QuantidadeAtual" min="0">
+                                    </div>
+                                    <h4>Produção Anual Futura (100%)</h4>
+                                    <div class="form-group">
+                                        <label>Quantidade *</label>
+                                        <input type="number" name="produto1QuantidadeFutura" min="1" required>
+                                    </div>
+                                    <h4>Escalonamento da Produção</h4>
+                                    <div class="escalonamento-grid">
+                                        <div class="form-group">
+                                            <label>Ano 1 (%)</label>
+                                            <input type="number" name="produto1Ano1" min="0" max="100" value="30">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 2 (%)</label>
+                                            <input type="number" name="produto1Ano2" min="0" max="100" value="60">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 3 (%)</label>
+                                            <input type="number" name="produto1Ano3" min="0" max="100" value="80">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 4+ (%)</label>
+                                            <input type="number" name="produto1Ano4" min="0" max="100" value="100">
+                                        </div>
+                                    </div>
+                                    <h4>Destino das Vendas e Alíquotas de ICMS</h4>
+                                    <div class="aliquotas-table">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Destino</th>
+                                                    <th>% Vendas</th>
+                                                    <th>Alíquota ICMS (%)</th>
+                                                    <th>Observações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Goiás</td>
+                                                    <td><input type="number" name="produto1DestinoGoiasPerc" min="0" max="100" step="0.1" placeholder="Ex: 40"></td>
+                                                    <td><input type="number" name="produto1DestinoGoiasAliq" min="0" max="100" step="0.1" placeholder="19, 10 ou 11" required></td>
+                                                    <td><input type="text" name="produto1DestinoGoiasObs" placeholder="Ex: Redução 10%"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NO/NE/CO</td>
+                                                    <td><input type="number" name="produto1DestinoNoNeCoPerc" min="0" max="100" step="0.1" placeholder="Ex: 30"></td>
+                                                    <td><input type="number" name="produto1DestinoNoNeCoAliq" min="0" max="100" step="0.1" placeholder="12, 7 ou 4" required></td>
+                                                    <td><input type="text" name="produto1DestinoNoNeCoObs" placeholder="Opcional"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SU/SE</td>
+                                                    <td><input type="number" name="produto1DestinoSuSePerc" min="0" max="100" step="0.1" placeholder="Ex: 20"></td>
+                                                    <td><input type="number" name="produto1DestinoSuSeAliq" min="0" max="100" step="0.1" placeholder="12, 7 ou 4" required></td>
+                                                    <td><input type="text" name="produto1DestinoSuSeObs" placeholder="Opcional"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Exportação</td>
+                                                    <td><input type="number" name="produto1ExportacaoPerc" min="0" max="100" step="0.1" placeholder="Ex: 10"></td>
+                                                    <td><input type="number" name="produto1ExportacaoAliq" value="0" readonly></td>
+                                                    <td><input type="text" name="produto1ExportacaoObs" value="Imune" readonly></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="validation-total">
+                                            <strong>Total Destinos:</strong> <span class="calc-total" id="produto1TotalDestinos">0%</span>
+                                            <span class="validation-status invalid" id="produto1ValidacaoDestinos">❌ Deve somar 100%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addProduto" class="btn btn-secondary">+ Adicionar Produto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 6: Insumos e Matérias-Primas -->
+                <div class="form-section" data-section="6" id="section-6" role="tabpanel" aria-labelledby="tab-6">
+                    <div class="section-header">
+                        <h2 class="section-title">6. Insumos</h2>
+                        <p class="section-description">Insumos e matérias-primas utilizados na produção.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <div id="insumos-container">
+                                <div class="insumo-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Insumo *</label>
+                                            <input type="text" name="insumo1Nome" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo *</label>
+                                            <select name="insumo1Tipo" required>
+                                                <option value="">Selecione</option>
+                                                <option value="MP">Matéria-Prima (MP)</option>
+                                                <option value="IS">Insumo Secundário (IS)</option>
+                                                <option value="ME">Material de Embalagem (ME)</option>
+                                                <option value="EE">Energia Elétrica (EE)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Unidade *</label>
+                                            <input type="text" name="insumo1Unidade" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Código NCM</label>
+                                            <input type="text" name="insumo1NCM" pattern="[0-9]{8}" maxlength="8">
+                                        </div>
+                                    </div>
+
+                                    <h4>Consumo Atual</h4>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Quantidade</label>
+                                            <input type="number" name="insumo1QuantidadeAtual" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Custo Atual (R$)</label>
+                                            <input type="text" name="insumo1CustoAtual" data-format="currency">
+                                        </div>
+                                    </div>
+
+                                    <h4>Consumo Futuro (100%)</h4>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Quantidade *</label>
+                                            <input type="number" name="insumo1QuantidadeFutura" min="1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Custo Unitário (R$) *</label>
+                                            <input type="text" name="insumo1CustoUnitario" data-format="currency" required>
+                                        </div>
+                                    </div>
+
+                                    <h4>Escalonamento de Consumo</h4>
+                                    <div class="escalonamento-grid">
+                                        <div class="form-group">
+                                            <label>Ano 1 (%)</label>
+                                            <input type="number" name="insumo1Ano1" min="0" max="100" step="0.1" placeholder="30" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 2 (%)</label>
+                                            <input type="number" name="insumo1Ano2" min="0" max="100" step="0.1" placeholder="60" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 3 (%)</label>
+                                            <input type="number" name="insumo1Ano3" min="0" max="100" step="0.1" placeholder="80" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ano 4+ (%)</label>
+                                            <input type="number" name="insumo1Ano4" min="0" max="100" step="0.1" placeholder="100" required>
+                                        </div>
+                                    </div>
+
+                                    <h4>Origem das Compras e Alíquotas de ICMS</h4>
+                                    <div class="aliquotas-table">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Origem</th>
+                                                    <th>% Compras</th>
+                                                    <th>Alíquota ICMS (%)</th>
+                                                    <th>Observações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Goiás</td>
+                                                    <td><input type="number" name="insumo1OrigemGoiasPerc" min="0" max="100" step="0.1" placeholder="Ex: 50"></td>
+                                                    <td><input type="number" name="insumo1OrigemGoiasAliq" min="0" max="100" step="0.1" placeholder="19, 10 ou 11" required></td>
+                                                    <td><input type="text" name="insumo1OrigemGoiasObs" placeholder="Opcional"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NO/NE/CO</td>
+                                                    <td><input type="number" name="insumo1OrigemNoNeCoPerc" min="0" max="100" step="0.1" placeholder="Ex: 20"></td>
+                                                    <td><input type="number" name="insumo1OrigemNoNeCoAliq" min="0" max="100" step="0.1" placeholder="12, 7 ou 4" required></td>
+                                                    <td><input type="text" name="insumo1OrigemNoNeCoObs" placeholder="Opcional"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SU/SE</td>
+                                                    <td><input type="number" name="insumo1OrigemSuSePerc" min="0" max="100" step="0.1" placeholder="Ex: 20"></td>
+                                                    <td><input type="number" name="insumo1OrigemSuSeAliq" min="0" max="100" step="0.1" placeholder="12, 7 ou 4" required></td>
+                                                    <td><input type="text" name="insumo1OrigemSuSeObs" placeholder="Opcional"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Importação</td>
+                                                    <td><input type="number" name="insumo1ImportacaoPerc" min="0" max="100" step="0.1" placeholder="Ex: 10"></td>
+                                                    <td><input type="number" name="insumo1ImportacaoAliq" min="0" max="100" step="0.1" placeholder="Variável/Diferido" required></td>
+                                                    <td><input type="text" name="insumo1ImportacaoObs" placeholder="Ex: ICMS diferido"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="validation-total">
+                                            <strong>Total Origens:</strong> <span class="calc-total" id="insumo1TotalOrigens">0%</span>
+                                            <span class="validation-status invalid" id="insumo1ValidacaoOrigens">❌ Deve somar 100%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addInsumo" class="btn btn-secondary">+ Adicionar Insumo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 7: Recursos Humanos -->
+                <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-7">
+                    <div class="section-header">
+                        <h2 class="section-title">7. Recursos Humanos</h2>
+                        <p class="section-description">Detalhamento da mão de obra e custos com pessoal.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Diretoria -->
+                        <div class="form-group full-width">
+                            <h3>Diretoria</h3>
+                            <div class="rh-category">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Salário Médio (R$)</label>
+                                        <input type="text" name="salarioDiretoria" data-format="currency">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantidade Atual</label>
+                                        <input type="number" name="qtdAtualDiretoria" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 1</label>
+                                        <input type="number" name="qtdAno1Diretoria" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 2</label>
+                                        <input type="number" name="qtdAno2Diretoria" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 3</label>
+                                        <input type="number" name="qtdAno3Diretoria" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mão-de-obra Fixa (Administrativa) -->
+                        <div class="form-group full-width">
+                            <h3>Mão-de-obra Fixa (Administrativa)</h3>
+                            <div class="rh-category">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Salário Médio (R$)</label>
+                                        <input type="text" name="salarioFixa" data-format="currency">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantidade Atual</label>
+                                        <input type="number" name="qtdAtualFixa" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 1</label>
+                                        <input type="number" name="qtdAno1Fixa" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 2</label>
+                                        <input type="number" name="qtdAno2Fixa" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 3</label>
+                                        <input type="number" name="qtdAno3Fixa" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mão-de-obra Variável (Produção) -->
+                        <div class="form-group full-width">
+                            <h3>Mão-de-obra Variável (Produção)</h3>
+                            <div class="rh-category">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Salário Médio (R$)</label>
+                                        <input type="text" name="salarioVariavel" data-format="currency">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantidade Atual</label>
+                                        <input type="number" name="qtdAtualVariavel" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 1</label>
+                                        <input type="number" name="qtdAno1Variavel" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 2</label>
+                                        <input type="number" name="qtdAno2Variavel" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ano 3</label>
+                                        <input type="number" name="qtdAno3Variavel" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Encargos Sociais -->
+                        <div class="form-group full-width">
+                            <h3>Encargos Sociais (%)</h3>
+                            <div class="encargos-grid">
+                                <div class="form-group">
+                                    <label>S/ Honorários (%)</label>
+                                    <input type="number" name="encargoHonorarios" min="0" max="100" step="0.1" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label>S/ M.O. Fixa (%)</label>
+                                    <input type="number" name="encargoFixa" min="0" max="100" step="0.1" value="80">
+                                </div>
+                                <div class="form-group">
+                                    <label>S/ M.O. Variável (%)</label>
+                                    <input type="number" name="encargoVariavel" min="0" max="100" step="0.1" value="80">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Totais Calculados -->
+                        <div class="form-group full-width">
+                            <div class="total-calculation">
+                                <h3>Custos Totais com Pessoal</h3>
+                                <div class="totais-rh">
+                                    <div>Ano 1: <span id="totalRHAno1" class="total-value">R$ 0,00</span></div>
+                                    <div>Ano 2: <span id="totalRHAno2" class="total-value">R$ 0,00</span></div>
+                                    <div>Ano 3: <span id="totalRHAno3" class="total-value">R$ 0,00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 8: Mercado e Localização -->
+                <div class="form-section" data-section="8" id="section-8" role="tabpanel" aria-labelledby="tab-8">
+                    <div class="section-header">
+                        <h2 class="section-title">8. Mercado</h2>
+                        <p class="section-description">Informações sobre mercado, fornecedores, clientes e localização.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Estudo de Localização -->
+                        <div class="form-group full-width">
+                            <h3>Estudo de Localização da Empresa</h3>
+                            <div class="form-group">
+                                <label for="motivoLocalizacao">Por que a empresa resolveu se instalar no município em questão? *</label>
+                                <textarea id="motivoLocalizacao" name="motivoLocalizacao" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="logisticaFacilitada">A localização geográfica facilita a sua logística? *</label>
+                                <textarea id="logisticaFacilitada" name="logisticaFacilitada" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="materiaPrimaFacilitada">A localização facilita a obtenção da matéria prima? *</label>
+                                <textarea id="materiaPrimaFacilitada" name="materiaPrimaFacilitada" rows="2" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Estudo de Mercado -->
+                        <div class="form-group full-width">
+                            <h3>Estudo de Mercado</h3>
+                            <div class="form-group">
+                                <label for="mercadoConsumidor">Qual o mercado consumidor do produto? *</label>
+                                <textarea id="mercadoConsumidor" name="mercadoConsumidor" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="principaisConcorrentes">Onde se encontram os principais concorrentes? *</label>
+                                <textarea id="principaisConcorrentes" name="principaisConcorrentes" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="politicaVendas">Como se dá a política de vendas? *</label>
+                                <textarea id="politicaVendas" name="politicaVendas" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="politicaCompras">Como se dá a política de compra de insumos e matérias-primas? Explique o percentual de compras em Goiás e outros estados. *</label>
+                                <textarea id="politicaCompras" name="politicaCompras" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="importanciaProducao">Qual a importância da Produção Industrial em Questão? *</label>
+                                <textarea id="importanciaProducao" name="importanciaProducao" rows="2" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Fornecedores -->
+                        <div class="form-group full-width">
+                            <h3>Fornecedores (Detalhamento)</h3>
+                            <div id="fornecedores-container">
+                                <div class="fornecedor-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Fornecedor</label>
+                                            <input type="text" name="fornecedor1Nome">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CNPJ</label>
+                                            <input type="text" name="fornecedor1CNPJ" data-format="cnpj">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Local</label>
+                                            <input type="text" name="fornecedor1Local">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addFornecedor" class="btn btn-secondary">+ Adicionar Fornecedor</button>
+                        </div>
+
+                        <!-- Clientes -->
+                        <div class="form-group full-width">
+                            <h3>Clientes (Detalhamento)</h3>
+                            <div id="clientes-container">
+                                <div class="cliente-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Cliente</label>
+                                            <input type="text" name="cliente1Nome">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CNPJ</label>
+                                            <input type="text" name="cliente1CNPJ" data-format="cnpj">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Local</label>
+                                            <input type="text" name="cliente1Local">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addCliente" class="btn btn-secondary">+ Adicionar Cliente</button>
+                        </div>
+
+                        <!-- Concorrentes -->
+                        <div class="form-group full-width">
+                            <h3>Concorrentes (Detalhamento)</h3>
+                            <div id="concorrentes-container">
+                                <div class="concorrente-entry">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label>Concorrente</label>
+                                            <input type="text" name="concorrente1Nome">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Local</label>
+                                            <input type="text" name="concorrente1Local">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="addConcorrente" class="btn btn-secondary">+ Adicionar Concorrente</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 9: ICMS e Distribuição Regional -->
+                <div class="form-section" data-section="9" id="section-9" role="tabpanel" aria-labelledby="tab-9">
+                    <div class="section-header">
+                        <h2 class="section-title">9. Distribuição de ICMS</h2>
+                        <p class="section-description">Distribuição regional do mercado para cálculo de ICMS (somente analistas).</p>
+                        <div class="alert alert-info">
+                            <strong>Analistas:</strong> Esta seção é calculada automaticamente com base nos dados das seções 5 e 6.
+                        </div>
+                    </div>
+
+                    <div class="form-grid analyst-only">
+                        <!-- Origem dos Insumos (Créditos) -->
+                        <div class="form-group full-width">
+                            <h3>Créditos de ICMS (Origem dos Insumos)</h3>
+                            <div class="icms-calculation">
+                                <table class="calculation-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Discriminação</th>
+                                            <th>Total (R$)</th>
+                                            <th>Percentual</th>
+                                            <th>Alíquota ICMS</th>
+                                            <th>ICMS Creditável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Insumos Primários</strong></td>
+                                            <td id="totalInsumosPrimarios">R$ 0,00</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td id="icmsInsumosPrimarios">R$ 0,00</td>
+                                        </tr>
+                                        <tr class="sub-row">
+                                            <td>Goiás</td>
+                                            <td id="insumosPrimariosGO">R$ 0,00</td>
+                                            <td id="percInsumosPrimariosGO">0%</td>
+                                            <td>17%</td>
+                                            <td id="icmsInsumosPrimariosGO">R$ 0,00</td>
+                                        </tr>
+                                        <tr class="sub-row">
+                                            <td>Estados NO, NE e CO</td>
+                                            <td id="insumosPrimariosNONECO">R$ 0,00</td>
+                                            <td id="percInsumosPrimariosNONECO">0%</td>
+                                            <td>12%</td>
+                                            <td id="icmsInsumosPrimariosNONECO">R$ 0,00</td>
+                                        </tr>
+                                        <tr class="sub-row">
+                                            <td>Estados SU e SE</td>
+                                            <td id="insumosPrimariosSUSE">R$ 0,00</td>
+                                            <td id="percInsumosPrimariosSUSE">0%</td>
+                                            <td>12%</td>
+                                            <td id="icmsInsumosPrimariosSUSE">R$ 0,00</td>
+                                        </tr>
+                                        <tr class="sub-row">
+                                            <td>Importação</td>
+                                            <td id="insumosPrimariosImport">R$ 0,00</td>
+                                            <td id="percInsumosPrimariosImport">0%</td>
+                                            <td>0%</td>
+                                            <td id="icmsInsumosPrimariosImport">R$ 0,00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Destino das Vendas (Débitos) -->
+                        <div class="form-group full-width">
+                            <h3>Débitos de ICMS (Destino das Vendas)</h3>
+                            <div class="icms-calculation">
+                                <table class="calculation-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Discriminação</th>
+                                            <th>Total (R$)</th>
+                                            <th>Percentual</th>
+                                            <th>Alíquota ICMS</th>
+                                            <th>ICMS Devido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Goiás</td>
+                                            <td id="vendasGO">R$ 0,00</td>
+                                            <td id="percVendasGO">0%</td>
+                                            <td>17%</td>
+                                            <td id="icmsVendasGO">R$ 0,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estados NO, NE e CO</td>
+                                            <td id="vendasNONECO">R$ 0,00</td>
+                                            <td id="percVendasNONECO">0%</td>
+                                            <td>12%</td>
+                                            <td id="icmsVendasNONECO">R$ 0,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estados SU e SE</td>
+                                            <td id="vendasSUSE">R$ 0,00</td>
+                                            <td id="percVendasSUSE">0%</td>
+                                            <td>12%</td>
+                                            <td id="icmsVendasSUSE">R$ 0,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Exportação</td>
+                                            <td id="vendasExport">R$ 0,00</td>
+                                            <td id="percVendasExport">0%</td>
+                                            <td>0%</td>
+                                            <td id="icmsVendasExport">R$ 0,00</td>
+                                        </tr>
+                                        <tr class="total-row">
+                                            <td><strong>TOTAL</strong></td>
+                                            <td id="totalVendas">R$ 0,00</td>
+                                            <td>100%</td>
+                                            <td>-</td>
+                                            <td id="totalICMSDevido">R$ 0,00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Resumo do Cálculo -->
+                        <div class="form-group full-width">
+                            <h3>Resumo da Apuração de ICMS</h3>
+                            <div class="icms-summary">
+                                <div class="calculation-flow">
+                                    <div class="calc-step">
+                                        <div class="step-label">Débitos de ICMS (Vendas)</div>
+                                        <div class="step-value" id="resumoDebitos">R$ 0,00</div>
+                                    </div>
+
+                                    <div class="calc-operator">−</div>
+
+                                    <div class="calc-step">
+                                        <div class="step-label">Créditos de ICMS (Insumos)</div>
+                                        <div class="step-value" id="resumoCreditos">R$ 0,00</div>
+                                    </div>
+
+                                    <div class="calc-operator">=</div>
+
+                                    <div class="calc-step highlight">
+                                        <div class="step-label">ICMS Líquido Gerado</div>
+                                        <div class="step-value" id="icmsLiquido">R$ 0,00</div>
+                                    </div>
+                                </div>
+
+                                <div class="benefit-calculation">
+                                    <h4>Benefício ProGoiás</h4>
+                                    <div class="benefit-grid">
+                                        <div class="benefit-item">
+                                            <span class="benefit-label">Percentual de Crédito:</span>
+                                            <span class="benefit-value" id="percentualBeneficio">67%</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <span class="benefit-label">Benefício Anual:</span>
+                                            <span class="benefit-value primary" id="beneficioAnual">R$ 0,00</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <span class="benefit-label">Benefício Total (36 meses):</span>
+                                            <span class="benefit-value" id="beneficioTotal">R$ 0,00</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="investment-validation">
+                                    <h4>Validação do Investimento</h4>
+                                    <div class="validation-grid">
+                                        <div class="validation-item">
+                                            <span class="validation-label">Investimento Mínimo Exigido (15%):</span>
+                                            <span class="validation-value" id="investimentoMinimo">R$ 0,00</span>
+                                        </div>
+                                        <div class="validation-item">
+                                            <span class="validation-label">Investimento Declarado:</span>
+                                            <span class="validation-value" id="investimentoDeclarado">R$ 0,00</span>
+                                        </div>
+                                        <div class="validation-status" id="statusValidacao">
+                                            <span class="status-icon">⚠️</span>
+                                            <span class="status-text">Aguardando cálculo...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 10: Documentos -->
+                <div class="form-section" data-section="10" id="section-10" role="tabpanel" aria-labelledby="tab-10">
+                    <div class="section-header">
+                        <h2 class="section-title">10. Documentos</h2>
+                        <p class="section-description">Upload de documentos obrigatórios conforme requisitos ProGoiás.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Documentos Obrigatórios para Todas as Empresas -->
+                        <div class="form-group full-width">
+                            <h3>Documentos Obrigatórios (Todas as Empresas)</h3>
+                            <div class="documents-grid">
+                                <div class="form-group">
+                                    <label for="atosConstitutivos">Cópia dos atos constitutivos da empresa e de suas alterações *</label>
+                                    <input type="file" id="atosConstitutivos" name="atosConstitutivos" accept=".pdf,.doc,.docx" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cnpjInscricao">CNPJ e Inscrição Estadual *</label>
+                                    <input type="file" id="cnpjInscricao" name="cnpjInscricao" accept=".pdf,.doc,.docx,.jpg,.png" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cpfRgSocios">CPF e RG dos sócios *</label>
+                                    <input type="file" id="cpfRgSocios" name="cpfRgSocios" accept=".pdf,.doc,.docx,.jpg,.png" multiple required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cndFederal">CND Federal *</label>
+                                    <input type="file" id="cndFederal" name="cndFederal" accept=".pdf,.doc,.docx" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cndEstadual">CND Estadual (empresa e sócios) *</label>
+                                    <input type="file" id="cndEstadual" name="cndEstadual" accept=".pdf,.doc,.docx" multiple required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Documentos para Empresas em Operação -->
+                        <div class="form-group full-width">
+                            <h3>Empresas em Operação há mais de 12 meses em Goiás</h3>
+                            <div class="documents-grid">
+                                <div class="form-group">
+                                    <label for="guiasICMS">12 últimas guias de recolhimento de ICMS</label>
+                                    <input type="file" id="guiasICMS" name="guiasICMS" accept=".pdf,.doc,.docx" multiple>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="livroApuracao">Livro de apuração de ICMS (últimos 12 meses)</label>
+                                    <input type="file" id="livroApuracao" name="livroApuracao" accept=".pdf,.doc,.docx">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="razaoInvestimentos">Razão dos investimentos realizados nos últimos 12 meses</label>
+                                    <input type="file" id="razaoInvestimentos" name="razaoInvestimentos" accept=".pdf,.doc,.docx">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outros Documentos -->
+                        <div class="form-group full-width">
+                            <h3>Documentos Complementares</h3>
+                            <div class="documents-grid">
+                                <div class="form-group">
+                                    <label for="projetoArquitetonico">Projeto Arquitetônico ou Layout Industrial</label>
+                                    <input type="file" id="projetoArquitetonico" name="projetoArquitetonico" accept=".pdf,.dwg,.jpg,.png">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="licencaAmbiental">Licença Ambiental (quando exigida)</label>
+                                    <input type="file" id="licencaAmbiental" name="licencaAmbiental" accept=".pdf,.doc,.docx">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="orcamentosPropostas">Orçamentos ou Propostas Comerciais</label>
+                                    <input type="file" id="orcamentosPropostas" name="orcamentosPropostas" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="outrosDocumentos">Outros Documentos</label>
+                                    <input type="file" id="outrosDocumentos" name="outrosDocumentos" accept=".pdf,.doc,.docx,.jpg,.png" multiple>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Procuração ProGoiás -->
+                        <div class="form-group full-width">
+                            <div class="alert alert-info">
+                                <h4>📋 Procuração para o ProGoiás</h4>
+                                <p>Para a submissão do projeto, é necessário gerar uma procuração no site da SEFAZ-GO:</p>
+                                <ol>
+                                    <li>Acesse: <a href="https://procuracao.sefaz.go.gov.br/" target="_blank">https://procuracao.sefaz.go.gov.br/</a></li>
+                                    <li>Opção: Cadastrar Procuração</li>
+                                    <li>Painel 1: Gestão de Regimes Especiais (GRE)</li>
+                                    <li>Marcar: "Amplos poderes para requerer e assumir compromissos" e "Amplos poderes para assumir compromissos"</li>
+                                    <li>CPFs dos procuradores: 242.633.541-68 e 479.398.931-49</li>
+                                    <li>Validade: mínimo 12 meses</li>
+                                    <li>Assinar com certificado digital e fazer upload do arquivo .p7s</li>
+                                </ol>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="procuracaoProgoias">Procuração ProGoiás (arquivo .p7s)</label>
+                                <input type="file" id="procuracaoProgoias" name="procuracaoProgoias" accept=".p7s">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Navegação -->
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" class="btn btn-secondary">← Anterior</button>
+                    <button type="button" id="nextBtn" class="btn btn-primary">Próxima →</button>
+                </div>
+            </form>
+
+            <!-- Botões de Ação -->
+            <div class="form-actions">
+                <button type="button" id="previewBtn" class="btn btn-secondary">👁️ Visualizar</button>
+                <button type="button" id="clearBtn" class="btn btn-secondary">🗑️ Limpar Dados</button>
+                <div class="export-buttons">
+                    <button type="button" id="exportJsonBtn" class="btn btn-primary">💾 Exportar JSON</button>
+                    <button type="button" id="exportExcelBtn" class="btn btn-primary">📊 Exportar Excel</button>
+                    <button type="button" id="exportPDFBtn" class="btn btn-primary">📄 Exportar PDF</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Preview -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Prévia do Projeto ProGoiás</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="previewContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="editBtn" class="btn btn-secondary">Editar</button>
+                <button id="exportJsonBtnModal" class="btn btn-primary">💾 Exportar JSON</button>
+                <button id="exportExcelBtnModal" class="btn btn-primary">📊 Exportar Excel</button>
+                <button id="exportPDFBtnModal" class="btn btn-primary">📄 Exportar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../assets/images/expertzy_logo.png" alt="Expertzy Logo" class="footer-logo">
+                    <p>Desenvolvido pela Expertzy</p>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2025 Expertzy. Sistema para solicitação de Incentivos Fiscais - SECON-GO</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bibliotecas Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Configuração e Calculadoras (PRIMEIRO - obrigatório) -->
+    <script src="../assets/js/config-loader.js"></script>
+    <script src="../assets/js/escalonamento-calculator.js"></script>
+    <script src="../assets/js/icms-calculator.js"></script>
+
+    <!-- Módulos do Formulário -->
+    <script src="../assets/js/progoias-navigation.js"></script>
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/validation.js"></script>
+    <script src="../assets/js/export.js"></script>
+    <script src="../assets/js/import.js"></script>
+    <script src="../assets/js/progoias-module.js"></script>
+</body>
+</html>

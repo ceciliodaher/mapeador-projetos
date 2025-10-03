@@ -1,0 +1,780 @@
+/* =====================================
+   PROGOIAS-STYLES.CSS
+   Estilos específicos para Formulário ProGoiás
+   Baseado em cei-styles.css
+   ProGoiás tem 10 seções com seção 9 (ICMS) privativa
+   ===================================== */
+
+/* Progress Container - ProGoiás tem 10 seções */
+.progress-container {
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.progress-stats {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.progress-stats span {
+    color: var(--navy);
+    font-weight: 600;
+}
+
+.save-status {
+    color: var(--gray-600);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.save-status.saved {
+    color: var(--success);
+}
+
+.save-status.saving {
+    color: var(--red);
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%);
+    background-size: 20px 20px;
+    animation: progressShine 2s linear infinite;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, var(--red) 0%, #ff1a47 30%, var(--navy) 100%);
+    width: 10%; /* 1/10 = 10% */
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(255, 0, 45, 0.3);
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%);
+    border-radius: 12px;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Progress Steps - Navegação Circular (10 steps) */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 0 0 auto;
+}
+
+/* Seção 9 (ICMS) - Indicador de seção privativa */
+.step[data-step="9"] .step-number {
+    border: 2px solid var(--warning);
+}
+
+.step[data-step="9"] .step-number::after {
+    content: '🔒';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 14px;
+}
+
+.step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gray-300);
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid transparent;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.step-number::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--navy));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.step-label {
+    font-size: 12px;
+    color: var(--gray-600);
+    text-align: center;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    max-width: 80px;
+    line-height: 1.2;
+}
+
+.step.active .step-number {
+    background: linear-gradient(135deg, var(--red), #ff1a47);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(255, 0, 45, 0.4);
+}
+
+.step.active .step-number::before {
+    opacity: 1;
+}
+
+.step.active .step-label {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.step.completed .step-number {
+    background: linear-gradient(135deg, var(--navy), #1a3a52);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 2px 12px rgba(9, 26, 48, 0.3);
+}
+
+.step.completed .step-label {
+    color: var(--navy);
+    font-weight: 500;
+}
+
+.step:hover:not(.active) .step-number {
+    background: var(--gray-400);
+    transform: scale(1.05);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+/* Form Sections */
+.project-form {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-top: 30px;
+    position: relative;
+}
+
+.form-section {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--navy) 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+/* Seção 9 (ICMS) - Indicador visual de seção privativa */
+.form-section[data-section="9"]::before {
+    background: linear-gradient(90deg, var(--warning) 0%, var(--red) 50%, var(--navy) 100%);
+    height: 5px;
+}
+
+.form-section[data-section="9"] .section-header::before {
+    content: '🔒 Seção Privativa - Acesso Restrito a Analistas';
+    display: block;
+    background: var(--warning);
+    color: var(--navy);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-section.active {
+    display: block;
+    animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Headers */
+.section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    position: relative;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--navy));
+    border-radius: 3px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.section-description {
+    color: var(--gray-700);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* Form Grid - PRINCIPAL PARA LAYOUT PROFISSIONAL */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 15px;
+    letter-spacing: 0.025em;
+    margin-bottom: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label::after {
+    content: '*';
+    color: var(--red);
+    margin-left: 4px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group:has(input[required]) label::after,
+.form-group:has(textarea[required]) label::after,
+.form-group:has(select[required]) label::after {
+    opacity: 1;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 16px 20px;
+    border: 2px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-weight: 400;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--gray-500);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: var(--gray-400);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 4px rgba(255, 0, 45, 0.1), 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+.form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder {
+    color: var(--gray-400);
+    transform: scale(0.95);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+.form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 16px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-right: 48px;
+}
+
+/* Field Validation States */
+.form-group.error input,
+.form-group.error textarea,
+.form-group.error select {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
+}
+
+.form-group.success input,
+.form-group.success textarea,
+.form-group.success select {
+    border-color: var(--success);
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
+}
+
+/* Navigation Buttons */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--gray-200);
+}
+
+.btn {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--red) 0%, #ff1a47 100%);
+    color: white;
+    box-shadow: 0 4px 16px rgba(255, 0, 45, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(255, 0, 45, 0.4);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--navy);
+    border: 2px solid var(--gray-300);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    border-color: var(--navy);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(9, 26, 48, 0.1);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .form-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .progress-steps {
+        gap: 6px;
+    }
+
+    .step-label {
+        font-size: 11px;
+        max-width: 70px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .progress-info {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .progress-stats {
+        justify-content: center;
+    }
+
+    .progress-steps {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+    }
+
+    .form-section {
+        padding: 24px 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .section-description {
+        font-size: 16px;
+    }
+
+    .form-navigation {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-container {
+        padding: 0 10px;
+    }
+
+    .step {
+        min-width: 50px;
+    }
+
+    .step-label {
+        display: none;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
+    }
+}
+
+/* =====================================
+   TABELAS DE ALÍQUOTAS DINÂMICAS
+   Seções 5 (Produtos) e 6 (Insumos)
+   ===================================== */
+
+.aliquotas-table {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: white;
+}
+
+.aliquotas-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.aliquotas-table thead {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--red) 100%);
+    color: white;
+}
+
+.aliquotas-table th {
+    padding: 16px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    letter-spacing: 0.025em;
+}
+
+.aliquotas-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: middle;
+}
+
+.aliquotas-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.aliquotas-table tbody tr:hover {
+    background: rgba(255, 0, 45, 0.02);
+    transition: background 0.2s ease;
+}
+
+.aliquotas-table td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+    min-width: 120px;
+    font-size: 14px;
+}
+
+.aliquotas-table input[type="number"],
+.aliquotas-table input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+    font-family: inherit;
+}
+
+.aliquotas-table input[type="number"]:hover,
+.aliquotas-table input[type="text"]:hover {
+    border-color: var(--gray-400);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.aliquotas-table input[type="number"]:focus,
+.aliquotas-table input[type="text"]:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(255, 0, 45, 0.1);
+}
+
+.aliquotas-table input[readonly] {
+    background: var(--gray-100);
+    cursor: not-allowed;
+    color: var(--gray-600);
+    border-color: var(--gray-200);
+}
+
+.aliquotas-table input::placeholder {
+    color: var(--gray-500);
+    font-size: 13px;
+}
+
+/* Validação Total */
+.validation-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--gray-50);
+    border-top: 2px solid var(--gray-200);
+    font-size: 15px;
+    gap: 16px;
+}
+
+.calc-total {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 18px;
+    margin: 0 12px;
+}
+
+.validation-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.validation-status.valid {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.validation-status.invalid {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+/* Escalonamento Grid (Ano 1-4) */
+.escalonamento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--gray-50);
+    border-radius: 12px;
+    border: 2px dashed var(--gray-300);
+}
+
+.escalonamento-grid .form-group {
+    margin: 0;
+}
+
+.escalonamento-grid .form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.escalonamento-grid input {
+    padding: 12px 14px;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.escalonamento-grid input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(255, 0, 45, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .aliquotas-table {
+        overflow-x: auto;
+        display: block;
+    }
+
+    .aliquotas-table table {
+        min-width: 600px;
+    }
+
+    .escalonamento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .escalonamento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .validation-total {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .aliquotas-table th,
+    .aliquotas-table td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aliquotas-table th:last-child,
+    .aliquotas-table td:last-child {
+        display: none; /* Oculta coluna Observações em telas muito pequenas */
+    }
+}
