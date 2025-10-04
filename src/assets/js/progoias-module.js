@@ -42,6 +42,10 @@ class ProGoiasForm {
         this.importer = new ImportManager(this.config);
 
         new FieldAutoFormatter();
+
+        // Configurar cálculos automáticos
+        this.setupInvestmentCalculation();
+        this.setupEmploymentCalculation();
     }
 
     getExporter() {
@@ -353,9 +357,155 @@ class ProGoiasForm {
     getValidator() {
         return this.validator;
     }
-    
+
     getConfig() {
         return this.config;
+    }
+
+    setupInvestmentCalculation() {
+        const investmentFields = [
+            'terrenos', 'obrasPreliminares', 'obrasCivis',
+            'maquinaValor1', 'maquinaValor2', 'maquinaValor3',
+            'equipamentosInformatica', 'veiculos', 'moveisUtensilios',
+            'intangiveis', 'marcasPatentes', 'demaisInvestimentos'
+        ];
+
+        const calculateTotal = () => {
+            let total = 0;
+            let hasValues = false;
+
+            investmentFields.forEach(fieldName => {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (!field) return;
+
+                if (field.value && field.value.trim()) {
+                    hasValues = true;
+                    // Remove máscara de moeda e converte
+                    const cleanValue = field.value.replace(/[^\d,]/g, '').replace(',', '.');
+                    const value = parseFloat(cleanValue);
+
+                    if (!isNaN(value)) {
+                        total += value;
+                    }
+                }
+            });
+
+            // Só atualiza se houver valores (NO FALLBACK)
+            const totalField = document.getElementById('valorTotalInvestimento');
+            const displayField = document.getElementById('totalInvestimentos');
+
+            if (totalField && hasValues) {
+                totalField.value = total.toFixed(2);
+            } else if (totalField) {
+                totalField.value = '';
+            }
+
+            if (displayField) {
+                if (hasValues) {
+                    displayField.textContent = new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format(total);
+                } else {
+                    displayField.textContent = 'R$ 0,00';
+                }
+            }
+        };
+
+        // Listener em todos os campos de investimento
+        investmentFields.forEach(fieldName => {
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (field) {
+                field.addEventListener('input', calculateTotal);
+                field.addEventListener('change', calculateTotal);
+            }
+        });
+
+        // Cálculo inicial
+        calculateTotal();
+    }
+
+    setupEmploymentCalculation() {
+        const employmentFields = {
+            ano1: ['qtdAno1Diretoria', 'qtdAno1Fixa', 'qtdAno1Variavel'],
+            ano3: ['qtdAno3Diretoria', 'qtdAno3Fixa', 'qtdAno3Variavel']
+        };
+
+        const calculateEmployment = () => {
+            // Ano 1 (empregos diretos)
+            let totalAno1 = 0;
+            let hasValuesAno1 = false;
+
+            employmentFields.ano1.forEach(fieldName => {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (!field) return;
+
+                if (field.value && field.value.trim()) {
+                    hasValuesAno1 = true;
+                    const value = parseInt(field.value, 10);
+
+                    if (!isNaN(value)) {
+                        totalAno1 += value;
+                    }
+                }
+            });
+
+            // Ano 3 (projeção)
+            let totalAno3 = 0;
+            let hasValuesAno3 = false;
+
+            employmentFields.ano3.forEach(fieldName => {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (!field) return;
+
+                if (field.value && field.value.trim()) {
+                    hasValuesAno3 = true;
+                    const value = parseInt(field.value, 10);
+
+                    if (!isNaN(value)) {
+                        totalAno3 += value;
+                    }
+                }
+            });
+
+            // Atualizar campos APENAS se houver valores (NO FALLBACK)
+            const empregosField = document.getElementById('empregosDiretos');
+            const ano3Field = document.getElementById('empregosAno3');
+
+            if (empregosField) {
+                empregosField.value = hasValuesAno1 ? totalAno1 : '';
+            }
+
+            if (ano3Field) {
+                ano3Field.value = hasValuesAno3 ? totalAno3 : '';
+            }
+        };
+
+        // Listeners
+        [...employmentFields.ano1, ...employmentFields.ano3].forEach(fieldName => {
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (field) {
+                field.addEventListener('input', calculateEmployment);
+                field.addEventListener('change', calculateEmployment);
+            }
+        });
+
+        calculateEmployment();
+    }
+
+    validateForSubmission() {
+        this.core.collectFormData();
+        const formData = this.core.getFormData();
+
+        // Validação estrita
+        const importer = new FormDataImporter(this.config);
+        try {
+            importer.validateImportedData({ formData }, 'strict');
+            return true;
+        } catch (error) {
+            alert(`Formulário incompleto: ${error.message}`);
+            return false;
+        }
     }
 }
 

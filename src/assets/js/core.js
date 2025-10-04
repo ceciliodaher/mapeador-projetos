@@ -241,21 +241,44 @@ class FormCore {
     }
     
     restoreFormData(savedData) {
+        if (!savedData || !savedData.formData) {
+            throw new Error('Dados salvos inválidos para restauração');
+        }
+
         this.formData = savedData.formData;
-        this.currentStep = savedData.currentStep;
-        
+
+        // Restaurar step salvo OU começar do 1 se ausente
+        if (savedData.currentStep !== undefined && savedData.currentStep !== null) {
+            this.currentStep = savedData.currentStep;
+        } else {
+            this.currentStep = 1;
+        }
+
+        // Popular campos
         Object.entries(this.formData).forEach(([key, value]) => {
             if (key.startsWith('_')) return;
-            
+
             const field = document.querySelector(`[name="${key}"]`);
             if (field) {
                 field.value = value;
+                // Disparar eventos para atualizar cálculos automáticos
+                field.dispatchEvent(new Event('change', { bubbles: true }));
             }
         });
-        
+
+        // CORREÇÃO: Ocultar todas as seções antes de mostrar a correta
+        const allSections = document.querySelectorAll('.form-section');
+        allSections.forEach(section => {
+            section.style.display = 'none';
+            section.classList.remove('active');
+        });
+
+        // Mostrar apenas a seção salva
         this.showSection(this.currentStep);
         this.updateProgressBar();
         this.updateNavigationButtons();
+
+        console.log(`[Core] Dados restaurados - navegando para seção ${this.currentStep}`);
     }
     
     clearAllData() {

@@ -355,6 +355,9 @@
 
                         <!-- Total Automático -->
                         <div class="form-group full-width">
+                            <!-- Campo hidden para armazenar total (obrigatório para importação) -->
+                            <input type="hidden" id="valorTotalInvestimento" name="valorTotalInvestimento" value="">
+
                             <div class="total-calculation">
                                 <h3>Total de Investimentos: <span id="totalInvestimentos" class="total-value">R$ 0,00</span></h3>
                             </div>
@@ -834,6 +837,23 @@
                                 <div class="form-group">
                                     <label>S/ M.O. Variável (%)</label>
                                     <input type="number" name="encargoVariavel" min="0" max="100" step="0.1" value="80">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resumo de Empregos Gerados -->
+                        <div class="form-group full-width rh-summary">
+                            <h3>Resumo de Empregos Gerados</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="empregosDiretos">Empregos Diretos (Ano 1) *</label>
+                                    <input type="number" id="empregosDiretos" name="empregosDiretos" min="10" readonly required>
+                                    <small>Calculado automaticamente: Diretoria + Fixa + Variável (Ano 1)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="empregosAno3">Crescimento até Ano 3</label>
+                                    <input type="number" id="empregosAno3" readonly>
+                                    <small>Total projetado para o 3º ano</small>
                                 </div>
                             </div>
                         </div>
