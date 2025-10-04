@@ -1,6 +1,6 @@
 /* =====================================
    PROGOIAS-NAVIGATION.JS
-   Sistema de navegação para Formulário ProGoiás (10 seções)
+   Sistema de navegação para Formulário ProGoiás (11 seções)
    Usa IndexedDB para isolamento de dados
    Seção 9 (ICMS) protegida por senha
    NO FALLBACKS - NO HARDCODED DATA
@@ -8,7 +8,7 @@
 
 // Variáveis globais de navegação
 let currentStep = 1;
-const totalSteps = 10; // ProGoiás tem 10 seções
+const totalSteps = 11; // ProGoiás: 1-6, 6A (matriz), 7-10
 let formData = {};
 let analystAuthenticated = false; // Flag para controle de acesso
 
