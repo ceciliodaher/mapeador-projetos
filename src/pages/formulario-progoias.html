@@ -135,12 +135,12 @@
 
                         <div class="form-group">
                             <label for="capitalSubscrito">Capital Subscrito (R$)</label>
-                            <input type="text" id="capitalSubscrito" name="capitalSubscrito" data-format="currency">
+                            <input type="text" id="capitalSubscrito" name="capitalSubscrito" data-mask="currency">
                         </div>
 
                         <div class="form-group">
                             <label for="capitalIntegralizado">Capital Integralizado (R$)</label>
-                            <input type="text" id="capitalIntegralizado" name="capitalIntegralizado" data-format="currency">
+                            <input type="text" id="capitalIntegralizado" name="capitalIntegralizado" data-mask="currency">
                         </div>
 
                         <div class="form-group">
@@ -264,15 +264,15 @@
                             <div class="investment-category">
                                 <div class="form-group">
                                     <label for="terrenos">Terrenos (R$)</label>
-                                    <input type="text" id="terrenos" name="terrenos" data-format="currency">
+                                    <input type="text" id="terrenos" name="terrenos" data-mask="currency">
                                 </div>
                                 <div class="form-group">
                                     <label for="obrasPreliminares">Obras Preliminares (R$)</label>
-                                    <input type="text" id="obrasPreliminares" name="obrasPreliminares" data-format="currency">
+                                    <input type="text" id="obrasPreliminares" name="obrasPreliminares" data-mask="currency">
                                 </div>
                                 <div class="form-group">
                                     <label for="obrasCivis">Obras Civis e Instalações Prediais (R$)</label>
-                                    <input type="text" id="obrasCivis" name="obrasCivis" data-format="currency">
+                                    <input type="text" id="obrasCivis" name="obrasCivis" data-mask="currency">
                                 </div>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Valor Unitário (R$)</label>
-                                            <input type="text" name="maquinaValor1" data-format="currency">
+                                            <input type="text" name="maquinaValor1" data-mask="currency">
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +310,7 @@
                             <h3>Equipamentos de Informática</h3>
                             <div class="form-group">
                                 <label for="equipamentosInformatica">Valor Total (R$)</label>
-                                <input type="text" id="equipamentosInformatica" name="equipamentosInformatica" data-format="currency">
+                                <input type="text" id="equipamentosInformatica" name="equipamentosInformatica" data-mask="currency">
                             </div>
                         </div>
 
@@ -319,7 +319,7 @@
                             <h3>Veículos</h3>
                             <div class="form-group">
                                 <label for="veiculos">Valor Total (R$)</label>
-                                <input type="text" id="veiculos" name="veiculos" data-format="currency">
+                                <input type="text" id="veiculos" name="veiculos" data-mask="currency">
                             </div>
                         </div>
 
@@ -328,7 +328,7 @@
                             <h3>Móveis e Utensílios</h3>
                             <div class="form-group">
                                 <label for="moveisUtensilios">Valor Total (R$)</label>
-                                <input type="text" id="moveisUtensilios" name="moveisUtensilios" data-format="currency">
+                                <input type="text" id="moveisUtensilios" name="moveisUtensilios" data-mask="currency">
                             </div>
                         </div>
 
@@ -337,15 +337,15 @@
                             <h3>Outros</h3>
                             <div class="form-group">
                                 <label for="intangiveis">Intangíveis (R$)</label>
-                                <input type="text" id="intangiveis" name="intangiveis" data-format="currency">
+                                <input type="text" id="intangiveis" name="intangiveis" data-mask="currency">
                             </div>
                             <div class="form-group">
                                 <label for="marcasPatentes">Marcas, Patentes (R$)</label>
-                                <input type="text" id="marcasPatentes" name="marcasPatentes" data-format="currency">
+                                <input type="text" id="marcasPatentes" name="marcasPatentes" data-mask="currency">
                             </div>
                             <div class="form-group">
                                 <label for="demaisInvestimentos">Demais Investimentos (R$)</label>
-                                <input type="text" id="demaisInvestimentos" name="demaisInvestimentos" data-format="currency">
+                                <input type="text" id="demaisInvestimentos" name="demaisInvestimentos" data-mask="currency">
                             </div>
                         </div>
 
@@ -406,7 +406,7 @@
                                                 </select>
                                             </td>
                                             <td><input type="text" name="cronogramaDescricao1" placeholder="Ex: Fase 1 - Obras preliminares"></td>
-                                            <td><input type="text" name="cronogramaValor1" data-format="currency"></td>
+                                            <td><input type="text" name="cronogramaValor1" data-mask="currency"></td>
                                             <td><input type="number" name="cronogramaPercentual1" min="0" max="100" step="0.1">%</td>
                                         </tr>
                                     </tbody>
@@ -440,7 +440,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Preço Unitário (R$) *</label>
-                                            <input type="text" name="produto1Preco" data-format="currency" required>
+                                            <input type="text" name="produto1Preco" data-mask="currency" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Código NCM *</label>
@@ -570,7 +570,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Custo Atual (R$)</label>
-                                            <input type="text" name="insumo1CustoAtual" data-format="currency">
+                                            <input type="text" name="insumo1CustoAtual" data-mask="currency">
                                         </div>
                                     </div>
 
@@ -582,7 +582,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Custo Unitário (R$) *</label>
-                                            <input type="text" name="insumo1CustoUnitario" data-format="currency" required>
+                                            <input type="text" name="insumo1CustoUnitario" data-mask="currency" required>
                                         </div>
                                     </div>
 
@@ -735,7 +735,7 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Salário Médio (R$)</label>
-                                        <input type="text" name="salarioDiretoria" data-format="currency">
+                                        <input type="text" name="salarioDiretoria" data-mask="currency">
                                     </div>
                                     <div class="form-group">
                                         <label>Quantidade Atual</label>
@@ -764,7 +764,7 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Salário Médio (R$)</label>
-                                        <input type="text" name="salarioFixa" data-format="currency">
+                                        <input type="text" name="salarioFixa" data-mask="currency">
                                     </div>
                                     <div class="form-group">
                                         <label>Quantidade Atual</label>
@@ -793,7 +793,7 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Salário Médio (R$)</label>
-                                        <input type="text" name="salarioVariavel" data-format="currency">
+                                        <input type="text" name="salarioVariavel" data-mask="currency">
                                     </div>
                                     <div class="form-group">
                                         <label>Quantidade Atual</label>
@@ -1339,6 +1339,9 @@
     <script src="../assets/js/export.js"></script>
     <script src="../assets/js/import.js"></script>
     <script src="../assets/js/progoias-module.js"></script>
+
+    <!-- Currency Mask (máscaras monetárias) -->
+    <script src="../assets/js/utils/currency-mask.js"></script>
 
     <!-- Matriz Produto-Insumo (Fase 3A) -->
     <script src="../assets/js/progoias/matriz/matriz-state-manager.js"></script>
