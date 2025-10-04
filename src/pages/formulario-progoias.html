@@ -6,6 +6,7 @@
     <title>Formulário ProGoiás - Coleta de Informações | Expertzy</title>
     <link rel="stylesheet" href="../assets/css/styles-base.css">
     <link rel="stylesheet" href="../assets/css/progoias-styles.css">
+    <link rel="stylesheet" href="../assets/css/matriz-produto-insumo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -655,6 +656,70 @@
                     </div>
                 </div>
 
+                <!-- Seção 6A: Matriz Produto-Insumo -->
+                <div class="form-section matriz-section" data-section="6a" id="section-6a" role="tabpanel" aria-labelledby="tab-6a">
+                    <div class="section-header">
+                        <h2 class="section-title">6A. Matriz Produto-Insumo (Receitas)</h2>
+                        <p class="section-description">Vincule insumos aos produtos e defina quantidades por unidade produzida.</p>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="matriz-toolbar">
+                        <div class="matriz-toolbar__left">
+                            <button type="button" id="btn-import" class="btn btn--secondary matriz-toolbar__btn">
+                                📥 Importar
+                            </button>
+                            <button type="button" id="btn-export" class="btn btn--secondary matriz-toolbar__btn">
+                                📤 Exportar
+                            </button>
+                        </div>
+                        <div class="matriz-toolbar__right">
+                            <input
+                                type="text"
+                                id="matriz-search"
+                                class="input matriz-toolbar__search"
+                                placeholder="🔍 Buscar produto/insumo..."
+                                autocomplete="off"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="matriz-filters">
+                        <label class="checkbox">
+                            <input type="checkbox" id="filter-only-active" checked />
+                            <span>Apenas produtos ativos</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" id="filter-only-filled" />
+                            <span>Apenas com receitas cadastradas</span>
+                        </label>
+                    </div>
+
+                    <!-- Product List Container (populated by MatrizCardRenderer) -->
+                    <div class="matriz-product-list-container"></div>
+
+                    <!-- Loading State -->
+                    <div class="matriz-loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Carregando matriz produto-insumo...</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="matriz-empty-state" style="display: none;">
+                        <div class="empty-state-icon">📋</div>
+                        <h3>Nenhum produto ou insumo encontrado</h3>
+                        <p>Certifique-se de ter cadastrado <strong>produtos</strong> (Seção 5) e <strong>insumos</strong> (Seção 6) antes de criar receitas.</p>
+                        <p class="empty-state-hint">Dica: Volte para as seções anteriores e preencha os dados básicos.</p>
+                    </div>
+
+                    <!-- Auto-save Indicator -->
+                    <div class="matriz-autosave">
+                        <span>💾</span>
+                        <span>Salvo automaticamente</span>
+                    </div>
+                </div>
+
                 <!-- Seção 7: Recursos Humanos -->
                 <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-7">
                     <div class="section-header">
@@ -1274,5 +1339,85 @@
     <script src="../assets/js/export.js"></script>
     <script src="../assets/js/import.js"></script>
     <script src="../assets/js/progoias-module.js"></script>
+
+    <!-- Matriz Produto-Insumo (Fase 3A) -->
+    <script src="../assets/js/progoias/matriz/matriz-state-manager.js"></script>
+    <script src="../assets/js/progoias/matriz/matriz-validation.js"></script>
+    <script src="../assets/js/progoias/matriz/matriz-card-renderer.js"></script>
+    <script src="../assets/js/progoias/matriz/matriz-import-export.js"></script>
+    <script src="../assets/js/progoias/matriz/matriz-produto-insumo.js"></script>
+
+    <!-- Inicialização da Matriz -->
+    <script>
+        // Aguardar IndexedDB estar pronto
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Verificar se estamos na seção 6a
+            const section6a = document.getElementById('section-6a');
+            if (!section6a) {
+                console.warn('[Matriz] Seção 6A não encontrada - módulo não será inicializado');
+                return;
+            }
+
+            // Aguardar dbManager estar disponível
+            const waitForDB = () => {
+                return new Promise((resolve) => {
+                    const checkDB = setInterval(() => {
+                        if (window.dbManager) {
+                            clearInterval(checkDB);
+                            resolve(window.dbManager);
+                        }
+                    }, 100);
+                });
+            };
+
+            try {
+                const dbManager = await waitForDB();
+                console.log('[Matriz] IndexedDB pronto, inicializando matriz produto-insumo...');
+
+                // Inicializar matriz
+                const matrizContainer = section6a.querySelector('.matriz-product-list-container');
+                if (!matrizContainer) {
+                    throw new Error('Container .matriz-product-list-container não encontrado');
+                }
+
+                // Criar instância (usando ID do parent para encontrar container)
+                window.matrizProdutoInsumo = new MatrizProdutoInsumo('section-6a', dbManager);
+
+                // Inicializar quando seção for exibida
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'style') {
+                            const isVisible = section6a.style.display !== 'none';
+                            if (isVisible && !window.matrizProdutoInsumo.initialized) {
+                                window.matrizProdutoInsumo.init();
+                                window.matrizProdutoInsumo.initialized = true;
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(section6a, { attributes: true, attributeFilter: ['style'] });
+
+                // Se seção já estiver visível, inicializar imediatamente
+                if (section6a.style.display !== 'none') {
+                    await window.matrizProdutoInsumo.init();
+                    window.matrizProdutoInsumo.initialized = true;
+                }
+
+                console.log('✓ Matriz produto-insumo configurada com sucesso');
+
+            } catch (error) {
+                console.error('[Matriz] Erro ao inicializar:', error);
+                alert(`Erro ao carregar matriz produto-insumo: ${error.message}`);
+            }
+        });
+
+        // Cleanup ao sair da página
+        window.addEventListener('beforeunload', () => {
+            if (window.matrizProdutoInsumo) {
+                window.matrizProdutoInsumo.destroy();
+            }
+        });
+    </script>
 </body>
 </html>
