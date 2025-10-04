@@ -51,7 +51,8 @@ class FormCore {
         this.elements.form.addEventListener('change', () => this.collectAndSaveData());
         
         document.addEventListener('blur', (e) => {
-            if (e.target.matches('.form-control')) {
+            // Validar que e.target é um Element antes de chamar matches()
+            if (e.target && typeof e.target.matches === 'function' && e.target.matches('.form-control')) {
                 this.validateField(e.target);
             }
         }, true);
@@ -204,6 +205,10 @@ class FormCore {
             currentStep: this.currentStep,
             lastModified: new Date().toISOString()
         };
+    }
+
+    getFormData() {
+        return this.formData;
     }
     
     saveToLocalStorage() {

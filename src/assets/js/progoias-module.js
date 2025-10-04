@@ -38,10 +38,18 @@ class ProGoiasForm {
     initializeModules() {
         this.core = new FormCore(this.config);
         this.validator = new FormValidator(this.config);
-        this.exporter = new FormExporter(this.config, this.core.getFormData());
+        this.exporter = null; // Lazy loading - criado apenas ao exportar
         this.importer = new ImportManager(this.config);
-        
+
         new FieldAutoFormatter();
+    }
+
+    getExporter() {
+        if (!this.exporter) {
+            this.core.collectFormData(); // Atualiza this.core.formData
+            this.exporter = new FormExporter(this.config, this.core.formData);
+        }
+        return this.exporter;
     }
     
     setupEventListeners() {

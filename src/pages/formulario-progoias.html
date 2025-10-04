@@ -1361,10 +1361,10 @@
     <script>
         // Aguardar IndexedDB estar pronto
         window.addEventListener('DOMContentLoaded', async () => {
-            // Verificar se estamos na seção 6a
-            const section6a = document.getElementById('section-6a');
-            if (!section6a) {
-                console.warn('[Matriz] Seção 6A não encontrada - módulo não será inicializado');
+            // Verificar se estamos na seção 7 (Matriz)
+            const section7 = document.getElementById('section-7');
+            if (!section7) {
+                console.warn('[Matriz] Seção 7 (Matriz) não encontrada - módulo não será inicializado');
                 return;
             }
 
@@ -1385,19 +1385,19 @@
                 console.log('[Matriz] IndexedDB pronto, inicializando matriz produto-insumo...');
 
                 // Inicializar matriz
-                const matrizContainer = section6a.querySelector('.matriz-product-list-container');
+                const matrizContainer = section7.querySelector('.matriz-product-list-container');
                 if (!matrizContainer) {
                     throw new Error('Container .matriz-product-list-container não encontrado');
                 }
 
                 // Criar instância (usando ID do parent para encontrar container)
-                window.matrizProdutoInsumo = new MatrizProdutoInsumo('section-6a', dbManager);
+                window.matrizProdutoInsumo = new MatrizProdutoInsumo('section-7', dbManager);
 
                 // Inicializar quando seção for exibida
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
                         if (mutation.attributeName === 'style') {
-                            const isVisible = section6a.style.display !== 'none';
+                            const isVisible = section7.style.display !== 'none';
                             if (isVisible && !window.matrizProdutoInsumo.initialized) {
                                 window.matrizProdutoInsumo.init();
                                 window.matrizProdutoInsumo.initialized = true;
@@ -1406,10 +1406,10 @@
                     });
                 });
 
-                observer.observe(section6a, { attributes: true, attributeFilter: ['style'] });
+                observer.observe(section7, { attributes: true, attributeFilter: ['style'] });
 
                 // Se seção já estiver visível, inicializar imediatamente
-                if (section6a.style.display !== 'none') {
+                if (section7.style.display !== 'none') {
                     await window.matrizProdutoInsumo.init();
                     window.matrizProdutoInsumo.initialized = true;
                 }
