@@ -89,11 +89,15 @@ class ConfigLoader {
         }
 
         // Validar benefício
-        if (this.config.beneficio.percentualProgoias === undefined ||
-            this.config.beneficio.percentualProgoias < 0 ||
-            this.config.beneficio.percentualProgoias > 1) {
-            throw new Error('Configuração inválida: beneficio.percentualProgoias deve estar entre 0 e 1');
+        if (!this.config.beneficio.percentuaisPorAno) {
+            throw new Error('Configuração inválida: beneficio.percentuaisPorAno obrigatório');
         }
+        ['ano1', 'ano2', 'ano3'].forEach(ano => {
+            const perc = this.config.beneficio.percentuaisPorAno[ano];
+            if (perc === undefined || perc < 0 || perc > 1) {
+                throw new Error(`Configuração inválida: beneficio.percentuaisPorAno.${ano} deve estar entre 0 e 1`);
+            }
+        });
         if (this.config.beneficio.investimentoMinimo === undefined ||
             this.config.beneficio.investimentoMinimo < 0 ||
             this.config.beneficio.investimentoMinimo > 1) {
@@ -231,12 +235,28 @@ class ConfigLoader {
     }
 
     /**
-     * Retorna percentual de benefício ProGoiás
+     * Retorna percentual de benefício ProGoiás por ano
+     * @param {number} ano - Ano do benefício (1, 2 ou 3+)
+     * @returns {number}
+     */
+    getPercentualBeneficioPorAno(ano) {
+        const config = this.getConfig();
+        const percentuais = config.beneficio.percentuaisPorAno;
+
+        if (ano === 1) return percentuais.ano1;
+        if (ano === 2) return percentuais.ano2;
+        return percentuais.ano3; // ano 3 em diante
+    }
+
+    /**
+     * Retorna percentual médio de benefício ProGoiás
+     * (para compatibilidade com código existente)
      * @returns {number}
      */
     getPercentualBeneficio() {
         const config = this.getConfig();
-        return config.beneficio.percentualProgoias;
+        const percentuais = config.beneficio.percentuaisPorAno;
+        return (percentuais.ano1 + percentuais.ano2 + percentuais.ano3) / 3;
     }
 
     /**

@@ -52,9 +52,13 @@
   },
 
   "beneficio": {
-    "percentualProgoias": 0.67,
+    "percentuaisPorAno": {
+      "ano1": 0.64,
+      "ano2": 0.65,
+      "ano3": 0.66
+    },
     "investimentoMinimo": 0.15,
-    "descricao": "67% de crédito sobre ICMS líquido gerado + 15% de investimento mínimo sobre o benefício"
+    "descricao": "64% (ano 1), 65% (ano 2), 66% (ano 3+) sobre ICMS líquido + 15% de investimento mínimo"
   },
 
   "validacoes": {

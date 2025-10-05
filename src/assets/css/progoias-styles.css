@@ -117,12 +117,12 @@
     flex: 0 0 auto;
 }
 
-/* Seção 9 (ICMS) - Indicador de seção privativa */
-.step[data-step="9"] .step-number {
+/* Seção 10 (ICMS) - Indicador de seção privativa */
+.tab-item[data-tab="10"] .step-number {
     border: 2px solid var(--warning);
 }
 
-.step[data-step="9"] .step-number::after {
+.tab-item[data-tab="10"] .step-number::after {
     content: '🔒';
     position: absolute;
     top: -8px;
@@ -236,13 +236,13 @@
     border-radius: 20px 20px 0 0;
 }
 
-/* Seção 9 (ICMS) - Indicador visual de seção privativa */
-.form-section[data-section="9"]::before {
+/* Seção 10 (ICMS) - Indicador visual de seção privativa */
+.form-section[data-section="10"]::before {
     background: linear-gradient(90deg, var(--warning) 0%, var(--red) 50%, var(--navy) 100%);
     height: 5px;
 }
 
-.form-section[data-section="9"] .section-header::before {
+.form-section[data-section="10"] .section-header::before {
     content: '🔒 Seção Privativa - Acesso Restrito a Analistas';
     display: block;
     background: var(--warning);
@@ -777,4 +777,119 @@
     .aliquotas-table td:last-child {
         display: none; /* Oculta coluna Observações em telas muito pequenas */
     }
+}
+
+/* =====================================
+   SEÇÃO 10 - TABELA ICMS PROFISSIONAL
+   Estilo Excel para Apuração Mensal
+   ===================================== */
+
+.section-actions {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icms-table-wrapper {
+    margin: 2rem 0;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.icms-table-professional {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 900px;
+}
+
+.icms-table-professional thead {
+    background: var(--expertzy-navy, #091A30);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.icms-table-professional th {
+    padding: 12px 16px;
+    text-align: right;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.icms-table-professional th:first-child {
+    text-align: left;
+}
+
+.icms-table-professional tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.icms-table-professional tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.icms-table-professional tbody tr:hover {
+    background: #fff3f3;
+    transition: background 0.2s;
+}
+
+.icms-table-professional td {
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;
+    text-align: right;
+}
+
+.icms-table-professional td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+.icms-table-professional tfoot .total-row {
+    background: var(--expertzy-red, #FF002D);
+    color: white;
+    font-weight: bold;
+}
+
+.icms-table-professional tfoot td {
+    padding: 14px 16px;
+    border-color: rgba(255,255,255,0.3);
+}
+
+.benefit-breakdown {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid var(--expertzy-red, #FF002D);
+}
+
+.benefit-year, .benefit-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.benefit-total {
+    border-top: 2px solid var(--expertzy-red, #FF002D);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.year-value, .total-value {
+    font-weight: 600;
+    color: var(--expertzy-red, #FF002D);
+    font-size: 1.05rem;
+}
+
+.total-value.primary {
+    font-size: 1.25rem;
 }

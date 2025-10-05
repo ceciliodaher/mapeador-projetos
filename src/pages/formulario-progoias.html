@@ -55,47 +55,47 @@
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
                     <div class="progress-steps">
-                        <div class="step active" data-step="1">
+                        <div class="tab-item active" data-tab="1">
                             <div class="step-number">1</div>
                             <div class="step-label">Empresa</div>
                         </div>
-                        <div class="step" data-step="2">
+                        <div class="tab-item" data-tab="2">
                             <div class="step-number">2</div>
                             <div class="step-label">Projeto</div>
                         </div>
-                        <div class="step" data-step="3">
+                        <div class="tab-item" data-tab="3">
                             <div class="step-number">3</div>
                             <div class="step-label">Investimentos</div>
                         </div>
-                        <div class="step" data-step="4">
+                        <div class="tab-item" data-tab="4">
                             <div class="step-number">4</div>
                             <div class="step-label">Cronograma</div>
                         </div>
-                        <div class="step" data-step="5">
+                        <div class="tab-item" data-tab="5">
                             <div class="step-number">5</div>
                             <div class="step-label">Produtos</div>
                         </div>
-                        <div class="step" data-step="6">
+                        <div class="tab-item" data-tab="6">
                             <div class="step-number">6</div>
                             <div class="step-label">Insumos</div>
                         </div>
-                        <div class="step" data-step="7">
+                        <div class="tab-item" data-tab="7">
                             <div class="step-number">7</div>
                             <div class="step-label">Matriz</div>
                         </div>
-                        <div class="step" data-step="8">
+                        <div class="tab-item" data-tab="8">
                             <div class="step-number">8</div>
                             <div class="step-label">RH</div>
                         </div>
-                        <div class="step" data-step="9">
+                        <div class="tab-item" data-tab="9">
                             <div class="step-number">9</div>
                             <div class="step-label">Mercado</div>
                         </div>
-                        <div class="step" data-step="10">
+                        <div class="tab-item" data-tab="10" data-protected="true">
                             <div class="step-number">10</div>
                             <div class="step-label">ICMS 🔒</div>
                         </div>
-                        <div class="step" data-step="11">
+                        <div class="tab-item" data-tab="11">
                             <div class="step-number">11</div>
                             <div class="step-label">Documentos</div>
                         </div>
@@ -1002,114 +1002,46 @@
                         </div>
                     </div>
 
-                    <div class="form-grid analyst-only">
-                        <!-- Origem dos Insumos (Créditos) -->
-                        <div class="form-group full-width">
-                            <h3>Créditos de ICMS (Origem dos Insumos)</h3>
-                            <div class="icms-calculation">
-                                <table class="calculation-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Discriminação</th>
-                                            <th>Total (R$)</th>
-                                            <th>Percentual</th>
-                                            <th>Alíquota ICMS</th>
-                                            <th>ICMS Creditável</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Insumos Primários</strong></td>
-                                            <td id="totalInsumosPrimarios">R$ 0,00</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td id="icmsInsumosPrimarios">R$ 0,00</td>
-                                        </tr>
-                                        <tr class="sub-row">
-                                            <td>Goiás</td>
-                                            <td id="insumosPrimariosGO">R$ 0,00</td>
-                                            <td id="percInsumosPrimariosGO">0%</td>
-                                            <td>17%</td>
-                                            <td id="icmsInsumosPrimariosGO">R$ 0,00</td>
-                                        </tr>
-                                        <tr class="sub-row">
-                                            <td>Estados NO, NE e CO</td>
-                                            <td id="insumosPrimariosNONECO">R$ 0,00</td>
-                                            <td id="percInsumosPrimariosNONECO">0%</td>
-                                            <td>12%</td>
-                                            <td id="icmsInsumosPrimariosNONECO">R$ 0,00</td>
-                                        </tr>
-                                        <tr class="sub-row">
-                                            <td>Estados SU e SE</td>
-                                            <td id="insumosPrimariosSUSE">R$ 0,00</td>
-                                            <td id="percInsumosPrimariosSUSE">0%</td>
-                                            <td>12%</td>
-                                            <td id="icmsInsumosPrimariosSUSE">R$ 0,00</td>
-                                        </tr>
-                                        <tr class="sub-row">
-                                            <td>Importação</td>
-                                            <td id="insumosPrimariosImport">R$ 0,00</td>
-                                            <td id="percInsumosPrimariosImport">0%</td>
-                                            <td>0%</td>
-                                            <td id="icmsInsumosPrimariosImport">R$ 0,00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="section-actions">
+                        <button type="button" id="exportICMSExcel" class="btn btn-primary">
+                            📥 Exportar ICMS para Excel
+                        </button>
+                    </div>
 
-                        <!-- Destino das Vendas (Débitos) -->
+                    <div class="form-grid analyst-only">
+                        <!-- Tabela ICMS Mensal Profissional -->
                         <div class="form-group full-width">
-                            <h3>Débitos de ICMS (Destino das Vendas)</h3>
-                            <div class="icms-calculation">
-                                <table class="calculation-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Discriminação</th>
-                                            <th>Total (R$)</th>
-                                            <th>Percentual</th>
-                                            <th>Alíquota ICMS</th>
-                                            <th>ICMS Devido</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Goiás</td>
-                                            <td id="vendasGO">R$ 0,00</td>
-                                            <td id="percVendasGO">0%</td>
-                                            <td>17%</td>
-                                            <td id="icmsVendasGO">R$ 0,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Estados NO, NE e CO</td>
-                                            <td id="vendasNONECO">R$ 0,00</td>
-                                            <td id="percVendasNONECO">0%</td>
-                                            <td>12%</td>
-                                            <td id="icmsVendasNONECO">R$ 0,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Estados SU e SE</td>
-                                            <td id="vendasSUSE">R$ 0,00</td>
-                                            <td id="percVendasSUSE">0%</td>
-                                            <td>12%</td>
-                                            <td id="icmsVendasSUSE">R$ 0,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Exportação</td>
-                                            <td id="vendasExport">R$ 0,00</td>
-                                            <td id="percVendasExport">0%</td>
-                                            <td>0%</td>
-                                            <td id="icmsVendasExport">R$ 0,00</td>
-                                        </tr>
-                                        <tr class="total-row">
-                                            <td><strong>TOTAL</strong></td>
-                                            <td id="totalVendas">R$ 0,00</td>
-                                            <td>100%</td>
-                                            <td>-</td>
-                                            <td id="totalICMSDevido">R$ 0,00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="icms-table-wrapper">
+                                <h3>Apuração Mensal de ICMS</h3>
+                                <div class="table-scroll">
+                                    <table class="icms-table-professional">
+                                        <thead>
+                                            <tr>
+                                                <th>Mês</th>
+                                                <th>Faturamento Bruto</th>
+                                                <th>Base ICMS</th>
+                                                <th>Alíquota Média</th>
+                                                <th>ICMS Devido</th>
+                                                <th>ICMS c/ Benefício</th>
+                                                <th>Economia Fiscal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="icmsTableBody">
+                                            <!-- Gerado dinamicamente via JS -->
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="total-row">
+                                                <td><strong>TOTAL</strong></td>
+                                                <td id="totalFaturamento">R$ 0,00</td>
+                                                <td id="totalBase">R$ 0,00</td>
+                                                <td id="aliqMedia">-</td>
+                                                <td id="totalDevido">R$ 0,00</td>
+                                                <td id="totalBeneficio">R$ 0,00</td>
+                                                <td id="totalEconomia">R$ 0,00</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 
@@ -1139,19 +1071,23 @@
                                 </div>
 
                                 <div class="benefit-calculation">
-                                    <h4>Benefício ProGoiás</h4>
-                                    <div class="benefit-grid">
-                                        <div class="benefit-item">
-                                            <span class="benefit-label">Percentual de Crédito:</span>
-                                            <span class="benefit-value" id="percentualBeneficio">67%</span>
+                                    <h4>Benefício ProGoiás (Progressivo)</h4>
+                                    <div class="benefit-breakdown">
+                                        <div class="benefit-year">
+                                            <span class="year-label">Ano 1 (64%):</span>
+                                            <span class="year-value" id="beneficioAno1">R$ 0,00</span>
                                         </div>
-                                        <div class="benefit-item">
-                                            <span class="benefit-label">Benefício Anual:</span>
-                                            <span class="benefit-value primary" id="beneficioAnual">R$ 0,00</span>
+                                        <div class="benefit-year">
+                                            <span class="year-label">Ano 2 (65%):</span>
+                                            <span class="year-value" id="beneficioAno2">R$ 0,00</span>
                                         </div>
-                                        <div class="benefit-item">
-                                            <span class="benefit-label">Benefício Total (36 meses):</span>
-                                            <span class="benefit-value" id="beneficioTotal">R$ 0,00</span>
+                                        <div class="benefit-year">
+                                            <span class="year-label">Ano 3+ (66%):</span>
+                                            <span class="year-value" id="beneficioAno3">R$ 0,00</span>
+                                        </div>
+                                        <div class="benefit-total">
+                                            <span class="total-label"><strong>Total 3 Anos:</strong></span>
+                                            <span class="total-value primary" id="beneficioTotal3Anos">R$ 0,00</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1337,6 +1273,7 @@
                 </div>
                 <div class="footer-info">
                     <p>&copy; 2025 Expertzy. Sistema para solicitação de Incentivos Fiscais - SECON-GO</p>
+                    <p class="footer-version">v1.0.0 (ProGoiás)</p>
                 </div>
             </div>
         </div>
@@ -1350,6 +1287,7 @@
     <!-- IndexedDB para ProGoiás (OBRIGATÓRIO - PRIMEIRO) -->
     <script src="../assets/js/database/progoias-indexeddb-schema.js"></script>
     <script src="../assets/js/database/progoias-indexeddb-manager.js"></script>
+    <script src="../assets/js/database/progoias-form-sync.js"></script>
 
     <!-- Configuração e Calculadoras -->
     <script src="../assets/js/config-loader.js"></script>
@@ -1357,6 +1295,7 @@
     <script src="../assets/js/icms-calculator.js"></script>
 
     <!-- Módulos do Formulário -->
+    <script src="../assets/js/tabs.js"></script>
     <script src="../assets/js/progoias-navigation.js"></script>
     <script src="../assets/js/core.js"></script>
     <script src="../assets/js/validation.js"></script>
@@ -1388,12 +1327,18 @@
                 return;
             }
 
-            // Aguardar dbManager estar disponível
+            // Aguardar dbManager estar disponível (com timeout de 10s)
             const waitForDB = () => {
-                return new Promise((resolve) => {
+                return new Promise((resolve, reject) => {
+                    const timeout = setTimeout(() => {
+                        clearInterval(checkDB);
+                        reject(new Error('Timeout: dbManager não disponível após 10s'));
+                    }, 10000);
+
                     const checkDB = setInterval(() => {
                         if (window.dbManager) {
                             clearInterval(checkDB);
+                            clearTimeout(timeout);
                             resolve(window.dbManager);
                         }
                     }, 100);
@@ -1403,6 +1348,15 @@
             try {
                 const dbManager = await waitForDB();
                 console.log('[Matriz] IndexedDB pronto, inicializando matriz produto-insumo...');
+
+                // Inicializar FormSync para sincronizar dados Form → IndexedDB
+                window.progoiasFormSync = new ProGoiasFormSync(dbManager);
+                window.progoiasFormSync.setupAutoSaveListeners();
+                console.log('[FormSync] Auto-save listeners configurados');
+
+                // Sincronizar dados existentes do formulário para IndexedDB
+                const syncResult = await window.progoiasFormSync.syncAll();
+                console.log(`[FormSync] Sincronização inicial: ${syncResult.produtos} produtos, ${syncResult.insumos} insumos`);
 
                 // Inicializar matriz
                 const matrizContainer = section7.querySelector('.matriz-product-list-container');
@@ -1415,11 +1369,13 @@
 
                 // Inicializar quando seção for exibida
                 const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
+                    mutations.forEach(async (mutation) => {
                         if (mutation.attributeName === 'style') {
                             const isVisible = section7.style.display !== 'none';
                             if (isVisible && !window.matrizProdutoInsumo.initialized) {
-                                window.matrizProdutoInsumo.init();
+                                // Sincronizar dados antes de inicializar matriz
+                                await window.progoiasFormSync.syncAll();
+                                await window.matrizProdutoInsumo.init();
                                 window.matrizProdutoInsumo.initialized = true;
                             }
                         }
@@ -1430,6 +1386,7 @@
 
                 // Se seção já estiver visível, inicializar imediatamente
                 if (section7.style.display !== 'none') {
+                    await window.progoiasFormSync.syncAll();
                     await window.matrizProdutoInsumo.init();
                     window.matrizProdutoInsumo.initialized = true;
                 }

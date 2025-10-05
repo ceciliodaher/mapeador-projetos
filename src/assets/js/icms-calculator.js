@@ -52,6 +52,11 @@ class ICMSCalculator {
                 this.debounce(() => this.validateInvestment(), 500)();
             }
         });
+
+        // Event listener para botão de exportação Excel
+        document.getElementById('exportICMSExcel')?.addEventListener('click', () => {
+            this.exportICMSToExcel();
+        });
     }
 
     // Função principal de cálculo
@@ -69,20 +74,25 @@ class ICMSCalculator {
             // ICMS líquido gerado
             const icmsLiquido = debitos.total - creditos.total;
 
-            // Benefício ProGoiás (percentual da configuração)
-            const percentualBeneficio = window.configLoader.getPercentualBeneficio();
-            const beneficio = icmsLiquido * percentualBeneficio;
+            // Benefício ProGoiás (progressivo por ano)
+            const beneficioAno1 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(1);
+            const beneficioAno2 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(2);
+            const beneficioAno3 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(3);
+            const beneficioTotal = beneficioAno1 + beneficioAno2 + beneficioAno3;
 
             // Atualizar interface
             this.updateInterface({
                 debitos,
                 creditos,
                 icmsLiquido,
-                beneficio
+                beneficioAno1,
+                beneficioAno2,
+                beneficioAno3,
+                beneficioTotal
             });
 
             // Validar investimento
-            this.validateInvestment(beneficio);
+            this.validateInvestment(beneficioTotal);
 
         } catch (error) {
             console.error('Erro no cálculo de ICMS:', error);
@@ -383,46 +393,63 @@ class ICMSCalculator {
         this.updateElement('resumoCreditos', this.formatCurrency(data.creditos.total));
         this.updateElement('icmsLiquido', this.formatCurrency(data.icmsLiquido));
 
-        // Atualizar benefício ProGoiás
-        this.updateElement('beneficioAnual', this.formatCurrency(data.beneficio));
-        this.updateElement('beneficioTotal', this.formatCurrency(data.beneficio * 3)); // 36 meses = 3 anos
+        // Atualizar benefício ProGoiás (breakdown anual)
+        this.updateElement('beneficioAno1', this.formatCurrency(data.beneficioAno1));
+        this.updateElement('beneficioAno2', this.formatCurrency(data.beneficioAno2));
+        this.updateElement('beneficioAno3', this.formatCurrency(data.beneficioAno3));
+        this.updateElement('beneficioTotal3Anos', this.formatCurrency(data.beneficioTotal));
+
+        // Gerar tabela mensal
+        this.generateMonthlyICMSTable();
     }
 
-    validateInvestment(beneficio = null) {
-        if (!beneficio) {
-            // Recalcular se necessário
-            const beneficioElement = document.getElementById('beneficioTotal');
+    validateInvestment(beneficioTotal = null) {
+        if (!beneficioTotal) {
+            const beneficioElement = document.getElementById('beneficioTotal3Anos');
             if (beneficioElement) {
-                beneficio = this.parseCurrency(beneficioElement.textContent);
-            } else {
-                return;
+                beneficioTotal = this.parseCurrency(beneficioElement.textContent);
             }
         }
 
-        const percentualMinimo = window.configLoader.getInvestimentoMinimo();
-        const investimentoMinimo = beneficio * percentualMinimo;
-        const investimentoDeclarado = this.calculateTotalInvestment();
+        if (!beneficioTotal) {
+            console.warn('[ICMSCalculator] Benefício total não disponível para validação');
+            return false;
+        }
+
+        const investimentoMinimo = beneficioTotal * window.configLoader.getInvestimentoMinimo();
+        const investimentoDeclarado = this.getInvestimentoDeclarado();
 
         this.updateElement('investimentoMinimo', this.formatCurrency(investimentoMinimo));
         this.updateElement('investimentoDeclarado', this.formatCurrency(investimentoDeclarado));
 
-        // Status da validação
-        const statusElement = document.getElementById('statusValidacao');
-        if (statusElement) {
-            if (investimentoDeclarado >= investimentoMinimo) {
-                statusElement.innerHTML = `
-                    <span class="status-icon">✅</span>
-                    <span class="status-text">Investimento adequado!</span>
-                `;
-                statusElement.className = 'validation-status success';
-            } else {
-                const deficit = investimentoMinimo - investimentoDeclarado;
-                statusElement.innerHTML = `
-                    <span class="status-icon">❌</span>
-                    <span class="status-text">Investimento insuficiente! Faltam ${this.formatCurrency(deficit)}</span>
-                `;
-                statusElement.className = 'validation-status error';
-            }
+        const statusDiv = document.getElementById('statusValidacao');
+
+        if (!statusDiv) {
+            console.warn('[ICMSCalculator] Elemento statusValidacao não encontrado');
+            return false;
+        }
+
+        if (investimentoDeclarado >= investimentoMinimo) {
+            const excedente = investimentoDeclarado - investimentoMinimo;
+            statusDiv.innerHTML = `
+                <span class="status-icon">✅</span>
+                <span class="status-text success">
+                    APROVADO - Investimento atende requisito mínimo
+                    ${excedente > 0 ? `(excedente: ${this.formatCurrency(excedente)})` : ''}
+                </span>
+            `;
+            statusDiv.className = 'validation-status success';
+            return true;
+        } else {
+            const faltam = investimentoMinimo - investimentoDeclarado;
+            statusDiv.innerHTML = `
+                <span class="status-icon">❌</span>
+                <span class="status-text error">
+                    REPROVADO - Investimento insuficiente (faltam ${this.formatCurrency(faltam)})
+                </span>
+            `;
+            statusDiv.className = 'validation-status error';
+            return false;
         }
     }
 
@@ -452,6 +479,164 @@ class ICMSCalculator {
         }
 
         return total;
+    }
+
+    // Gerar tabela mensal de ICMS
+    generateMonthlyICMSTable() {
+        const tbody = document.getElementById('icmsTableBody');
+        if (!tbody) return;
+
+        const meses = 36; // 3 anos
+        const faturamentoMensal = this.getFaturamentoMensal();
+
+        let html = '';
+        let totais = {
+            faturamento: 0,
+            base: 0,
+            devido: 0,
+            beneficio: 0,
+            economia: 0
+        };
+
+        for (let i = 1; i <= meses; i++) {
+            const mes = `Mês ${i}`;
+            const fat = faturamentoMensal;
+            const base = fat * 0.85; // 85% base de cálculo
+            const aliq = 0.17; // 17% média
+            const devido = base * aliq;
+
+            // Benefício progressivo por ano
+            const ano = Math.ceil(i / 12);
+            const percBenef = window.configLoader.getPercentualBeneficioPorAno(ano);
+
+            const beneficio = devido * percBenef;
+            const economia = devido - beneficio;
+
+            totais.faturamento += fat;
+            totais.base += base;
+            totais.devido += devido;
+            totais.beneficio += beneficio;
+            totais.economia += economia;
+
+            html += `
+                <tr>
+                    <td>${mes}</td>
+                    <td>${this.formatCurrency(fat)}</td>
+                    <td>${this.formatCurrency(base)}</td>
+                    <td>${(aliq * 100).toFixed(1)}%</td>
+                    <td>${this.formatCurrency(devido)}</td>
+                    <td>${this.formatCurrency(beneficio)}</td>
+                    <td>${this.formatCurrency(economia)}</td>
+                </tr>
+            `;
+        }
+
+        tbody.innerHTML = html;
+
+        // Atualizar totais
+        document.getElementById('totalFaturamento').textContent = this.formatCurrency(totais.faturamento);
+        document.getElementById('totalBase').textContent = this.formatCurrency(totais.base);
+        document.getElementById('totalDevido').textContent = this.formatCurrency(totais.devido);
+        document.getElementById('totalBeneficio').textContent = this.formatCurrency(totais.beneficio);
+        document.getElementById('totalEconomia').textContent = this.formatCurrency(totais.economia);
+
+        const aliqMedia = (totais.devido / totais.base) * 100;
+        document.getElementById('aliqMedia').textContent = aliqMedia.toFixed(1) + '%';
+    }
+
+    getFaturamentoMensal() {
+        // Buscar faturamento total de produtos da seção 5
+        // Dividir por 12 para mensal
+        const produtos = this.collectProductData();
+        const faturamentoAnual = produtos.reduce((sum, p) => {
+            return sum + (p.faturamentoAnual || 0);
+        }, 0);
+        return faturamentoAnual / 12;
+    }
+
+    getICMSLiquido() {
+        const icmsLiquidoElement = document.getElementById('icmsLiquido');
+        if (icmsLiquidoElement) {
+            return this.parseCurrency(icmsLiquidoElement.textContent);
+        }
+        return 0;
+    }
+
+    getInvestimentoDeclarado() {
+        return this.calculateTotalInvestment();
+    }
+
+    // Exportar ICMS para Excel
+    exportICMSToExcel() {
+        if (typeof XLSX === 'undefined') {
+            alert('Biblioteca XLSX não está carregada. Inclua a biblioteca no HTML.');
+            return;
+        }
+
+        const wb = XLSX.utils.book_new();
+
+        // Aba 1: Apuração Mensal
+        const monthlyData = [['Mês', 'Faturamento', 'Base ICMS', 'Alíquota', 'ICMS Devido', 'ICMS c/ Benefício', 'Economia']];
+
+        const rows = document.querySelectorAll('#icmsTableBody tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length >= 7) {
+                monthlyData.push([
+                    cells[0].textContent,
+                    this.parseCurrency(cells[1].textContent),
+                    this.parseCurrency(cells[2].textContent),
+                    cells[3].textContent,
+                    this.parseCurrency(cells[4].textContent),
+                    this.parseCurrency(cells[5].textContent),
+                    this.parseCurrency(cells[6].textContent)
+                ]);
+            }
+        });
+
+        const ws1 = XLSX.utils.aoa_to_sheet(monthlyData);
+        XLSX.utils.book_append_sheet(wb, ws1, 'Apuração Mensal');
+
+        // Aba 2: Benefício por Ano
+        const icmsLiquido = this.getICMSLiquido();
+        const beneficio1 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(1);
+        const beneficio2 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(2);
+        const beneficio3 = icmsLiquido * window.configLoader.getPercentualBeneficioPorAno(3);
+        const beneficioTotal = beneficio1 + beneficio2 + beneficio3;
+
+        const beneficioData = [
+            ['Ano', 'Percentual', 'ICMS Líquido Anual', 'Benefício ProGoiás'],
+            ['Ano 1', '64%', icmsLiquido, beneficio1],
+            ['Ano 2', '65%', icmsLiquido, beneficio2],
+            ['Ano 3', '66%', icmsLiquido, beneficio3],
+            ['', '', '', ''],
+            ['TOTAL 3 ANOS', '', '', beneficioTotal]
+        ];
+
+        const ws2 = XLSX.utils.aoa_to_sheet(beneficioData);
+        XLSX.utils.book_append_sheet(wb, ws2, 'Benefício ProGoiás');
+
+        // Aba 3: Validação
+        const investimentoDeclarado = this.getInvestimentoDeclarado();
+        const investimentoMinimo = beneficioTotal * window.configLoader.getInvestimentoMinimo();
+
+        const validacaoData = [
+            ['Descrição', 'Valor (R$)'],
+            ['Benefício Total 3 Anos', beneficioTotal],
+            ['Investimento Mínimo Exigido (15%)', investimentoMinimo],
+            ['Investimento Declarado (Seção 3)', investimentoDeclarado],
+            ['Diferença', investimentoDeclarado - investimentoMinimo],
+            ['', ''],
+            ['Status', investimentoDeclarado >= investimentoMinimo ? 'APROVADO ✅' : 'REPROVADO ❌']
+        ];
+
+        const ws3 = XLSX.utils.aoa_to_sheet(validacaoData);
+        XLSX.utils.book_append_sheet(wb, ws3, 'Validação');
+
+        const filename = `ICMS_ProGoias_${new Date().toISOString().split('T')[0]}.xlsx`;
+        XLSX.writeFile(wb, filename);
+
+        console.log(`✅ Excel exportado: ${filename}`);
     }
 
     // Utilities
