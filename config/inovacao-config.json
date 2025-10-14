@@ -1,0 +1,313 @@
+{
+  "programType": "INOVACAO_LEI_DO_BEM",
+  "version": "1.0",
+  "description": "Questionário para projetos de inovação, Lei do Bem e captação de investimentos",
+  "totalSteps": 13,
+
+  "sectionTitles": {
+    "1": "Informações Cadastrais e Visão Geral",
+    "2": "Histórico e Estrutura da Empresa",
+    "3": "Equipe e Capacidade Técnica",
+    "4": "Descrição Detalhada do Projeto",
+    "5": "Tecnologia e Propriedade Intelectual",
+    "6": "Análise de Mercado e Impacto Comercial",
+    "7": "Estratégia de Marketing e Vendas",
+    "8": "Capacidade da Empresa e Infraestrutura",
+    "9": "Pesquisa e Desenvolvimento",
+    "10": "Operações e Fabricação",
+    "11": "Projeções Financeiras",
+    "12": "Impacto Socioeconômico e Sustentabilidade",
+    "13": "Riscos e Considerações Finais"
+  },
+
+  "requiredFields": {
+    "1": [
+      "razaoSocial",
+      "cnpj",
+      "enderecoCompleto",
+      "responsavelProjeto",
+      "emailResponsavel",
+      "conceitoCentral",
+      "propostaValor",
+      "diferencialInovador",
+      "estagioDesenvolvimento",
+      "valorFinanciamento",
+      "estruturaEmpresarial"
+    ],
+    "2": [
+      "historicoEmpresa",
+      "instalacoesFisicas",
+      "historicoPD"
+    ],
+    "3": [
+      "membrosEquipe"
+    ],
+    "4": [
+      "descricaoCompleta",
+      "objetivosPrincipais",
+      "metodologia",
+      "resultadosEsperados"
+    ],
+    "5": [
+      "principalInovacao",
+      "especificacoesTecnicas",
+      "estrategiaPI"
+    ],
+    "6": [
+      "mercadosAlvo",
+      "analiseConcorrentes"
+    ],
+    "7": [
+      "estrategiaGoToMarket",
+      "modeloVendas",
+      "estrategiaPrecificacao"
+    ],
+    "8": [
+      "infraestruturaFisica",
+      "infraestruturaPD",
+      "alinhamentoEstrategia"
+    ],
+    "9": [
+      "tipoInovacao",
+      "classificacaoDisruptiva",
+      "esforcosTecnicosPD"
+    ],
+    "10": [
+      "fornecedoresPrincipais",
+      "projec oesDemanda",
+      "estrategiaEscalabilidade"
+    ],
+    "11": [
+      "capitalProprio",
+      "alocacaoFundos",
+      "cronogramaInvestimentos",
+      "projecoesReceita5Anos",
+      "projecoesCustos5Anos"
+    ],
+    "12": [
+      "desenvolvimentoEconomico",
+      "desenvolvimentoSocial",
+      "geracaoTrabalhoRenda",
+      "impactosAmbientais"
+    ],
+    "13": [
+      "principaisRiscos",
+      "estrategiasMitigacao"
+    ]
+  },
+
+  "validationRules": {
+    "cnpjPattern": "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$",
+    "emailPattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+    "phonePattern": "^\\(\\d{2}\\)\\s?\\d{4,5}\\-?\\d{4}$"
+  },
+
+  "classificacaoInovacao": {
+    "tipos": [
+      "Incremental",
+      "Modular",
+      "Arquitetural",
+      "Radical"
+    ],
+    "disruptiva": [
+      "Disruptiva",
+      "Sustentadora"
+    ],
+    "description": "Classificação será feita pelo usuário/analista com base nos critérios do projeto"
+  },
+
+  "trlLevels": {
+    "description": "Technology Readiness Level (TRL) - Nível de Maturidade Tecnológica",
+    "levels": {
+      "1": "Princípios básicos observados",
+      "2": "Conceito da tecnologia formulado",
+      "3": "Prova de conceito experimental",
+      "4": "Validação em laboratório",
+      "5": "Validação em ambiente relevante",
+      "6": "Demonstração em ambiente relevante",
+      "7": "Demonstração em ambiente operacional",
+      "8": "Sistema completo e qualificado",
+      "9": "Sistema operacional em ambiente real"
+    },
+    "requiresInput": ["nivelAtual", "evidencias", "proximosPassos"]
+  },
+
+  "leiDoBem": {
+    "description": "Lei 11.196/2005 - Incentivos fiscais para P&D e Inovação",
+    "calculators": {
+      "deducaoIRPJ": {
+        "description": "Dedução de IRPJ/CSLL sobre despesas com P&D",
+        "requiresInput": ["despesasPD", "pessoalDedicado", "aliquotasImposto"]
+      },
+      "bonusInovacao": {
+        "description": "Bônus adicional sobre inovação tecnológica",
+        "requiresInput": ["despesasInovacao", "patentes", "melhoriasSig nificativas"]
+      },
+      "depreciacaoAcelerada": {
+        "description": "Depreciação acelerada de equipamentos de P&D",
+        "requiresInput": ["equipamentosPD", "valorAquisicao", "vidaUtil"]
+      },
+      "pessoalQualificado": {
+        "description": "Percentual adicional para mestres e doutores",
+        "requiresInput": ["numeroMestres", "numeroDoutores", "salarios"]
+      }
+    },
+    "reportFormat": "FINEP/MCTI compliant",
+    "requiresInput": "Todos os valores devem ser fornecidos pelo usuário"
+  },
+
+  "estagiosDesenvolvimento": [
+    "Ideia conceitual",
+    "Protótipo inicial",
+    "Protótipo avançado",
+    "Pronto para produção",
+    "Em produção"
+  ],
+
+  "estruturaEmpresarial": [
+    "Sociedade Limitada (LTDA)",
+    "Sociedade Anônima (S/A)",
+    "EIRELI",
+    "Individual/MEI",
+    "Startup/Spin-off"
+  ],
+
+  "tiposPI": [
+    "Patente de Invenção",
+    "Patente de Modelo de Utilidade",
+    "Registro de Software",
+    "Registro de Marca",
+    "Desenho Industrial",
+    "Segredo Industrial"
+  ],
+
+  "setoresPrioritarios": [
+    "Biotecnologia",
+    "Agricultura Orgânica",
+    "Nanotecnologia",
+    "Geotecnologia",
+    "Tecnologias da Informação e Comunicação (TIC)",
+    "Internet das Coisas (IoT)",
+    "Indústria 4.0",
+    "Cidades Inteligentes",
+    "Segurança Cibernética",
+    "Tecnologia Assistiva",
+    "Insumos e Equipamentos para Saúde",
+    "Energias Renováveis"
+  ],
+
+  "exportFormats": [
+    "json",
+    "pdf",
+    "excel"
+  ],
+
+  "autoSave": {
+    "enabled": true,
+    "intervalSeconds": 30,
+    "debounceSeconds": 3,
+    "maxAutoSaves": 10
+  },
+
+  "navigation": {
+    "freeNavigation": true,
+    "allowIncompleteNavigation": true,
+    "validateOnlyOnSubmit": false,
+    "showSectionIndicators": true,
+    "showProgressBar": true
+  },
+
+  "ui": {
+    "progressBarEnabled": true,
+    "navigationButtons": {
+      "prev": "Anterior",
+      "next": "Próximo",
+      "finish": "Finalizar e Gerar Relatórios"
+    },
+    "saveIndicator": {
+      "enabled": true,
+      "position": "top-right"
+    },
+    "charts": {
+      "enabled": true,
+      "library": "chartjs",
+      "types": ["line", "bar", "radar", "doughnut"]
+    },
+    "trlVisualization": {
+      "enabled": true,
+      "type": "scale",
+      "interactive": true
+    }
+  },
+
+  "messages": {
+    "welcome": "Bem-vindo ao Questionário de Projetos de Inovação",
+    "completion": "Questionário de inovação concluído! Você pode agora gerar os relatórios.",
+    "autoSaveSuccess": "Dados salvos automaticamente",
+    "autoSaveError": "Erro ao salvar automaticamente. Verifique sua conexão.",
+    "validationError": "Por favor, preencha todos os campos obrigatórios",
+    "exportSuccess": "Arquivo exportado com sucesso",
+    "exportError": "Erro ao exportar arquivo",
+    "trlCalculated": "TRL calculado com base nas evidências fornecidas"
+  },
+
+  "reports": {
+    "pdf": {
+      "enabled": true,
+      "title": "Projeto de Inovação",
+      "sections": [
+        "capa",
+        "sumario_executivo",
+        "dados_cadastrais",
+        "historico_empresa",
+        "equipe_capacidade",
+        "descricao_projeto",
+        "tecnologia_pi",
+        "analise_mercado",
+        "estrategia_marketing",
+        "capacidade_empresa",
+        "pesquisa_desenvolvimento",
+        "operacoes_fabricacao",
+        "projecoes_financeiras",
+        "impacto_socioeconomico",
+        "riscos_mitigacoes"
+      ]
+    },
+    "excel": {
+      "enabled": true,
+      "sheets": [
+        "Resumo Executivo",
+        "Cadastro",
+        "Equipe",
+        "Projeto",
+        "Tecnologia",
+        "Mercado",
+        "Financeiro",
+        "Investimentos",
+        "Projeções 5 Anos",
+        "Impacto",
+        "Riscos"
+      ]
+    },
+    "leiDoBem": {
+      "enabled": true,
+      "title": "Relatório Lei do Bem",
+      "format": "FINEP/MCTI",
+      "sections": [
+        "identificacao",
+        "projeto_pd",
+        "equipe_tecnica",
+        "despesas_pd",
+        "resultados",
+        "beneficios_fiscais"
+      ]
+    }
+  },
+
+  "helpTexts": {
+    "trl": "TRL (Technology Readiness Level): Escala de 1-9 que mede a maturidade de uma tecnologia desde a pesquisa básica até a aplicação comercial.",
+    "leiDoBem": "Lei do Bem oferece incentivos fiscais para empresas que investem em P&D. Principais benefícios: dedução de IRPJ/CSLL, bônus de inovação e depreciação acelerada.",
+    "pi": "Propriedade Intelectual: Proteja suas inovações através de patentes, registros de software, marcas e outros mecanismos legais.",
+    "disruptiva": "Inovação Disruptiva: Cria novo mercado ou transforma significativamente mercado existente. Inovação Sustentadora: Melhora produtos/serviços existentes."
+  }
+}

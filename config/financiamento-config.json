@@ -1,0 +1,242 @@
+{
+  "programType": "FINANCIAMENTO_TRADICIONAL",
+  "version": "1.0",
+  "description": "Questionário para viabilidade econômico-financeira de projetos tradicionais",
+  "totalSteps": 12,
+
+  "sectionTitles": {
+    "1": "A Empresa - Dados Cadastrais",
+    "2": "O Projeto - Descrição e Objetivos",
+    "3": "Cronograma de Investimentos",
+    "4": "Capacidade Produtiva - Produtos",
+    "5": "Insumos de Produção",
+    "6": "Matriz Insumo-Produto",
+    "7": "Origem e Destino - Mercado Regional",
+    "8": "Recursos Humanos",
+    "9": "Balanço Patrimonial",
+    "10": "Demonstração do Resultado do Exercício (DRE)",
+    "11": "Fluxo de Caixa Projetado",
+    "12": "Indicadores de Viabilidade (VPL, TIR, Payback)"
+  },
+
+  "requiredFields": {
+    "1": [
+      "razaoSocial",
+      "cnpj",
+      "endereco",
+      "dataConstituicao",
+      "capitalSubscrito",
+      "capitalIntegralizado",
+      "regimeTributario",
+      "composicaoSocietaria"
+    ],
+    "2": [
+      "objetivoProjeto",
+      "localizacao",
+      "inicioImplantacao",
+      "entradaOperacao",
+      "descricaoMercado"
+    ],
+    "3": [
+      "investimentos"
+    ],
+    "4": [
+      "produtos"
+    ],
+    "5": [
+      "insumos"
+    ],
+    "6": [
+      "matrizInsumoProduto"
+    ],
+    "7": [
+      "origemInsumos",
+      "destinoVendas"
+    ],
+    "8": [
+      "quadroFuncionarios"
+    ],
+    "9": [
+      "ativoCirculante",
+      "passivoCirculante",
+      "patrimonioLiquido"
+    ],
+    "10": [
+      "receitaBruta",
+      "custosVariaveis",
+      "custosFixos",
+      "lucroOperacional"
+    ],
+    "11": [
+      "fluxoCaixaOperacional",
+      "fluxoCaixaInvestimento",
+      "fluxoCaixaFinanciamento"
+    ],
+    "12": [
+      "tmaUsuario",
+      "vpl",
+      "tir",
+      "paybackSimples",
+      "paybackDescontado"
+    ]
+  },
+
+  "validationRules": {
+    "cnpjPattern": "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$",
+    "emailPattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+    "phonePattern": "^\\(\\d{2}\\)\\s?\\d{4,5}\\-?\\d{4}$",
+    "datePattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4}$",
+    "percentualTotal": 100
+  },
+
+  "calculators": {
+    "vpl": {
+      "description": "Valor Presente Líquido calculado com TMA fornecida pelo usuário",
+      "formula": "VPL = Σ(FC_t / (1 + TMA)^t) - I_0",
+      "requiresInput": ["tma", "fluxosCaixa", "investimentoInicial"]
+    },
+    "tir": {
+      "description": "Taxa Interna de Retorno via método iterativo",
+      "formula": "0 = Σ(FC_t / (1 + TIR)^t) - I_0",
+      "requiresInput": ["fluxosCaixa", "investimentoInicial"]
+    },
+    "payback": {
+      "description": "Payback simples e descontado",
+      "formula": "Payback = Menor t tal que Σ(FC_i) >= I_0",
+      "requiresInput": ["fluxosCaixa", "investimentoInicial", "tma"]
+    },
+    "dre": {
+      "description": "DRE com impostos fornecidos pelo usuário",
+      "requiresInput": ["receitas", "custos", "aliquotas"]
+    }
+  },
+
+  "categoriesInvestimento": [
+    "Obras Civis (Terrenos, Construções)",
+    "Máquinas e Equipamentos Nacionais",
+    "Máquinas e Equipamentos Importados",
+    "Equipamentos de Informática",
+    "Veículos",
+    "Móveis e Utensílios",
+    "Instalações",
+    "Treinamento e Capacitação",
+    "Montagens e Fretes"
+  ],
+
+  "tiposInsumo": [
+    "MP - Matéria-Prima",
+    "IS - Insumo Secundário",
+    "ME - Material de Embalagem",
+    "EE - Energia Elétrica",
+    "AG - Água",
+    "SV - Serviços"
+  ],
+
+  "regimeTributario": [
+    "Lucro Real",
+    "Lucro Presumido",
+    "Simples Nacional"
+  ],
+
+  "regioesMercado": [
+    "Goiás",
+    "Estados NO, NE e CO",
+    "Estados SU e SE",
+    "Importação"
+  ],
+
+  "exportFormats": [
+    "json",
+    "pdf",
+    "excel",
+    "csv"
+  ],
+
+  "autoSave": {
+    "enabled": true,
+    "intervalSeconds": 30,
+    "debounceSeconds": 3,
+    "maxAutoSaves": 10
+  },
+
+  "navigation": {
+    "freeNavigation": true,
+    "allowIncompleteNavigation": true,
+    "validateOnlyOnSubmit": false,
+    "showSectionIndicators": true,
+    "showProgressBar": true
+  },
+
+  "ui": {
+    "progressBarEnabled": true,
+    "navigationButtons": {
+      "prev": "Anterior",
+      "next": "Próximo",
+      "finish": "Finalizar e Gerar Relatórios"
+    },
+    "saveIndicator": {
+      "enabled": true,
+      "position": "top-right"
+    },
+    "charts": {
+      "enabled": true,
+      "library": "chartjs",
+      "types": ["line", "bar", "pie", "doughnut"]
+    }
+  },
+
+  "messages": {
+    "welcome": "Bem-vindo ao Questionário de Viabilidade Econômico-Financeira",
+    "completion": "Análise de viabilidade concluída! Confira os indicadores calculados.",
+    "autoSaveSuccess": "Dados salvos automaticamente",
+    "autoSaveError": "Erro ao salvar automaticamente. Verifique sua conexão.",
+    "validationError": "Por favor, preencha todos os campos obrigatórios",
+    "exportSuccess": "Arquivo exportado com sucesso",
+    "exportError": "Erro ao exportar arquivo",
+    "calculationError": "Erro ao calcular indicadores. Verifique os dados fornecidos."
+  },
+
+  "reports": {
+    "pdf": {
+      "enabled": true,
+      "title": "Estudo de Viabilidade Econômico-Financeira",
+      "sections": [
+        "capa",
+        "sumario_executivo",
+        "dados_empresa",
+        "descricao_projeto",
+        "investimentos",
+        "operacao",
+        "mercado",
+        "recursos_humanos",
+        "projecoes_financeiras",
+        "indicadores_viabilidade",
+        "conclusao"
+      ]
+    },
+    "excel": {
+      "enabled": true,
+      "sheets": [
+        "Resumo Executivo",
+        "Cadastro",
+        "Investimentos",
+        "Produtos",
+        "Insumos",
+        "Matriz Insumo-Produto",
+        "Mercado",
+        "RH",
+        "Balanço",
+        "DRE",
+        "Fluxo de Caixa",
+        "Indicadores"
+      ]
+    }
+  },
+
+  "helpTexts": {
+    "vpl": "VPL (Valor Presente Líquido): Indica o valor presente dos fluxos de caixa futuros descontados pela TMA. VPL > 0 indica viabilidade.",
+    "tir": "TIR (Taxa Interna de Retorno): Taxa que iguala o VPL a zero. Deve ser maior que a TMA para viabilidade.",
+    "payback": "Payback: Tempo necessário para recuperar o investimento inicial. Quanto menor, melhor.",
+    "tma": "TMA (Taxa Mínima de Atratividade): Menor taxa de retorno aceitável para o projeto."
+  }
+}
