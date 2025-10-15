@@ -301,6 +301,73 @@ Commit 7 - Sistema Financiamento independente (novo, from scratch)
 
 ---
 
+### 14/10/2025 - Sessão #4 - Hotfix Commit 6 ✅
+
+**Duração:** 1h
+**Fase:** Fase 2 - Correção de Bugs ProGoiás
+
+**Completado:**
+- [x] Identificação de erro de paths em Commit 6
+- [x] **Hotfix 1:** Correção inicial de paths (2557cfb - REVERTIDO)
+- [x] **Hotfix 2:** Correção definitiva de profundidade de paths (f085730)
+
+**Problema Identificado:**
+- Scripts ProGoiás retornavam 404 errors no browser
+- Paths usavam `../../sistemas/` (2 níveis up) mas deveria ser `../sistemas/` (1 nível up)
+- IndexedDB não inicializava devido aos 404s
+
+**Correções Aplicadas:**
+
+**Primeira tentativa (2557cfb - INCORRETA):**
+- Corrigiu paths de `../assets/js/database/` → `../../sistemas/progoias/storage/`
+- Removeu inicialização duplicada de IndexedDB (IIFE redundante)
+- Mas manteve erro de profundidade (2 níveis em vez de 1)
+
+**Correção definitiva (f085730 - CORRETA):**
+- Corrigiu profundidade: `../../sistemas/` → `../sistemas/`
+- 9 scripts corrigidos:
+  - 3 storage scripts (indexeddb-schema, manager, form-sync)
+  - 1 navigation script
+  - 5 matriz scripts (state-manager, validation, card-renderer, import-export, produto-insumo)
+
+**Path Resolution:**
+```
+Correto:
+src/pages/formulario-progoias.html
+  → ../                        (vai para src/)
+  → sistemas/progoias/         (encontra src/sistemas/progoias/)
+  ✓ Scripts carregam
+
+Incorreto (anterior):
+src/pages/formulario-progoias.html
+  → ../../                     (vai para raiz do projeto)
+  → sistemas/progoias/         (procura /sistemas/progoias/)
+  ✗ 404 errors
+```
+
+**Bloqueios Novos:**
+Nenhum
+
+**Aprendizados:**
+- **Relative paths:** Sempre verificar profundidade correta
+- **Browser testing:** Fundamental testar no browser, não só no servidor
+- **Port awareness:** Vite rodando em 3002, não 3001
+- **Hotfix commits:** Melhor criar novo commit corretivo que forçar push
+- Double-check path resolution antes de commit
+
+**Próxima Ação:**
+Commit 7 - Sistema Financiamento independente (novo, from scratch)
+
+**Observações:**
+- Hotfix concluído em 1h
+- 2 commits (1 incorreto revertido + 1 correto)
+- ProGoiás agora carrega corretamente no browser
+- IndexedDB inicializa sem erros
+- Matriz produto-insumo funcional
+- Sistema pronto para uso
+
+---
+
 ## 🎯 Próxima Sessão de Trabalho
 
 **Data Planejada:** 15/10/2025
@@ -493,6 +560,6 @@ Commit 7 - Sistema Financiamento independente (novo, from scratch)
 
 ---
 
-**Última Atualização:** 14/10/2025 23:30 - Commit 6 Completo ✅
+**Última Atualização:** 15/10/2025 01:20 - Hotfix Commit 6 Completo ✅
 **Próxima Revisão:** 15/10/2025
-**Versão:** 1.4.0
+**Versão:** 1.4.1
