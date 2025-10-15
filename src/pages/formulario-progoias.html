@@ -1285,9 +1285,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- IndexedDB para ProGoiás (OBRIGATÓRIO - PRIMEIRO) -->
-    <script src="../assets/js/database/progoias-indexeddb-schema.js"></script>
-    <script src="../assets/js/database/progoias-indexeddb-manager.js"></script>
-    <script src="../assets/js/database/progoias-form-sync.js"></script>
+    <script src="../../sistemas/progoias/storage/progoias-indexeddb-schema.js"></script>
+    <script src="../../sistemas/progoias/storage/progoias-indexeddb-manager.js"></script>
+    <script src="../../sistemas/progoias/storage/progoias-form-sync.js"></script>
+
+    <!-- IndexedDB será inicializado por progoias-navigation.js no DOMContentLoaded -->
 
     <!-- Configuração e Calculadoras -->
     <script src="../assets/js/config-loader.js"></script>
@@ -1296,7 +1298,7 @@
 
     <!-- Módulos do Formulário -->
     <script src="../assets/js/tabs.js"></script>
-    <script src="../assets/js/progoias-navigation.js"></script>
+    <script src="../../sistemas/progoias/utils/progoias-navigation.js"></script>
     <script src="../assets/js/core.js"></script>
     <script src="../assets/js/validation.js"></script>
     <script src="../assets/js/export.js"></script>
@@ -1310,11 +1312,11 @@
     <script src="../assets/js/utils/percentage-calculator.js"></script>
 
     <!-- Matriz Produto-Insumo (Fase 3A) -->
-    <script src="../assets/js/progoias/matriz/matriz-state-manager.js"></script>
-    <script src="../assets/js/progoias/matriz/matriz-validation.js"></script>
-    <script src="../assets/js/progoias/matriz/matriz-card-renderer.js"></script>
-    <script src="../assets/js/progoias/matriz/matriz-import-export.js"></script>
-    <script src="../assets/js/progoias/matriz/matriz-produto-insumo.js"></script>
+    <script src="../../sistemas/progoias/matriz/matriz-state-manager.js"></script>
+    <script src="../../sistemas/progoias/matriz/matriz-validation.js"></script>
+    <script src="../../sistemas/progoias/matriz/matriz-card-renderer.js"></script>
+    <script src="../../sistemas/progoias/matriz/matriz-import-export.js"></script>
+    <script src="../../sistemas/progoias/matriz/matriz-produto-insumo.js"></script>
 
     <!-- Inicialização da Matriz -->
     <script>
@@ -1332,14 +1334,14 @@
                 return new Promise((resolve, reject) => {
                     const timeout = setTimeout(() => {
                         clearInterval(checkDB);
-                        reject(new Error('Timeout: dbManager não disponível após 10s'));
+                        reject(new Error('Timeout: progoiasDBManager não disponível após 10s'));
                     }, 10000);
 
                     const checkDB = setInterval(() => {
-                        if (window.dbManager) {
+                        if (window.progoiasDBManager) {
                             clearInterval(checkDB);
                             clearTimeout(timeout);
-                            resolve(window.dbManager);
+                            resolve(window.progoiasDBManager);
                         }
                     }, 100);
                 });
