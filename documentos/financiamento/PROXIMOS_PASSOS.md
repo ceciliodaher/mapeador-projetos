@@ -1,8 +1,8 @@
 # Próximos Passos - Sistema FCO
 
 **Data:** 2025-10-16
-**Status Atual:** Sprint 1 Completo ✅
-**Progresso Geral:** 20h / 90h (22%)
+**Status Atual:** Sprint 2 Iniciado 🚀
+**Progresso Geral:** 21h / 90h (23%)
 
 ---
 
@@ -13,10 +13,35 @@
 | Sprint | Objetivo | Esforço | Status |
 |--------|----------|---------|--------|
 | **Sprint 1** | Core Components | 20h | ✅ **COMPLETO** |
-| **Sprint 2** | RESPONDENTE Sections | 30h | ⏳ Pendente |
+| **PRE-Tasks** | FinanciamentoModule Setup | 1h | ✅ **COMPLETO** |
+| **Sprint 2** | RESPONDENTE Sections | 30h | 🔄 **EM ANDAMENTO** |
 | **Sprint 3** | Import/Export & Integration | 25h | ⏳ Pendente |
 | **Sprint 4** | Testing & Polish | 15h | ⏳ Pendente |
-| **TOTAL** | Sistema Completo | **90h** | **22% completo** |
+| **TOTAL** | Sistema Completo | **91h** | **23% completo** |
+
+---
+
+## ✅ PRE-Tasks Completados (1 hora)
+
+### PRE-1: Métodos IndexedDB ✅ COMPLETO
+**Esforço:** 0.5h
+**Arquivo:** `/src/assets/js/financiamento/financiamento-module.js`
+
+**Implementado:**
+- ✅ Object store `dynamicTables` adicionado ao schema IndexedDB (linhas 144-151)
+- ✅ Método `salvarDynamicTable(tableId, data)` com validação completa (linhas 478-511)
+- ✅ Método `carregarDynamicTable(tableId)` com tratamento de erros (linhas 513-543)
+- ✅ Seguindo princípio NO FALLBACKS (erros explícitos)
+
+### PRE-2: Data Collection/Restore ✅ COMPLETO
+**Esforço:** 0.5h
+**Arquivo:** `/src/assets/js/financiamento/financiamento-module.js`
+
+**Implementado:**
+- ✅ `coletarDadosFormulario()` expandido para seções 1-8 (linhas 565-730)
+- ✅ `restaurarDadosFormulario()` completo para todas seções (linhas 753-959)
+- ✅ Métodos auxiliares: `coletarProdutos()`, `coletarInsumos()`, `restaurarProdutos()`, `restaurarInsumos()`
+- ✅ Suporte para arrays dinâmicos (produtos/insumos na Seção 8)
 
 ---
 
@@ -341,15 +366,17 @@ columns: [
 
 ## 📈 Métricas de Progresso
 
-| Métrica | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 | Total |
-|---------|----------|----------|----------|----------|-------|
-| **Esforço (h)** | 20 | 30 | 25 | 15 | 90 |
-| **% Progresso** | 22% | 33% | 28% | 17% | 100% |
-| **Componentes** | 4 | 10 | 3 | 0 | 17 |
-| **Seções** | 0 | 7 | 0 | 0 | 7 |
-| **Testes** | 0 | 0 | 0 | 36+ | 36+ |
+| Métrica | Sprint 1 | PRE-Tasks | Sprint 2 | Sprint 3 | Sprint 4 | Total |
+|---------|----------|-----------|----------|----------|----------|-------|
+| **Esforço (h)** | 20 | 1 | 30 | 25 | 15 | 91 |
+| **% Progresso** | 22% | 1% | 33% | 27% | 17% | 100% |
+| **Componentes** | 4 | 0 | 10 | 3 | 0 | 17 |
+| **Seções** | 0 | 0 | 7 | 0 | 0 | 7 |
+| **Testes** | 0 | 0 | 0 | 0 | 36+ | 36+ |
 
-**Status Atual:** 22% completo (20h / 90h)
+**Status Atual:** 23% completo (21h / 91h)
+**PRE-Tasks:** ✅ Completo (IndexedDB methods + Data collection/restore)
+**Próximo:** Task 2.1 - Expandir Seção 1 (Identificação)
 
 ---
 
