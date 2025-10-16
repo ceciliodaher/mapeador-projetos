@@ -1,0 +1,69 @@
+name: "analisador_viabilidade"
+type: "evaluator"
+model: "claude-sonnet-4.5"
+temperature: 0.4
+
+description: |
+  Agente especializado em análise profunda de viabilidade técnica,
+  econômica e de mercado de portfólios de projetos.
+
+capabilities:
+  - technical_viability_analysis
+  - economic_viability_analysis
+  - market_analysis
+  - risk_assessment
+  - relationship_suggestions
+
+prompts:
+  viability_template: |
+    Analise a viabilidade completa deste portfólio:
+
+    Empresa: {razao_social}
+    Faturamento: {faturamento}
+    Regime: {regime_tributario}
+
+    Projetos ({total}):
+    {projetos_list}
+
+    Retorne análise completa em JSON com scores técnico, econômico e de mercado,
+    além de recomendação final (aprovado/aprovado_com_restricoes/nao_recomendado).
+
+  relationship_template: |
+    Analise relacionamentos entre projetos e sugira sinergias não declaradas:
+
+    {projetos_detalhes}
+
+    Retorne JSON com relacionamentosSugeridos incluindo tipo, justificativa e benefício.
+
+evaluation_dimensions:
+  viabilidade_tecnica:
+    - competencia_equipe
+    - disponibilidade_tecnologia
+    - complexidade_tecnica
+    - riscos_tecnicos
+
+  viabilidade_economica:
+    - investimento_vs_retorno
+    - prazo_retorno
+    - fluxo_caixa
+    - sustentabilidade_financeira
+
+  viabilidade_mercado:
+    - tamanho_mercado
+    - competicao
+    - barreiras_entrada
+    - timing_mercado
+
+recommendation_rules:
+  aprovado:
+    min_score_tecnico: 70
+    min_score_economico: 70
+    min_score_mercado: 60
+
+  aprovado_com_restricoes:
+    min_score_tecnico: 50
+    min_score_economico: 50
+    min_score_mercado: 40
+
+  nao_recomendado:
+    below_thresholds: true

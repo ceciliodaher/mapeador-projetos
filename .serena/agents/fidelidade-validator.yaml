@@ -1,0 +1,275 @@
+name: fidelidade-validator
+description: Valida que estrutura extraída é 100% fiel às planilhas Excel
+version: 1.0.0
+author: Expertzy
+created: 2025-01-15
+
+capabilities:
+  - Comparação estrutural
+  - Validação de tipos de dados
+  - Verificação de completude
+  - Auditoria de mapeamento
+
+dependencies:
+  - planilhas-fco-complete-analyzer
+
+input:
+  outputs_analyzer:
+    - "documentos/financiamento/lista_abas_completa.json"
+    - "documentos/financiamento/campos_estruturados_completo.json"
+    - "documentos/financiamento/tabelas_dinamicas.json"
+    - "documentos/financiamento/demonstracoes_estrutura.json"
+    - "documentos/financiamento/formulas_catalog.json"
+
+  planilhas_originais:
+    - "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/ProjecoesD-Dividas-15.xls"
+    - "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/Budget.xlsx"
+    - "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Incentivos/Documentos e Informacoes/Informacoes_Projeto-Viabilidade (ceciliodaher@gmail.com).xls"
+    - "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/balanço versão outubro 2011.xls"
+    - "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/Valuation.xlsx"
+
+tasks:
+  - name: validar_completude_abas
+    description: "Garante que TODAS as abas foram mapeadas"
+    action: |
+      1. Contar total de abas nas planilhas Excel (source of truth)
+      2. Contar total de abas no JSON gerado (lista_abas_completa.json)
+      3. Comparar:
+         - Se diferença = 0 → ✅ COMPLETO
+         - Se diferença > 0 → ❌ ABAS PERDIDAS
+      4. Listar abas perdidas (se houver)
+    output:
+      status: completo|incompleto
+      total_abas_excel: number
+      total_abas_mapeadas: number
+      diferenca: number
+      abas_perdidas: array
+
+  - name: validar_completude_campos
+    description: "Garante que NENHUM campo foi perdido"
+    action: |
+      Para cada aba:
+        1. Contar células editáveis (não-fórmula) no Excel
+        2. Contar campos mapeados no JSON (campos_estruturados_completo.json)
+        3. Comparar:
+           - Se diferença = 0 → ✅ COMPLETO
+           - Se diferença > 0 → ❌ CAMPOS PERDIDOS
+        4. Identificar células não-mapeadas (se houver)
+    output:
+      por_aba: array
+        - aba: string
+          status: completo|incompleto
+          total_celulas_excel: number
+          total_campos_mapeados: number
+          diferenca: number
+          celulas_perdidas: array
+      resumo:
+        total_celulas_excel: number
+        total_campos_mapeados: number
+        percentual_cobertura: number
+
+  - name: validar_tipos_corretos
+    description: "Garante que tipos inferidos correspondem ao formato Excel"
+    action: |
+      Para cada campo mapeado:
+        1. Ler formato da célula no Excel
+        2. Ler field_type do JSON
+        3. Validar correspondência:
+
+           Excel → JSON esperado:
+           - Formato moeda (R$ #,##0.00) → currency
+           - Formato data (dd/mm/aaaa) → date
+           - Formato percentual (0.00%) → percentage
+           - Validação lista → list
+           - Validação range → number com min/max
+           - Texto geral → text
+           - Número geral → number
+           - Padrão CPF → cpf
+           - Padrão CNPJ → cnpj
+           - Padrão telefone → phone
+           - Contém @ → email
+
+        4. Marcar discrepâncias:
+           - Esperado vs Real
+           - Severidade: crítico|médio|baixo
+    output:
+      por_campo: array
+        - campo: string
+          formato_excel: string
+          tipo_mapeado: string
+          status: correto|discrepante
+          severidade: critico|medio|baixo
+      resumo:
+        total_campos: number
+        corretos: number
+        discrepantes: number
+        percentual_precisao: number
+
+  - name: validar_formulas_completas
+    description: "Garante que todas as fórmulas foram capturadas"
+    action: |
+      1. Contar total de fórmulas únicas no Excel (normalizar antes de contar)
+      2. Contar total de fórmulas no catálogo JSON (formulas_catalog.json)
+      3. Comparar:
+         - Se diferença = 0 → ✅ COMPLETO
+         - Se diferença > 0 → ❌ FÓRMULAS PERDIDAS
+      4. Listar fórmulas não-mapeadas (se houver)
+    output:
+      status: completo|incompleto
+      total_formulas_excel: number
+      total_formulas_catalogadas: number
+      diferenca: number
+      formulas_perdidas: array
+
+  - name: validar_tabelas_dinamicas
+    description: "Valida que tabelas dinâmicas foram identificadas corretamente"
+    action: |
+      Para cada tabela identificada:
+        1. Verificar se estrutura bate com Excel:
+           - Número de colunas
+           - Tipo de cada coluna
+           - Linha de total (se marcado como true, deve existir)
+        2. Verificar se todas as tabelas foram encontradas:
+           - Procurar padrões de tabela que não foram mapeados
+    output:
+      por_tabela: array
+        - tabela: string
+          status: correto|incorreto
+          problemas: array
+      resumo:
+        total_identificadas: number
+        corretas: number
+        incorretas: number
+
+  - name: validar_demonstracoes_estrutura
+    description: "Valida estrutura de DRE e Balanço"
+    action: |
+      Para DRE e Balanço:
+        1. Verificar se TODAS as contas foram mapeadas
+        2. Verificar se hierarquia está correta (níveis)
+        3. Verificar se fórmulas de grupo estão corretas
+        4. Verificar se 4 períodos foram identificados:
+           - Deve ter EXATAMENTE 4 colunas de períodos
+           - Labels corretos
+        5. Marcar discrepâncias
+    output:
+      dre:
+        total_contas_excel: number
+        total_contas_mapeadas: number
+        periodos_identificados: number
+        periodos_esperados: 4
+        status: correto|incorreto
+        problemas: array
+      balanco:
+        # mesma estrutura
+
+  - name: calcular_score_fidelidade
+    description: "Calcula score geral de fidelidade à planilha"
+    action: |
+      Score baseado em:
+        1. Completude de abas (peso 15%)
+        2. Completude de campos (peso 30%)
+        3. Precisão de tipos (peso 25%)
+        4. Completude de fórmulas (peso 15%)
+        5. Tabelas dinâmicas (peso 10%)
+        6. Demonstrações (peso 5%)
+
+      Fórmula:
+        Score = (
+          abas_completas/total_abas * 0.15 +
+          campos_mapeados/total_campos * 0.30 +
+          tipos_corretos/total_campos * 0.25 +
+          formulas_catalogadas/total_formulas * 0.15 +
+          tabelas_corretas/total_tabelas * 0.10 +
+          demonstracoes_ok/2 * 0.05
+        ) * 100
+
+      Classificação:
+        95-100%: ✅ EXCELENTE - Fidelidade total
+        85-94%:  ✅ BOM - Pequenos ajustes necessários
+        70-84%:  ⚠️  REGULAR - Revisão recomendada
+        <70%:    ❌ INSUFICIENTE - Reprocessamento obrigatório
+    output:
+      score_geral: number
+      classificacao: string
+      detalhamento:
+        completude_abas: number
+        completude_campos: number
+        precisao_tipos: number
+        completude_formulas: number
+        precisao_tabelas: number
+        precisao_demonstracoes: number
+
+output:
+  format: markdown
+  file: "documentos/financiamento/VALIDACAO_FIDELIDADE.md"
+  sections:
+    - score_fidelidade: |
+        # Score de Fidelidade: {{score_geral}}% - {{classificacao}}
+
+        Detalhamento:
+        - ✓ Completude de Abas: {{completude_abas}}%
+        - ✓ Completude de Campos: {{completude_campos}}%
+        - ✓ Precisão de Tipos: {{precisao_tipos}}%
+        - ✓ Completude de Fórmulas: {{completude_formulas}}%
+        - ✓ Tabelas Dinâmicas: {{precisao_tabelas}}%
+        - ✓ Demonstrações: {{precisao_demonstracoes}}%
+
+    - validacao_abas: |
+        ## Validação de Abas
+        {{detalhes_validacao_abas}}
+
+    - validacao_campos: |
+        ## Validação de Campos
+        {{detalhes_validacao_campos}}
+
+    - validacao_tipos: |
+        ## Validação de Tipos
+        {{detalhes_validacao_tipos}}
+
+    - validacao_formulas: |
+        ## Validação de Fórmulas
+        {{detalhes_validacao_formulas}}
+
+    - validacao_tabelas: |
+        ## Validação de Tabelas Dinâmicas
+        {{detalhes_validacao_tabelas}}
+
+    - validacao_demonstracoes: |
+        ## Validação de Demonstrações Financeiras
+        {{detalhes_validacao_demonstracoes}}
+
+    - problemas_criticos: |
+        ## Problemas Críticos (Ação Obrigatória)
+        {{lista_problemas_criticos}}
+
+    - recomendacoes: |
+        ## Recomendações
+        {{recomendacoes_detalhadas}}
+
+  additional_outputs:
+    - file: "documentos/financiamento/validacao_metricas.json"
+      format: json
+      content: todas_metricas_validacao
+
+success_criteria:
+  minimum_score: 95.0
+  critical_issues_allowed: 0
+  action_on_failure: |
+    Se score < 95% ou problemas críticos > 0:
+      1. Alertar usuário
+      2. Gerar relatório detalhado de gaps
+      3. Recomendar reexecução do analyzer com ajustes
+      4. Não prosseguir para implementação até correção
+
+notes: |
+  Este validador é crítico para garantir que não perdemos NENHUMA
+  informação das planilhas FCO. Score mínimo de 95% é obrigatório.
+
+  Problemas críticos (score < 95%):
+  - Campos perdidos na extração
+  - Tipos incorretos para campos financeiros (currency/percentage)
+  - Fórmulas de cálculo não-catalogadas
+  - Demonstrações sem os 4 períodos
+
+  O sistema NÃO deve prosseguir com implementação se validação falhar.

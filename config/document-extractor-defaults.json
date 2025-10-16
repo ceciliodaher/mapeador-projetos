@@ -1,0 +1,105 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "dataAtualizacao": "2025-01-15",
+    "descricao": "Defaults para DocumentExtractor - Upload e extração automática de PDFs",
+    "autor": "Expertzy"
+  },
+
+  "tiposDocumento": {
+    "balanco": {
+      "label": "Balanço Patrimonial",
+      "patterns": [
+        "balanço patrimonial",
+        "ativo circulante",
+        "passivo circulante",
+        "patrimônio líquido"
+      ],
+      "campos": ["ativo", "passivo", "patrimonioLiquido", "data"]
+    },
+    "dre": {
+      "label": "DRE - Demonstração do Resultado",
+      "patterns": [
+        "demonstração do resultado",
+        "receita operacional",
+        "custo das vendas",
+        "lucro líquido"
+      ],
+      "campos": ["receitaBruta", "custosVendas", "lucroLiquido", "periodo"]
+    },
+    "contrato": {
+      "label": "Contrato Social / Estatuto",
+      "patterns": [
+        "contrato social",
+        "estatuto social",
+        "razão social",
+        "cnpj"
+      ],
+      "campos": ["razaoSocial", "cnpj", "endereco", "socios"]
+    },
+    "divida": {
+      "label": "Contrato de Dívida / Financiamento",
+      "patterns": [
+        "contrato de financiamento",
+        "contrato de empréstimo",
+        "credor",
+        "valor financiado"
+      ],
+      "campos": ["credor", "valorTotal", "taxa", "prazo", "dataVencimento"]
+    },
+    "certidao": {
+      "label": "Certidão Negativa",
+      "patterns": [
+        "certidão negativa",
+        "certidão de regularidade",
+        "nada consta"
+      ],
+      "campos": ["orgao", "cnpj", "dataEmissao", "validade"]
+    }
+  },
+
+  "upload": {
+    "maxFileSize": 10485760,
+    "maxFileSizeMB": 10,
+    "acceptedFormats": [".pdf"],
+    "acceptedMimeTypes": ["application/pdf"],
+    "encoding": "utf-8"
+  },
+
+  "extrac
+
+tion": {
+    "confidence": {
+      "minimo": 0.7,
+      "ideal": 0.9
+    },
+    "ocr": {
+      "fallbackToOCR": true,
+      "language": "por"
+    }
+  },
+
+  "validacao": {
+    "obrigatorioRevisaoManual": true,
+    "permitirSalvarSemRevisao": false,
+    "highlightCamposExtraidos": true
+  },
+
+  "css": {
+    "wrapper": "document-extractor-wrapper",
+    "uploadArea": "upload-area",
+    "uploadAreaActive": "upload-area-active",
+    "fileInput": "file-input",
+    "uploadButton": "btn btn-primary btn-upload",
+    "fileList": "file-list",
+    "fileItem": "file-item",
+    "fileStatus": "file-status",
+    "extractionResults": "extraction-results",
+    "confidenceHigh": "confidence-high",
+    "confidenceMedium": "confidence-medium",
+    "confidenceLow": "confidence-low",
+    "reviewPanel": "review-panel",
+    "applyButton": "btn btn-success btn-apply",
+    "cancelButton": "btn btn-secondary btn-cancel"
+  }
+}

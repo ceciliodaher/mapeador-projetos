@@ -1,0 +1,26 @@
+{
+  "score_fidelidade": {
+    "score_geral": 64.47,
+    "classificacao": "INSUFICIENTE",
+    "status": "REPROVADO",
+    "detalhamento": {
+      "completude_abas": 100.0,
+      "completude_campos": 60.77,
+      "precisao_tipos": 4.95,
+      "completude_formulas": 100.0,
+      "precisao_tabelas": 100.0,
+      "precisao_demonstracoes": 100.0
+    },
+    "problemas_criticos": 138,
+    "timestamp": "2025-10-15T14:35:46.766816",
+    "gaps_identificados": [
+      "Completude de campos: 39.2% de campos não mapeados (inclui fórmulas)",
+      "Precisão de tipos: 95.0% de tipos incorretos (138 críticos)"
+    ],
+    "recomendacoes": [
+      "CRÍTICO: Revisar algoritmo de inferência de tipos (currency não detectado)",
+      "IMPORTANTE: Validar se campos calculados (fórmulas) devem ser incluídos na contagem",
+      "ATENÇÃO: 138 campos currency não identificados corretamente"
+    ]
+  }
+}

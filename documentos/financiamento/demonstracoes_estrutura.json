@@ -1,0 +1,81 @@
+{
+  "demonstracoes": [
+    {
+      "nome_aba": "A.6 DRE Historico",
+      "tipo": "mista",
+      "num_linhas": 52,
+      "num_colunas": 8,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 23,
+      "campos_calculados": 35,
+      "percentual_editavel": 39.66,
+      "planilha": "Budget.xlsx"
+    },
+    {
+      "nome_aba": "B. Resultados>>",
+      "tipo": "input",
+      "num_linhas": 12,
+      "num_colunas": 65,
+      "contem_tabela_dinamica": false,
+      "campos_editaveis": 1,
+      "campos_calculados": 0,
+      "percentual_editavel": 100.0,
+      "planilha": "Budget.xlsx"
+    },
+    {
+      "nome_aba": "Balancos",
+      "tipo": "input",
+      "num_linhas": 182,
+      "num_colunas": 28,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 507,
+      "campos_calculados": 0,
+      "percentual_editavel": 100.0,
+      "planilha": "Informacoes_Projeto-Viabilidade.xls"
+    },
+    {
+      "nome_aba": "DRE",
+      "tipo": "input",
+      "num_linhas": 46,
+      "num_colunas": 256,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 157,
+      "campos_calculados": 0,
+      "percentual_editavel": 100.0,
+      "planilha": "balanço versão outubro 2011.xls"
+    },
+    {
+      "nome_aba": "Tabela Resultados",
+      "tipo": "calculada",
+      "num_linhas": 41,
+      "num_colunas": 12,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 34,
+      "campos_calculados": 239,
+      "percentual_editavel": 12.45,
+      "planilha": "Valuation.xlsx"
+    },
+    {
+      "nome_aba": "DRE e BP Historico",
+      "tipo": "calculada",
+      "num_linhas": 74,
+      "num_colunas": 11,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 2,
+      "campos_calculados": 198,
+      "percentual_editavel": 1.0,
+      "planilha": "Valuation.xlsx"
+    },
+    {
+      "nome_aba": "DRE e BP",
+      "tipo": "calculada",
+      "num_linhas": 73,
+      "num_colunas": 11,
+      "contem_tabela_dinamica": true,
+      "campos_editaveis": 1,
+      "campos_calculados": 288,
+      "percentual_editavel": 0.35,
+      "planilha": "Valuation.xlsx"
+    }
+  ]
+}

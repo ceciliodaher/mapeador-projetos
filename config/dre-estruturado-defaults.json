@@ -1,0 +1,97 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "dataAtualizacao": "2025-01-15",
+    "descricao": "Defaults para DREEstruturado component - Demonstrações financeiras com 4 períodos",
+    "autor": "Expertzy"
+  },
+
+  "periodos": {
+    "quantidade": 4,
+    "labels": [
+      "Ano N-3",
+      "Ano N-2",
+      "Ano N-1",
+      "Ano Atual"
+    ],
+    "status": [
+      "completo",
+      "completo",
+      "completo",
+      "parcial"
+    ]
+  },
+
+  "contaTipos": {
+    "grupo": {
+      "description": "Conta de agrupamento (soma de subcontas)",
+      "calculado": true,
+      "editavel": false,
+      "fontWeight": "bold",
+      "backgroundColor": "#f5f5f5"
+    },
+    "conta": {
+      "description": "Conta individual",
+      "calculado": false,
+      "editavel": true,
+      "fontWeight": "normal",
+      "backgroundColor": "#ffffff"
+    },
+    "subconta": {
+      "description": "Subconta (nível mais detalhado)",
+      "calculado": false,
+      "editavel": true,
+      "fontWeight": "normal",
+      "backgroundColor": "#ffffff"
+    }
+  },
+
+  "naturezas": {
+    "debito": {
+      "label": "Débito",
+      "sinal": 1
+    },
+    "credito": {
+      "label": "Crédito",
+      "sinal": -1
+    }
+  },
+
+  "formatacao": {
+    "currency": {
+      "locale": "pt-BR",
+      "currency": "BRL",
+      "decimalPlaces": 2
+    },
+    "indentacaoPorNivel": {
+      "1": "0px",
+      "2": "20px",
+      "3": "40px",
+      "4": "60px"
+    }
+  },
+
+  "validacao": {
+    "periodoAtualPodeSerParcial": true,
+    "permitirValoresNegativos": true,
+    "alertarSeGrupoNaoBate": true
+  },
+
+  "css": {
+    "wrapper": "dre-estruturado-wrapper",
+    "table": "table dre-table",
+    "headerRow": "dre-header-row",
+    "contaGrupo": "conta-grupo",
+    "contaNormal": "conta-normal",
+    "contaSubconta": "conta-subconta",
+    "periodoCompleto": "periodo-completo",
+    "periodoParcial": "periodo-parcial",
+    "valorPositivo": "valor-positivo",
+    "valorNegativo": "valor-negativo",
+    "linhaResultado": "linha-resultado",
+    "formControl": "form-control currency-input",
+    "readonlyField": "readonly-field",
+    "warning": "field-warning",
+    "error": "field-error"
+  }
+}

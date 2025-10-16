@@ -1,0 +1,10 @@
+{
+  "validacao_tabelas": {
+    "total_identificadas": 126,
+    "total_validadas": 20,
+    "corretas": 20,
+    "incorretas": 0,
+    "percentual_precisao": 100.0,
+    "problemas": []
+  }
+}

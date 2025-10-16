@@ -1,0 +1,88 @@
+name: "Análise pelo Especialista"
+description: "Análise profunda do questionário importado pelo analista"
+type: "parallel_then_sequential"
+
+steps:
+  - id: "validar_json"
+    name: "Validar JSON Importado"
+    agent: "questionario_orchestrator"
+    action: "validate_json"
+    inputs:
+      - json_file
+    outputs:
+      - validation_result
+      - checksum_valid
+    on_error: "reject_import"
+
+  - id: "calcular_scores"
+    name: "Calcular Scores de Projetos"
+    agent: "classificador_projetos"
+    action: "score_all_projects"
+    parallel: true
+    inputs:
+      - projetos_list
+    outputs:
+      - scores_individuais
+
+  - id: "analisar_viabilidade"
+    name: "Análise de Viabilidade"
+    agent: "analisador_viabilidade"
+    action: "deep_analysis"
+    inputs:
+      - empresa_data
+      - projetos_data
+    outputs:
+      - viabilidade_tecnica
+      - viabilidade_economica
+      - viabilidade_mercado
+      - recomendacao_final
+
+  - id: "sugerir_relacionamentos_ia"
+    name: "Sugerir Relacionamentos não Declarados"
+    agent: "analisador_viabilidade"
+    action: "suggest_undeclared_relationships"
+    inputs:
+      - projetos_data
+      - relacionamentos_declarados
+    outputs:
+      - relacionamentos_sugeridos
+
+  - id: "gerar_recomendacoes"
+    name: "Gerar Recomendações Estratégicas"
+    agent: "gerador_relatorios"
+    action: "generate_recommendations"
+    inputs:
+      - analise_completa
+      - scores
+      - viabilidade
+    outputs:
+      - recomendacoes_lista
+
+  - id: "compilar_relatorio"
+    name: "Compilar Relatório Final"
+    agent: "gerador_relatorios"
+    action: "compile_analysis_report"
+    inputs:
+      - all_analysis_data
+    outputs:
+      - relatorio_pdf
+      - relatorio_json
+
+error_handling:
+  validation_failure:
+    action: "warn_analyst"
+    allow_continue: true
+
+  checksum_mismatch:
+    action: "flag_warning"
+    severity: "medium"
+    allow_continue: true
+
+  analysis_failure:
+    action: "fallback_basic_analysis"
+    notify: true
+
+performance:
+  parallel_analysis: true
+  timeout_seconds: 120
+  cache_results: true

@@ -1,0 +1,194 @@
+{
+  "validacao_campos": {
+    "por_aba": [
+      {
+        "planilha": "Valuation.xlsx",
+        "aba": "Grafico Operacional (4)",
+        "status": "completo",
+        "total_celulas_excel": 9,
+        "total_campos_mapeados": 9,
+        "diferenca": 0,
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FINANCIAMENTO",
+        "status": "incompleto",
+        "total_celulas_excel": 789,
+        "total_campos_mapeados": 432,
+        "diferenca": 357,
+        "percentual_cobertura": 54.75
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "Versão",
+        "status": "completo",
+        "total_celulas_excel": 2,
+        "total_campos_mapeados": 2,
+        "diferenca": 0,
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 13",
+        "status": "incompleto",
+        "total_celulas_excel": 4170,
+        "total_campos_mapeados": 1734,
+        "diferenca": 2436,
+        "percentual_cobertura": 41.58
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 9",
+        "status": "incompleto",
+        "total_celulas_excel": 5133,
+        "total_campos_mapeados": 3219,
+        "diferenca": 1914,
+        "percentual_cobertura": 62.71
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 6",
+        "status": "incompleto",
+        "total_celulas_excel": 5133,
+        "total_campos_mapeados": 3638,
+        "diferenca": 1495,
+        "percentual_cobertura": 70.87
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "LINHAS",
+        "status": "completo",
+        "total_celulas_excel": 48,
+        "total_campos_mapeados": 48,
+        "diferenca": 0,
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "DEPRECIAÇÃO",
+        "status": "incompleto",
+        "total_celulas_excel": 146,
+        "total_campos_mapeados": 122,
+        "diferenca": 24,
+        "percentual_cobertura": 83.56
+      },
+      {
+        "planilha": "Valuation.xlsx",
+        "aba": "Preço x Valuation",
+        "status": "parcial",
+        "total_celulas_excel": 4,
+        "total_campos_mapeados": 7,
+        "diferenca": -3,
+        "percentual_cobertura": 175.0
+      },
+      {
+        "planilha": "balanço versão outubro 2011.xls",
+        "aba": "IND",
+        "status": "incompleto",
+        "total_celulas_excel": 162,
+        "total_campos_mapeados": 122,
+        "diferenca": 40,
+        "percentual_cobertura": 75.31
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "MÃO-DE-OBRA",
+        "status": "incompleto",
+        "total_celulas_excel": 897,
+        "total_campos_mapeados": 778,
+        "diferenca": 119,
+        "percentual_cobertura": 86.73
+      },
+      {
+        "planilha": "Valuation.xlsx",
+        "aba": "Macro",
+        "status": "parcial",
+        "total_celulas_excel": 285,
+        "total_campos_mapeados": 306,
+        "diferenca": -21,
+        "percentual_cobertura": 107.37
+      },
+      {
+        "planilha": "Informacoes_Projeto-Viabilidade.xls",
+        "aba": "Empregados",
+        "status": "incompleto",
+        "total_celulas_excel": 103,
+        "total_campos_mapeados": 18,
+        "diferenca": 85,
+        "percentual_cobertura": 17.48
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "ORÇAMENTO",
+        "status": "incompleto",
+        "total_celulas_excel": 739,
+        "total_campos_mapeados": 296,
+        "diferenca": 443,
+        "percentual_cobertura": 40.05
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 5",
+        "status": "incompleto",
+        "total_celulas_excel": 5133,
+        "total_campos_mapeados": 1979,
+        "diferenca": 3154,
+        "percentual_cobertura": 38.55
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 7",
+        "status": "incompleto",
+        "total_celulas_excel": 5133,
+        "total_campos_mapeados": 3638,
+        "diferenca": 1495,
+        "percentual_cobertura": 70.87
+      },
+      {
+        "planilha": "Informacoes_Projeto-Viabilidade.xls",
+        "aba": "Outras Info",
+        "status": "completo",
+        "total_celulas_excel": 50,
+        "total_campos_mapeados": 50,
+        "diferenca": 0,
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "Valuation.xlsx",
+        "aba": "Venture_Methods",
+        "status": "parcial",
+        "total_celulas_excel": 72,
+        "total_campos_mapeados": 119,
+        "diferenca": -47,
+        "percentual_cobertura": 165.28
+      },
+      {
+        "planilha": "balanço versão outubro 2011.xls",
+        "aba": "Giro",
+        "status": "incompleto",
+        "total_celulas_excel": 82,
+        "total_campos_mapeados": 64,
+        "diferenca": 18,
+        "percentual_cobertura": 78.05
+      },
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "aba": "FinanE - 3",
+        "status": "incompleto",
+        "total_celulas_excel": 5133,
+        "total_campos_mapeados": 3609,
+        "diferenca": 1524,
+        "percentual_cobertura": 70.31
+      }
+    ],
+    "resumo": {
+      "total_celulas_excel_amostra": 33223,
+      "total_campos_mapeados_amostra": 20190,
+      "percentual_cobertura_amostra": 60.77,
+      "total_campos_completo": 504022,
+      "abas_validadas": 20,
+      "abas_totais": 169
+    }
+  }
+}

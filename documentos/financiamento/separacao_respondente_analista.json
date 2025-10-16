@@ -1,0 +1,1525 @@
+{
+  "classificacao": [
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "MENU",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 4,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "ORIENTAÇÕES",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 131,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "PROJETO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 345,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Versão",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 2,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "ORÇAMENTO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 296,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "USOS E FONTES",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 690,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "RECEITAS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 555,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "QUANTIDADE",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 228,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "INSUMOS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 67,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "CUSTOS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 276,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "TRIBUTOS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 122,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "MÃO-DE-OBRA",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 778,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "GIRO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 166,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "DEPRECIAÇÃO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 122,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FINANCIAMENTO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 432,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "DÍVIDAS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 2760,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FLUXO DE CAIXA",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 421,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "LINHAS",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 48,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Finan1 - L",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 2275,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Finan2 - L",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1738,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Finan3 - L",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1738,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Finan4 - L",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 2736,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "Finan5 - L",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1738,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 1",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3074,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 2",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3105,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 3",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3609,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 4",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3615,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 5",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1979,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 6",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3638,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 7",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3638,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 8",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3214,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 9",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3219,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 10",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3659,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 11",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 3659,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 12",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1734,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 13",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1734,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 14",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1734,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FinanE - 15",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1734,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Controle",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 94.74,
+      "campos_editaveis": 18,
+      "campos_calculados": 1
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "PROJETO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 75.72,
+      "campos_editaveis": 262,
+      "campos_calculados": 84
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "ORÇAMENTO",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 11.8,
+      "campos_editaveis": 86,
+      "campos_calculados": 643
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "USOS E FONTES",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 16.8,
+      "campos_editaveis": 143,
+      "campos_calculados": 708
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "RECEITAS",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 11.63,
+      "campos_editaveis": 72,
+      "campos_calculados": 547
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "QUANTIDADE",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 10.18,
+      "campos_editaveis": 28,
+      "campos_calculados": 247
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "INSUMOS",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.35,
+      "campos_editaveis": 52,
+      "campos_calculados": 571
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "MÃO-DE-OBRA",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 15.48,
+      "campos_editaveis": 133,
+      "campos_calculados": 726
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "CUSTOS",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 15.12,
+      "campos_editaveis": 49,
+      "campos_calculados": 275
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "TRIBUTOS",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 23.88,
+      "campos_editaveis": 64,
+      "campos_calculados": 204
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "DEPRECIAÇÃO",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 40.41,
+      "campos_editaveis": 59,
+      "campos_calculados": 87
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "GIRO",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 15.12,
+      "campos_editaveis": 39,
+      "campos_calculados": 219
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FINANCIAMENTO",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 19.69,
+      "campos_editaveis": 153,
+      "campos_calculados": 624
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "DÍVIDAS",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 30.47,
+      "campos_editaveis": 1308,
+      "campos_calculados": 2985
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FLUXO DE CAIXA",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 17.69,
+      "campos_editaveis": 98,
+      "campos_calculados": 456
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FLUXO DE CAIXA-PURO",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 17.39,
+      "campos_editaveis": 100,
+      "campos_calculados": 475
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A. Premissas>>",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.1 Receita Bruta",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.57,
+      "campos_editaveis": 256,
+      "campos_calculados": 44463
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.1.1 Premissas de Receita",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.23,
+      "campos_editaveis": 76,
+      "campos_calculados": 32698
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.2 Impostos",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 4.88,
+      "campos_editaveis": 76,
+      "campos_calculados": 1480
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.2.1 Premissas de Impostos",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 1.74,
+      "campos_editaveis": 15,
+      "campos_calculados": 847
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.3 Custos",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.57,
+      "campos_editaveis": 77,
+      "campos_calculados": 13358
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.3.1 Premissas de Custos",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.48,
+      "campos_editaveis": 66,
+      "campos_calculados": 13698
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.4 Despesas",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.51,
+      "campos_editaveis": 25,
+      "campos_calculados": 4911
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.5.1 Pessoal Administrativo",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 1.02,
+      "campos_editaveis": 164,
+      "campos_calculados": 15949
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.5.2 Pessoal Ensino",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.61,
+      "campos_editaveis": 135,
+      "campos_calculados": 22132
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.6 DRE Historico",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 39.66,
+      "campos_editaveis": 23,
+      "campos_calculados": 35
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.7 BP Historico",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 50.0,
+      "campos_editaveis": 30,
+      "campos_calculados": 30
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.7.1 Endividamento Atual",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 15.79,
+      "campos_editaveis": 135,
+      "campos_calculados": 720
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.8 Capex",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.73,
+      "campos_editaveis": 36,
+      "campos_calculados": 4905
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.9 CDG",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 2.11,
+      "campos_editaveis": 23,
+      "campos_calculados": 1065
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.10 Endividamento de CP",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.95,
+      "campos_editaveis": 11,
+      "campos_calculados": 1144
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.10.1 Endividamento",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 25.45,
+      "campos_editaveis": 1650,
+      "campos_calculados": 4834
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "A.11 Fluxo de Caixa",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.68,
+      "campos_editaveis": 243,
+      "campos_calculados": 2555
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B. Resultados>>",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B.1 Fluxo de Caixa Mensal",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.73,
+      "campos_editaveis": 122,
+      "campos_calculados": 16579
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B.2 Fluxo de Caixa Anual",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.95,
+      "campos_editaveis": 114,
+      "campos_calculados": 1527
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B.3 Quadro de Indicadores",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 7.21,
+      "campos_editaveis": 15,
+      "campos_calculados": 193
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B.4 Necessidade de Capital",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 17.65,
+      "campos_editaveis": 3,
+      "campos_calculados": 14
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "B.5 Estrutura Societaria",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 60.34,
+      "campos_editaveis": 35,
+      "campos_calculados": 23
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Auxiliar SAC-Giro",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 20.54,
+      "campos_editaveis": 11697,
+      "campos_calculados": 45252
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Auxiliar SAC",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 20.54,
+      "campos_editaveis": 11697,
+      "campos_calculados": 45252
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Auxiliar PRICE (2)",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 22.77,
+      "campos_editaveis": 5601,
+      "campos_calculados": 18996
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Finan1 - L",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.28,
+      "campos_editaveis": 345,
+      "campos_calculados": 3824
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Finan2 - L",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.28,
+      "campos_editaveis": 345,
+      "campos_calculados": 3824
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Finan3 - L",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.28,
+      "campos_editaveis": 345,
+      "campos_calculados": 3824
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Finan4 - L",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.28,
+      "campos_editaveis": 345,
+      "campos_calculados": 3824
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "Finan5 - L",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.28,
+      "campos_editaveis": 345,
+      "campos_calculados": 3824
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 1",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 2",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 3",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 4",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 5",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 6",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 7",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 8",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 9",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 10",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 11",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 6.8,
+      "campos_editaveis": 349,
+      "campos_calculados": 4784
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 12",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.27,
+      "campos_editaveis": 345,
+      "campos_calculados": 3825
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 13",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.27,
+      "campos_editaveis": 345,
+      "campos_calculados": 3825
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 14",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.27,
+      "campos_editaveis": 345,
+      "campos_calculados": 3825
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "FinanE - 15",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.27,
+      "campos_editaveis": 345,
+      "campos_calculados": 3825
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "BEP",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 57.14,
+      "campos_editaveis": 68,
+      "campos_calculados": 51
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "PROJETO",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 163,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Investimentos",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 457,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Organograma",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Balancos",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 507,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Fluxograma",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 1,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Capacidades de Produção",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 109,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Formulação (Opcional)",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 143,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Insumos",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 111,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Mercado",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 114,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Empregados",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 18,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Capital",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 13,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Controle",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 30,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Imobilizado",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 44,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Endividamento",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 24,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Depreciacao",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 24,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Passivo",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 17,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Fornecedores",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 12,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Clientes",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 12,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Faturamento",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 5,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Outras Info",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 50,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "Orientações",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 46,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "ENT",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 497,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "BAL",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 229,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "DRE",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 157,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "IND",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 122,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "IND AI",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 90,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "balanço versão outubro 2011.xls",
+      "aba": "Giro",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 64,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Menu",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 5,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Menu_Financeiro",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 6,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Manual",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 18,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Inputs>>",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0,
+      "campos_editaveis": 0,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Macro",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 93.14,
+      "campos_editaveis": 285,
+      "campos_calculados": 21
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "KPIs",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 10.4,
+      "campos_editaveis": 21,
+      "campos_calculados": 181
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Analise_Qualitativa",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 282,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "SWOT",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 15.31,
+      "campos_editaveis": 173,
+      "campos_calculados": 957
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Venture_Methods",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 60.5,
+      "campos_editaveis": 72,
+      "campos_calculados": 47
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Estrutura Societaria",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 20.87,
+      "campos_editaveis": 86,
+      "campos_calculados": 326
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Outputs>>",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0,
+      "campos_editaveis": 0,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Resumo",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 51.14,
+      "campos_editaveis": 135,
+      "campos_calculados": 129
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "DCF",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.8,
+      "campos_editaveis": 134,
+      "campos_calculados": 1389
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "DCF_C1",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 7.94,
+      "campos_editaveis": 118,
+      "campos_calculados": 1369
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "DCF_C2",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.44,
+      "campos_editaveis": 117,
+      "campos_calculados": 1269
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Resumo (quotistas)",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 50.0,
+      "campos_editaveis": 12,
+      "campos_calculados": 12
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Para Memo>>",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0,
+      "campos_editaveis": 0,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 2.48,
+      "campos_editaveis": 3,
+      "campos_calculados": 118
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (2)",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 26.23,
+      "campos_editaveis": 16,
+      "campos_calculados": 45
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (3)",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 9,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (4)",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 9,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (5)",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 1.74,
+      "campos_editaveis": 2,
+      "campos_calculados": 113
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (11)",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 9.57,
+      "campos_editaveis": 11,
+      "campos_calculados": 104
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (6)",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 9,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (7)",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 8.0,
+      "campos_editaveis": 2,
+      "campos_calculados": 23
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (8)",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 13.16,
+      "campos_editaveis": 5,
+      "campos_calculados": 33
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (9)",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 18.6,
+      "campos_editaveis": 8,
+      "campos_calculados": 35
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Grafico Operacional (10)",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 28.57,
+      "campos_editaveis": 4,
+      "campos_calculados": 10
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Tabela Resultados",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 12.45,
+      "campos_editaveis": 34,
+      "campos_calculados": 239
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Teste Sensibilidade",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 55.42,
+      "campos_editaveis": 46,
+      "campos_calculados": 37
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Tabela de Premissas",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 11,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Cronograma de Aportes",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 8,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Preço x Valuation",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 57.14,
+      "campos_editaveis": 4,
+      "campos_calculados": 3
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Expectativa de Retorno",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 33.33,
+      "campos_editaveis": 17,
+      "campos_calculados": 34
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "DRE e BP Historico",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 1.0,
+      "campos_editaveis": 2,
+      "campos_calculados": 198
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "DRE e BP",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 0.35,
+      "campos_editaveis": 1,
+      "campos_calculados": 288
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Validacoes",
+      "audience": "RESPONDENTE",
+      "prioridade": "alto",
+      "percentual_editavel": 100.0,
+      "campos_editaveis": 216,
+      "campos_calculados": 0
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Potencial",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 59.71,
+      "campos_editaveis": 123,
+      "campos_calculados": 83
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Risco",
+      "audience": "MISTO",
+      "prioridade": "medio",
+      "percentual_editavel": 61.9,
+      "campos_editaveis": 130,
+      "campos_calculados": 80
+    },
+    {
+      "planilha": "Valuation.xlsx",
+      "aba": "Para PPT",
+      "audience": "ANALISTA",
+      "prioridade": "medio",
+      "percentual_editavel": 1.61,
+      "campos_editaveis": 1,
+      "campos_calculados": 61
+    }
+  ]
+}

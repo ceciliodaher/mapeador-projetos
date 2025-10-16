@@ -1,0 +1,348 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "dataAtualizacao": "2025-01-15",
+    "descricao": "Reforma Tributária LC 214/2025 - Timeline de transição 2026-2033",
+    "legislacao": "Lei Complementar 214/2025",
+    "fonte": "Senado Federal, Ministério da Fazenda"
+  },
+
+  "visaoGeral": {
+    "cbsTotal": 8.8,
+    "ibsTotal": 17.7,
+    "aliquotaPadrao": 26.5,
+    "descricao": "CBS (Contribuição sobre Bens e Serviços) + IBS (Imposto sobre Bens e Serviços)",
+    "objetivo": "Substituir ICMS, ISS, PIS, COFINS e IPI por sistema não-cumulativo unificado"
+  },
+
+  "timelineTransicao": {
+    "2026": {
+      "fase": "Teste",
+      "descricao": "Fase piloto com alíquotas reduzidas",
+      "cbs": 0.9,
+      "ibs": 0.1,
+      "aliquotaCombinada": 1.0,
+      "tributosAntigos": {
+        "pis": 0.65,
+        "cofins": 3.0,
+        "icmsGoias": 19.0,
+        "iss": 2.0
+      },
+      "observacao": "Sistema dual - cobrança de ambos os sistemas (antigo + novo)"
+    },
+    "2027": {
+      "fase": "CBS Integral",
+      "descricao": "CBS em regime pleno, IBS ainda em teste",
+      "cbs": 8.8,
+      "ibs": 0.1,
+      "aliquotaCombinada": 8.9,
+      "tributosEliminados": ["PIS", "COFINS"],
+      "tributosMantidos": ["ICMS", "ISS"],
+      "observacao": "PIS e COFINS extintos, substituídos por CBS"
+    },
+    "2028": {
+      "fase": "Preparação IBS",
+      "descricao": "Último ano com ICMS e ISS integrais",
+      "cbs": 8.8,
+      "ibs": 0.1,
+      "aliquotaCombinada": 8.9,
+      "tributosAntigos": {
+        "icmsGoias": 19.0,
+        "iss": 2.0
+      },
+      "observacao": "Estados e municípios preparam migração para IBS"
+    },
+    "2029": {
+      "fase": "Transição IBS 10%",
+      "descricao": "Início da substituição gradual de ICMS e ISS",
+      "cbs": 8.8,
+      "ibs": 1.77,
+      "aliquotaCombinada": 10.57,
+      "icmsRemanescente": 17.1,
+      "issRemanescente": 1.8,
+      "percentualReducao": 10.0,
+      "observacao": "10% do IBS implementado, redução proporcional de ICMS/ISS"
+    },
+    "2030": {
+      "fase": "Transição IBS 20%",
+      "descricao": "Avanço da transição",
+      "cbs": 8.8,
+      "ibs": 3.54,
+      "aliquotaCombinada": 12.34,
+      "icmsRemanescente": 15.2,
+      "issRemanescente": 1.6,
+      "percentualReducao": 20.0,
+      "observacao": "20% do IBS implementado"
+    },
+    "2031": {
+      "fase": "Transição IBS 30%",
+      "descricao": "Maioria ainda no sistema antigo",
+      "cbs": 8.8,
+      "ibs": 5.31,
+      "aliquotaCombinada": 14.11,
+      "icmsRemanescente": 13.3,
+      "issRemanescente": 1.4,
+      "percentualReducao": 30.0,
+      "observacao": "30% do IBS implementado"
+    },
+    "2032": {
+      "fase": "Transição IBS 40%",
+      "descricao": "Aceleração da transição",
+      "cbs": 8.8,
+      "ibs": 7.08,
+      "aliquotaCombinada": 15.88,
+      "icmsRemanescente": 11.4,
+      "issRemanescente": 1.2,
+      "percentualReducao": 40.0,
+      "observacao": "40% do IBS implementado"
+    },
+    "2033": {
+      "fase": "Regime Pleno",
+      "descricao": "Transição completa - novo sistema totalmente implementado",
+      "cbs": 8.8,
+      "ibs": 17.7,
+      "aliquotaCombinada": 26.5,
+      "tributosEliminados": ["PIS", "COFINS", "ICMS", "ISS", "IPI"],
+      "observacao": "Sistema totalmente unificado - CBS + IBS"
+    }
+  },
+
+  "aliquotasSetoriais": {
+    "descricao": "Alíquotas reduzidas para setores específicos (aplicadas sobre alíquota padrão 26,5%)",
+    "setores": [
+      {
+        "setor": "Saúde",
+        "codigo": "saude",
+        "aliquota": 10.6,
+        "reducao": 60.0,
+        "descricao": "Serviços de saúde, dispositivos médicos, medicamentos essenciais",
+        "exemplos": ["Consultas médicas", "Exames", "Cirurgias", "Medicamentos"]
+      },
+      {
+        "setor": "Educação",
+        "codigo": "educacao",
+        "aliquota": 10.6,
+        "reducao": 60.0,
+        "descricao": "Serviços educacionais de todos os níveis",
+        "exemplos": ["Ensino básico", "Ensino superior", "Cursos profissionalizantes"]
+      },
+      {
+        "setor": "Transporte Público Coletivo",
+        "codigo": "transportePublico",
+        "aliquota": 10.6,
+        "reducao": 60.0,
+        "descricao": "Transporte coletivo urbano, metropolitano e intermunicipal",
+        "exemplos": ["Ônibus", "Metrô", "Trem", "VLT"]
+      },
+      {
+        "setor": "Cultura e Entretenimento",
+        "codigo": "cultura",
+        "aliquota": 10.6,
+        "reducao": 60.0,
+        "descricao": "Atividades culturais, artísticas e esportivas",
+        "exemplos": ["Teatro", "Cinema", "Museus", "Shows", "Eventos esportivos"]
+      },
+      {
+        "setor": "Alimentos da Cesta Básica",
+        "codigo": "cestaBasica",
+        "aliquota": 0.0,
+        "reducao": 100.0,
+        "descricao": "Produtos essenciais da cesta básica nacional",
+        "exemplos": ["Arroz", "Feijão", "Açúcar", "Óleo", "Café", "Farinha", "Leite", "Pão"]
+      },
+      {
+        "setor": "Alimentos - Outros",
+        "codigo": "alimentosGerais",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Demais produtos alimentícios não inclusos na cesta básica",
+        "exemplos": ["Carnes", "Frutas", "Legumes", "Produtos industrializados"]
+      },
+      {
+        "setor": "Medicamentos",
+        "codigo": "medicamentos",
+        "aliquota": 10.6,
+        "reducao": 60.0,
+        "descricao": "Medicamentos registrados na ANVISA",
+        "exemplos": ["Genéricos", "Similar", "Referência"]
+      },
+      {
+        "setor": "Produtos de Higiene e Limpeza",
+        "codigo": "higieneLimpeza",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Produtos essenciais de higiene pessoal e limpeza doméstica",
+        "exemplos": ["Sabão", "Sabonete", "Pasta de dente", "Papel higiênico"]
+      },
+      {
+        "setor": "Serviços Profissionais",
+        "codigo": "servicosProfissionais",
+        "aliquota": 18.55,
+        "reducao": 30.0,
+        "descricao": "Serviços técnicos e profissionais especializados",
+        "exemplos": ["Advocacia", "Contabilidade", "Engenharia", "Arquitetura", "Consultoria"]
+      },
+      {
+        "setor": "Imóveis - Locação",
+        "codigo": "imoveisLocacao",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Locação de imóveis residenciais e comerciais",
+        "exemplos": ["Aluguel residencial", "Aluguel comercial"]
+      },
+      {
+        "setor": "Imóveis - Compra e Venda",
+        "codigo": "imoveisCompraVenda",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Operações de compra e venda de imóveis",
+        "exemplos": ["Imóveis residenciais", "Imóveis comerciais"]
+      },
+      {
+        "setor": "Bens Imóveis - Construção",
+        "codigo": "construcaoCivil",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Serviços de construção civil",
+        "exemplos": ["Obras", "Reformas", "Instalações"]
+      },
+      {
+        "setor": "Agronegócio",
+        "codigo": "agronegocio",
+        "aliquota": 13.25,
+        "reducao": 50.0,
+        "descricao": "Insumos agrícolas e produção rural",
+        "exemplos": ["Sementes", "Fertilizantes", "Defensivos agrícolas"]
+      },
+      {
+        "setor": "Telecomunicações",
+        "codigo": "telecomunicacoes",
+        "aliquota": 26.5,
+        "reducao": 0.0,
+        "descricao": "Serviços de telecomunicações",
+        "exemplos": ["Internet", "Telefonia móvel", "TV por assinatura"]
+      },
+      {
+        "setor": "Outros Setores",
+        "codigo": "padrao",
+        "aliquota": 26.5,
+        "reducao": 0.0,
+        "descricao": "Demais setores não contemplados com redução",
+        "exemplos": ["Comércio varejista geral", "Serviços diversos"]
+      }
+    ]
+  },
+
+  "splitPayment": {
+    "descricao": "Mecanismo de separação automática do tributo no momento da transação",
+    "anoInicio": 2027,
+    "obrigatoriedade": {
+      "descricao": "Obrigatório para transações eletrônicas B2B e B2C acima de limite",
+      "limiteMinimo": 30000,
+      "tipos": ["PIX", "Cartão de crédito", "Cartão de débito", "TED", "DOC", "Boleto bancário"]
+    },
+    "funcionamento": {
+      "descricao": "No momento da transação, o valor do tributo é automaticamente separado e direcionado para conta vinculada",
+      "fluxo": [
+        "Cliente efetua pagamento",
+        "Sistema bancário calcula tributo automaticamente",
+        "Valor líquido vai para conta do fornecedor",
+        "Valor do tributo vai para conta vinculada do governo"
+      ]
+    },
+    "impactoNCG": {
+      "descricao": "Redução da Necessidade de Capital de Giro (NCG) por eliminação de crédito tributário",
+      "formula": "NCG = (Tributo × PMR × %VendasPrazo) / 30",
+      "variaveis": {
+        "Tributo": "Valor total de CBS+IBS a recolher no mês",
+        "PMR": "Prazo Médio de Recebimento em dias",
+        "VendasPrazo": "Percentual de vendas a prazo do total"
+      },
+      "exemplo": {
+        "faturamento": 100000,
+        "aliquota": 26.5,
+        "pmr": 30,
+        "percPrazo": 60,
+        "tributo": 15900,
+        "impactoNCG": 15900,
+        "observacao": "Empresa precisaria de R$ 15.900 a mais em capital de giro para financiar o tributo nas vendas a prazo"
+      }
+    },
+    "estrategiasMitigacao": [
+      "Negociar redução de prazos com clientes",
+      "Aumentar percentual de vendas à vista",
+      "Utilizar antecipação de recebíveis",
+      "Ajustar política de crédito",
+      "Buscar linhas de capital de giro"
+    ]
+  },
+
+  "comparativoSistemas": {
+    "cenarioExemplo": {
+      "descricao": "Comércio varejista em Goiás - Faturamento R$ 100.000/mês",
+      "sistemaAtual2025": {
+        "pis": 650,
+        "cofins": 3000,
+        "icms": 19000,
+        "total": 22650,
+        "aliquotaEfetiva": 22.65
+      },
+      "reforma2033": {
+        "cbs": 8800,
+        "ibs": 17700,
+        "total": 26500,
+        "aliquotaEfetiva": 26.5
+      },
+      "diferenca": 3850,
+      "variacaoPercentual": 17.0
+    }
+  },
+
+  "cashback": {
+    "descricao": "Mecanismo de devolução de tributos para pessoas de baixa renda",
+    "criterioElegibilidade": {
+      "inscricaoCadUnico": true,
+      "rendaMaximaFamiliar": 3135.00
+    },
+    "percentualDevolucao": {
+      "cbs": 100,
+      "ibs": 20
+    },
+    "limiteAnual": 3000,
+    "observacao": "Benefício não se aplica a empresas, apenas pessoas físicas de baixa renda"
+  },
+
+  "regrasTransicao": {
+    "creditosAcumulados": {
+      "descricao": "Créditos de ICMS acumulados poderão ser utilizados até 2032",
+      "prazoPrescricao": "31/12/2032"
+    },
+    "beneficiosFiscais": {
+      "descricao": "Benefícios fiscais vigentes mantidos até 2032 ou fim da concessão",
+      "programasAfetados": ["PRODUZIR", "FOMENTAR", "CEI", "PROGOIAS"],
+      "transicao": "Empresas deverão adaptar projetos ao novo sistema tributário"
+    },
+    "estoques": {
+      "descricao": "Direito ao crédito de tributos pagos sobre estoques na data da transição",
+      "prazoUtilizacao": 60
+    }
+  },
+
+  "observacoes": {
+    "naoAcumulatividade": "Sistema totalmente não-cumulativo - crédito integral sobre todas as aquisições",
+    "destinacao": "Tributação no destino - estado consumidor recebe o tributo",
+    "transparencia": "Obrigatoriedade de destacar CBS e IBS em nota fiscal",
+    "planejamento": "Empresas devem simular impacto da reforma em fluxo de caixa e precificação"
+  },
+
+  "recursosAdicionais": {
+    "simuladores": [
+      "https://www.gov.br/fazenda/pt-br/reforma-tributaria",
+      "https://www12.senado.leg.br/noticias/materias/2023/11/08/reforma-tributaria"
+    ],
+    "legislacao": [
+      "Lei Complementar 214/2025",
+      "Emenda Constitucional 132/2023"
+    ]
+  }
+}

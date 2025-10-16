@@ -1,0 +1,353 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "dataAtualizacao": "2025-01-15",
+    "descricao": "Alíquotas tributárias do sistema atual (2025) - PIS, COFINS, ICMS, ISS, IPI, IRPJ, CSLL",
+    "fonte": "Receita Federal do Brasil, CONFAZ, Legislação Estadual/Municipal"
+  },
+
+  "simplesNacional": {
+    "limiteAnual": 4800000,
+    "anexos": {
+      "I": {
+        "descricao": "Comércio",
+        "faixas": [
+          { "faturamentoAte": 180000, "aliquota": 4.0, "deducao": 0 },
+          { "faturamentoAte": 360000, "aliquota": 7.3, "deducao": 5940 },
+          { "faturamentoAte": 720000, "aliquota": 9.5, "deducao": 13860 },
+          { "faturamentoAte": 1800000, "aliquota": 10.7, "deducao": 22500 },
+          { "faturamentoAte": 3600000, "aliquota": 14.3, "deducao": 87300 },
+          { "faturamentoAte": 4800000, "aliquota": 19.0, "deducao": 378000 }
+        ]
+      },
+      "II": {
+        "descricao": "Indústria",
+        "faixas": [
+          { "faturamentoAte": 180000, "aliquota": 4.5, "deducao": 0 },
+          { "faturamentoAte": 360000, "aliquota": 7.8, "deducao": 5940 },
+          { "faturamentoAte": 720000, "aliquota": 10.0, "deducao": 13860 },
+          { "faturamentoAte": 1800000, "aliquota": 11.2, "deducao": 22500 },
+          { "faturamentoAte": 3600000, "aliquota": 14.7, "deducao": 85500 },
+          { "faturamentoAte": 4800000, "aliquota": 30.0, "deducao": 720000 }
+        ]
+      },
+      "III": {
+        "descricao": "Serviços",
+        "faixas": [
+          { "faturamentoAte": 180000, "aliquota": 6.0, "deducao": 0 },
+          { "faturamentoAte": 360000, "aliquota": 11.2, "deducao": 9360 },
+          { "faturamentoAte": 720000, "aliquota": 13.5, "deducao": 17640 },
+          { "faturamentoAte": 1800000, "aliquota": 16.0, "deducao": 35640 },
+          { "faturamentoAte": 3600000, "aliquota": 21.0, "deducao": 125640 },
+          { "faturamentoAte": 4800000, "aliquota": 33.0, "deducao": 648000 }
+        ]
+      },
+      "IV": {
+        "descricao": "Serviços Específicos (Fator R >= 28%)",
+        "faixas": [
+          { "faturamentoAte": 180000, "aliquota": 4.5, "deducao": 0 },
+          { "faturamentoAte": 360000, "aliquota": 9.0, "deducao": 8100 },
+          { "faturamentoAte": 720000, "aliquota": 10.2, "deducao": 12420 },
+          { "faturamentoAte": 1800000, "aliquota": 14.0, "deducao": 39780 },
+          { "faturamentoAte": 3600000, "aliquota": 22.0, "deducao": 183780 },
+          { "faturamentoAte": 4800000, "aliquota": 33.0, "deducao": 828000 }
+        ]
+      },
+      "V": {
+        "descricao": "Serviços Específicos (Fator R < 28%)",
+        "faixas": [
+          { "faturamentoAte": 180000, "aliquota": 15.5, "deducao": 0 },
+          { "faturamentoAte": 360000, "aliquota": 18.0, "deducao": 4500 },
+          { "faturamentoAte": 720000, "aliquota": 19.5, "deducao": 9900 },
+          { "faturamentoAte": 1800000, "aliquota": 20.5, "deducao": 17100 },
+          { "faturamentoAte": 3600000, "aliquota": 23.0, "deducao": 62100 },
+          { "faturamentoAte": 4800000, "aliquota": 30.5, "deducao": 540000 }
+        ]
+      }
+    },
+    "fatorR": {
+      "limiteMinimo": 0.28,
+      "formula": "folhaSalarios12Meses / receitaBruta12Meses"
+    }
+  },
+
+  "lucroPresumido": {
+    "limiteAnual": 78000000,
+    "presuncaoIRPJ": {
+      "comercio": 0.08,
+      "industria": 0.08,
+      "servicosGerais": 0.32,
+      "servicosTransporte": 0.16,
+      "servicosHospitalares": 0.08,
+      "revendaCombustiveis": 0.016
+    },
+    "presuncaoCSLL": {
+      "comercio": 0.12,
+      "industria": 0.12,
+      "servicos": 0.32
+    },
+    "irpj": {
+      "aliquotaBasica": 0.15,
+      "adicional": {
+        "aliquota": 0.10,
+        "limiteMensal": 20000,
+        "limiteTrimestral": 60000
+      }
+    },
+    "csll": {
+      "aliquota": 0.09
+    },
+    "pis": {
+      "aliquota": 0.0065,
+      "regime": "cumulativo"
+    },
+    "cofins": {
+      "aliquota": 0.03,
+      "regime": "cumulativo"
+    }
+  },
+
+  "lucroReal": {
+    "obrigatoriedade": {
+      "faturamentoAnualAcima": 78000000,
+      "atividadesObrigatorias": [
+        "Instituições financeiras",
+        "Empresas com lucros no exterior",
+        "Factoring",
+        "Sociedades de crédito imobiliário"
+      ]
+    },
+    "irpj": {
+      "aliquotaBasica": 0.15,
+      "adicional": {
+        "aliquota": 0.10,
+        "limiteMensal": 20000
+      }
+    },
+    "csll": {
+      "aliquotaGeral": 0.09,
+      "aliquotaInstituicoesFinanceiras": 0.15
+    },
+    "pis": {
+      "aliquota": 0.0165,
+      "regime": "naoCumulativo",
+      "creditosPermitidos": [
+        "Insumos",
+        "Energia elétrica",
+        "Aluguéis de prédios",
+        "Arrendamento mercantil",
+        "Encargos de depreciação",
+        "Frete e armazenagem"
+      ]
+    },
+    "cofins": {
+      "aliquota": 0.076,
+      "regime": "naoCumulativo",
+      "creditosPermitidos": [
+        "Insumos",
+        "Energia elétrica",
+        "Aluguéis de prédios",
+        "Arrendamento mercantil",
+        "Encargos de depreciação",
+        "Frete e armazenagem"
+      ]
+    }
+  },
+
+  "icms": {
+    "descricao": "Imposto sobre Circulação de Mercadorias e Serviços",
+    "aliquotasInternas": {
+      "AC": 19.0,
+      "AL": 20.5,
+      "AP": 18.0,
+      "AM": 20.0,
+      "BA": 20.5,
+      "CE": 20.0,
+      "DF": 20.0,
+      "ES": 17.0,
+      "GO": 19.0,
+      "MA": 23.0,
+      "MT": 17.0,
+      "MS": 17.0,
+      "MG": 18.0,
+      "PA": 19.0,
+      "PB": 20.0,
+      "PR": 19.5,
+      "PE": 20.5,
+      "PI": 22.5,
+      "RJ": 22.0,
+      "RN": 20.0,
+      "RS": 17.0,
+      "RO": 19.5,
+      "RR": 20.0,
+      "SC": 17.0,
+      "SP": 18.0,
+      "SE": 20.0,
+      "TO": 20.0
+    },
+    "aliquotasInterestaduais": {
+      "sulSudesteParaNorteNordesteCentroOeste": 7.0,
+      "entreEstadosMesmaRegiao": 12.0,
+      "norteNordesteCentroOesteParaSulSudeste": 12.0
+    },
+    "fcp": {
+      "descricao": "Fundo de Combate à Pobreza",
+      "aliquotasPorEstado": {
+        "AC": 2.0,
+        "AL": 2.0,
+        "AP": 1.0,
+        "BA": 2.0,
+        "CE": 2.0,
+        "DF": 1.0,
+        "GO": 2.0,
+        "MA": 3.0,
+        "MG": 2.0,
+        "MS": 2.0,
+        "PB": 2.0,
+        "PE": 2.0,
+        "PI": 2.0,
+        "RJ": 2.0,
+        "RN": 2.0,
+        "RO": 1.0,
+        "SE": 2.0
+      }
+    }
+  },
+
+  "iss": {
+    "descricao": "Imposto sobre Serviços de Qualquer Natureza",
+    "aliquotaMinima": 2.0,
+    "aliquotaMaxima": 5.0,
+    "atividadesPorAliquota": {
+      "2.0": ["Informática", "Tecnologia da Informação"],
+      "3.5": ["Serviços médicos", "Serviços hospitalares"],
+      "5.0": ["Serviços gerais", "Consultoria", "Advocacia"]
+    },
+    "observacao": "Alíquota definida pelo município. Consultar legislação local."
+  },
+
+  "ipi": {
+    "descricao": "Imposto sobre Produtos Industrializados",
+    "aliquotaMinima": 0.0,
+    "aliquotaMaxima": 30.0,
+    "observacao": "Alíquota varia de 0% a 30% conforme classificação NCM na TIPI (Tabela de Incidência do IPI). Produtos essenciais têm alíquotas mais baixas, produtos supérfluos ou de luxo têm alíquotas mais altas.",
+    "exemplos": {
+      "alimentos": "0% a 5%",
+      "medicamentos": "0%",
+      "vestuario": "5% a 15%",
+      "eletronicos": "10% a 20%",
+      "veiculos": "15% a 25%",
+      "luxo": "20% a 30%"
+    }
+  },
+
+  "depreciacao": {
+    "fonte": "IN RFB 1.700/2017 - Anexo III",
+    "descricao": "Taxas anuais de depreciação para fins fiscais",
+    "bensMoveis": {
+      "veiculosPassageiros": { "taxaAnual": 20.0, "vidaUtilAnos": 5 },
+      "veiculosCarga": { "taxaAnual": 25.0, "vidaUtilAnos": 4 },
+      "computadoresPerifericos": { "taxaAnual": 20.0, "vidaUtilAnos": 5 },
+      "maquinasEquipamentosIndustriais": { "taxaAnual": 10.0, "vidaUtilAnos": 10 },
+      "moveisUtensilios": { "taxaAnual": 10.0, "vidaUtilAnos": 10 },
+      "ferramentas": { "taxaAnual": 15.0, "vidaUtilAnos": 6.67 },
+      "equipamentosInformatica": { "taxaAnual": 20.0, "vidaUtilAnos": 5 }
+    },
+    "bensImoveis": {
+      "edificiosConstrucoes": { "taxaAnual": 4.0, "vidaUtilAnos": 25 },
+      "benfeitorias": { "taxaAnual": 4.0, "vidaUtilAnos": 25 }
+    },
+    "intangiveis": {
+      "software": {
+        "taxaAnual": 20.0,
+        "vidaUtilAnos": 5,
+        "observacao": "Prazo de 5 anos ou prazo de licença se inferior"
+      }
+    },
+    "depreciacaoAcelerada": {
+      "descricao": "Para equipamentos em operação em mais de um turno",
+      "coeficientes": {
+        "doisTurnos8h": 1.5,
+        "tresTurnos8h": 2.0
+      }
+    }
+  },
+
+  "encargosSociais": {
+    "fonte": "Legislação Trabalhista e Previdenciária - CLT e Lei 8.212/1991",
+    "atualizadoEm": "2025-01-15",
+    "inssEmpresa": {
+      "aliquotaBasica": 20.0,
+      "ratRiscoAcidente": {
+        "riscoLeve": 1.0,
+        "riscoMedio": 2.0,
+        "riscoGrave": 3.0
+      },
+      "terceiros": 5.8,
+      "totalTipico": 26.8,
+      "observacao": "20% + RAT (1-3%) + Terceiros (5,8%)"
+    },
+    "fgts": { "aliquota": 8.0 },
+    "provisoes": {
+      "decimoTerceiro": {
+        "percentual": 8.33,
+        "observacao": "1/12 por mês trabalhado"
+      },
+      "ferias": {
+        "percentual": 11.11,
+        "observacao": "1/12 por mês + 1/3 constitucional"
+      },
+      "avisoPrevioIndenizado": {
+        "percentualMedio": 2.0,
+        "observacao": "Estimativa média considerando turnover"
+      },
+      "multaFgtsRescisao": {
+        "percentual": 4.0,
+        "observacao": "50% do FGTS depositado (4% do salário)"
+      }
+    },
+    "totalEncargosEstimado": {
+      "percentual": 60.24,
+      "composicao": "INSS (26,8%) + FGTS (8%) + 13º (8,33%) + Férias (11,11%) + Aviso/Multa (6%)",
+      "observacao": "Percentual típico sobre folha de pagamento - varia conforme setor e turnover"
+    }
+  },
+
+  "salarioMinimo": {
+    "fonte": "Decreto Federal 11.864/2024",
+    "vigencia": "2025",
+    "valorMensal": 1412.00,
+    "observacao": "Verificar atualizações anuais - valor definido por decreto presidencial"
+  },
+
+  "observacoes": {
+    "simplicidadeCalculo": "Simples Nacional unifica 8 tributos em uma única guia",
+    "aproveitamentoCreditos": "Lucro Real permite créditos de PIS/COFINS sobre insumos",
+    "escolhaRegime": "Análise de margem de lucro e despesas operacionais determina regime mais econômico",
+    "planejamentoTributario": "Recomenda-se simulação comparativa entre regimes antes da opção",
+    "principioNoHardcodedData": "APENAS dados legais e oficiais. Nenhum valor de exemplo ou mockado."
+  },
+
+  "fontesLegais": {
+    "simplesNacional": "Lei Complementar 123/2006 - Anexos I a V (atualizada pela LC 155/2016)",
+    "lucroPresumido": "Lei 9.249/1995 e Lei 9.430/1996",
+    "lucroReal": "Lei 9.430/1996 e IN RFB 1.700/2017",
+    "icms": "Resolução Senado 22/1989, RCTE/GO e Convênios CONFAZ",
+    "iss": "Lei Complementar 116/2003",
+    "depreciacao": "IN RFB 1.700/2017 - Anexo III",
+    "encargosSociais": "CLT, Lei 8.212/1991 (Previdência), Lei 8.036/1990 (FGTS)",
+    "salarioMinimo": "Decreto Federal 11.864/2024"
+  },
+
+  "atualizacao": {
+    "responsavel": "Sistema deve buscar atualizações periódicas",
+    "fontesOficiais": [
+      "Receita Federal do Brasil (www.gov.br/receitafederal)",
+      "CONFAZ (www.confaz.fazenda.gov.br)",
+      "Secretarias Estaduais de Fazenda",
+      "Ministério da Economia",
+      "Planalto - Decretos e Leis Federais"
+    ],
+    "periodicidadeRecomendada": "Trimestral ou quando houver alteração legislativa"
+  }
+}

@@ -1,0 +1,64 @@
+serena:
+  version: "1.0"
+  project_name: "incentivos-questionario"
+  description: "Sistema de mapeamento de projetos e análise de viabilidade para incentivos fiscais"
+
+agents:
+  questionario_orchestrator:
+    type: "coordinator"
+    description: "Orquestra fluxo completo do questionário"
+    capabilities:
+      - navigation
+      - validation
+      - auto_save
+
+  classificador_projetos:
+    type: "analyzer"
+    description: "Classifica projetos como inovação ou comum"
+    model: "claude-sonnet-4.5"
+    temperature: 0.3
+    max_tokens: 2000
+
+  analisador_viabilidade:
+    type: "evaluator"
+    description: "Analisa viabilidade técnica, econômica e de mercado"
+    model: "claude-sonnet-4.5"
+    temperature: 0.4
+    max_tokens: 3000
+
+  gerador_relatorios:
+    type: "generator"
+    description: "Gera PDFs e exports estruturados"
+    temperature: 0.5
+    max_tokens: 4000
+
+  mapper_integracao:
+    type: "transformer"
+    description: "Mapeia dados do questionário para formulários CEI/ProGoiás"
+
+workflows:
+  preenchimento:
+    description: "Workflow completo de preenchimento pelo respondente"
+    steps:
+      - collect_company_data
+      - map_projects
+      - classify_innovation
+      - analyze_relationships
+      - generate_timeline
+      - export_data
+
+  analise:
+    description: "Workflow de análise profunda para analista"
+    steps:
+      - import_json
+      - validate_checksum
+      - deep_analysis
+      - scoring
+      - recommendations
+      - generate_report
+
+settings:
+  auto_save_enabled: true
+  auto_save_interval: 30
+  max_auto_saves: 10
+  checksum_required: true

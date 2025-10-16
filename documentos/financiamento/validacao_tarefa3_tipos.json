@@ -1,0 +1,150 @@
+{
+  "validacao_tipos": {
+    "total_campos_validados": 424,
+    "corretos": 21,
+    "discrepantes": 403,
+    "percentual_precisao": 4.95,
+    "discrepancias_por_severidade": {
+      "critico": 138,
+      "medio": 0,
+      "baixo": 265
+    },
+    "exemplos_discrepancias": [
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar SAC",
+        "campo": "DP325",
+        "formato_excel": "#,##0",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar PRICE (2)",
+        "campo": "AR419",
+        "formato_excel": "#,##0_);[Red](#,##0)",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1.1 Premissas de Receita",
+        "campo": "DY478",
+        "formato_excel": "_-* #,##0\\ _€_-;\\-* #,##0\\ _€_-;_-* \"-\"??\\ _€_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1.1 Premissas de Receita",
+        "campo": "DY196",
+        "formato_excel": "_-* #,##0\\ _€_-;\\-* #,##0\\ _€_-;_-* \"-\"??\\ _€_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1 Receita Bruta",
+        "campo": "BQ410",
+        "formato_excel": "_-* #,##0_-;\\-* #,##0_-;_-* \"-\"??_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1 Receita Bruta",
+        "campo": "CL16",
+        "formato_excel": "_-* #,##0_-;\\-* #,##0_-;_-* \"-\"??_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar PRICE (2)",
+        "campo": "BC356",
+        "formato_excel": "#,##0_);[Red](#,##0)",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar SAC",
+        "campo": "Y524",
+        "formato_excel": "#,##0",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar PRICE (2)",
+        "campo": "AN406",
+        "formato_excel": "#,##0",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "FinanE - 10",
+        "campo": "D204",
+        "formato_excel": "#,##0",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar SAC-Giro",
+        "campo": "BS404",
+        "formato_excel": "#,##0_);[Red](#,##0)",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "Auxiliar SAC-Giro",
+        "campo": "DJ642",
+        "formato_excel": "#,##0",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "text",
+        "severidade": "baixo"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.5.2 Pessoal Ensino",
+        "campo": "DO204",
+        "formato_excel": "_-* #,##0\\ _€_-;\\-* #,##0\\ _€_-;_-* \"-\"??\\ _€_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1 Receita Bruta",
+        "campo": "ES392",
+        "formato_excel": "_-* #,##0_-;\\-* #,##0_-;_-* \"-\"??_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "aba": "A.1.1 Premissas de Receita",
+        "campo": "U96",
+        "formato_excel": "_-* #,##0\\ _€_-;\\-* #,##0\\ _€_-;_-* \"-\"??\\ _€_-;_-@_-",
+        "tipo_mapeado": "number",
+        "tipo_esperado": "currency",
+        "severidade": "critico"
+      }
+    ]
+  }
+}

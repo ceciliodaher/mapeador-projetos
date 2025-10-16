@@ -1,0 +1,59 @@
+{
+  "validacao_abas": {
+    "por_planilha": [
+      {
+        "planilha": "ProjecoesD-Dividas-15.xls",
+        "status": "completo",
+        "total_abas_excel": 38,
+        "total_abas_mapeadas": 38,
+        "diferenca": 0,
+        "abas_perdidas": [],
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "Budget.xlsx",
+        "status": "completo",
+        "total_abas_excel": 64,
+        "total_abas_mapeadas": 64,
+        "diferenca": 0,
+        "abas_perdidas": [],
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "Informacoes_Projeto-Viabilidade.xls",
+        "status": "completo",
+        "total_abas_excel": 20,
+        "total_abas_mapeadas": 20,
+        "diferenca": 0,
+        "abas_perdidas": [],
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "balanço versão outubro 2011.xls",
+        "status": "completo",
+        "total_abas_excel": 7,
+        "total_abas_mapeadas": 7,
+        "diferenca": 0,
+        "abas_perdidas": [],
+        "percentual_cobertura": 100.0
+      },
+      {
+        "planilha": "Valuation.xlsx",
+        "status": "completo",
+        "total_abas_excel": 40,
+        "total_abas_mapeadas": 40,
+        "diferenca": 0,
+        "abas_perdidas": [],
+        "percentual_cobertura": 100.0
+      }
+    ],
+    "resumo": {
+      "status": "completo",
+      "total_abas_excel": 169,
+      "total_abas_mapeadas": 169,
+      "diferenca": 0,
+      "abas_perdidas": [],
+      "percentual_cobertura": 100.0
+    }
+  }
+}

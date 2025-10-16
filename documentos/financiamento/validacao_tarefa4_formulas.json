@@ -1,0 +1,23 @@
+{
+  "validacao_formulas": {
+    "status": "completo",
+    "total_formulas_catalogadas": 13590,
+    "total_ocorrencias": 395811,
+    "total_esperado": 13590,
+    "diferenca": 0,
+    "percentual_cobertura": 100.0,
+    "formulas_por_tipo": {
+      "arithmetic": 776,
+      "other": 220,
+      "statistical": 381,
+      "logical": 12207,
+      "financial": 3,
+      "lookup": 3
+    },
+    "formulas_por_complexidade": {
+      "low": 1147,
+      "medium": 12400,
+      "high": 43
+    }
+  }
+}

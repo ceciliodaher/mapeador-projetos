@@ -1,0 +1,372 @@
+name: planilhas-fco-complete-analyzer
+description: Analisa TODAS as planilhas FCO extraindo estrutura EXATA de campos tipados
+version: 1.0.0
+author: Expertzy
+created: 2025-01-15
+
+capabilities:
+  - Leitura de arquivos Excel (.xlsx, .xls)
+  - Extração de estrutura COMPLETA de cada aba
+  - Mapeamento de tipos de dados EXATOS (não inferência)
+  - Identificação de validações (listas, ranges, fórmulas)
+  - Relacionamentos entre abas (cross-references)
+  - Identificação de tabelas dinâmicas (crescimento vertical)
+
+input:
+  planilhas_todas:
+    - path: "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/ProjecoesD-Dividas-15.xls"
+      priority: 1
+      role: "Principal - Projeções e Dívidas (OFICIAL FCO)"
+
+    - path: "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/Budget.xlsx"
+      priority: 1
+      role: "Análises Avançadas - Budget e Cenários"
+
+    - path: "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Incentivos/Documentos e Informacoes/Informacoes_Projeto-Viabilidade (ceciliodaher@gmail.com).xls"
+      priority: 2
+      role: "Template FCO Complementar"
+
+    - path: "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/balanço versão outubro 2011.xls"
+      priority: 2
+      role: "Balanço Patrimonial Detalhado"
+
+    - path: "/Users/ceciliodaher/Library/CloudStorage/OneDrive-Personal/Documents/Bisnago/FCO/Projeto/Valuation.xlsx"
+      priority: 2
+      role: "Valuation e DCF"
+
+tasks:
+  - name: listar_todas_abas_todas_planilhas
+    description: "Mapeia TODAS as abas de TODAS as planilhas"
+    action: |
+      Para cada planilha:
+        1. Abrir arquivo Excel
+        2. Listar todas as abas (sheets)
+        3. Para cada aba, extrair:
+           - Nome da aba
+           - Número de linhas usadas
+           - Número de colunas usadas
+           - Se contém tabela dinâmica (padrão: header + dados repetitivos)
+           - Tipo: input|calculada|mista|relatorio
+    output:
+      format: json
+      file: "documentos/financiamento/lista_abas_completa.json"
+      structure:
+        planilha: string
+        abas: array
+          - nome_aba: string
+            tipo: input|calculada|mista|relatorio
+            num_linhas: number
+            num_colunas: number
+            contem_tabela_dinamica: boolean
+
+  - name: extrair_campos_estruturados_por_aba
+    description: "Para CADA aba, extrai CADA campo com tipo EXATO do Excel"
+    action: |
+      Para cada aba de cada planilha:
+        1. Identificar células com rótulos/labels (texto não-fórmula adjacente a célula editável)
+        2. Para cada campo identificado, extrair:
+           - Label (texto do rótulo)
+           - Referência da célula (ex: B5)
+           - Tipo de dado (baseado no formato Excel):
+             * text: Texto geral
+             * number: Número sem formato especial
+             * currency: Formato moeda (R$ #,##0.00)
+             * date: Formato data (dd/mm/aaaa)
+             * percentage: Formato percentual (0.00%)
+             * cpf: Texto com padrão 000.000.000-00
+             * cnpj: Texto com padrão 00.000.000/0000-00
+             * phone: Texto com padrão telefone
+             * email: Texto com @
+             * boolean: Sim/Não, Verdadeiro/Falso
+             * list: Célula com validação de lista suspensa
+           - Formato de dados (string de formato Excel)
+           - Tipo de validação:
+             * none: Sem validação
+             * list: Lista suspensa
+             * range: Valor mín/máx
+             * formula: Validação por fórmula
+             * custom: Customizada
+           - Fonte da validação (se lista: range ou valores; se range: min/max)
+           - Obrigatoriedade (inferir se campo crítico ou tem validação)
+           - Tamanho máximo (se texto)
+           - Casas decimais (se número)
+           - Fórmula (se célula calculada)
+           - Células/abas referenciadas (se fórmula)
+           - Valor padrão (se houver)
+           - Comentário/help text (comentário da célula)
+           - Formatação condicional (se houver)
+    output:
+      format: json
+      file: "documentos/financiamento/campos_estruturados_completo.json"
+      structure:
+        planilha: string
+        aba: string
+        campos: array
+          - label: string
+            cell_ref: string
+            field_type: enum
+            data_format: string
+            validation_type: enum
+            validation_source: string
+            required: boolean
+            max_length: number
+            decimal_places: number
+            formula: string
+            references: array
+            default_value: any
+            help_text: string
+            conditional_format: object
+
+  - name: identificar_tabelas_dinamicas
+    description: "Identifica tabelas que crescem verticalmente (linhas ilimitadas)"
+    action: |
+      Para cada aba:
+        1. Procurar padrões de tabela:
+           - Linha de cabeçalho com títulos de coluna
+           - 2+ linhas abaixo com estrutura idêntica (mesmos tipos de dado)
+           - Opcional: linha de total/soma após as linhas de dados
+        2. Para cada tabela identificada:
+           - Linha de início (onde começa o header)
+           - Colunas da tabela (extrair definição de cada coluna)
+           - Se tem linha de total (e tipo: sum, average, count, formula)
+        3. Classificar tabela por tipo de conteúdo:
+           - Dívidas (colunas típicas: credor, valor, taxa, prazo)
+           - Fornecedores (colunas: razão social, CNPJ, % compras)
+           - Clientes (colunas: nome, CNPJ/CPF, % vendas)
+           - Investimentos (colunas: item, categoria, valor, cronograma)
+           - Produtos (colunas: nome, unidade, preço)
+           - Insumos (colunas: nome, tipo, custo)
+           - RH (colunas: cargo, salário, encargos)
+    output:
+      format: json
+      file: "documentos/financiamento/tabelas_dinamicas.json"
+      structure:
+        tabelas: array
+          - planilha: string
+            aba: string
+            nome_tabela: string
+            tipo_conteudo: string
+            inicio_linha: number
+            colunas: array
+              - nome_coluna: string
+                tipo: field_type
+                obrigatorio: boolean
+                validacao: object
+            tem_linha_total: boolean
+            tipo_total: sum|average|count|formula
+
+  - name: classificar_abas_respondente_vs_analista
+    description: "Separa abas entre INPUT (respondente) e CALCULADAS (analista)"
+    action: |
+      Para cada aba:
+        1. Contar células editáveis (sem fórmula)
+        2. Contar células calculadas (com fórmula)
+        3. Calcular % de cada tipo
+        4. Classificar conforme regras:
+
+           RESPONDENTE (input manual):
+           - Aba com >70% campos editáveis
+           - Aba de cadastro/identificação
+           - Aba de histórico (entrada ou upload)
+           - Aba de planejamento básico
+           - Abas de input de dados brutos
+
+           ANALISTA (calculadas/relatórios):
+           - Aba com >80% fórmulas
+           - Aba de relatórios
+           - Aba de cenários
+           - Aba de indicadores financeiros
+           - Aba de análise de sensibilidade
+           - Aba de gráficos/dashboards
+
+        5. Marcar nível de prioridade:
+           - Crítico: Obrigatório para FCO
+           - Alto: Importante para análise completa
+           - Médio: Útil mas não essencial
+           - Baixo: Complementar
+    output:
+      format: json
+      file: "documentos/financiamento/separacao_respondente_analista.json"
+      structure:
+        abas_respondente: array
+          - planilha: string
+            aba: string
+            percentual_input: number
+            prioridade: critico|alto|medio|baixo
+            justificativa: string
+        abas_analista: array
+          - planilha: string
+            aba: string
+            percentual_calculado: number
+            tipo_analise: string
+            prioridade: critico|alto|medio|baixo
+
+  - name: extrair_demonstracoes_financeiras_estrutura
+    description: "Extrai estrutura EXATA de DRE e Balanço Patrimonial"
+    action: |
+      Procurar abas com nome contendo: "DRE", "Demonstração", "Resultado", "Balanço", "Patrimonial"
+
+      Para cada demonstração encontrada:
+        1. Identificar estrutura de contas:
+           - Código da conta (ex: 1.1, 1.1.1, 3.1.2)
+           - Nome da conta
+           - Tipo: grupo|conta|subconta
+           - Nível hierárquico (1=principal, 2=subgrupo, 3=detalhe)
+           - Se é conta calculada: extrair fórmula
+           - Natureza: débito|crédito
+
+        2. Identificar colunas de períodos:
+           - SEMPRE 4 períodos históricos/atuais
+           - Padrão: Ano N-3, Ano N-2, Ano N-1, Ano Atual
+           - Extrair labels exatos
+           - Marcar status: completo|parcial (atual pode ser parcial)
+
+        3. Mapear relacionamentos entre contas:
+           - Quais subcontas somam em cada grupo
+           - Fluxo de cálculo (ordem de dependência)
+    output:
+      format: json
+      file: "documentos/financiamento/demonstracoes_estrutura.json"
+      structure:
+        dre:
+          contas: array
+            - codigo_conta: string
+              nome_conta: string
+              tipo: grupo|conta|subconta
+              nivel: number
+              formula: string
+              natureza: debito|credito
+              calculado_de: array
+          periodos: array
+            - label: string
+              ano_referencia: number
+              status: completo|parcial
+        balanco:
+          # mesma estrutura
+
+  - name: mapear_listas_dropdown
+    description: "Extrai TODAS as listas suspensas das planilhas"
+    action: |
+      Para cada planilha:
+        1. Identificar células com validação de lista
+        2. Para cada lista:
+           - Nome/ID da lista (se tem named range)
+           - Origem:
+             * cell_range: Range de células (ex: A1:A10)
+             * named_range: Range nomeado
+             * external: Fonte externa
+           - Valores da lista (todos)
+           - Células que usam esta lista
+    output:
+      format: json
+      file: "documentos/financiamento/listas_dropdown.json"
+      structure:
+        listas: array
+          - nome_lista: string
+            origem: cell_range|named_range|external
+            range: string
+            valores: array
+            usado_em: array
+
+  - name: extrair_formulas_unicas
+    description: "Extrai TODAS as fórmulas únicas (sem repetição)"
+    action: |
+      Para todas as planilhas:
+        1. Coletar todas as fórmulas
+        2. Normalizar (substituir referências por variáveis genéricas)
+           Exemplo: =B5*C5 → =${var1}*${var2}
+        3. Deduplicate (manter apenas fórmulas únicas)
+        4. Para cada fórmula única:
+           - Fórmula original (texto)
+           - Tipo: arithmetic|financial|logical|lookup|statistical|text
+           - Variáveis (células referenciadas genericamente)
+           - Complexidade: low|medium|high
+           - Usado em (lista de células que usam esta fórmula)
+    output:
+      format: json
+      file: "documentos/financiamento/formulas_catalog.json"
+      structure:
+        formulas: array
+          - formula_pattern: string
+            tipo: enum
+            variaveis: array
+            complexidade: low|medium|high
+            exemplos_uso: array
+
+output:
+  primary:
+    format: markdown
+    file: "documentos/financiamento/ESTRUTURA_COMPLETA_FCO.md"
+    sections:
+      - executive_summary: |
+          Resumo executivo da análise:
+          - Total de planilhas analisadas
+          - Total de abas mapeadas
+          - Total de campos estruturados identificados
+          - Total de tabelas dinâmicas encontradas
+          - Separação: X abas respondente, Y abas analista
+
+      - planilhas_overview: |
+          Tabela com overview de cada planilha:
+          - Nome
+          - Número de abas
+          - Papel no sistema FCO
+          - Prioridade
+
+      - abas_todas_planilhas: |
+          Lista detalhada de todas as abas:
+          - Por planilha
+          - Tipo (input/calculada)
+          - Número de campos
+          - Uso (respondente/analista)
+
+      - tabelas_dinamicas_identificadas: |
+          Lista de tabelas dinâmicas encontradas:
+          - Nome/tipo
+          - Colunas
+          - Onde está (planilha/aba)
+
+      - campos_estruturados_completos: |
+          Catálogo COMPLETO de campos:
+          - Organizado por aba
+          - Tipo, validação, obrigatoriedade
+
+      - demonstracoes_financeiras_estrutura: |
+          Estrutura de DRE e Balanço:
+          - Hierarquia de contas
+          - Fórmulas
+          - 4 períodos
+
+      - listas_dropdown: |
+          Listas suspensas mapeadas
+
+      - formulas_catalog: |
+          Catálogo de fórmulas únicas
+
+      - separacao_respondente_analista: |
+          Separação clara:
+          - Abas para respondente (12 seções)
+          - Abas para analista (18+ seções)
+
+      - recomendacoes_implementacao: |
+          Recomendações práticas:
+          - Ordem de implementação
+          - Componentes a criar
+          - Priorização
+
+  additional_outputs:
+    - file: "documentos/financiamento/lista_abas_completa.json"
+    - file: "documentos/financiamento/campos_estruturados_completo.json"
+    - file: "documentos/financiamento/tabelas_dinamicas.json"
+    - file: "documentos/financiamento/separacao_respondente_analista.json"
+    - file: "documentos/financiamento/demonstracoes_estrutura.json"
+    - file: "documentos/financiamento/listas_dropdown.json"
+    - file: "documentos/financiamento/formulas_catalog.json"
+
+notes: |
+  PRINCÍPIOS OBRIGATÓRIOS:
+  - NENHUM campo pode ser perdido na análise
+  - Tipos devem ser EXATOS (não inferência - usar formato Excel)
+  - Tabelas dinâmicas devem ser IDENTIFICADAS (não pré-limitar linhas)
+  - Demonstrações: SEMPRE 4 períodos (N-3, N-2, N-1, Atual)
+  - Fidelidade 100% à estrutura das planilhas

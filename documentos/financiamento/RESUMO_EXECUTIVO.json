@@ -1,0 +1,334 @@
+{
+  "metadata": {
+    "data_analise": "2025-10-15",
+    "agente": "planilhas-fco-complete-analyzer",
+    "versao": "1.0"
+  },
+  "resumo_geral": {
+    "total_planilhas": 5,
+    "total_abas": 169,
+    "total_campos": 504022,
+    "total_tabelas_dinamicas": 126,
+    "total_formulas_unicas": 13590,
+    "total_demonstracoes": 7,
+    "total_listas_dropdown": 0
+  },
+  "planilhas": [
+    {
+      "nome": "ProjecoesD-Dividas-15.xls",
+      "prioridade": 1,
+      "papel": "Template Oficial FCO",
+      "abas": 38,
+      "campos": 61013,
+      "tipo_principal": "RESPONDENTE",
+      "criticidade": "CRÍTICO",
+      "status_implementacao": "FASE 1"
+    },
+    {
+      "nome": "Budget.xlsx",
+      "prioridade": 1,
+      "papel": "Análises Avançadas",
+      "abas": 64,
+      "campos": 430610,
+      "tipo_principal": "MISTO",
+      "criticidade": "ALTO",
+      "status_implementacao": "FASE 2"
+    },
+    {
+      "nome": "Informacoes_Projeto-Viabilidade.xls",
+      "prioridade": 2,
+      "papel": "Template Complementar",
+      "abas": 20,
+      "campos": 1855,
+      "tipo_principal": "RESPONDENTE",
+      "criticidade": "ALTO",
+      "status_implementacao": "FASE 2"
+    },
+    {
+      "nome": "balanço versão outubro 2011.xls",
+      "prioridade": 2,
+      "papel": "Balanço Detalhado",
+      "abas": 7,
+      "campos": 1205,
+      "tipo_principal": "RESPONDENTE",
+      "criticidade": "MÉDIO",
+      "status_implementacao": "FASE 3"
+    },
+    {
+      "nome": "Valuation.xlsx",
+      "prioridade": 2,
+      "papel": "Valuation e DCF",
+      "abas": 40,
+      "campos": 9339,
+      "tipo_principal": "MISTO",
+      "criticidade": "MÉDIO",
+      "status_implementacao": "FASE 3"
+    }
+  ],
+  "distribuicao_abas": {
+    "por_tipo": {
+      "input": 80,
+      "calculada": 67,
+      "mista": 22
+    },
+    "por_audience": {
+      "RESPONDENTE": 80,
+      "ANALISTA": 67,
+      "MISTO": 22
+    }
+  },
+  "distribuicao_formulas": {
+    "logical": 12207,
+    "arithmetic": 776,
+    "statistical": 381,
+    "other": 220,
+    "financial": 3,
+    "lookup": 3
+  },
+  "abas_criticas_respondente": [
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "PROJETO",
+      "campos_editaveis": 345,
+      "prioridade": "CRÍTICO",
+      "fase": 1
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "DÍVIDAS",
+      "campos_editaveis": 2760,
+      "prioridade": "CRÍTICO",
+      "fase": 1
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "FINANCIAMENTO",
+      "campos_editaveis": 432,
+      "prioridade": "CRÍTICO",
+      "fase": 1
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "RECEITAS",
+      "campos_editaveis": 555,
+      "prioridade": "CRÍTICO",
+      "fase": 1
+    },
+    {
+      "planilha": "ProjecoesD-Dividas-15.xls",
+      "aba": "USOS E FONTES",
+      "campos_editaveis": 690,
+      "prioridade": "CRÍTICO",
+      "fase": 1
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "PROJETO",
+      "campos_editaveis": 163,
+      "prioridade": "ALTO",
+      "fase": 2
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Balancos",
+      "campos_editaveis": 507,
+      "prioridade": "ALTO",
+      "fase": 2
+    },
+    {
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "aba": "Investimentos",
+      "campos_editaveis": 457,
+      "prioridade": "ALTO",
+      "fase": 2
+    },
+    {
+      "planilha": "Budget.xlsx",
+      "aba": "PROJETO",
+      "campos_editaveis": 262,
+      "prioridade": "ALTO",
+      "fase": 2
+    }
+  ],
+  "componentes_necessarios": [
+    {
+      "nome": "FormField",
+      "descricao": "Campo genérico com validação",
+      "prioridade": "CRÍTICO",
+      "uso_estimado": 5000
+    },
+    {
+      "nome": "CurrencyInput",
+      "descricao": "Input com máscara de moeda (R$)",
+      "prioridade": "CRÍTICO",
+      "uso_estimado": 3000
+    },
+    {
+      "nome": "DynamicTable",
+      "descricao": "Tabela com add/remove rows",
+      "prioridade": "CRÍTICO",
+      "uso_estimado": 126
+    },
+    {
+      "nome": "DatePicker",
+      "descricao": "Seletor de data",
+      "prioridade": "ALTO",
+      "uso_estimado": 500
+    },
+    {
+      "nome": "PercentageInput",
+      "descricao": "Input percentual",
+      "prioridade": "ALTO",
+      "uso_estimado": 800
+    },
+    {
+      "nome": "TextArea",
+      "descricao": "Campo de texto longo",
+      "prioridade": "MÉDIO",
+      "uso_estimado": 200
+    },
+    {
+      "nome": "FileUpload",
+      "descricao": "Upload de documentos",
+      "prioridade": "MÉDIO",
+      "uso_estimado": 50
+    },
+    {
+      "nome": "FormulaCalculator",
+      "descricao": "Engine de cálculo de fórmulas",
+      "prioridade": "ALTO",
+      "uso_estimado": 13590
+    },
+    {
+      "nome": "FinancialIndicators",
+      "descricao": "Cálculo TIR, VPL, Payback, etc",
+      "prioridade": "MÉDIO",
+      "uso_estimado": 50
+    }
+  ],
+  "roadmap_implementacao": {
+    "fase_1_critica": {
+      "nome": "Template Oficial FCO - Input Manual",
+      "prazo_estimado": "4-6 semanas",
+      "planilhas": ["ProjecoesD-Dividas-15.xls"],
+      "abas_foco": ["PROJETO", "DÍVIDAS", "FINANCIAMENTO", "RECEITAS", "USOS E FONTES"],
+      "deliverables": [
+        "Formulários de input completos",
+        "Validações básicas",
+        "IndexedDB persistência",
+        "Auto-save",
+        "Export JSON básico"
+      ]
+    },
+    "fase_2_alta": {
+      "nome": "Templates Complementares + Histórico",
+      "prazo_estimado": "3-4 semanas",
+      "planilhas": ["Informacoes_Projeto-Viabilidade.xls", "Budget.xlsx"],
+      "abas_foco": ["Balancos", "Investimentos", "A.6 DRE Historico", "A.7 BP Historico"],
+      "deliverables": [
+        "Demonstrações financeiras históricas (4 períodos)",
+        "Tabelas dinâmicas",
+        "Totalizadores automáticos",
+        "Validação cross-aba"
+      ]
+    },
+    "fase_3_media": {
+      "nome": "Cálculos Avançados + Valuation",
+      "prazo_estimado": "4-5 semanas",
+      "planilhas": ["Budget.xlsx", "Valuation.xlsx"],
+      "abas_foco": ["Calculadas do Budget", "DCF", "KPIs", "Indicadores"],
+      "deliverables": [
+        "Engine de fórmulas",
+        "Cálculo TIR, VPL, Payback",
+        "Dashboards e gráficos",
+        "Análise de sensibilidade"
+      ]
+    },
+    "fase_4_polimento": {
+      "nome": "Integração e Finalização",
+      "prazo_estimado": "2-3 semanas",
+      "planilhas": ["Todas"],
+      "abas_foco": ["Todas as restantes"],
+      "deliverables": [
+        "Export para Excel/PDF completo",
+        "Relatório de consistência",
+        "Validação final completa",
+        "Documentação de uso"
+      ]
+    }
+  },
+  "arquivos_gerados": [
+    {
+      "nome": "lista_abas_completa.json",
+      "tamanho_kb": 49.7,
+      "descricao": "Lista de todas as 169 abas com metadados"
+    },
+    {
+      "nome": "campos_estruturados_completo.json",
+      "tamanho_mb": 192.2,
+      "descricao": "Todos os 504.022 campos extraídos com tipos"
+    },
+    {
+      "nome": "tabelas_dinamicas.json",
+      "tamanho_kb": 36.5,
+      "descricao": "126 tabelas dinâmicas identificadas"
+    },
+    {
+      "nome": "separacao_respondente_analista.json",
+      "tamanho_kb": 39.4,
+      "descricao": "Classificação de abas por audience"
+    },
+    {
+      "nome": "demonstracoes_estrutura.json",
+      "tamanho_kb": 2.0,
+      "descricao": "7 demonstrações financeiras mapeadas"
+    },
+    {
+      "nome": "listas_dropdown.json",
+      "tamanho_bytes": 18,
+      "descricao": "Listas de validação (nenhuma encontrada)"
+    },
+    {
+      "nome": "formulas_catalog.json",
+      "tamanho_mb": 9.6,
+      "descricao": "13.590 fórmulas únicas normalizadas"
+    },
+    {
+      "nome": "ESTRUTURA_COMPLETA_FCO.md",
+      "tamanho_kb": 38.2,
+      "descricao": "Relatório consolidado em Markdown"
+    }
+  ],
+  "proximos_passos": [
+    "1. Validar JSONs gerados com stakeholders",
+    "2. Priorizar abas RESPONDENTE para implementação inicial",
+    "3. Criar biblioteca de componentes reutilizáveis",
+    "4. Desenvolver FormField genérico com validação",
+    "5. Implementar DynamicTable para tabelas de dados",
+    "6. Criar CurrencyInput e PercentageInput",
+    "7. Desenvolver sistema de persistência IndexedDB",
+    "8. Implementar auto-save e recovery",
+    "9. Criar engine de fórmulas para abas ANALISTA",
+    "10. Desenvolver export para Excel/PDF oficial"
+  ],
+  "metricas_complexidade": {
+    "campos_por_aba_media": 2983,
+    "formulas_por_aba_calculada": 203,
+    "tabelas_por_aba": 0.75,
+    "maior_aba_campos": {
+      "nome": "A.1 Receita Bruta",
+      "campos": 44463,
+      "planilha": "Budget.xlsx"
+    },
+    "maior_aba_linhas": {
+      "nome": "Auxiliar SAC-Giro",
+      "linhas": 788,
+      "planilha": "Budget.xlsx"
+    },
+    "maior_aba_colunas": {
+      "nome": "A.1 Receita Bruta",
+      "colunas": 16374,
+      "planilha": "Budget.xlsx"
+    }
+  }
+}

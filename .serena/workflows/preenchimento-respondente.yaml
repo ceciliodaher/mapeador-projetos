@@ -1,0 +1,74 @@
+name: "Preenchimento do Questionário"
+description: "Orquestra o fluxo completo de preenchimento pelo respondente"
+type: "sequential"
+
+steps:
+  - id: "init_session"
+    name: "Inicializar Sessão"
+    agent: "questionario_orchestrator"
+    action: "initialize"
+    outputs:
+      - empresa_id
+      - session_token
+
+  - id: "validar_secao"
+    name: "Validar Seção Atual"
+    agent: "questionario_orchestrator"
+    action: "validate_section"
+    inputs:
+      - section_number
+      - form_data
+    on_success: "salvar_automaticamente"
+    on_error: "mostrar_erros"
+
+  - id: "salvar_automaticamente"
+    name: "Auto-save de Dados"
+    agent: "questionario_orchestrator"
+    action: "auto_save"
+    inputs:
+      - empresa_id
+      - section_data
+      - timestamp
+
+  - id: "classificar_projeto"
+    name: "Classificar Projeto"
+    agent: "classificador_projetos"
+    action: "classify"
+    trigger: "on_project_complete"
+    inputs:
+      - projeto_data
+    outputs:
+      - classificacao
+      - score
+      - recomendacoes
+
+  - id: "sugerir_relacionamentos"
+    name: "Sugerir Relacionamentos"
+    agent: "questionario_orchestrator"
+    action: "suggest_relationships"
+    trigger: "on_all_projects_added"
+    inputs:
+      - projetos_list
+    outputs:
+      - relacionamentos_sugeridos
+
+  - id: "gerar_exports"
+    name: "Gerar Exports"
+    agent: "gerador_relatorios"
+    action: "export"
+    trigger: "on_complete"
+    inputs:
+      - complete_data
+      - format: ["json", "pdf"]
+    outputs:
+      - export_files
+
+error_handling:
+  retry_attempts: 3
+  fallback: "local_rules"
+  notify_user: true
+
+auto_save:
+  enabled: true
+  interval_seconds: 30
+  debounce_seconds: 3

@@ -1,0 +1,134 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "dataAtualizacao": "2025-01-15",
+    "descricao": "Defaults simples para DynamicTable - SEM validações complexas",
+    "autor": "Expertzy"
+  },
+
+  "fieldTypes": {
+    "text": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "placeholder": "",
+      "decimalPlaces": null
+    },
+
+    "number": {
+      "htmlType": "number",
+      "defaultValue": "",
+      "step": "any",
+      "decimalPlaces": 0,
+      "placeholder": "0"
+    },
+
+    "currency": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "decimalPlaces": 2,
+      "placeholder": "R$ 0,00",
+      "locale": "pt-BR",
+      "currency": "BRL"
+    },
+
+    "date": {
+      "htmlType": "date",
+      "defaultValue": "",
+      "placeholder": "dd/mm/aaaa",
+      "decimalPlaces": null
+    },
+
+    "percentage": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "decimalPlaces": 2,
+      "placeholder": "0,00%",
+      "locale": "pt-BR"
+    },
+
+    "cpf": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "maxLength": 14,
+      "placeholder": "000.000.000-00",
+      "decimalPlaces": null
+    },
+
+    "cnpj": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "maxLength": 18,
+      "placeholder": "00.000.000/0000-00",
+      "decimalPlaces": null
+    },
+
+    "phone": {
+      "htmlType": "tel",
+      "defaultValue": "",
+      "maxLength": 15,
+      "placeholder": "(00) 00000-0000",
+      "decimalPlaces": null
+    },
+
+    "email": {
+      "htmlType": "email",
+      "defaultValue": "",
+      "placeholder": "email@exemplo.com",
+      "decimalPlaces": null
+    },
+
+    "boolean": {
+      "htmlType": "select",
+      "defaultValue": "",
+      "decimalPlaces": null,
+      "options": [
+        { "value": "", "label": "Selecione..." },
+        { "value": "true", "label": "Sim" },
+        { "value": "false", "label": "Não" }
+      ]
+    },
+
+    "list": {
+      "htmlType": "select",
+      "defaultValue": "",
+      "placeholder": "Selecione...",
+      "decimalPlaces": null,
+      "options": []
+    },
+
+    "calculated": {
+      "htmlType": "text",
+      "defaultValue": "",
+      "readonly": true,
+      "decimalPlaces": 2,
+      "formula": null
+    }
+  },
+
+  "tableOptions": {
+    "minRows": 1,
+    "maxRows": null,
+    "showTotal": false,
+    "totalType": "sum",
+    "allowDelete": true,
+    "allowAdd": true,
+    "striped": true,
+    "responsive": true,
+    "autoSave": true,
+    "saveDelay": 3000
+  },
+
+  "css": {
+    "wrapper": "dynamic-table-wrapper",
+    "tableResponsive": "table-responsive",
+    "table": "table dynamic-table",
+    "tableStriped": "table-striped",
+    "actionsColumn": "actions-column",
+    "totalRow": "total-row",
+    "addRowBtn": "btn btn-outline-primary btn-add-row",
+    "deleteRowBtn": "btn btn-sm btn-outline-danger btn-delete-row",
+    "formControl": "form-control",
+    "warning": "field-warning",
+    "error": "field-error"
+  }
+}

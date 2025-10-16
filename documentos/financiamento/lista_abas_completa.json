@@ -1,0 +1,1734 @@
+{
+  "planilhas": [
+    {
+      "nome_planilha": "ProjecoesD-Dividas-15.xls",
+      "prioridade": 1,
+      "papel": "Template Oficial FCO",
+      "abas": [
+        {
+          "nome_aba": "MENU",
+          "tipo": "input",
+          "num_linhas": 17,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 4,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "ORIENTAÇÕES",
+          "tipo": "input",
+          "num_linhas": 170,
+          "num_colunas": 8,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 131,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "PROJETO",
+          "tipo": "input",
+          "num_linhas": 383,
+          "num_colunas": 221,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 345,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Versão",
+          "tipo": "input",
+          "num_linhas": 11,
+          "num_colunas": 8,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 2,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "ORÇAMENTO",
+          "tipo": "input",
+          "num_linhas": 129,
+          "num_colunas": 16,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 296,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "USOS E FONTES",
+          "tipo": "input",
+          "num_linhas": 85,
+          "num_colunas": 39,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 690,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "RECEITAS",
+          "tipo": "input",
+          "num_linhas": 46,
+          "num_colunas": 29,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 555,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "QUANTIDADE",
+          "tipo": "input",
+          "num_linhas": 44,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 228,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "INSUMOS",
+          "tipo": "input",
+          "num_linhas": 69,
+          "num_colunas": 29,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 67,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "CUSTOS",
+          "tipo": "input",
+          "num_linhas": 50,
+          "num_colunas": 19,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 276,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "TRIBUTOS",
+          "tipo": "input",
+          "num_linhas": 64,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 122,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "MÃO-DE-OBRA",
+          "tipo": "input",
+          "num_linhas": 75,
+          "num_colunas": 28,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 778,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "GIRO",
+          "tipo": "input",
+          "num_linhas": 48,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 166,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "DEPRECIAÇÃO",
+          "tipo": "input",
+          "num_linhas": 41,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 122,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FINANCIAMENTO",
+          "tipo": "input",
+          "num_linhas": 146,
+          "num_colunas": 43,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 432,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "DÍVIDAS",
+          "tipo": "input",
+          "num_linhas": 272,
+          "num_colunas": 51,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2760,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FLUXO DE CAIXA",
+          "tipo": "input",
+          "num_linhas": 131,
+          "num_colunas": 19,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 421,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "LINHAS",
+          "tipo": "input",
+          "num_linhas": 8,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 48,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Finan1 - L",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2275,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Finan2 - L",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1738,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Finan3 - L",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1738,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Finan4 - L",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2736,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Finan5 - L",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1738,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 1",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3074,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 2",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3105,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 3",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3609,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 4",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3615,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 5",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1979,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 6",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3638,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 7",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3638,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 8",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3214,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 9",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3219,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 10",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3659,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 11",
+          "tipo": "input",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3659,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 12",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1734,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 13",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1734,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 14",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1734,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "FinanE - 15",
+          "tipo": "input",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1734,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        }
+      ],
+      "total_campos": 61013
+    },
+    {
+      "nome_planilha": "Budget.xlsx",
+      "prioridade": 1,
+      "papel": "Análises Avançadas",
+      "abas": [
+        {
+          "nome_aba": "Controle",
+          "tipo": "input",
+          "num_linhas": 27,
+          "num_colunas": 65,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 18,
+          "campos_calculados": 1,
+          "percentual_editavel": 94.74
+        },
+        {
+          "nome_aba": "PROJETO",
+          "tipo": "input",
+          "num_linhas": 388,
+          "num_colunas": 221,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 262,
+          "campos_calculados": 84,
+          "percentual_editavel": 75.72
+        },
+        {
+          "nome_aba": "ORÇAMENTO",
+          "tipo": "calculada",
+          "num_linhas": 127,
+          "num_colunas": 16,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 86,
+          "campos_calculados": 643,
+          "percentual_editavel": 11.8
+        },
+        {
+          "nome_aba": "USOS E FONTES",
+          "tipo": "calculada",
+          "num_linhas": 86,
+          "num_colunas": 39,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 143,
+          "campos_calculados": 708,
+          "percentual_editavel": 16.8
+        },
+        {
+          "nome_aba": "RECEITAS",
+          "tipo": "calculada",
+          "num_linhas": 46,
+          "num_colunas": 29,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 72,
+          "campos_calculados": 547,
+          "percentual_editavel": 11.63
+        },
+        {
+          "nome_aba": "QUANTIDADE",
+          "tipo": "calculada",
+          "num_linhas": 44,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 28,
+          "campos_calculados": 247,
+          "percentual_editavel": 10.18
+        },
+        {
+          "nome_aba": "INSUMOS",
+          "tipo": "calculada",
+          "num_linhas": 69,
+          "num_colunas": 29,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 52,
+          "campos_calculados": 571,
+          "percentual_editavel": 8.35
+        },
+        {
+          "nome_aba": "MÃO-DE-OBRA",
+          "tipo": "calculada",
+          "num_linhas": 75,
+          "num_colunas": 28,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 133,
+          "campos_calculados": 726,
+          "percentual_editavel": 15.48
+        },
+        {
+          "nome_aba": "CUSTOS",
+          "tipo": "calculada",
+          "num_linhas": 50,
+          "num_colunas": 19,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 49,
+          "campos_calculados": 275,
+          "percentual_editavel": 15.12
+        },
+        {
+          "nome_aba": "TRIBUTOS",
+          "tipo": "mista",
+          "num_linhas": 64,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 64,
+          "campos_calculados": 204,
+          "percentual_editavel": 23.88
+        },
+        {
+          "nome_aba": "DEPRECIAÇÃO",
+          "tipo": "mista",
+          "num_linhas": 41,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 59,
+          "campos_calculados": 87,
+          "percentual_editavel": 40.41
+        },
+        {
+          "nome_aba": "GIRO",
+          "tipo": "calculada",
+          "num_linhas": 47,
+          "num_colunas": 15,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 39,
+          "campos_calculados": 219,
+          "percentual_editavel": 15.12
+        },
+        {
+          "nome_aba": "FINANCIAMENTO",
+          "tipo": "calculada",
+          "num_linhas": 146,
+          "num_colunas": 43,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 153,
+          "campos_calculados": 624,
+          "percentual_editavel": 19.69
+        },
+        {
+          "nome_aba": "DÍVIDAS",
+          "tipo": "mista",
+          "num_linhas": 272,
+          "num_colunas": 51,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1308,
+          "campos_calculados": 2985,
+          "percentual_editavel": 30.47
+        },
+        {
+          "nome_aba": "FLUXO DE CAIXA",
+          "tipo": "calculada",
+          "num_linhas": 158,
+          "num_colunas": 15,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 98,
+          "campos_calculados": 456,
+          "percentual_editavel": 17.69
+        },
+        {
+          "nome_aba": "FLUXO DE CAIXA-PURO",
+          "tipo": "calculada",
+          "num_linhas": 160,
+          "num_colunas": 15,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 100,
+          "campos_calculados": 475,
+          "percentual_editavel": 17.39
+        },
+        {
+          "nome_aba": "A. Premissas>>",
+          "tipo": "input",
+          "num_linhas": 12,
+          "num_colunas": 65,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 1,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "A.1 Receita Bruta",
+          "tipo": "calculada",
+          "num_linhas": 531,
+          "num_colunas": 16374,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 256,
+          "campos_calculados": 44463,
+          "percentual_editavel": 0.57
+        },
+        {
+          "nome_aba": "A.1.1 Premissas de Receita",
+          "tipo": "calculada",
+          "num_linhas": 523,
+          "num_colunas": 152,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 76,
+          "campos_calculados": 32698,
+          "percentual_editavel": 0.23
+        },
+        {
+          "nome_aba": "A.2 Impostos",
+          "tipo": "calculada",
+          "num_linhas": 236,
+          "num_colunas": 137,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 76,
+          "campos_calculados": 1480,
+          "percentual_editavel": 4.88
+        },
+        {
+          "nome_aba": "A.2.1 Premissas de Impostos",
+          "tipo": "calculada",
+          "num_linhas": 232,
+          "num_colunas": 89,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 15,
+          "campos_calculados": 847,
+          "percentual_editavel": 1.74
+        },
+        {
+          "nome_aba": "A.3 Custos",
+          "tipo": "calculada",
+          "num_linhas": 650,
+          "num_colunas": 16370,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 77,
+          "campos_calculados": 13358,
+          "percentual_editavel": 0.57
+        },
+        {
+          "nome_aba": "A.3.1 Premissas de Custos",
+          "tipo": "calculada",
+          "num_linhas": 365,
+          "num_colunas": 137,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 66,
+          "campos_calculados": 13698,
+          "percentual_editavel": 0.48
+        },
+        {
+          "nome_aba": "A.4 Despesas",
+          "tipo": "calculada",
+          "num_linhas": 264,
+          "num_colunas": 149,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 25,
+          "campos_calculados": 4911,
+          "percentual_editavel": 0.51
+        },
+        {
+          "nome_aba": "A.5.1 Pessoal Administrativo",
+          "tipo": "calculada",
+          "num_linhas": 464,
+          "num_colunas": 16383,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 164,
+          "campos_calculados": 15949,
+          "percentual_editavel": 1.02
+        },
+        {
+          "nome_aba": "A.5.2 Pessoal Ensino",
+          "tipo": "calculada",
+          "num_linhas": 508,
+          "num_colunas": 16383,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 135,
+          "campos_calculados": 22132,
+          "percentual_editavel": 0.61
+        },
+        {
+          "nome_aba": "A.6 DRE Historico",
+          "tipo": "mista",
+          "num_linhas": 52,
+          "num_colunas": 8,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 23,
+          "campos_calculados": 35,
+          "percentual_editavel": 39.66
+        },
+        {
+          "nome_aba": "A.7 BP Historico",
+          "tipo": "mista",
+          "num_linhas": 58,
+          "num_colunas": 8,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 30,
+          "campos_calculados": 30,
+          "percentual_editavel": 50.0
+        },
+        {
+          "nome_aba": "A.7.1 Endividamento Atual",
+          "tipo": "calculada",
+          "num_linhas": 37,
+          "num_colunas": 137,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 135,
+          "campos_calculados": 720,
+          "percentual_editavel": 15.79
+        },
+        {
+          "nome_aba": "A.8 Capex",
+          "tipo": "calculada",
+          "num_linhas": 224,
+          "num_colunas": 149,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 36,
+          "campos_calculados": 4905,
+          "percentual_editavel": 0.73
+        },
+        {
+          "nome_aba": "A.9 CDG",
+          "tipo": "calculada",
+          "num_linhas": 48,
+          "num_colunas": 138,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 23,
+          "campos_calculados": 1065,
+          "percentual_editavel": 2.11
+        },
+        {
+          "nome_aba": "A.10 Endividamento de CP",
+          "tipo": "calculada",
+          "num_linhas": 22,
+          "num_colunas": 149,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 11,
+          "campos_calculados": 1144,
+          "percentual_editavel": 0.95
+        },
+        {
+          "nome_aba": "A.10.1 Endividamento",
+          "tipo": "mista",
+          "num_linhas": 89,
+          "num_colunas": 149,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 1650,
+          "campos_calculados": 4834,
+          "percentual_editavel": 25.45
+        },
+        {
+          "nome_aba": "A.11 Fluxo de Caixa",
+          "tipo": "calculada",
+          "num_linhas": 50,
+          "num_colunas": 137,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 243,
+          "campos_calculados": 2555,
+          "percentual_editavel": 8.68
+        },
+        {
+          "nome_aba": "B. Resultados>>",
+          "tipo": "input",
+          "num_linhas": 12,
+          "num_colunas": 65,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 1,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "B.1 Fluxo de Caixa Mensal",
+          "tipo": "calculada",
+          "num_linhas": 162,
+          "num_colunas": 149,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 122,
+          "campos_calculados": 16579,
+          "percentual_editavel": 0.73
+        },
+        {
+          "nome_aba": "B.2 Fluxo de Caixa Anual",
+          "tipo": "calculada",
+          "num_linhas": 157,
+          "num_colunas": 17,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 114,
+          "campos_calculados": 1527,
+          "percentual_editavel": 6.95
+        },
+        {
+          "nome_aba": "B.3 Quadro de Indicadores",
+          "tipo": "calculada",
+          "num_linhas": 28,
+          "num_colunas": 16,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 15,
+          "campos_calculados": 193,
+          "percentual_editavel": 7.21
+        },
+        {
+          "nome_aba": "B.4 Necessidade de Capital",
+          "tipo": "calculada",
+          "num_linhas": 9,
+          "num_colunas": 9,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 3,
+          "campos_calculados": 14,
+          "percentual_editavel": 17.65
+        },
+        {
+          "nome_aba": "B.5 Estrutura Societaria",
+          "tipo": "mista",
+          "num_linhas": 39,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 35,
+          "campos_calculados": 23,
+          "percentual_editavel": 60.34
+        },
+        {
+          "nome_aba": "Auxiliar SAC-Giro",
+          "tipo": "mista",
+          "num_linhas": 788,
+          "num_colunas": 148,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 11697,
+          "campos_calculados": 45252,
+          "percentual_editavel": 20.54
+        },
+        {
+          "nome_aba": "Auxiliar SAC",
+          "tipo": "mista",
+          "num_linhas": 788,
+          "num_colunas": 148,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 11697,
+          "campos_calculados": 45252,
+          "percentual_editavel": 20.54
+        },
+        {
+          "nome_aba": "Auxiliar PRICE (2)",
+          "tipo": "mista",
+          "num_linhas": 624,
+          "num_colunas": 64,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 5601,
+          "campos_calculados": 18996,
+          "percentual_editavel": 22.77
+        },
+        {
+          "nome_aba": "Finan1 - L",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3824,
+          "percentual_editavel": 8.28
+        },
+        {
+          "nome_aba": "Finan2 - L",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3824,
+          "percentual_editavel": 8.28
+        },
+        {
+          "nome_aba": "Finan3 - L",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3824,
+          "percentual_editavel": 8.28
+        },
+        {
+          "nome_aba": "Finan4 - L",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3824,
+          "percentual_editavel": 8.28
+        },
+        {
+          "nome_aba": "Finan5 - L",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3824,
+          "percentual_editavel": 8.28
+        },
+        {
+          "nome_aba": "FinanE - 1",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 2",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 3",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 4",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 5",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 6",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 7",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 8",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 9",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 10",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 11",
+          "tipo": "calculada",
+          "num_linhas": 273,
+          "num_colunas": 241,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 349,
+          "campos_calculados": 4784,
+          "percentual_editavel": 6.8
+        },
+        {
+          "nome_aba": "FinanE - 12",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3825,
+          "percentual_editavel": 8.27
+        },
+        {
+          "nome_aba": "FinanE - 13",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3825,
+          "percentual_editavel": 8.27
+        },
+        {
+          "nome_aba": "FinanE - 14",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3825,
+          "percentual_editavel": 8.27
+        },
+        {
+          "nome_aba": "FinanE - 15",
+          "tipo": "calculada",
+          "num_linhas": 270,
+          "num_colunas": 30,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 345,
+          "campos_calculados": 3825,
+          "percentual_editavel": 8.27
+        },
+        {
+          "nome_aba": "BEP",
+          "tipo": "mista",
+          "num_linhas": 60,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 68,
+          "campos_calculados": 51,
+          "percentual_editavel": 57.14
+        }
+      ],
+      "total_campos": 430610
+    },
+    {
+      "nome_planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "prioridade": 2,
+      "papel": "Template Complementar",
+      "abas": [
+        {
+          "nome_aba": "PROJETO",
+          "tipo": "input",
+          "num_linhas": 234,
+          "num_colunas": 221,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 163,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Investimentos",
+          "tipo": "input",
+          "num_linhas": 144,
+          "num_colunas": 31,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 457,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Organograma",
+          "tipo": "input",
+          "num_linhas": 1,
+          "num_colunas": 1,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 1,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Balancos",
+          "tipo": "input",
+          "num_linhas": 182,
+          "num_colunas": 28,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 507,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Fluxograma",
+          "tipo": "input",
+          "num_linhas": 1,
+          "num_colunas": 1,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 1,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Capacidades de Produção",
+          "tipo": "input",
+          "num_linhas": 91,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 109,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Formulação (Opcional)",
+          "tipo": "input",
+          "num_linhas": 90,
+          "num_colunas": 42,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 143,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Insumos",
+          "tipo": "input",
+          "num_linhas": 111,
+          "num_colunas": 9,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 111,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Mercado",
+          "tipo": "input",
+          "num_linhas": 89,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 114,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Empregados",
+          "tipo": "input",
+          "num_linhas": 42,
+          "num_colunas": 9,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 18,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Capital",
+          "tipo": "input",
+          "num_linhas": 12,
+          "num_colunas": 9,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 13,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Controle",
+          "tipo": "input",
+          "num_linhas": 21,
+          "num_colunas": 8,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 30,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Imobilizado",
+          "tipo": "input",
+          "num_linhas": 44,
+          "num_colunas": 5,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 44,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Endividamento",
+          "tipo": "input",
+          "num_linhas": 38,
+          "num_colunas": 7,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 24,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Depreciacao",
+          "tipo": "input",
+          "num_linhas": 27,
+          "num_colunas": 5,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 24,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Passivo",
+          "tipo": "input",
+          "num_linhas": 9,
+          "num_colunas": 6,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 17,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Fornecedores",
+          "tipo": "input",
+          "num_linhas": 38,
+          "num_colunas": 4,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 12,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Clientes",
+          "tipo": "input",
+          "num_linhas": 38,
+          "num_colunas": 4,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 12,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Faturamento",
+          "tipo": "input",
+          "num_linhas": 41,
+          "num_colunas": 2,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 5,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Outras Info",
+          "tipo": "input",
+          "num_linhas": 59,
+          "num_colunas": 2,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 50,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        }
+      ],
+      "total_campos": 1855
+    },
+    {
+      "nome_planilha": "balanço versão outubro 2011.xls",
+      "prioridade": 2,
+      "papel": "Balanço Detalhado",
+      "abas": [
+        {
+          "nome_aba": "Orientações",
+          "tipo": "input",
+          "num_linhas": 62,
+          "num_colunas": 9,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 46,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "ENT",
+          "tipo": "input",
+          "num_linhas": 183,
+          "num_colunas": 28,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 497,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "BAL",
+          "tipo": "input",
+          "num_linhas": 57,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 229,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "DRE",
+          "tipo": "input",
+          "num_linhas": 46,
+          "num_colunas": 256,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 157,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "IND",
+          "tipo": "input",
+          "num_linhas": 48,
+          "num_colunas": 7,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 122,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "IND AI",
+          "tipo": "input",
+          "num_linhas": 44,
+          "num_colunas": 6,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 90,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Giro",
+          "tipo": "input",
+          "num_linhas": 31,
+          "num_colunas": 5,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 64,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        }
+      ],
+      "total_campos": 1205
+    },
+    {
+      "nome_planilha": "Valuation.xlsx",
+      "prioridade": 2,
+      "papel": "Valuation e DCF",
+      "abas": [
+        {
+          "nome_aba": "Menu",
+          "tipo": "input",
+          "num_linhas": 13,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 5,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Menu_Financeiro",
+          "tipo": "input",
+          "num_linhas": 26,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 6,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Manual",
+          "tipo": "input",
+          "num_linhas": 55,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 18,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Inputs>>",
+          "tipo": "calculada",
+          "num_linhas": 1,
+          "num_colunas": 1,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 0,
+          "campos_calculados": 0,
+          "percentual_editavel": 0
+        },
+        {
+          "nome_aba": "Macro",
+          "tipo": "input",
+          "num_linhas": 42,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 285,
+          "campos_calculados": 21,
+          "percentual_editavel": 93.14
+        },
+        {
+          "nome_aba": "KPIs",
+          "tipo": "calculada",
+          "num_linhas": 41,
+          "num_colunas": 14,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 21,
+          "campos_calculados": 181,
+          "percentual_editavel": 10.4
+        },
+        {
+          "nome_aba": "Analise_Qualitativa",
+          "tipo": "input",
+          "num_linhas": 63,
+          "num_colunas": 21,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 282,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "SWOT",
+          "tipo": "calculada",
+          "num_linhas": 182,
+          "num_colunas": 24,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 173,
+          "campos_calculados": 957,
+          "percentual_editavel": 15.31
+        },
+        {
+          "nome_aba": "Venture_Methods",
+          "tipo": "mista",
+          "num_linhas": 43,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 72,
+          "campos_calculados": 47,
+          "percentual_editavel": 60.5
+        },
+        {
+          "nome_aba": "Estrutura Societaria",
+          "tipo": "mista",
+          "num_linhas": 163,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 86,
+          "campos_calculados": 326,
+          "percentual_editavel": 20.87
+        },
+        {
+          "nome_aba": "Outputs>>",
+          "tipo": "calculada",
+          "num_linhas": 1,
+          "num_colunas": 1,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 0,
+          "campos_calculados": 0,
+          "percentual_editavel": 0
+        },
+        {
+          "nome_aba": "Resumo",
+          "tipo": "mista",
+          "num_linhas": 76,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 135,
+          "campos_calculados": 129,
+          "percentual_editavel": 51.14
+        },
+        {
+          "nome_aba": "DCF",
+          "tipo": "calculada",
+          "num_linhas": 164,
+          "num_colunas": 28,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 134,
+          "campos_calculados": 1389,
+          "percentual_editavel": 8.8
+        },
+        {
+          "nome_aba": "DCF_C1",
+          "tipo": "calculada",
+          "num_linhas": 162,
+          "num_colunas": 27,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 118,
+          "campos_calculados": 1369,
+          "percentual_editavel": 7.94
+        },
+        {
+          "nome_aba": "DCF_C2",
+          "tipo": "calculada",
+          "num_linhas": 162,
+          "num_colunas": 27,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 117,
+          "campos_calculados": 1269,
+          "percentual_editavel": 8.44
+        },
+        {
+          "nome_aba": "Resumo (quotistas)",
+          "tipo": "mista",
+          "num_linhas": 37,
+          "num_colunas": 18,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 12,
+          "campos_calculados": 12,
+          "percentual_editavel": 50.0
+        },
+        {
+          "nome_aba": "Para Memo>>",
+          "tipo": "calculada",
+          "num_linhas": 1,
+          "num_colunas": 1,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 0,
+          "campos_calculados": 0,
+          "percentual_editavel": 0
+        },
+        {
+          "nome_aba": "Grafico Operacional",
+          "tipo": "calculada",
+          "num_linhas": 27,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 3,
+          "campos_calculados": 118,
+          "percentual_editavel": 2.48
+        },
+        {
+          "nome_aba": "Grafico Operacional (2)",
+          "tipo": "mista",
+          "num_linhas": 17,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 16,
+          "campos_calculados": 45,
+          "percentual_editavel": 26.23
+        },
+        {
+          "nome_aba": "Grafico Operacional (3)",
+          "tipo": "input",
+          "num_linhas": 10,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 9,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Grafico Operacional (4)",
+          "tipo": "input",
+          "num_linhas": 11,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 9,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Grafico Operacional (5)",
+          "tipo": "calculada",
+          "num_linhas": 26,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2,
+          "campos_calculados": 113,
+          "percentual_editavel": 1.74
+        },
+        {
+          "nome_aba": "Grafico Operacional (11)",
+          "tipo": "calculada",
+          "num_linhas": 26,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 11,
+          "campos_calculados": 104,
+          "percentual_editavel": 9.57
+        },
+        {
+          "nome_aba": "Grafico Operacional (6)",
+          "tipo": "input",
+          "num_linhas": 10,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 9,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Grafico Operacional (7)",
+          "tipo": "calculada",
+          "num_linhas": 11,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2,
+          "campos_calculados": 23,
+          "percentual_editavel": 8.0
+        },
+        {
+          "nome_aba": "Grafico Operacional (8)",
+          "tipo": "calculada",
+          "num_linhas": 15,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 5,
+          "campos_calculados": 33,
+          "percentual_editavel": 13.16
+        },
+        {
+          "nome_aba": "Grafico Operacional (9)",
+          "tipo": "calculada",
+          "num_linhas": 15,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 8,
+          "campos_calculados": 35,
+          "percentual_editavel": 18.6
+        },
+        {
+          "nome_aba": "Grafico Operacional (10)",
+          "tipo": "mista",
+          "num_linhas": 15,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 4,
+          "campos_calculados": 10,
+          "percentual_editavel": 28.57
+        },
+        {
+          "nome_aba": "Tabela Resultados",
+          "tipo": "calculada",
+          "num_linhas": 41,
+          "num_colunas": 12,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 34,
+          "campos_calculados": 239,
+          "percentual_editavel": 12.45
+        },
+        {
+          "nome_aba": "Teste Sensibilidade",
+          "tipo": "mista",
+          "num_linhas": 27,
+          "num_colunas": 13,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 46,
+          "campos_calculados": 37,
+          "percentual_editavel": 55.42
+        },
+        {
+          "nome_aba": "Tabela de Premissas",
+          "tipo": "input",
+          "num_linhas": 21,
+          "num_colunas": 10,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 11,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Cronograma de Aportes",
+          "tipo": "input",
+          "num_linhas": 11,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": false,
+          "campos_editaveis": 8,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Preço x Valuation",
+          "tipo": "mista",
+          "num_linhas": 9,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 4,
+          "campos_calculados": 3,
+          "percentual_editavel": 57.14
+        },
+        {
+          "nome_aba": "Expectativa de Retorno",
+          "tipo": "mista",
+          "num_linhas": 21,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 17,
+          "campos_calculados": 34,
+          "percentual_editavel": 33.33
+        },
+        {
+          "nome_aba": "DRE e BP Historico",
+          "tipo": "calculada",
+          "num_linhas": 74,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 2,
+          "campos_calculados": 198,
+          "percentual_editavel": 1.0
+        },
+        {
+          "nome_aba": "DRE e BP",
+          "tipo": "calculada",
+          "num_linhas": 73,
+          "num_colunas": 11,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1,
+          "campos_calculados": 288,
+          "percentual_editavel": 0.35
+        },
+        {
+          "nome_aba": "Validacoes",
+          "tipo": "input",
+          "num_linhas": 93,
+          "num_colunas": 6,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 216,
+          "campos_calculados": 0,
+          "percentual_editavel": 100.0
+        },
+        {
+          "nome_aba": "Potencial",
+          "tipo": "mista",
+          "num_linhas": 34,
+          "num_colunas": 21,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 123,
+          "campos_calculados": 83,
+          "percentual_editavel": 59.71
+        },
+        {
+          "nome_aba": "Risco",
+          "tipo": "mista",
+          "num_linhas": 36,
+          "num_colunas": 27,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 130,
+          "campos_calculados": 80,
+          "percentual_editavel": 61.9
+        },
+        {
+          "nome_aba": "Para PPT",
+          "tipo": "calculada",
+          "num_linhas": 24,
+          "num_colunas": 12,
+          "contem_tabela_dinamica": true,
+          "campos_editaveis": 1,
+          "campos_calculados": 61,
+          "percentual_editavel": 1.61
+        }
+      ],
+      "total_campos": 9339
+    }
+  ]
+}

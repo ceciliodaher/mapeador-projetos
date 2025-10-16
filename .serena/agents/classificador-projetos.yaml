@@ -1,0 +1,59 @@
+name: "classificador_projetos"
+type: "analyzer"
+model: "claude-sonnet-4.5"
+temperature: 0.3
+
+description: |
+  Agente especializado em classificar projetos como INOVAÇÃO ou COMUM
+  baseado em critérios FCO e características técnicas.
+
+capabilities:
+  - project_classification
+  - innovation_scoring
+  - criteria_evaluation
+
+prompts:
+  classification_template: |
+    Analise e classifique o seguinte projeto:
+
+    Projeto: {nome}
+    Descrição: {descricao}
+    Categoria: {categoria}
+    Alcance: {alcance}
+    Setores Prioritários: {setores}
+    Propriedade Intelectual: {pi}
+    Parceria ICT: {ict}
+
+    Retorne JSON com classificacao, score, confianca, justificativa e recomendacoes.
+
+scoring_criteria:
+  categoria_inovacao:
+    produto_novo: 30
+    processo_novo: 25
+    metodo_organizacional: 20
+    melhoria_significativa: 15
+    melhoria_incremental: 5
+
+  alcance_inovacao:
+    novo_mundo: 25
+    novo_nacional: 20
+    novo_regional: 15
+    novo_empresa: 10
+
+  setores_prioritarios:
+    peso_por_setor: 4
+    maximo: 20
+
+  propriedade_intelectual:
+    patente_registrada: 15
+    patente_deposito: 10
+    software_registrado: 8
+    marca: 5
+
+  parcerias_ict:
+    formalizada: 10
+    em_negociacao: 5
+
+  threshold:
+    inovacao: 50
+    comum: 49

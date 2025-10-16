@@ -1,0 +1,190 @@
+name: analise-completa-fco
+description: Análise estrutural completa de TODAS as planilhas FCO com validação de fidelidade
+version: 1.0.0
+author: Expertzy
+created: 2025-01-15
+
+agents:
+  - planilhas-fco-complete-analyzer
+  - fidelidade-validator
+
+execution:
+  mode: sequential
+  steps:
+    - name: analise_estrutural
+      agent: planilhas-fco-complete-analyzer
+      timeout: 1800  # 30 minutos
+      description: "Extrai estrutura completa de todas as planilhas FCO"
+      on_success: proceed_to_validation
+      on_failure: abort_with_error
+
+    - name: validacao_fidelidade
+      agent: fidelidade-validator
+      timeout: 600  # 10 minutos
+      description: "Valida que extração foi 100% fiel às planilhas"
+      depends_on: analise_estrutural
+      on_success: generate_final_report
+      on_failure: alert_and_abort
+
+error_handling:
+  on_timeout:
+    action: abort
+    message: "Timeout na análise das planilhas. Arquivos muito grandes ou corrompidos?"
+
+  on_agent_failure:
+    action: report_partial_results
+    message: "Falha em um dos agentes. Verificar logs para detalhes."
+
+  on_validation_failure:
+    action: abort
+    message: |
+      ❌ VALIDAÇÃO FALHOU - Score < 95% ou problemas críticos detectados.
+
+      NÃO prossiga com implementação até correção dos problemas.
+
+      Verifique:
+      - documentos/financiamento/VALIDACAO_FIDELIDADE.md
+      - documentos/financiamento/validacao_metricas.json
+
+      Ações recomendadas:
+      1. Revisar planilhas Excel (alguma corrompida?)
+      2. Ajustar parâmetros do analyzer
+      3. Reexecutar workflow
+      4. Somente após score ≥95% prosseguir para Fase 2
+
+output:
+  consolidate: true
+  file: "documentos/financiamento/ANALISE_COMPLETA_CONSOLIDADA.md"
+  sections:
+    - header: |
+        # Análise Completa FCO - Estrutura de Todas as Planilhas
+        Data: {{timestamp}}
+        Workflow: analise-completa-fco v1.0.0
+
+    - executive_summary: |
+        ## Executive Summary
+
+        **Status Geral:** {{status_geral}}
+        **Score de Fidelidade:** {{score_fidelidade}}% - {{classificacao}}
+
+        **Planilhas Analisadas:** {{num_planilhas}}
+        **Abas Mapeadas:** {{num_abas}}
+        **Campos Estruturados:** {{num_campos}}
+        **Tabelas Dinâmicas:** {{num_tabelas}}
+        **Fórmulas Catalogadas:** {{num_formulas}}
+
+        **Separação Sistema:**
+        - Seções Respondente (Input Manual): {{num_secoes_respondente}}
+        - Seções Analista (Calculadas): {{num_secoes_analista}}
+
+    - analise_estrutural: |
+        ## Análise Estrutural Completa
+        (Conteúdo de ESTRUTURA_COMPLETA_FCO.md)
+
+    - validacao_fidelidade: |
+        ## Validação de Fidelidade
+        (Conteúdo de VALIDACAO_FIDELIDADE.md)
+
+    - next_steps: |
+        ## Próximos Passos
+
+        {{#if score_ok}}
+        ✅ **Validação aprovada - Prosseguir para Fase 2**
+
+        Implementar:
+        1. Componentes JavaScript (DynamicTable, DREEstruturado, etc)
+        2. Interface HTML dual (Respondente/Analista)
+        3. Calculadores financeiros
+        4. Schema IndexedDB expandido
+        5. Testes de validação
+
+        Tempo estimado: 5-6 dias
+        {{else}}
+        ❌ **Validação REPROVADA - NÃO prosseguir**
+
+        Score: {{score_fidelidade}}% (mínimo: 95%)
+        Problemas críticos: {{num_problemas_criticos}}
+
+        **Ações obrigatórias:**
+        1. Revisar relatório: VALIDACAO_FIDELIDADE.md
+        2. Corrigir problemas listados
+        3. Reexecutar workflow
+        4. Aguardar aprovação (score ≥95%)
+        {{/if}}
+
+  additional_outputs:
+    - file: "documentos/financiamento/workflow_execution_log.json"
+      format: json
+      content: execution_metadata
+      include:
+        - timestamp_inicio
+        - timestamp_fim
+        - duracao_total
+        - duracao_por_agente
+        - status_cada_etapa
+        - outputs_gerados
+        - score_final
+        - aprovacao: boolean
+
+notifications:
+  on_complete:
+    - type: console
+      message: |
+        ✅ Análise FCO Completa!
+        Score: {{score_fidelidade}}%
+        Relatório: documentos/financiamento/ANALISE_COMPLETA_CONSOLIDADA.md
+
+  on_validation_success:
+    - type: console
+      message: |
+        ✅ VALIDAÇÃO APROVADA ({{score_fidelidade}}%)
+        Pronto para Fase 2: Implementação de Componentes
+
+  on_validation_failure:
+    - type: console
+      message: |
+        ❌ VALIDAÇÃO REPROVADA ({{score_fidelidade}}%)
+        Revisar: documentos/financiamento/VALIDACAO_FIDELIDADE.md
+        NÃO prosseguir até correção
+
+success_criteria:
+  validation_score_min: 95.0
+  critical_issues_max: 0
+  all_agents_success: true
+
+cleanup:
+  on_success:
+    - compress_json_outputs: true
+    - archive_logs: true
+  on_failure:
+    - keep_all_outputs: true
+    - generate_debug_report: true
+
+metadata:
+  purpose: |
+    Este workflow é a FASE 1 do projeto de Módulo Financiamento.
+    Ele analisa TODAS as planilhas FCO para extrair estrutura EXATA
+    que será implementada no sistema web.
+
+    PRINCÍPIOS:
+    - Fidelidade 100% às planilhas
+    - ZERO campos perdidos
+    - Tipos de dados exatos (não inferência)
+    - Tabelas dinâmicas ilimitadas
+    - Demonstrações: sempre 4 períodos
+
+    Output alimenta Fases 2-6 (implementação).
+
+  dependencies:
+    planilhas_obrigatorias:
+      - ProjecoesD-Dividas-15.xls (PRINCIPAL)
+      - Budget.xlsx
+      - Informacoes_Projeto-Viabilidade.xls
+      - balanço versão outubro 2011.xls
+      - Valuation.xlsx
+
+  estimated_duration:
+    total: "40 minutos"
+    breakdown:
+      - analise_estrutural: "30 min"
+      - validacao_fidelidade: "10 min"

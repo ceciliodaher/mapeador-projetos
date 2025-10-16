@@ -1,0 +1,24 @@
+{
+  "validacao_demonstracoes": {
+    "dre": {
+      "nome_aba": "DRE e BP",
+      "planilha": "Valuation.xlsx",
+      "total_linhas": 73,
+      "total_contas_estimadas": 24,
+      "periodos_identificados": 11,
+      "periodos_esperados": 4,
+      "status": "correto",
+      "problemas": []
+    },
+    "balanco": {
+      "nome_aba": "Balancos",
+      "planilha": "Informacoes_Projeto-Viabilidade.xls",
+      "total_linhas": 182,
+      "total_contas_estimadas": 60,
+      "periodos_identificados": 28,
+      "periodos_esperados": 4,
+      "status": "correto",
+      "problemas": []
+    }
+  }
+}
