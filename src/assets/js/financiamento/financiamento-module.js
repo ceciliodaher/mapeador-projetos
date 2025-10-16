@@ -580,6 +580,12 @@ class FinanciamentoModule {
       endereco: this.getFieldValue('endereco'),
       atividadePrincipal: this.getFieldValue('atividadePrincipal'),
       descricaoAtividade: this.getFieldValue('descricaoAtividade'),
+      // Caracterização Jurídica (Task 2.1.1)
+      tipoSocietario: this.getFieldValue('tipoSocietario'),
+      capitalSocial: this.getFieldValue('capitalSocial'),
+      numeroSocios: this.getFieldValue('numeroSocios'),
+      dataUltimaAlteracao: this.getFieldValue('dataUltimaAlteracao'),
+      enquadramentoFiscal: this.getFieldValue('enquadramentoFiscal'),
       responsavelNome: this.getFieldValue('responsavelNome'),
       responsavelCargo: this.getFieldValue('responsavelCargo'),
       responsavelEmail: this.getFieldValue('responsavelEmail'),
@@ -771,6 +777,12 @@ class FinanciamentoModule {
       this.setFieldValue('endereco', dados.secao1.endereco);
       this.setFieldValue('atividadePrincipal', dados.secao1.atividadePrincipal);
       this.setFieldValue('descricaoAtividade', dados.secao1.descricaoAtividade);
+      // Caracterização Jurídica (Task 2.1.1)
+      this.setFieldValue('tipoSocietario', dados.secao1.tipoSocietario);
+      this.setFieldValue('capitalSocial', dados.secao1.capitalSocial);
+      this.setFieldValue('numeroSocios', dados.secao1.numeroSocios);
+      this.setFieldValue('dataUltimaAlteracao', dados.secao1.dataUltimaAlteracao);
+      this.setFieldValue('enquadramentoFiscal', dados.secao1.enquadramentoFiscal);
       this.setFieldValue('responsavelNome', dados.secao1.responsavelNome);
       this.setFieldValue('responsavelCargo', dados.secao1.responsavelCargo);
       this.setFieldValue('responsavelEmail', dados.secao1.responsavelEmail);

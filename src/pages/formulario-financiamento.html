@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Viabilidade Financeira | Expertzy</title>
+    <link rel="stylesheet" href="../assets/css/styles-base.css">
+    <link rel="stylesheet" href="../assets/css/financiamento-styles.css">
+    <link rel="stylesheet" href="../assets/css/matriz-produto-insumo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../assets/images/expertzy_logo.png" alt="Expertzy Logo" class="logo-image">
+                </div>
+                <div class="header-title">
+                    <h1 class="form-title">Análise de Viabilidade Financeira</h1>
+                    <p class="form-subtitle">Sistema de Projeções e Indicadores Financeiros</p>
+                </div>
+                <div class="header-actions">
+                    <a href="../../index.html" class="btn btn-secondary">
+                        ← Voltar ao Portal
+                    </a>
+                    <button type="button" id="importBtnHeader" class="btn btn-secondary">
+                        📥 Importar Dados JSON
+                    </button>
+                    <input type="file" id="importJsonFileHeader" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="form-header">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <div class="progress-stats">
+                            <span id="progressText">Etapa 1 de 13</span>
+                            <span id="progressPercentage">8%</span>
+                        </div>
+                        <div class="save-status">
+                            <span id="saveStatus">💾 Auto-save ativo</span>
+                        </div>
+                        <div class="mode-toggle">
+                            <span class="mode-label">Modo:</span>
+                            <button type="button" id="modeUsuario" class="mode-btn active">
+                                👤 Usuário
+                            </button>
+                            <button type="button" id="modeAnalista" class="mode-btn">
+                                📊 Analista
+                            </button>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="tab-item active" data-tab="1" role="button" tabindex="0" aria-label="Ir para seção 1 - Empresa">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Empresa</div>
+                        </div>
+                        <div class="tab-item" data-tab="2" role="button" tabindex="0" aria-label="Ir para seção 2 - Regime">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Regime</div>
+                        </div>
+                        <div class="tab-item" data-tab="3" role="button" tabindex="0" aria-label="Ir para seção 3 - Histórico">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Histórico</div>
+                        </div>
+                        <div class="tab-item" data-tab="4" role="button" tabindex="0" aria-label="Ir para seção 4 - Faturamento">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Faturamento</div>
+                        </div>
+                        <div class="tab-item" data-tab="5" role="button" tabindex="0" aria-label="Ir para seção 5 - Custos">
+                            <div class="step-number">5</div>
+                            <div class="step-label">Custos</div>
+                        </div>
+                        <div class="tab-item" data-tab="6" role="button" tabindex="0" aria-label="Ir para seção 6 - Investimentos">
+                            <div class="step-number">6</div>
+                            <div class="step-label">Investimentos</div>
+                        </div>
+                        <div class="tab-item" data-tab="7" role="button" tabindex="0" aria-label="Ir para seção 7 - Cronograma">
+                            <div class="step-number">7</div>
+                            <div class="step-label">Cronograma</div>
+                        </div>
+                        <div class="tab-item" data-tab="8" role="button" tabindex="0" aria-label="Ir para seção 8 - Matriz">
+                            <div class="step-number">8</div>
+                            <div class="step-label">Matriz</div>
+                        </div>
+                        <div class="tab-item" data-tab="9" role="button" tabindex="0" aria-label="Ir para seção 9 - DRE">
+                            <div class="step-number">9</div>
+                            <div class="step-label">DRE</div>
+                        </div>
+                        <div class="tab-item" data-tab="10" role="button" tabindex="0" aria-label="Ir para seção 10 - Fluxo Caixa">
+                            <div class="step-number">10</div>
+                            <div class="step-label">Fluxo Caixa</div>
+                        </div>
+                        <div class="tab-item" data-tab="11" role="button" tabindex="0" aria-label="Ir para seção 11 - Indicadores">
+                            <div class="step-number">11</div>
+                            <div class="step-label">Indicadores</div>
+                        </div>
+                        <div class="tab-item" data-tab="12" data-protected="true" role="button" tabindex="0" aria-label="Ir para seção 12 - Impostos (Modo Analista)">
+                            <div class="step-number">12</div>
+                            <div class="step-label">Impostos 🔒</div>
+                        </div>
+                        <div class="tab-item" data-tab="13" data-protected="true" role="button" tabindex="0" aria-label="Ir para seção 13 - Cenários (Modo Analista)">
+                            <div class="step-number">13</div>
+                            <div class="step-label">Cenários</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="projectForm" class="project-form" data-form-type="financiamento">
+                <!-- Seção 1: Identificação da Empresa -->
+                <div class="form-section active" data-section="1" id="section-1" role="tabpanel" aria-labelledby="tab-1">
+                    <div class="section-header">
+                        <h2 class="section-title">1. Identificação da Empresa</h2>
+                        <p class="section-description">Dados cadastrais da empresa para análise financeira.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="razaoSocial">Razão Social *</label>
+                            <input type="text" id="razaoSocial" name="razaoSocial" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nomeFantasia">Nome Fantasia</label>
+                            <input type="text" id="nomeFantasia" name="nomeFantasia">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ *</label>
+                            <input type="text" id="cnpj" name="cnpj" data-format="cnpj" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inscricaoEstadual">Inscrição Estadual</label>
+                            <input type="text" id="inscricaoEstadual" name="inscricaoEstadual">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataConstituicao">Data de Constituição *</label>
+                            <input type="date" id="dataConstituicao" name="dataConstituicao" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="uf">Estado (UF) *</label>
+                            <select id="uf" name="uf" required>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO" selected>Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="municipio">Município *</label>
+                            <input type="text" id="municipio" name="municipio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço Completo *</label>
+                            <textarea id="endereco" name="endereco" rows="2" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="atividadePrincipal">Atividade Principal *</label>
+                            <select id="atividadePrincipal" name="atividadePrincipal" required>
+                                <option value="">Selecione</option>
+                                <option value="comercio">Comércio</option>
+                                <option value="industria">Indústria</option>
+                                <option value="servicos">Serviços</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricaoAtividade">Descrição da Atividade *</label>
+                            <textarea id="descricaoAtividade" name="descricaoAtividade" rows="3" required></textarea>
+                        </div>
+
+                        <!-- Caracterização Jurídica -->
+                        <div class="form-group full-width">
+                            <h3>Caracterização Jurídica</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="tipoSocietario">Tipo Societário *</label>
+                                    <select id="tipoSocietario" name="tipoSocietario" required>
+                                        <option value="">Selecione</option>
+                                        <option value="ltda">Sociedade Limitada - LTDA</option>
+                                        <option value="sa">Sociedade Anônima - S/A</option>
+                                        <option value="mei">Microempreendedor Individual - MEI</option>
+                                        <option value="eireli">Empresa Individual de Responsabilidade Limitada - EIRELI</option>
+                                        <option value="ei">Empresário Individual - EI</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="capitalSocial">Capital Social (R$) *</label>
+                                    <input type="text" id="capitalSocial" name="capitalSocial" data-mask="currency" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numeroSocios">Número de Sócios *</label>
+                                    <input type="number" id="numeroSocios" name="numeroSocios" min="1" max="999" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dataUltimaAlteracao">Data da Última Alteração Contratual</label>
+                                    <input type="date" id="dataUltimaAlteracao" name="dataUltimaAlteracao">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="enquadramentoFiscal">Enquadramento Fiscal *</label>
+                                    <select id="enquadramentoFiscal" name="enquadramentoFiscal" required>
+                                        <option value="">Selecione</option>
+                                        <option value="simples">Simples Nacional</option>
+                                        <option value="presumido">Lucro Presumido</option>
+                                        <option value="real">Lucro Real</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contatos -->
+                        <div class="form-group full-width">
+                            <h3>Contatos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="responsavelNome">Nome do Responsável *</label>
+                                    <input type="text" id="responsavelNome" name="responsavelNome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="responsavelCargo">Cargo *</label>
+                                    <input type="text" id="responsavelCargo" name="responsavelCargo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="responsavelEmail">E-mail *</label>
+                                    <input type="email" id="responsavelEmail" name="responsavelEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="responsavelTelefone">Telefone *</label>
+                                    <input type="tel" id="responsavelTelefone" name="responsavelTelefone" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 2: Regime Tributário e Parâmetros -->
+                <div class="form-section" data-section="2" id="section-2" role="tabpanel" aria-labelledby="tab-2">
+                    <div class="section-header">
+                        <h2 class="section-title">2. Regime Tributário e Parâmetros</h2>
+                        <p class="section-description">Definição do regime tributário e parâmetros para simulação.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Regime Tributário Atual -->
+                        <div class="form-group full-width">
+                            <h3>Regime Tributário</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="regimeTributario">Regime Tributário Atual *</label>
+                                    <select id="regimeTributario" name="regimeTributario" required>
+                                        <option value="">Selecione</option>
+                                        <option value="simples-nacional">Simples Nacional</option>
+                                        <option value="lucro-presumido">Lucro Presumido</option>
+                                        <option value="lucro-real">Lucro Real</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="simplesAnexoGroup" style="display: none;">
+                                    <label for="simplesAnexo">Anexo do Simples Nacional *</label>
+                                    <select id="simplesAnexo" name="simplesAnexo">
+                                        <option value="">Selecione</option>
+                                        <option value="I">Anexo I - Comércio</option>
+                                        <option value="II">Anexo II - Indústria</option>
+                                        <option value="III">Anexo III - Serviços</option>
+                                        <option value="IV">Anexo IV - Serviços (Fator R ≥ 28%)</option>
+                                        <option value="V">Anexo V - Serviços (Fator R < 28%)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setor Econômico -->
+                        <div class="form-group full-width">
+                            <h3>Classificação Setorial (Reforma Tributária)</h3>
+                            <div class="form-group">
+                                <label for="setorEconomico">Setor Econômico *</label>
+                                <select id="setorEconomico" name="setorEconomico" required>
+                                    <option value="">Selecione</option>
+                                    <option value="padrao">Comércio/Serviços Gerais (Alíquota padrão 26,5%)</option>
+                                    <option value="saude">Saúde (Alíquota reduzida 10,6%)</option>
+                                    <option value="educacao">Educação (Alíquota reduzida 10,6%)</option>
+                                    <option value="transportePublico">Transporte Público Coletivo (Alíquota reduzida 10,6%)</option>
+                                    <option value="cultura">Cultura e Entretenimento (Alíquota reduzida 10,6%)</option>
+                                    <option value="cestaBasica">Alimentos da Cesta Básica (Isento 0%)</option>
+                                    <option value="alimentosGerais">Alimentos Gerais (Alíquota reduzida 13,25%)</option>
+                                    <option value="medicamentos">Medicamentos (Alíquota reduzida 10,6%)</option>
+                                    <option value="higieneLimpeza">Higiene e Limpeza (Alíquota reduzida 13,25%)</option>
+                                    <option value="servicosProfissionais">Serviços Profissionais (Alíquota reduzida 18,55%)</option>
+                                    <option value="imoveisLocacao">Imóveis - Locação (Alíquota reduzida 13,25%)</option>
+                                    <option value="imoveisCompraVenda">Imóveis - Compra/Venda (Alíquota reduzida 13,25%)</option>
+                                    <option value="construcaoCivil">Construção Civil (Alíquota reduzida 13,25%)</option>
+                                    <option value="agronegocio">Agronegócio (Alíquota reduzida 13,25%)</option>
+                                    <option value="telecomunicacoes">Telecomunicações (Alíquota padrão 26,5%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Período de Projeção -->
+                        <div class="form-group full-width">
+                            <h3>Período de Projeção</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="anoBase">Ano Base (Início) *</label>
+                                    <input type="number" id="anoBase" name="anoBase" min="2025" max="2035" value="2025" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="periodoProjecao">Período de Projeção (anos) *</label>
+                                    <input type="number" id="periodoProjecao" name="periodoProjecao" min="3" max="10" value="5" required>
+                                    <small>Mínimo 3 anos, máximo 10 anos</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="anoFinal">Ano Final (Calculado)</label>
+                                    <input type="number" id="anoFinal" name="anoFinal" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parâmetros Financeiros -->
+                        <div class="form-group full-width">
+                            <h3>Parâmetros Financeiros</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="tma">TMA - Taxa Mínima de Atratividade (% a.a.) *</label>
+                                    <input type="number" id="tma" name="tma" min="0" max="100" step="0.1" value="12" required>
+                                    <small>Geralmente 12% a 15% a.a.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inflacaoAnual">Inflação Projetada (% a.a.)</label>
+                                    <input type="number" id="inflacaoAnual" name="inflacaoAnual" min="0" max="100" step="0.1" value="4.5">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmr">PMR - Prazo Médio de Recebimento (dias) *</label>
+                                    <input type="number" id="pmr" name="pmr" min="0" max="365" value="30" required>
+                                    <small>Média de dias para receber de clientes</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmp">PMP - Prazo Médio de Pagamento (dias) *</label>
+                                    <input type="number" id="pmp" name="pmp" min="0" max="365" value="30" required>
+                                    <small>Média de dias para pagar fornecedores</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="percVendasPrazo">% Vendas a Prazo *</label>
+                                    <input type="number" id="percVendasPrazo" name="percVendasPrazo" min="0" max="100" step="0.1" value="60" required>
+                                    <small>Percentual de vendas que não são à vista</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sistema Tributário -->
+                        <div class="form-group full-width">
+                            <h3>Sistema Tributário para Simulação</h3>
+                            <div class="alert alert-info">
+                                <strong>ℹ️ Simulação Híbrida:</strong> O sistema calculará automaticamente ambos os cenários:
+                                <ul>
+                                    <li><strong>Sistema Atual (2025):</strong> ICMS, PIS, COFINS, ISS, IPI, IRPJ, CSLL</li>
+                                    <li><strong>Reforma Tributária (2026-2033):</strong> Transição gradual para CBS + IBS</li>
+                                </ul>
+                                <p>A seção 12 (Apuração de Impostos) permite comparar os dois sistemas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 3: Histórico Financeiro -->
+                <div class="form-section" data-section="3" id="section-3" role="tabpanel" aria-labelledby="tab-3">
+                    <div class="section-header">
+                        <h2 class="section-title">3. Histórico Financeiro</h2>
+                        <p class="section-description">Dados financeiros dos últimos 3 exercícios (quando disponíveis).</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="alert alert-warning">
+                            <strong>⚠️ Importante:</strong> Se a empresa está em fase de implantação, informe apenas dados disponíveis. Deixe em branco os anos anteriores à constituição.
+                        </div>
+
+                        <!-- Ano -3 -->
+                        <div class="form-group full-width">
+                            <h3>Ano -3 (3 anos atrás)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaBrutaAno3">Receita Bruta (R$)</label>
+                                    <input type="text" id="receitaBrutaAno3" name="receitaBrutaAno3" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosVariaveisAno3">Custos Variáveis (R$)</label>
+                                    <input type="text" id="custosVariaveisAno3" name="custosVariaveisAno3" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosFixosAno3">Custos Fixos (R$)</label>
+                                    <input type="text" id="custosFixosAno3" name="custosFixosAno3" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lucroLiquidoAno3">Lucro Líquido (R$)</label>
+                                    <input type="text" id="lucroLiquidoAno3" name="lucroLiquidoAno3" data-mask="currency">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ano -2 -->
+                        <div class="form-group full-width">
+                            <h3>Ano -2 (2 anos atrás)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaBrutaAno2">Receita Bruta (R$)</label>
+                                    <input type="text" id="receitaBrutaAno2" name="receitaBrutaAno2" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosVariaveisAno2">Custos Variáveis (R$)</label>
+                                    <input type="text" id="custosVariaveisAno2" name="custosVariaveisAno2" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosFixosAno2">Custos Fixos (R$)</label>
+                                    <input type="text" id="custosFixosAno2" name="custosFixosAno2" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lucroLiquidoAno2">Lucro Líquido (R$)</label>
+                                    <input type="text" id="lucroLiquidoAno2" name="lucroLiquidoAno2" data-mask="currency">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ano -1 -->
+                        <div class="form-group full-width">
+                            <h3>Ano -1 (ano passado)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaBrutaAno1">Receita Bruta (R$)</label>
+                                    <input type="text" id="receitaBrutaAno1" name="receitaBrutaAno1" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosVariaveisAno1">Custos Variáveis (R$)</label>
+                                    <input type="text" id="custosVariaveisAno1" name="custosVariaveisAno1" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosFixosAno1">Custos Fixos (R$)</label>
+                                    <input type="text" id="custosFixosAno1" name="custosFixosAno1" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lucroLiquidoAno1">Lucro Líquido (R$)</label>
+                                    <input type="text" id="lucroLiquidoAno1" name="lucroLiquidoAno1" data-mask="currency">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resumo Histórico -->
+                        <div class="form-group full-width">
+                            <h3>Resumo do Histórico</h3>
+                            <div class="historico-summary">
+                                <div class="summary-card">
+                                    <span class="summary-label">Taxa de Crescimento Média (CAGR)</span>
+                                    <span class="summary-value" id="cagrHistorico">-</span>
+                                </div>
+                                <div class="summary-card">
+                                    <span class="summary-label">Margem Líquida Média</span>
+                                    <span class="summary-value" id="margemLiquidaMedia">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 4: Projeções de Faturamento -->
+                <div class="form-section" data-section="4" id="section-4" role="tabpanel" aria-labelledby="tab-4">
+                    <div class="section-header">
+                        <h2 class="section-title">4. Projeções de Faturamento</h2>
+                        <p class="section-description">Estimativas de receita para os próximos anos.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Projeção Ano 1 -->
+                        <div class="form-group full-width">
+                            <h3>Ano 1</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaProjetadaAno1">Receita Bruta Projetada (R$) *</label>
+                                    <input type="text" id="receitaProjetadaAno1" name="receitaProjetadaAno1" data-mask="currency" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeção Ano 2 -->
+                        <div class="form-group full-width">
+                            <h3>Ano 2</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaProjetadaAno2">Receita Bruta Projetada (R$) *</label>
+                                    <input type="text" id="receitaProjetadaAno2" name="receitaProjetadaAno2" data-mask="currency" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="crescimentoAno2">Crescimento em relação ao Ano 1</label>
+                                    <input type="text" id="crescimentoAno2" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeção Ano 3 -->
+                        <div class="form-group full-width">
+                            <h3>Ano 3</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaProjetadaAno3">Receita Bruta Projetada (R$) *</label>
+                                    <input type="text" id="receitaProjetadaAno3" name="receitaProjetadaAno3" data-mask="currency" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="crescimentoAno3">Crescimento em relação ao Ano 2</label>
+                                    <input type="text" id="crescimentoAno3" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeção Ano 4 -->
+                        <div class="form-group full-width">
+                            <h3>Ano 4</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaProjetadaAno4">Receita Bruta Projetada (R$) *</label>
+                                    <input type="text" id="receitaProjetadaAno4" name="receitaProjetadaAno4" data-mask="currency" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="crescimentoAno4">Crescimento em relação ao Ano 3</label>
+                                    <input type="text" id="crescimentoAno4" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeção Ano 5 -->
+                        <div class="form-group full-width">
+                            <h3>Ano 5</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="receitaProjetadaAno5">Receita Bruta Projetada (R$) *</label>
+                                    <input type="text" id="receitaProjetadaAno5" name="receitaProjetadaAno5" data-mask="currency" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="crescimentoAno5">Crescimento em relação ao Ano 4</label>
+                                    <input type="text" id="crescimentoAno5" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Justificativa -->
+                        <div class="form-group full-width">
+                            <label for="justificativaFaturamento">Justificativa das Projeções de Faturamento *</label>
+                            <textarea id="justificativaFaturamento" name="justificativaFaturamento" rows="4" required
+                                placeholder="Explique as premissas utilizadas para as projeções (crescimento do mercado, aumento de capacidade produtiva, novos produtos, etc.)"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 5: Estrutura de Custos -->
+                <div class="form-section" data-section="5" id="section-5" role="tabpanel" aria-labelledby="tab-5">
+                    <div class="section-header">
+                        <h2 class="section-title">5. Estrutura de Custos</h2>
+                        <p class="section-description">Detalhamento dos custos fixos e variáveis projetados.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- Custos Variáveis -->
+                        <div class="form-group full-width">
+                            <h3>Custos Variáveis (% sobre Receita)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="custoMateriaPrima">Matéria-Prima / Mercadorias (%) *</label>
+                                    <input type="number" id="custoMateriaPrima" name="custoMateriaPrima" min="0" max="100" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoMaoObraVariavel">Mão-de-Obra Variável (%) *</label>
+                                    <input type="number" id="custoMaoObraVariavel" name="custoMaoObraVariavel" min="0" max="100" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoComissoes">Comissões de Vendas (%)</label>
+                                    <input type="number" id="custoComissoes" name="custoComissoes" min="0" max="100" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoFretes">Fretes e Logística (%)</label>
+                                    <input type="number" id="custoFretes" name="custoFretes" min="0" max="100" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosVariaveisOutros">Outros Custos Variáveis (%)</label>
+                                    <input type="number" id="custosVariaveisOutros" name="custosVariaveisOutros" min="0" max="100" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalCustosVariaveis">Total Custos Variáveis (%)</label>
+                                    <input type="text" id="totalCustosVariaveis" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custos Fixos -->
+                        <div class="form-group full-width">
+                            <h3>Custos Fixos (R$ por ano)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="custoFolhaPagamento">Folha de Pagamento Fixa (R$) *</label>
+                                    <input type="text" id="custoFolhaPagamento" name="custoFolhaPagamento" data-mask="currency" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoAluguel">Aluguel (R$)</label>
+                                    <input type="text" id="custoAluguel" name="custoAluguel" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoEnergiaAgua">Energia e Água (R$)</label>
+                                    <input type="text" id="custoEnergiaAgua" name="custoEnergiaAgua" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoMarketing">Marketing e Publicidade (R$)</label>
+                                    <input type="text" id="custoMarketing" name="custoMarketing" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoAdministrativo">Despesas Administrativas (R$)</label>
+                                    <input type="text" id="custoAdministrativo" name="custoAdministrativo" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoManutencao">Manutenção (R$)</label>
+                                    <input type="text" id="custoManutencao" name="custoManutencao" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custoDepreciacao">Depreciação (R$)</label>
+                                    <input type="text" id="custoDepreciacao" name="custoDepreciacao" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="custosFixosOutros">Outros Custos Fixos (R$)</label>
+                                    <input type="text" id="custosFixosOutros" name="custosFixosOutros" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalCustosFixos">Total Custos Fixos Anuais (R$)</label>
+                                    <input type="text" id="totalCustosFixos" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evolução dos Custos Fixos -->
+                        <div class="form-group full-width">
+                            <h3>Evolução dos Custos Fixos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="crescimentoCustosFixos">Taxa de Crescimento Anual dos Custos Fixos (%) *</label>
+                                    <input type="number" id="crescimentoCustosFixos" name="crescimentoCustosFixos" min="0" max="100" step="0.1" required>
+                                    <small>Geralmente acompanha a inflação ou crescimento planejado</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 6: Investimentos Planejados -->
+                <div class="form-section" data-section="6" id="section-6" role="tabpanel" aria-labelledby="tab-6">
+                    <div class="section-header">
+                        <h2 class="section-title">6. Investimentos Planejados</h2>
+                        <p class="section-description">CAPEX e necessidades de capital de giro.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <!-- CAPEX -->
+                        <div class="form-group full-width">
+                            <h3>CAPEX - Investimentos em Ativos Fixos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="investimentoTerrenos">Terrenos (R$)</label>
+                                    <input type="text" id="investimentoTerrenos" name="investimentoTerrenos" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoObrasCivis">Obras Civis (R$)</label>
+                                    <input type="text" id="investimentoObrasCivis" name="investimentoObrasCivis" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoMaquinas">Máquinas e Equipamentos (R$)</label>
+                                    <input type="text" id="investimentoMaquinas" name="investimentoMaquinas" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoVeiculos">Veículos (R$)</label>
+                                    <input type="text" id="investimentoVeiculos" name="investimentoVeiculos" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoInformatica">Informática e TI (R$)</label>
+                                    <input type="text" id="investimentoInformatica" name="investimentoInformatica" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoMoveis">Móveis e Utensílios (R$)</label>
+                                    <input type="text" id="investimentoMoveis" name="investimentoMoveis" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoIntangiveis">Intangíveis (Marcas, Patentes, Software) (R$)</label>
+                                    <input type="text" id="investimentoIntangiveis" name="investimentoIntangiveis" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="investimentoOutros">Outros Investimentos (R$)</label>
+                                    <input type="text" id="investimentoOutros" name="investimentoOutros" data-mask="currency">
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalCapex">Total CAPEX (R$)</label>
+                                    <input type="text" id="totalCapex" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Capital de Giro -->
+                        <div class="form-group full-width">
+                            <h3>Capital de Giro</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="capitalGiroInicial">Capital de Giro Inicial (R$) *</label>
+                                    <input type="text" id="capitalGiroInicial" name="capitalGiroInicial" data-mask="currency" required>
+                                    <small>Recursos necessários para financiar operação nos primeiros meses</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fontes de Recursos -->
+                        <div class="form-group full-width">
+                            <h3>Fontes de Recursos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="recursosPropriosPerc">Recursos Próprios (%) *</label>
+                                    <input type="number" id="recursosPropriosPerc" name="recursosPropriosPerc" min="0" max="100" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recursosFinanciamentoPerc">Financiamento (%) *</label>
+                                    <input type="number" id="recursosFinanciamentoPerc" name="recursosFinanciamentoPerc" min="0" max="100" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalRecursosPerc">Total (%)</label>
+                                    <input type="text" id="totalRecursosPerc" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Parâmetros do Financiamento -->
+                            <div id="financiamentoParams" style="display: none;">
+                                <h4>Parâmetros do Financiamento</h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="taxaJurosFinanciamento">Taxa de Juros (% a.a.)</label>
+                                        <input type="number" id="taxaJurosFinanciamento" name="taxaJurosFinanciamento" min="0" max="100" step="0.1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prazoFinanciamento">Prazo (meses)</label>
+                                        <input type="number" id="prazoFinanciamento" name="prazoFinanciamento" min="1" max="360">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="carenciaFinanciamento">Carência (meses)</label>
+                                        <input type="number" id="carenciaFinanciamento" name="carenciaFinanciamento" min="0" max="36">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total de Investimento -->
+                        <div class="form-group full-width">
+                            <div class="total-calculation">
+                                <h3>Total de Investimento: <span id="totalInvestimento" class="total-value">R$ 0,00</span></h3>
+                                <small>CAPEX + Capital de Giro</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 7: Cronograma Financeiro -->
+                <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-7">
+                    <div class="section-header">
+                        <h2 class="section-title">7. Cronograma Financeiro</h2>
+                        <p class="section-description">Distribuição temporal dos investimentos e início das operações.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dataInicioInvestimentos">Data de Início dos Investimentos *</label>
+                            <input type="date" id="dataInicioInvestimentos" name="dataInicioInvestimentos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataInicioOperacoes">Data de Início das Operações *</label>
+                            <input type="date" id="dataInicioOperacoes" name="dataInicioOperacoes" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracaoInvestimentos">Duração dos Investimentos (meses)</label>
+                            <input type="number" id="duracaoInvestimentos" readonly>
+                        </div>
+
+                        <!-- Cronograma de Desembolsos -->
+                        <div class="form-group full-width">
+                            <h3>Cronograma de Desembolsos de CAPEX</h3>
+                            <div class="cronograma-desembolsos">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Período</th>
+                                            <th>Descrição</th>
+                                            <th>Valor (R$)</th>
+                                            <th>% do Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cronogramaDesembolsos">
+                                        <!-- Gerado dinamicamente -->
+                                    </tbody>
+                                </table>
+                                <button type="button" id="addDesembolso" class="btn btn-secondary">+ Adicionar Período</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 8: Matriz Produto-Insumo -->
+                <div class="form-section matriz-section" data-section="8" id="section-8" role="tabpanel" aria-labelledby="tab-8">
+                    <div class="section-header">
+                        <h2 class="section-title">8. Matriz Produto-Insumo</h2>
+                        <p class="section-description">Relacionamento entre produtos fabricados e insumos consumidos.</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>ℹ️ Módulo Reutilizado:</strong> Esta seção utiliza o mesmo módulo de matriz produto-insumo do ProGoiás.
+                        Cadastre seus produtos e insumos para depois vincular as receitas técnicas.
+                    </div>
+
+                    <!-- Produtos -->
+                    <div class="form-group full-width">
+                        <h3>Produtos</h3>
+                        <div id="produtos-container">
+                            <div class="produto-entry">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Nome do Produto *</label>
+                                        <input type="text" name="produto1Nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Unidade *</label>
+                                        <input type="text" name="produto1Unidade" placeholder="Ex: kg, un, L" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Preço Unitário (R$) *</label>
+                                        <input type="text" name="produto1Preco" data-mask="currency" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="addProduto" class="btn btn-secondary">+ Adicionar Produto</button>
+                    </div>
+
+                    <!-- Insumos -->
+                    <div class="form-group full-width">
+                        <h3>Insumos</h3>
+                        <div id="insumos-container">
+                            <div class="insumo-entry">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Nome do Insumo *</label>
+                                        <input type="text" name="insumo1Nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tipo *</label>
+                                        <select name="insumo1Tipo" required>
+                                            <option value="">Selecione</option>
+                                            <option value="MP">Matéria-Prima (MP)</option>
+                                            <option value="IS">Insumo Secundário (IS)</option>
+                                            <option value="ME">Material de Embalagem (ME)</option>
+                                            <option value="EE">Energia Elétrica (EE)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Unidade *</label>
+                                        <input type="text" name="insumo1Unidade" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Custo Unitário (R$) *</label>
+                                        <input type="text" name="insumo1CustoUnitario" data-mask="currency" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="addInsumo" class="btn btn-secondary">+ Adicionar Insumo</button>
+                    </div>
+
+                    <!-- Matriz (será renderizada dinamicamente) -->
+                    <div class="matriz-product-list-container"></div>
+                </div>
+
+                <!-- Seção 9: DRE Projetado -->
+                <div class="form-section" data-section="9" id="section-9" role="tabpanel" aria-labelledby="tab-9">
+                    <div class="section-header">
+                        <h2 class="section-title">9. DRE Projetado</h2>
+                        <p class="section-description">Demonstração de Resultado do Exercício projetada para 5 anos.</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>🔄 Cálculo Automático:</strong> O DRE será calculado automaticamente com base nos dados informados nas seções anteriores.
+                        Os impostos variarão conforme o regime tributário e ano de projeção (considerando a Reforma Tributária).
+                    </div>
+
+                    <div class="dre-container">
+                        <div class="dre-table-wrapper">
+                            <table class="dre-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Ano 1</th>
+                                        <th>Ano 2</th>
+                                        <th>Ano 3</th>
+                                        <th>Ano 4</th>
+                                        <th>Ano 5</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dreTableBody">
+                                    <!-- Gerado dinamicamente via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="dre-charts">
+                        <h3>Gráficos de Evolução</h3>
+                        <div id="dreCharts">
+                            <!-- Gráficos gerados via Chart.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 10: Fluxo de Caixa -->
+                <div class="form-section" data-section="10" id="section-10" role="tabpanel" aria-labelledby="tab-10">
+                    <div class="section-header">
+                        <h2 class="section-title">10. Fluxo de Caixa Projetado</h2>
+                        <p class="section-description">Fluxo de caixa projetado considerando Split Payment (Reforma Tributária).</p>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <strong>⚠️ Impacto Split Payment:</strong> A partir de 2027, o sistema simulará o impacto do split payment no capital de giro.
+                        O tributo será separado automaticamente no momento da transação, afetando a NCG (Necessidade de Capital de Giro).
+                    </div>
+
+                    <div class="fluxo-caixa-container">
+                        <div class="fluxo-caixa-table-wrapper">
+                            <table class="fluxo-caixa-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Ano 1</th>
+                                        <th>Ano 2</th>
+                                        <th>Ano 3</th>
+                                        <th>Ano 4</th>
+                                        <th>Ano 5</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fluxoCaixaTableBody">
+                                    <!-- Gerado dinamicamente via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Análise Split Payment -->
+                    <div class="split-payment-analysis">
+                        <h3>Análise de Impacto do Split Payment</h3>
+                        <div class="split-payment-cards">
+                            <div class="split-card">
+                                <span class="split-label">NCG sem Split Payment (2025)</span>
+                                <span class="split-value" id="ncgSemSplit">R$ 0,00</span>
+                            </div>
+                            <div class="split-card">
+                                <span class="split-label">NCG com Split Payment (2027+)</span>
+                                <span class="split-value" id="ncgComSplit">R$ 0,00</span>
+                            </div>
+                            <div class="split-card highlight">
+                                <span class="split-label">Redução de NCG</span>
+                                <span class="split-value" id="reducaoNCG">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 11: Indicadores Financeiros -->
+                <div class="form-section" data-section="11" id="section-11" role="tabpanel" aria-labelledby="tab-11">
+                    <div class="section-header">
+                        <h2 class="section-title">11. Indicadores de Viabilidade</h2>
+                        <p class="section-description">Indicadores financeiros calculados automaticamente.</p>
+                    </div>
+
+                    <div class="indicadores-container">
+                        <!-- Indicadores Principais -->
+                        <div class="indicadores-principais">
+                            <div class="indicador-card">
+                                <div class="indicador-icon">📈</div>
+                                <div class="indicador-info">
+                                    <span class="indicador-label">VPL - Valor Presente Líquido</span>
+                                    <span class="indicador-value" id="vplValue">R$ 0,00</span>
+                                    <span class="indicador-status" id="vplStatus"></span>
+                                </div>
+                            </div>
+
+                            <div class="indicador-card">
+                                <div class="indicador-icon">💹</div>
+                                <div class="indicador-info">
+                                    <span class="indicador-label">TIR - Taxa Interna de Retorno</span>
+                                    <span class="indicador-value" id="tirValue">0%</span>
+                                    <span class="indicador-status" id="tirStatus"></span>
+                                </div>
+                            </div>
+
+                            <div class="indicador-card">
+                                <div class="indicador-icon">⏱️</div>
+                                <div class="indicador-info">
+                                    <span class="indicador-label">Payback Simples</span>
+                                    <span class="indicador-value" id="paybackSimplesValue">0 meses</span>
+                                    <span class="indicador-status" id="paybackSimplesStatus"></span>
+                                </div>
+                            </div>
+
+                            <div class="indicador-card">
+                                <div class="indicador-icon">⏳</div>
+                                <div class="indicador-info">
+                                    <span class="indicador-label">Payback Descontado</span>
+                                    <span class="indicador-value" id="paybackDescontadoValue">0 meses</span>
+                                    <span class="indicador-status" id="paybackDescontadoStatus"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Indicadores Secundários -->
+                        <div class="indicadores-secundarios">
+                            <h3>Indicadores de Rentabilidade</h3>
+                            <div class="indicador-row">
+                                <span class="indicador-label">ROI - Retorno sobre Investimento (Ano 5)</span>
+                                <span class="indicador-value" id="roiValue">0%</span>
+                            </div>
+                            <div class="indicador-row">
+                                <span class="indicador-label">ROE - Retorno sobre Patrimônio (Ano 5)</span>
+                                <span class="indicador-value" id="roeValue">0%</span>
+                            </div>
+                            <div class="indicador-row">
+                                <span class="indicador-label">ROA - Retorno sobre Ativos (Ano 5)</span>
+                                <span class="indicador-value" id="roaValue">0%</span>
+                            </div>
+                            <div class="indicador-row">
+                                <span class="indicador-label">Margem Líquida Média (5 anos)</span>
+                                <span class="indicador-value" id="margemLiquidaValue">0%</span>
+                            </div>
+                        </div>
+
+                        <!-- Ponto de Equilíbrio -->
+                        <div class="ponto-equilibrio">
+                            <h3>Ponto de Equilíbrio</h3>
+                            <div class="equilibrio-info">
+                                <div class="equilibrio-item">
+                                    <span class="equilibrio-label">Faturamento Mínimo (mensal)</span>
+                                    <span class="equilibrio-value" id="pontoEquilibrioValue">R$ 0,00</span>
+                                </div>
+                                <div class="equilibrio-item">
+                                    <span class="equilibrio-label">Margem de Segurança (Ano 1)</span>
+                                    <span class="equilibrio-value" id="margemSegurancaValue">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 12: Apuração de Impostos (PROTEGIDA) -->
+                <div class="form-section" data-section="12" id="section-12" role="tabpanel" aria-labelledby="tab-12">
+                    <div class="section-header">
+                        <h2 class="section-title">12. Apuração de Impostos</h2>
+                        <p class="section-description">Cálculo automático de impostos - Sistema Atual vs Reforma Tributária.</p>
+                        <div class="alert alert-info">
+                            <strong>🔒 Seção Protegida:</strong> Esta seção é calculada automaticamente e não pode ser editada.
+                            Use o toggle para alternar entre Sistema Atual (2025) e Reforma Tributária (2026-2033).
+                        </div>
+                    </div>
+
+                    <!-- Toggle Sistema -->
+                    <div class="sistema-toggle">
+                        <button type="button" id="toggleSistemaAtual" class="btn-toggle active">
+                            Sistema Atual (2025)
+                        </button>
+                        <button type="button" id="toggleSistemaReforma" class="btn-toggle">
+                            Reforma Tributária (2026-2033)
+                        </button>
+                    </div>
+
+                    <!-- Sistema Atual -->
+                    <div id="sistemaAtualContainer" class="sistema-container">
+                        <h3>Sistema Tributário Atual (2025)</h3>
+                        <div class="impostos-table-wrapper">
+                            <table class="impostos-table">
+                                <thead>
+                                    <tr>
+                                        <th>Imposto</th>
+                                        <th>Base de Cálculo</th>
+                                        <th>Alíquota</th>
+                                        <th>Ano 1</th>
+                                        <th>Ano 2</th>
+                                        <th>Ano 3</th>
+                                        <th>Ano 4</th>
+                                        <th>Ano 5</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="impostosAtualTableBody">
+                                    <!-- Gerado dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Reforma Tributária -->
+                    <div id="sistemaReformaContainer" class="sistema-container" style="display: none;">
+                        <h3>Reforma Tributária (2026-2033)</h3>
+
+                        <!-- Timeline da Transição -->
+                        <div class="reforma-timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-year">2026</span>
+                                <span class="timeline-desc">Teste: CBS 0,9% + IBS 0,1%</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-year">2027</span>
+                                <span class="timeline-desc">CBS Plena: 8,8% (elimina PIS/COFINS)</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-year">2029-2032</span>
+                                <span class="timeline-desc">Transição IBS (10%→40%)</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-year">2033</span>
+                                <span class="timeline-desc">Regime Pleno: CBS 8,8% + IBS 17,7%</span>
+                            </div>
+                        </div>
+
+                        <div class="impostos-table-wrapper">
+                            <table class="impostos-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tributo</th>
+                                        <th>Ano</th>
+                                        <th>Alíquota CBS</th>
+                                        <th>Alíquota IBS</th>
+                                        <th>Total</th>
+                                        <th>Valor Anual</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="impostosReformaTableBody">
+                                    <!-- Gerado dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Comparativo -->
+                    <div class="comparativo-sistemas">
+                        <h3>Comparativo: Sistema Atual vs Reforma</h3>
+                        <div class="comparativo-table-wrapper">
+                            <table class="comparativo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ano</th>
+                                        <th>Sistema Atual</th>
+                                        <th>Reforma Tributária</th>
+                                        <th>Diferença (R$)</th>
+                                        <th>Variação (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="comparativoTableBody">
+                                    <!-- Gerado dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico de Evolução -->
+                    <div class="grafico-evolucao">
+                        <h3>Evolução da Carga Tributária 2025-2033</h3>
+                        <div id="graficoEvolucaoTributaria">
+                            <!-- Gráfico Chart.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 13: Cenários e Relatórios -->
+                <div class="form-section" data-section="13" id="section-13" role="tabpanel" aria-labelledby="tab-13">
+                    <div class="section-header">
+                        <h2 class="section-title">13. Análise de Cenários e Relatórios</h2>
+                        <p class="section-description">Simulação de cenários otimista/realista/pessimista e geração de relatórios.</p>
+                    </div>
+
+                    <!-- Análise de Cenários -->
+                    <div class="cenarios-container">
+                        <h3>Análise de Cenários</h3>
+                        <div class="cenarios-grid">
+                            <!-- Cenário Otimista -->
+                            <div class="cenario-card otimista">
+                                <h4>📈 Cenário Otimista (+20%)</h4>
+                                <div class="cenario-results">
+                                    <div class="result-item">
+                                        <span>VPL:</span>
+                                        <span id="vplOtimista">R$ 0,00</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>TIR:</span>
+                                        <span id="tirOtimista">0%</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Payback:</span>
+                                        <span id="paybackOtimista">0 meses</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cenário Realista -->
+                            <div class="cenario-card realista">
+                                <h4>📊 Cenário Realista (Base)</h4>
+                                <div class="cenario-results">
+                                    <div class="result-item">
+                                        <span>VPL:</span>
+                                        <span id="vplRealista">R$ 0,00</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>TIR:</span>
+                                        <span id="tirRealista">0%</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Payback:</span>
+                                        <span id="paybackRealista">0 meses</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cenário Pessimista -->
+                            <div class="cenario-card pessimista">
+                                <h4>📉 Cenário Pessimista (-20%)</h4>
+                                <div class="cenario-results">
+                                    <div class="result-item">
+                                        <span>VPL:</span>
+                                        <span id="vplPessimista">R$ 0,00</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>TIR:</span>
+                                        <span id="tirPessimista">0%</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Payback:</span>
+                                        <span id="paybackPessimista">0 meses</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Análise de Sensibilidade -->
+                    <div class="sensibilidade-container">
+                        <h3>Análise de Sensibilidade</h3>
+                        <div class="sensibilidade-table-wrapper">
+                            <table class="sensibilidade-table">
+                                <thead>
+                                    <tr>
+                                        <th>Variável</th>
+                                        <th>-20%</th>
+                                        <th>-10%</th>
+                                        <th>Base</th>
+                                        <th>+10%</th>
+                                        <th>+20%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sensibilidadeTableBody">
+                                    <!-- Gerado dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recomendações -->
+                    <div class="recomendacoes-container">
+                        <h3>Recomendações</h3>
+                        <div id="recomendacoesContent">
+                            <!-- Gerado dinamicamente com base nos indicadores -->
+                        </div>
+                    </div>
+
+                    <!-- Exportação -->
+                    <div class="export-section">
+                        <h3>Exportar Análise Completa</h3>
+                        <div class="export-buttons">
+                            <button type="button" id="exportJsonBtn" class="btn btn-primary">
+                                💾 Exportar JSON
+                            </button>
+                            <button type="button" id="exportExcelBtn" class="btn btn-primary">
+                                📊 Exportar Excel (18 abas)
+                            </button>
+                            <button type="button" id="exportPDFBtn" class="btn btn-primary">
+                                📄 Exportar PDF (Relatório Completo)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navegação -->
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" class="btn btn-secondary">← Anterior</button>
+                    <button type="button" id="nextBtn" class="btn btn-primary">Próxima →</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../assets/images/expertzy_logo.png" alt="Expertzy Logo" class="footer-logo">
+                    <p>Desenvolvido pela Expertzy</p>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2025 Expertzy. Sistema de Análise de Viabilidade Financeira</p>
+                    <p class="footer-version">v1.0.0 (Financiamento)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bibliotecas Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Configurações -->
+    <script src="../../config/aliquotas-tributarias-2025.json" type="application/json"></script>
+    <script src="../../config/reforma-tributaria-2026-2033.json" type="application/json"></script>
+
+    <!-- 1. Módulos de Tributação (shared/tax) -->
+    <script src="../assets/js/shared/tax/tax-calculator-core.js"></script>
+    <script src="../assets/js/shared/tax/reforma-tributaria-calculator.js"></script>
+    <script src="../assets/js/shared/tax/sistema-apuracao-hibrido.js"></script>
+
+    <!-- 2. Calculadores Financeiros -->
+    <script src="../assets/js/financiamento/calculador-dre-projetado.js"></script>
+    <script src="../assets/js/financiamento/calculador-fluxo-caixa.js"></script>
+    <script src="../assets/js/financiamento/calculador-indicadores.js"></script>
+
+    <!-- 3. Módulos de Abas Protegidas -->
+    <script src="../assets/js/financiamento/aba-apuracao-impostos.js"></script>
+    <script src="../assets/js/financiamento/aba-cenarios-analise.js"></script>
+
+    <!-- 4. Exportadores -->
+    <script src="../assets/js/financiamento/exportador-excel.js"></script>
+    <script src="../assets/js/financiamento/exportador-pdf.js"></script>
+
+    <!-- 5. Módulos Core -->
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/validation.js"></script>
+    <script src="../assets/js/tabs.js"></script>
+    <script src="../assets/js/utils/currency-mask.js"></script>
+
+    <!-- 6. Módulo Principal (DEVE SER O ÚLTIMO) -->
+    <script src="../assets/js/financiamento/financiamento-module.js"></script>
+</body>
+</html>
