@@ -253,6 +253,43 @@
                             </div>
                         </div>
 
+                        <!-- Histórico Operacional -->
+                        <div class="form-group full-width">
+                            <h3>Histórico Operacional</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="dataInicioOperacoes">Data de Início das Operações *</label>
+                                    <input type="date" id="dataInicioOperacoes" name="dataInicioOperacoes" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tempoMercado">Tempo no Mercado (anos)</label>
+                                    <input type="number" id="tempoMercado" name="tempoMercado" readonly>
+                                    <small>Calculado automaticamente a partir da data de início</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="qtdeFuncionariosAtual">Quantidade de Funcionários Atual *</label>
+                                    <input type="number" id="qtdeFuncionariosAtual" name="qtdeFuncionariosAtual" min="0" max="99999" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="capacidadeProdutivaAtual">Capacidade Produtiva Atual</label>
+                                    <input type="text" id="capacidadeProdutivaAtual" name="capacidadeProdutivaAtual" placeholder="Ex: 1000 unidades/mês, 500 kg/dia">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="certificacoesAtuais">Certificações e Selos Atuais</label>
+                                    <textarea id="certificacoesAtuais" name="certificacoesAtuais" rows="2" placeholder="Ex: ISO 9001, ISO 14001, Selo Inmetro, etc."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="principaisProdutosServicos">Principais Produtos/Serviços *</label>
+                                    <textarea id="principaisProdutosServicos" name="principaisProdutosServicos" rows="3" required placeholder="Descreva os principais produtos ou serviços oferecidos"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Contatos -->
                         <div class="form-group full-width">
                             <h3>Contatos</h3>
@@ -819,8 +856,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="dataInicioOperacoes">Data de Início das Operações *</label>
-                            <input type="date" id="dataInicioOperacoes" name="dataInicioOperacoes" required>
+                            <label for="dataInicioOperacoesProjeto">Data de Início das Operações do Projeto *</label>
+                            <input type="date" id="dataInicioOperacoesProjeto" name="dataInicioOperacoesProjeto" required>
                         </div>
 
                         <div class="form-group">

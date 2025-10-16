@@ -274,6 +274,19 @@ class FinanciamentoModule {
     // Proteção para seções restritas ao modo Analista
     this.configurarProtecaoSecoes();
 
+    // Event listener para calcular tempo no mercado automaticamente
+    const dataInicioOpInput = document.getElementById('dataInicioOperacoes');
+    if (dataInicioOpInput) {
+      dataInicioOpInput.addEventListener('change', () => {
+        this.calcularTempoMercado();
+      });
+
+      // Calcular no load se já houver valor
+      if (dataInicioOpInput.value) {
+        this.calcularTempoMercado();
+      }
+    }
+
     console.log('✓ Event listeners configurados (incluindo mode toggle e navegação)');
   }
 
@@ -586,6 +599,13 @@ class FinanciamentoModule {
       numeroSocios: this.getFieldValue('numeroSocios'),
       dataUltimaAlteracao: this.getFieldValue('dataUltimaAlteracao'),
       enquadramentoFiscal: this.getFieldValue('enquadramentoFiscal'),
+      // Histórico Operacional (Task 2.1.2)
+      dataInicioOperacoes: this.getFieldValue('dataInicioOperacoes'),
+      tempoMercado: this.getFieldValue('tempoMercado', 'number'),
+      qtdeFuncionariosAtual: this.getFieldValue('qtdeFuncionariosAtual', 'number'),
+      capacidadeProdutivaAtual: this.getFieldValue('capacidadeProdutivaAtual'),
+      certificacoesAtuais: this.getFieldValue('certificacoesAtuais'),
+      principaisProdutosServicos: this.getFieldValue('principaisProdutosServicos'),
       responsavelNome: this.getFieldValue('responsavelNome'),
       responsavelCargo: this.getFieldValue('responsavelCargo'),
       responsavelEmail: this.getFieldValue('responsavelEmail'),
@@ -672,7 +692,7 @@ class FinanciamentoModule {
     // Coletar seção 7: Cronograma Financeiro
     dados.secao7 = {
       dataInicioInvestimentos: this.getFieldValue('dataInicioInvestimentos'),
-      dataInicioOperacoes: this.getFieldValue('dataInicioOperacoes')
+      dataInicioOperacoesProjeto: this.getFieldValue('dataInicioOperacoesProjeto')
     };
 
     // Seção 8: Matriz Produto-Insumo
@@ -783,10 +803,22 @@ class FinanciamentoModule {
       this.setFieldValue('numeroSocios', dados.secao1.numeroSocios);
       this.setFieldValue('dataUltimaAlteracao', dados.secao1.dataUltimaAlteracao);
       this.setFieldValue('enquadramentoFiscal', dados.secao1.enquadramentoFiscal);
+      // Histórico Operacional (Task 2.1.2)
+      this.setFieldValue('dataInicioOperacoes', dados.secao1.dataInicioOperacoes);
+      this.setFieldValue('tempoMercado', dados.secao1.tempoMercado);
+      this.setFieldValue('qtdeFuncionariosAtual', dados.secao1.qtdeFuncionariosAtual);
+      this.setFieldValue('capacidadeProdutivaAtual', dados.secao1.capacidadeProdutivaAtual);
+      this.setFieldValue('certificacoesAtuais', dados.secao1.certificacoesAtuais);
+      this.setFieldValue('principaisProdutosServicos', dados.secao1.principaisProdutosServicos);
       this.setFieldValue('responsavelNome', dados.secao1.responsavelNome);
       this.setFieldValue('responsavelCargo', dados.secao1.responsavelCargo);
       this.setFieldValue('responsavelEmail', dados.secao1.responsavelEmail);
       this.setFieldValue('responsavelTelefone', dados.secao1.responsavelTelefone);
+
+      // Recalcular tempo no mercado após restaurar dataInicioOperacoes
+      if (dados.secao1.dataInicioOperacoes) {
+        this.calcularTempoMercado();
+      }
     }
 
     // Restaurar seção 2: Regime Tributário
@@ -869,7 +901,7 @@ class FinanciamentoModule {
     // Restaurar seção 7: Cronograma Financeiro
     if (dados.secao7) {
       this.setFieldValue('dataInicioInvestimentos', dados.secao7.dataInicioInvestimentos);
-      this.setFieldValue('dataInicioOperacoes', dados.secao7.dataInicioOperacoes);
+      this.setFieldValue('dataInicioOperacoesProjeto', dados.secao7.dataInicioOperacoesProjeto);
     }
 
     // Restaurar seção 8: Matriz Produto-Insumo
@@ -982,6 +1014,42 @@ class FinanciamentoModule {
     } else {
       field.value = value;
     }
+  }
+
+  /**
+   * Calcula tempo no mercado em anos a partir da data de início das operações
+   * @private
+   */
+  calcularTempoMercado() {
+    const dataInicioInput = document.getElementById('dataInicioOperacoes');
+    const tempoMercadoInput = document.getElementById('tempoMercado');
+
+    if (!dataInicioInput || !tempoMercadoInput) {
+      return;
+    }
+
+    const dataInicio = dataInicioInput.value;
+    if (!dataInicio) {
+      tempoMercadoInput.value = '';
+      return;
+    }
+
+    const inicio = new Date(dataInicio);
+    const hoje = new Date();
+
+    if (isNaN(inicio.getTime())) {
+      tempoMercadoInput.value = '';
+      return;
+    }
+
+    // Calcular diferença em anos (com casas decimais)
+    const diffMs = hoje - inicio;
+    const diffAnos = diffMs / (1000 * 60 * 60 * 24 * 365.25); // 365.25 para considerar anos bissextos
+
+    // Arredondar para 1 casa decimal
+    const tempoAnos = Math.max(0, diffAnos).toFixed(1);
+
+    tempoMercadoInput.value = tempoAnos;
   }
 
   // ==========================================
