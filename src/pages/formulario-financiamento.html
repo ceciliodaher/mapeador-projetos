@@ -290,6 +290,54 @@
                             </div>
                         </div>
 
+                        <!-- Localização Detalhada -->
+                        <div class="form-group full-width">
+                            <h3>Localização Detalhada</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="cep">CEP *</label>
+                                    <input type="text" id="cep" name="cep" pattern="\d{5}-\d{3}" placeholder="00000-000" required>
+                                    <small>Formato: 00000-000</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="logradouro">Logradouro (Rua/Av) *</label>
+                                    <input type="text" id="logradouro" name="logradouro" placeholder="Ex: Rua das Flores, Avenida Brasil" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numero">Número *</label>
+                                    <input type="text" id="numero" name="numero" placeholder="Ex: 123, S/N" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="complemento">Complemento</label>
+                                    <input type="text" id="complemento" name="complemento" placeholder="Ex: Sala 101, Bloco A">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bairro">Bairro *</label>
+                                    <input type="text" id="bairro" name="bairro" placeholder="Ex: Centro, Setor Industrial" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="coordenadasGeograficas">Coordenadas Geográficas</label>
+                                    <input type="text" id="coordenadasGeograficas" name="coordenadasGeograficas" placeholder="-16.6799, -49.2550">
+                                    <small>Formato: latitude, longitude</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pontoReferencia">Ponto de Referência</label>
+                                    <input type="text" id="pontoReferencia" name="pontoReferencia" placeholder="Ex: Próximo ao Shopping, Em frente à Praça">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="areaTerreno">Área do Terreno (m²)</label>
+                                    <input type="number" id="areaTerreno" name="areaTerreno" min="0" step="0.01" placeholder="Ex: 1000.00">
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Contatos -->
                         <div class="form-group full-width">
                             <h3>Contatos</h3>

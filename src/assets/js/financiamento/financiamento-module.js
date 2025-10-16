@@ -606,6 +606,14 @@ class FinanciamentoModule {
       capacidadeProdutivaAtual: this.getFieldValue('capacidadeProdutivaAtual'),
       certificacoesAtuais: this.getFieldValue('certificacoesAtuais'),
       principaisProdutosServicos: this.getFieldValue('principaisProdutosServicos'),
+      cep: this.getFieldValue('cep'),
+      logradouro: this.getFieldValue('logradouro'),
+      numero: this.getFieldValue('numero'),
+      complemento: this.getFieldValue('complemento'),
+      bairro: this.getFieldValue('bairro'),
+      coordenadasGeograficas: this.getFieldValue('coordenadasGeograficas'),
+      pontoReferencia: this.getFieldValue('pontoReferencia'),
+      areaTerreno: this.getFieldValue('areaTerreno', 'number'),
       responsavelNome: this.getFieldValue('responsavelNome'),
       responsavelCargo: this.getFieldValue('responsavelCargo'),
       responsavelEmail: this.getFieldValue('responsavelEmail'),
@@ -814,6 +822,14 @@ class FinanciamentoModule {
       this.setFieldValue('responsavelCargo', dados.secao1.responsavelCargo);
       this.setFieldValue('responsavelEmail', dados.secao1.responsavelEmail);
       this.setFieldValue('responsavelTelefone', dados.secao1.responsavelTelefone);
+      this.setFieldValue('cep', dados.secao1.cep);
+      this.setFieldValue('logradouro', dados.secao1.logradouro);
+      this.setFieldValue('numero', dados.secao1.numero);
+      this.setFieldValue('complemento', dados.secao1.complemento);
+      this.setFieldValue('bairro', dados.secao1.bairro);
+      this.setFieldValue('coordenadasGeograficas', dados.secao1.coordenadasGeograficas);
+      this.setFieldValue('pontoReferencia', dados.secao1.pontoReferencia);
+      this.setFieldValue('areaTerreno', dados.secao1.areaTerreno);
 
       // Recalcular tempo no mercado após restaurar dataInicioOperacoes
       if (dados.secao1.dataInicioOperacoes) {
