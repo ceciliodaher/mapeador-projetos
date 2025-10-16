@@ -1,8 +1,8 @@
 # Próximos Passos - Sistema FCO
 
 **Data:** 2025-10-16
-**Status Atual:** Sprint 2 Iniciado 🚀
-**Progresso Geral:** 21h / 90h (23%)
+**Status Atual:** Sprint 2 - Task 2.1 em Andamento 🔄
+**Progresso Geral:** 22.2h / 91h (24.4%)
 
 ---
 
@@ -14,10 +14,10 @@
 |--------|----------|---------|--------|
 | **Sprint 1** | Core Components | 20h | ✅ **COMPLETO** |
 | **PRE-Tasks** | FinanciamentoModule Setup | 1h | ✅ **COMPLETO** |
-| **Sprint 2** | RESPONDENTE Sections | 30h | 🔄 **EM ANDAMENTO** |
+| **Sprint 2** | RESPONDENTE Sections | 30h | 🔄 **EM ANDAMENTO** (1.2h/30h) |
 | **Sprint 3** | Import/Export & Integration | 25h | ⏳ Pendente |
 | **Sprint 4** | Testing & Polish | 15h | ⏳ Pendente |
-| **TOTAL** | Sistema Completo | **91h** | **23% completo** |
+| **TOTAL** | Sistema Completo | **91h** | **24.4% completo** |
 
 ---
 
@@ -52,37 +52,45 @@ Implementar 7 seções RESPONDENTE prioritárias com tabelas dinâmicas funciona
 
 ### Tasks Detalhadas
 
-#### Task 2.1: Expandir Seção 1 (Identificação)
+#### Task 2.1: Expandir Seção 1 (Identificação) 🔄 **EM ANDAMENTO**
 **Esforço:** 2 horas
+**Progresso:** 60% completo (1.2h / 2h)
 **Arquivos:** `formulario-financiamento.html`, `financiamento-module.js`
 
 **Escopo:**
-- Expandir de 13 campos para 345 campos
-- Adicionar: caracterização jurídica, histórico, indicadores, certificações
-- Validações: CNPJ, email, required
+- Expandir de 14 campos base para 62+ campos em 5 etapas incrementais
+- Adicionar: caracterização jurídica, histórico operacional, localização detalhada, contatos, certificações
+- Validações: CNPJ, email, required, pattern (CEP)
 
-**Campos a adicionar:**
-```html
-<!-- Caracterização Jurídica -->
-<input type="text" id="tipoSocietario" name="tipoSocietario">
-<input type="text" id="capitalSocial" name="capitalSocial">
-<input type="number" id="numeroSocios" name="numeroSocios">
+**Progresso por Etapa:**
 
-<!-- Histórico -->
-<input type="number" id="tempoOperacao" name="tempoOperacao">
-<input type="text" id="faturamentoAno1" name="faturamentoAno1">
-<input type="text" id="faturamentoAno2" name="faturamentoAno2">
-<input type="text" id="faturamentoAno3" name="faturamentoAno3">
+✅ **Etapa 2.1.1: Caracterização Jurídica** (5 campos)
+- Commit: 22d9581
+- Campos: `tipoSocietario`, `capitalSocial`, `numeroSocios`, `dataUltimaAlteracao`, `enquadramentoFiscal`
 
-<!-- Indicadores Atuais -->
-<input type="number" id="numeroEmpregados" name="numeroEmpregados">
-<input type="text" id="areaConstruida" name="areaConstruida">
-<input type="text" id="areaTerreno" name="areaTerreno">
+✅ **Etapa 2.1.2: Histórico Operacional** (6 campos)
+- Commits: 8c8bd75 (implementação), f611adf (fix ID conflict)
+- Campos: `dataInicioOperacoes`, `tempoMercado` (calculado), `qtdeFuncionariosAtual`, `capacidadeProdutivaAtual`, `certificacoesAtuais`, `principaisProdutosServicos`
+- **Feature:** Cálculo automático de `tempoMercado` baseado em `dataInicioOperacoes`
+- **Critical Fix:** Resolvido conflito de ID `dataInicioOperacoes` (Seção 1 vs Seção 7)
+  - Seção 7 renomeada para `dataInicioOperacoesProjeto`
 
-<!-- Certificações -->
-<input type="text" id="certificacoesISO" name="certificacoesISO">
-<input type="text" id="registrosANVISA" name="registrosANVISA">
-```
+✅ **Etapa 2.1.3: Localização Detalhada** (8 campos)
+- Campos: `cep` (com validação pattern), `logradouro`, `numero`, `complemento`, `bairro`, `coordenadasGeograficas`, `pontoReferencia`, `areaTerreno`
+
+⏳ **Etapa 2.1.4: Contatos e Infraestrutura** (~15 campos) - PRÓXIMO
+- Telefones, e-mails, website, infraestrutura
+- Esforço: 25 minutos
+
+⏳ **Etapa 2.1.5: Certificações e Finalizações** (~15 campos)
+- Certificações ISO/ANVISA/INMETRO, selos, registros
+- Esforço: 25 minutos
+
+**Resumo:**
+- ✅ 19 campos adicionados (14 → 33 campos)
+- ✅ 3 commits realizados
+- ✅ 1 issue crítico resolvido (ID conflict)
+- ⏳ 29 campos restantes (~50 minutos)
 
 ---
 
@@ -374,9 +382,12 @@ columns: [
 | **Seções** | 0 | 0 | 7 | 0 | 0 | 7 |
 | **Testes** | 0 | 0 | 0 | 0 | 36+ | 36+ |
 
-**Status Atual:** 23% completo (21h / 91h)
+**Status Atual:** 24.4% completo (22.2h / 91h)
 **PRE-Tasks:** ✅ Completo (IndexedDB methods + Data collection/restore)
-**Próximo:** Task 2.1 - Expandir Seção 1 (Identificação)
+**Sprint 2 - Task 2.1:** 🔄 EM ANDAMENTO (60% completo)
+- ✅ Etapas 2.1.1-2.1.3 completas (19 campos adicionados)
+- ⏳ Etapas 2.1.4-2.1.5 pendentes (~29 campos restantes)
+**Próximo:** Etapa 2.1.4 - Contatos e Infraestrutura (25 min)
 
 ---
 
