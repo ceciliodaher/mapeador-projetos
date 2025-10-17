@@ -750,6 +750,9 @@ class FinanciamentoModule {
       maoDeObra: window.secaoMaoDeObra?.coletarDadosMaoDeObra() || null
     };
 
+    // Seção 8 (NOVA): Orçamento dos Investimentos Projetados
+    dados.secaoInvestimentos = window.secaoInvestimentos?.coletarDadosInvestimentos() || null;
+
     // Seções 9-13 são calculadas/geradas automaticamente
     // Não precisam de coleta de dados, mas podem ter preferências de visualização
 
@@ -1017,6 +1020,11 @@ class FinanciamentoModule {
       if (window.secaoMaoDeObra?.restaurarDadosMaoDeObra && dados.secao8.maoDeObra) {
         window.secaoMaoDeObra.restaurarDadosMaoDeObra(dados.secao8.maoDeObra);
       }
+    }
+
+    // Restaurar seção 8 (NOVA): Orçamento dos Investimentos Projetados
+    if (dados.secaoInvestimentos && window.secaoInvestimentos) {
+      window.secaoInvestimentos.restaurarDadosInvestimentos(dados.secaoInvestimentos);
     }
 
     // Seções 9-13 são calculadas automaticamente e não precisam de restauração

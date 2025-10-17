@@ -1849,3 +1849,589 @@
         display: none; /* Oculta anos 3-5 em mobile ultra pequeno */
     }
 }
+
+/* ====================================================================
+   SECTION: TABELA DE INVESTIMENTOS (Seção 8)
+   Excel-like tabular structure com 11 categorias pré-definidas
+   Cálculos automáticos e validação de recursos
+   ==================================================================== */
+
+/* Container principal */
+.investimentos-table-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--gray-200);
+}
+
+/* Wrapper responsivo com scroll horizontal */
+.investimentos-table-container .table-responsive {
+    overflow-x: auto;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+/* Base da tabela de investimentos */
+.investimentos-table {
+    width: 100%;
+    min-width: 2400px; /* Garante largura mínima para 21 colunas */
+    border-collapse: collapse;
+    background: white;
+    font-size: 12px;
+}
+
+/* ====================================================================
+   CABEÇALHO DA TABELA - Estilo Excel com gradiente Navy/Red
+   ==================================================================== */
+
+.investimentos-table thead {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--red) 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.investimentos-table thead th {
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    vertical-align: middle;
+    line-height: 1.3;
+}
+
+/* Larguras específicas por coluna (21 colunas) */
+.investimentos-table thead th:nth-child(1) { min-width: 140px; text-align: left; padding-left: 14px; } /* Categoria */
+.investimentos-table thead th:nth-child(2) { min-width: 180px; } /* Item */
+.investimentos-table thead th:nth-child(3) { min-width: 200px; } /* Especificação */
+.investimentos-table thead th:nth-child(4) { min-width: 70px; } /* Quantidade */
+.investimentos-table thead th:nth-child(5) { min-width: 80px; } /* Unidade */
+.investimentos-table thead th:nth-child(6) { min-width: 110px; } /* Valor Unitário */
+.investimentos-table thead th:nth-child(7) { min-width: 120px; } /* Valor Total */
+.investimentos-table thead th:nth-child(8) { min-width: 90px; } /* Ano Desembolso */
+.investimentos-table thead th:nth-child(9) { min-width: 70px; } /* Depreciação */
+.investimentos-table thead th:nth-child(10) { min-width: 110px; } /* Realizado */
+.investimentos-table thead th:nth-child(11) { min-width: 130px; } /* Cobertura Terceiros */
+.investimentos-table thead th:nth-child(12) { min-width: 110px; } /* Valor Terceiros */
+.investimentos-table thead th:nth-child(13) { min-width: 80px; } /* % Terceiros */
+.investimentos-table thead th:nth-child(14) { min-width: 130px; } /* Cobertura Próprios */
+.investimentos-table thead th:nth-child(15) { min-width: 110px; } /* Valor Próprios */
+.investimentos-table thead th:nth-child(16) { min-width: 80px; } /* % Próprios */
+.investimentos-table thead th:nth-child(17) { min-width: 110px; } /* A Realizar */
+.investimentos-table thead th:nth-child(18) { min-width: 150px; } /* Fornecedor */
+.investimentos-table thead th:nth-child(19) { min-width: 140px; } /* CNPJ */
+.investimentos-table thead th:nth-child(20) { min-width: 90px; } /* Tem Orçamento */
+.investimentos-table thead th:nth-child(21) { min-width: 70px; } /* Ações */
+
+/* ====================================================================
+   CORPO DA TABELA - Células e Linhas
+   ==================================================================== */
+
+.investimentos-table tbody td {
+    padding: 6px 8px;
+    border: 1px solid var(--gray-300);
+    vertical-align: middle;
+    background: white;
+}
+
+.investimentos-table tbody td:first-child {
+    padding-left: 14px;
+}
+
+/* Hover effect nas linhas */
+.investimentos-table tbody tr:hover {
+    background: rgba(255, 0, 45, 0.03);
+    transition: background 0.2s ease;
+}
+
+/* Linhas de categorias específicas com cores alternadas */
+.investimentos-table tbody tr:nth-child(odd) {
+    background: #fafafa;
+}
+
+.investimentos-table tbody tr:nth-child(odd):hover {
+    background: rgba(255, 0, 45, 0.05);
+}
+
+/* ====================================================================
+   INPUTS INLINE - Estilo integrado às células
+   ==================================================================== */
+
+.investimentos-table input,
+.investimentos-table select {
+    width: 100%;
+    padding: 6px 8px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Input de discriminação (texto) */
+.investimentos-table .input-discriminacao {
+    text-align: left;
+    font-weight: 600;
+    color: var(--navy);
+    padding-left: 10px;
+}
+
+/* Inputs de valores monetários */
+.investimentos-table input[data-mask="currency"] {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Inputs de depreciação (número) */
+.investimentos-table .input-depreciacao {
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Selects de cobertura */
+.investimentos-table select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 6px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 28px;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Estados de hover e focus */
+.investimentos-table input:hover,
+.investimentos-table select:hover {
+    background: rgba(255, 0, 45, 0.04);
+    border-color: var(--gray-300);
+}
+
+.investimentos-table input:focus,
+.investimentos-table select:focus {
+    outline: none;
+    background: white;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(255, 0, 45, 0.1);
+}
+
+/* ====================================================================
+   CAMPOS CALCULADOS (Readonly) - Gradiente cinza
+   ==================================================================== */
+
+.investimentos-table input[readonly],
+.investimentos-table .calc-readonly {
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+    border-color: transparent;
+    color: var(--gray-700);
+    font-weight: 700;
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.investimentos-table input[readonly]:hover,
+.investimentos-table .calc-readonly:hover {
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.investimentos-table .calc-readonly::placeholder {
+    color: var(--gray-500);
+    font-weight: 600;
+}
+
+/* ====================================================================
+   FOOTER (Totalizadores) - Sistema de 3 níveis
+   ==================================================================== */
+
+/* Nível 1: TOTAL DOS INVESTIMENTOS FIXOS - Verde Claro */
+.investimentos-table tfoot .total-row {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    font-weight: 700;
+}
+
+.investimentos-table tfoot .total-row td {
+    padding: 12px 8px;
+    border: 1px solid #81c784;
+    text-align: center;
+    font-size: 14px;
+    color: #1b5e20;
+}
+
+.investimentos-table tfoot .total-row td:first-child {
+    text-align: left;
+    padding-left: 14px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Células com valores totais */
+.investimentos-table tfoot .total-orcamento,
+.investimentos-table tfoot .total-realizado,
+.investimentos-table tfoot .total-terceiros,
+.investimentos-table tfoot .total-proprios,
+.investimentos-table tfoot .total-a-realizar {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 15px;
+}
+
+.investimentos-table tfoot .total-depreciacao-media,
+.investimentos-table tfoot .total-perc-terceiros,
+.investimentos-table tfoot .total-perc-proprios {
+    font-weight: 700;
+    color: #2e7d32;
+    font-style: italic;
+}
+
+/* Nível 2: Subtotais (Capital de Giro e Juros) - Amarelo Claro */
+.investimentos-table tfoot .subtotal-row {
+    background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+    font-weight: 600;
+}
+
+.investimentos-table tfoot .subtotal-row td {
+    padding: 10px 8px;
+    border: 1px solid #fbc02d;
+    text-align: left;
+    font-size: 14px;
+    color: #f57f17;
+}
+
+.investimentos-table tfoot .subtotal-row td:first-child {
+    padding-left: 14px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.investimentos-table tfoot .subtotal-row input {
+    background: white;
+    border: 2px solid #f57f17;
+    font-weight: 600;
+    text-align: right;
+}
+
+.investimentos-table tfoot .subtotal-row input:focus {
+    border-color: #e65100;
+    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+}
+
+/* Nível 3: TOTAL DO PROJETO - Verde Escuro */
+.investimentos-table tfoot .grand-total-row {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    color: white;
+}
+
+.investimentos-table tfoot .grand-total-row td {
+    padding: 14px 8px;
+    border: 1px solid #1b5e20;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.investimentos-table tfoot .grand-total-row td:first-child {
+    text-align: left;
+    padding-left: 14px;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.investimentos-table tfoot .grand-total-valor {
+    color: white;
+    font-size: 18px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ====================================================================
+   BOTÕES DE AÇÃO
+   ==================================================================== */
+
+/* Botão remover linha */
+.investimentos-table .btn-remove-row {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.investimentos-table .btn-remove-row:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.investimentos-table .btn-remove-row:active {
+    transform: scale(0.98);
+}
+
+/* Botão adicionar investimento */
+.btn-add-investimento {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-add-investimento:hover {
+    background: linear-gradient(135deg, #1e3a5f 0%, var(--navy) 100%);
+    box-shadow: 0 6px 16px rgba(9, 26, 48, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-add-investimento:active {
+    transform: translateY(0);
+}
+
+/* ====================================================================
+   NOTAS E OBSERVAÇÕES
+   ==================================================================== */
+
+.investimentos-notas {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.15);
+}
+
+.investimentos-notas h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f59e0b;
+}
+
+.investimentos-notas textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.investimentos-notas textarea:focus {
+    outline: none;
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.investimentos-notas textarea::placeholder {
+    color: var(--gray-500);
+    font-style: italic;
+}
+
+/* ====================================================================
+   CHECKBOX - Investimentos Contratados
+   ==================================================================== */
+
+.investimentos-table-container .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.investimentos-table-container .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--red);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.investimentos-table-container .checkbox-label span {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+}
+
+.investimentos-table-container .checkbox-label small {
+    display: block;
+    margin-left: 30px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--gray-600);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.investimentos-table-container .checkbox-label:hover span {
+    color: var(--red);
+}
+
+/* ====================================================================
+   VALIDAÇÃO VISUAL - Estados de erro/sucesso
+   ==================================================================== */
+
+/* Linha com erro de validação (Terceiros + Próprios ≠ Orçamento) */
+.investimentos-table tbody tr.validation-error {
+    background: rgba(220, 53, 69, 0.08);
+    border-left: 4px solid var(--danger);
+}
+
+.investimentos-table tbody tr.validation-error td {
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+/* Linha com validação OK */
+.investimentos-table tbody tr.validation-success {
+    background: rgba(40, 167, 69, 0.05);
+}
+
+.investimentos-table tbody tr.validation-success td:nth-child(6),
+.investimentos-table tbody tr.validation-success td:nth-child(9) {
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+/* ====================================================================
+   RESPONSIVE - INVESTIMENTOS TABLE
+   ==================================================================== */
+
+@media (max-width: 1600px) {
+    .investimentos-table {
+        min-width: 2200px; /* Mantém 21 colunas visíveis */
+    }
+}
+
+@media (max-width: 1200px) {
+    .investimentos-table {
+        min-width: 2000px;
+        font-size: 11px;
+    }
+
+    .investimentos-table thead th {
+        padding: 10px 5px;
+        font-size: 10px;
+    }
+
+    .investimentos-table tbody td {
+        padding: 5px;
+    }
+
+    .investimentos-table input,
+    .investimentos-table select,
+    .investimentos-table textarea {
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .investimentos-table-container {
+        padding: 15px;
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+
+    .investimentos-table-container .table-responsive {
+        margin: 0;
+        padding: 0;
+    }
+
+    .investimentos-table {
+        font-size: 10px;
+        min-width: 1800px; /* Scroll horizontal obrigatório */
+    }
+
+    .investimentos-table thead th,
+    .investimentos-table tbody td,
+    .investimentos-table tfoot td {
+        padding: 5px 3px;
+        font-size: 9px;
+    }
+
+    .investimentos-table input,
+    .investimentos-table select,
+    .investimentos-table textarea {
+        padding: 3px 5px;
+        font-size: 10px;
+    }
+
+    .btn-add-investimento {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .investimentos-notas {
+        padding: 15px;
+    }
+
+    .investimentos-notas h3 {
+        font-size: 14px;
+    }
+
+    .investimentos-notas textarea {
+        min-height: 80px;
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Oculta colunas menos essenciais em mobile ultra pequeno */
+    .investimentos-table thead th:nth-child(18), /* Fornecedor */
+    .investimentos-table tbody td:nth-child(18),
+    .investimentos-table thead th:nth-child(19), /* CNPJ */
+    .investimentos-table tbody td:nth-child(19),
+    .investimentos-table thead th:nth-child(20), /* Tem Orçamento */
+    .investimentos-table tbody td:nth-child(20),
+    .investimentos-table thead th:nth-child(21), /* Ações */
+    .investimentos-table tbody td:nth-child(21) {
+        display: none;
+    }
+
+    .investimentos-table {
+        min-width: 1400px;
+    }
+
+    .investimentos-table thead th,
+    .investimentos-table tbody td,
+    .investimentos-table tfoot td {
+        padding: 4px 2px;
+    }
+}

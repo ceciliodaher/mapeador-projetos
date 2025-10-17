@@ -1484,111 +1484,110 @@
                 <!-- Seção 8: Investimentos Planejados -->
                 <div class="form-section" data-section="8" id="section-8" role="tabpanel" aria-labelledby="tab-8">
                     <div class="section-header">
-                        <h2 class="section-title">8. Investimentos Planejados</h2>
-                        <p class="section-description">CAPEX e necessidades de capital de giro.</p>
+                        <h2 class="section-title">8. Orçamento dos Investimentos Projetados</h2>
+                        <p class="section-description">Detalhamento completo dos investimentos necessários ao projeto, incluindo especificações técnicas, quantidades, valores e origem dos recursos.</p>
                     </div>
 
-                    <div class="form-grid">
-                        <!-- CAPEX -->
-                        <div class="form-group full-width">
-                            <h3>CAPEX - Investimentos em Ativos Fixos</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="investimentoTerrenos">Terrenos (R$)</label>
-                                    <input type="text" id="investimentoTerrenos" name="investimentoTerrenos" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoObrasCivis">Obras Civis (R$)</label>
-                                    <input type="text" id="investimentoObrasCivis" name="investimentoObrasCivis" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoMaquinas">Máquinas e Equipamentos (R$)</label>
-                                    <input type="text" id="investimentoMaquinas" name="investimentoMaquinas" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoVeiculos">Veículos (R$)</label>
-                                    <input type="text" id="investimentoVeiculos" name="investimentoVeiculos" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoInformatica">Informática e TI (R$)</label>
-                                    <input type="text" id="investimentoInformatica" name="investimentoInformatica" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoMoveis">Móveis e Utensílios (R$)</label>
-                                    <input type="text" id="investimentoMoveis" name="investimentoMoveis" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoIntangiveis">Intangíveis (Marcas, Patentes, Software) (R$)</label>
-                                    <input type="text" id="investimentoIntangiveis" name="investimentoIntangiveis" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="investimentoOutros">Outros Investimentos (R$)</label>
-                                    <input type="text" id="investimentoOutros" name="investimentoOutros" data-mask="currency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="totalCapex">Total CAPEX (R$)</label>
-                                    <input type="text" id="totalCapex" readonly>
-                                </div>
-                            </div>
+                    <!-- Alert Informativo -->
+                    <div class="alert alert-info">
+                        <strong>Instruções:</strong>
+                        <ul>
+                            <li>Adicione cada item de investimento detalhadamente (categoria, especificação, quantidade, valores)</li>
+                            <li>Informe a origem dos recursos (terceiros e/ou próprios) para cada investimento</li>
+                            <li>O sistema calculará automaticamente os totais e percentuais</li>
+                            <li>Capital de Giro e Juros Pré-operacionais serão preenchidos ao final (temporariamente manuais)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tabela de Investimentos (21 colunas) -->
+                    <div class="investimentos-table-container">
+                        <div class="table-responsive">
+                            <table class="investimentos-table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3">Categoria</th>
+                                        <th rowspan="3">Item</th>
+                                        <th rowspan="3">Especificação</th>
+                                        <th rowspan="3">Qtd</th>
+                                        <th rowspan="3">Unid</th>
+                                        <th rowspan="3">Valor Unit.<br>(R$)</th>
+                                        <th rowspan="3">Valor Total<br>(R$)</th>
+                                        <th rowspan="3">Ano Desemb.</th>
+                                        <th rowspan="3">Depr.<br>(%aa)</th>
+                                        <th rowspan="3">Realizado<br>(R$)</th>
+                                        <th colspan="3">Recursos de Terceiros</th>
+                                        <th colspan="3">Recursos Próprios</th>
+                                        <th rowspan="3">A Realizar<br>(R$)</th>
+                                        <th rowspan="3">Fornecedor</th>
+                                        <th rowspan="3">CNPJ</th>
+                                        <th rowspan="3">Tem<br>Orçam.</th>
+                                        <th rowspan="3">Ações</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Cobertura</th>
+                                        <th>Valor (R$)</th>
+                                        <th>% s/ total</th>
+                                        <th>Cobertura</th>
+                                        <th>Valor (R$)</th>
+                                        <th>% s/ total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="investimentos-tbody">
+                                    <!-- TBODY VAZIO - Usuário adiciona linhas conforme necessário -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="6"><strong>TOTAL DOS INVESTIMENTOS FIXOS</strong></td>
+                                        <td class="total-orcamento">R$ 0,00</td>
+                                        <td></td>
+                                        <td class="total-depreciacao-media">0%</td>
+                                        <td class="total-realizado">R$ 0,00</td>
+                                        <td colspan="2" class="total-terceiros">R$ 0,00</td>
+                                        <td class="total-perc-terceiros">0%</td>
+                                        <td colspan="2" class="total-proprios">R$ 0,00</td>
+                                        <td class="total-perc-proprios">0%</td>
+                                        <td class="total-a-realizar">R$ 0,00</td>
+                                        <td colspan="3"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="subtotal-row">
+                                        <td colspan="6">Capital de Giro (temporário - será calculado)</td>
+                                        <td colspan="14"><input type="text" data-mask="currency" id="capitalGiroInv" name="capitalGiroInv" placeholder="R$ 0,00" /></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="subtotal-row">
+                                        <td colspan="6">Juros Pré-operacionais e Seg.Crédito (temporário)</td>
+                                        <td colspan="14"><input type="text" data-mask="currency" id="jurosPreOpInv" name="jurosPreOpInv" placeholder="R$ 0,00" /></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="grand-total-row">
+                                        <td colspan="6"><strong>TOTAL DO PROJETO</strong></td>
+                                        <td class="grand-total-valor"><strong>R$ 0,00</strong></td>
+                                        <td colspan="13"></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
 
-                        <!-- Capital de Giro -->
-                        <div class="form-group full-width">
-                            <h3>Capital de Giro</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="capitalGiroInicial">Capital de Giro Inicial (R$) *</label>
-                                    <input type="text" id="capitalGiroInicial" name="capitalGiroInicial" data-mask="currency" required>
-                                    <small>Recursos necessários para financiar operação nos primeiros meses</small>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-secondary btn-add-investimento">
+                            + Adicionar Item de Investimento
+                        </button>
+                    </div>
 
-                        <!-- Fontes de Recursos -->
-                        <div class="form-group full-width">
-                            <h3>Fontes de Recursos</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="recursosPropriosPerc">Recursos Próprios (%) *</label>
-                                    <input type="number" id="recursosPropriosPerc" name="recursosPropriosPerc" min="0" max="100" step="0.1" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="recursosFinanciamentoPerc">Financiamento (%) *</label>
-                                    <input type="number" id="recursosFinanciamentoPerc" name="recursosFinanciamentoPerc" min="0" max="100" step="0.1" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="totalRecursosPerc">Total (%)</label>
-                                    <input type="text" id="totalRecursosPerc" readonly>
-                                </div>
-                            </div>
+                    <!-- Notas e Observações -->
+                    <div class="investimentos-notas">
+                        <h3>Notas e Observações</h3>
+                        <textarea name="notasInvestimentos" id="notasInvestimentos" rows="4" placeholder="Observações sobre os investimentos (ex: equipamentos já adquiridos, parcerias, condições especiais, fornecedores alternativos, etc...)"></textarea>
+                    </div>
 
-                            <!-- Parâmetros do Financiamento -->
-                            <div id="financiamentoParams" style="display: none;">
-                                <h4>Parâmetros do Financiamento</h4>
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="taxaJurosFinanciamento">Taxa de Juros (% a.a.)</label>
-                                        <input type="number" id="taxaJurosFinanciamento" name="taxaJurosFinanciamento" min="0" max="100" step="0.1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="prazoFinanciamento">Prazo (meses)</label>
-                                        <input type="number" id="prazoFinanciamento" name="prazoFinanciamento" min="1" max="360">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="carenciaFinanciamento">Carência (meses)</label>
-                                        <input type="number" id="carenciaFinanciamento" name="carenciaFinanciamento" min="0" max="36">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Total de Investimento -->
-                        <div class="form-group full-width">
-                            <div class="total-calculation">
-                                <h3>Total de Investimento: <span id="totalInvestimento" class="total-value">R$ 0,00</span></h3>
-                                <small>CAPEX + Capital de Giro</small>
-                            </div>
-                        </div>
+                    <!-- Checkbox: Investimentos já contratados -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="investimentosContratados" name="investimentosContratados" />
+                            <span>Investimentos realizados já foram contratados/executados?</span>
+                        </label>
+                        <small>Se marcado, os valores realizados serão considerados nas análises de fluxo de caixa e necessidade de financiamento.</small>
                     </div>
                 </div>
 
