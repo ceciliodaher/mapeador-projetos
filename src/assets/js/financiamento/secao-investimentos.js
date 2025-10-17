@@ -51,9 +51,9 @@ class SecaoInvestimentos {
             throw new Error('Textarea #notasInvestimentos não encontrado - obrigatório para o fluxo');
         }
 
-        this.investimentosContratadosCheckbox = document.getElementById('investimentosContratados');
-        if (!this.investimentosContratadosCheckbox) {
-            throw new Error('Checkbox #investimentosContratados não encontrado - obrigatório para o fluxo');
+        this.investimentosContrapartidaCheckbox = document.getElementById('investimentosComoContrapartida');
+        if (!this.investimentosContrapartidaCheckbox) {
+            throw new Error('Checkbox #investimentosComoContrapartida não encontrado - obrigatório para o fluxo');
         }
 
         this.totalOrcamento = document.querySelector('.total-orcamento');
@@ -92,6 +92,15 @@ class SecaoInvestimentos {
         this.btnAdd.addEventListener('click', () => this.addInvestimentoRow());
         this.capitalGiroInput.addEventListener('input', () => this.updateGrandTotal());
         this.jurosPreOpInput.addEventListener('input', () => this.updateGrandTotal());
+
+        // Recalcular quando checkbox de contrapartida mudar
+        this.investimentosContrapartidaCheckbox.addEventListener('change', () => {
+            const rows = this.tbody.querySelectorAll('.investimento-row');
+            rows.forEach(row => this.calculateRowValues(row));
+            this.updateAllTotals();
+            console.log('✓ Contrapartida atualizada, valores recalculados');
+        });
+
         console.log('✓ Event listeners configurados');
     }
 
@@ -199,25 +208,29 @@ class SecaoInvestimentos {
             <td>
                 <select class="input-cobertura-terceiros">
                     <option value="">Nenhuma</option>
+                    <option value="FCO">FCO - Fundo Centro-Oeste</option>
+                    <option value="FNE">FNE - Fundo Nordeste</option>
+                    <option value="FNO">FNO - Fundo Norte</option>
                     <option value="FINEP">FINEP</option>
                     <option value="BNDES">BNDES</option>
                     <option value="Banco Privado">Banco Privado</option>
                     <option value="Outro">Outro</option>
                 </select>
             </td>
-            <td><input type="text" data-mask="currency" class="input-valor-terceiros" placeholder="R$ 0,00" /></td>
-            <td><input type="text" class="input-perc-terceiros calc-readonly" readonly placeholder="0%" /></td>
+            <td><input type="number" min="0" max="100" step="0.01" class="input-perc-terceiros" placeholder="%" /></td>
+            <td><input type="text" data-mask="currency" class="input-valor-terceiros calc-readonly" readonly placeholder="R$ 0,00" /></td>
             <td>
                 <select class="input-cobertura-proprios">
                     <option value="">Nenhuma</option>
                     <option value="Capital Social">Capital Social</option>
                     <option value="Lucros Acumulados">Lucros Acumulados</option>
                     <option value="Reinvestimento">Reinvestimento</option>
+                    <option value="Investimentos Realizados">Investimentos Realizados</option>
                     <option value="Outro">Outro</option>
                 </select>
             </td>
-            <td><input type="text" data-mask="currency" class="input-valor-proprios" placeholder="R$ 0,00" /></td>
-            <td><input type="text" class="input-perc-proprios calc-readonly" readonly placeholder="0%" /></td>
+            <td><input type="text" class="input-perc-proprios calc-readonly" readonly placeholder="%" /></td>
+            <td><input type="text" data-mask="currency" class="input-valor-proprios calc-readonly" readonly placeholder="R$ 0,00" /></td>
             <td><input type="text" data-mask="currency" class="input-a-realizar calc-readonly" readonly placeholder="R$ 0,00" /></td>
             <td><input type="text" class="input-fornecedor" placeholder="Nome do fornecedor" /></td>
             <td><input type="text" class="input-cnpj" placeholder="00.000.000/0000-00" /></td>
@@ -249,62 +262,65 @@ class SecaoInvestimentos {
     }
 
     calculateRowValues(row) {
+        // 1. Validar inputs obrigatórios
         const quantidadeInput = row.querySelector('.input-quantidade');
         const valorUnitarioInput = row.querySelector('.input-valor-unitario');
         const valorTotalInput = row.querySelector('.input-valor-total');
         const realizadoInput = row.querySelector('.input-realizado');
-        const valorTerceirosInput = row.querySelector('.input-valor-terceiros');
-        const valorPropriosInput = row.querySelector('.input-valor-proprios');
         const percTerceirosInput = row.querySelector('.input-perc-terceiros');
+        const valorTerceirosInput = row.querySelector('.input-valor-terceiros');
         const percPropriosInput = row.querySelector('.input-perc-proprios');
+        const valorPropriosInput = row.querySelector('.input-valor-proprios');
         const aRealizarInput = row.querySelector('.input-a-realizar');
 
         if (!quantidadeInput || !valorUnitarioInput || !valorTotalInput || !realizadoInput ||
-            !valorTerceirosInput || !valorPropriosInput || !percTerceirosInput ||
-            !percPropriosInput || !aRealizarInput) {
+            !percTerceirosInput || !valorTerceirosInput || !percPropriosInput ||
+            !valorPropriosInput || !aRealizarInput) {
             throw new Error('Inputs obrigatórios não encontrados na linha - estrutura HTML inválida');
         }
 
-        const quantidade = parseFloat(quantidadeInput.value);
+        // 2. Calcular Valor Total
+        const quantidade = parseFloat(quantidadeInput.value) || 0;
         const valorUnitario = this.parseCurrency(valorUnitarioInput.value);
         const valorTotal = quantidade > 0 && valorUnitario > 0 ? quantidade * valorUnitario : 0;
-
         valorTotalInput.value = this.formatCurrency(valorTotal);
 
+        // 3. Obter % Terceiros (input do usuário)
+        const percTerceiros = parseFloat(percTerceirosInput.value) || 0;
+
+        // 4. Calcular % Próprios = 100% - % Terceiros
+        const percProprios = 100 - percTerceiros;
+        percPropriosInput.value = percProprios > 0 ? `${percProprios.toFixed(2)}%` : '0%';
+
+        // 5. Calcular Valor Terceiros
+        const valorTerceiros = valorTotal > 0 ? (percTerceiros / 100) * valorTotal : 0;
+        valorTerceirosInput.value = this.formatCurrency(valorTerceiros);
+
+        // 6. Calcular Valor Próprios (base)
+        let valorPropriosBase = valorTotal > 0 ? (percProprios / 100) * valorTotal : 0;
+
+        // 7. Ajustar se contrapartida marcada
         const realizado = this.parseCurrency(realizadoInput.value);
-        const valorTerceiros = this.parseCurrency(valorTerceirosInput.value);
-        const valorProprios = this.parseCurrency(valorPropriosInput.value);
+        const contrapartida = this.investimentosContrapartidaCheckbox?.checked || false;
 
-        let percTerceiros = 0;
-        let percProprios = 0;
+        let valorProprios = valorPropriosBase;
+        let propriosNecessarios = valorPropriosBase;
 
-        if (valorTotal > 0) {
-            percTerceiros = (valorTerceiros / valorTotal) * 100;
-            percProprios = (valorProprios / valorTotal) * 100;
+        if (contrapartida && realizado > 0) {
+            // Valor realizado conta como recursos próprios
+            propriosNecessarios = Math.max(0, valorPropriosBase - realizado);
         }
 
-        const aRealizar = valorTotal - realizado;
+        valorPropriosInput.value = this.formatCurrency(valorProprios);
 
-        percTerceirosInput.value = percTerceiros > 0 ? `${percTerceiros.toFixed(2)}%` : '0%';
-        percPropriosInput.value = percProprios > 0 ? `${percProprios.toFixed(2)}%` : '0%';
+        // 8. Calcular A Realizar
+        const aRealizar = Math.max(0, valorTotal - realizado);
         aRealizarInput.value = this.formatCurrency(aRealizar);
 
-        this.validateRow(row, valorTerceiros, valorProprios, valorTotal);
-    }
-
-    validateRow(row, valorTerceiros, valorProprios, valorTotal) {
-        const soma = valorTerceiros + valorProprios;
-        const tolerance = 0.01;
-
-        row.classList.remove('validation-error', 'validation-success');
-
-        if (valorTotal === 0) return;
-
-        if (Math.abs(soma - valorTotal) <= tolerance) {
-            row.classList.add('validation-success');
-        } else {
-            row.classList.add('validation-error');
-        }
+        // 9. Armazenar dados calculados no row para totalização
+        row.dataset.propriosNecessarios = propriosNecessarios.toFixed(2);
+        row.dataset.valorPropriosBase = valorPropriosBase.toFixed(2);
+        row.dataset.contrapartida = contrapartida ? '1' : '0';
     }
 
     updateAllTotals() {
@@ -375,7 +391,7 @@ class SecaoInvestimentos {
             investimentos: [],
             capitalGiro: this.capitalGiroInput.value,
             jurosPreOp: this.jurosPreOpInput.value,
-            investimentosContratados: this.investimentosContratadosCheckbox.checked,
+            investimentosComoContrapartida: this.investimentosContrapartidaCheckbox.checked,
             notasInvestimentos: this.notasTextarea.value
         };
 
@@ -435,7 +451,7 @@ class SecaoInvestimentos {
 
         this.capitalGiroInput.value = dados.capitalGiro;
         this.jurosPreOpInput.value = dados.jurosPreOp;
-        this.investimentosContratadosCheckbox.checked = dados.investimentosContratados;
+        this.investimentosContrapartidaCheckbox.checked = dados.investimentosComoContrapartida || false;
         this.notasTextarea.value = dados.notasInvestimentos;
 
         this.updateAllTotals();
@@ -503,25 +519,29 @@ class SecaoInvestimentos {
             <td>
                 <select class="input-cobertura-terceiros">
                     <option value="">Nenhuma</option>
+                    <option value="FCO" ${selected(item.recursosTerceiros.cobertura, 'FCO')}>FCO - Fundo Centro-Oeste</option>
+                    <option value="FNE" ${selected(item.recursosTerceiros.cobertura, 'FNE')}>FNE - Fundo Nordeste</option>
+                    <option value="FNO" ${selected(item.recursosTerceiros.cobertura, 'FNO')}>FNO - Fundo Norte</option>
                     <option value="FINEP" ${selected(item.recursosTerceiros.cobertura, 'FINEP')}>FINEP</option>
                     <option value="BNDES" ${selected(item.recursosTerceiros.cobertura, 'BNDES')}>BNDES</option>
                     <option value="Banco Privado" ${selected(item.recursosTerceiros.cobertura, 'Banco Privado')}>Banco Privado</option>
                     <option value="Outro" ${selected(item.recursosTerceiros.cobertura, 'Outro')}>Outro</option>
                 </select>
             </td>
-            <td><input type="text" data-mask="currency" class="input-valor-terceiros" value="${item.recursosTerceiros.valor}" /></td>
-            <td><input type="text" class="input-perc-terceiros calc-readonly" readonly value="${item.recursosTerceiros.percentual}" /></td>
+            <td><input type="number" min="0" max="100" step="0.01" class="input-perc-terceiros" value="${item.recursosTerceiros.percentual}" /></td>
+            <td><input type="text" data-mask="currency" class="input-valor-terceiros calc-readonly" readonly value="${item.recursosTerceiros.valor}" /></td>
             <td>
                 <select class="input-cobertura-proprios">
                     <option value="">Nenhuma</option>
                     <option value="Capital Social" ${selected(item.recursosProprios.cobertura, 'Capital Social')}>Capital Social</option>
                     <option value="Lucros Acumulados" ${selected(item.recursosProprios.cobertura, 'Lucros Acumulados')}>Lucros Acumulados</option>
                     <option value="Reinvestimento" ${selected(item.recursosProprios.cobertura, 'Reinvestimento')}>Reinvestimento</option>
+                    <option value="Investimentos Realizados" ${selected(item.recursosProprios.cobertura, 'Investimentos Realizados')}>Investimentos Realizados</option>
                     <option value="Outro" ${selected(item.recursosProprios.cobertura, 'Outro')}>Outro</option>
                 </select>
             </td>
-            <td><input type="text" data-mask="currency" class="input-valor-proprios" value="${item.recursosProprios.valor}" /></td>
             <td><input type="text" class="input-perc-proprios calc-readonly" readonly value="${item.recursosProprios.percentual}" /></td>
+            <td><input type="text" data-mask="currency" class="input-valor-proprios calc-readonly" readonly value="${item.recursosProprios.valor}" /></td>
             <td><input type="text" data-mask="currency" class="input-a-realizar calc-readonly" readonly value="${item.aRealizar}" /></td>
             <td><input type="text" class="input-fornecedor" value="${item.fornecedor}" /></td>
             <td><input type="text" class="input-cnpj" value="${item.cnpj}" /></td>
