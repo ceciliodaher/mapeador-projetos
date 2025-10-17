@@ -743,10 +743,11 @@ class FinanciamentoModule {
     };
 
     // Seção 8: Matriz Produto-Insumo
-    // Será coletada pelo módulo ProGoiás quando implementado
+    // Delegar para módulos especializados (Receitas, Insumos, Mão-de-Obra)
     dados.secao8 = {
-      produtos: this.coletarProdutos(),
-      insumos: this.coletarInsumos()
+      produtos: window.secaoReceitas?.coletarDadosProdutos() || this.coletarProdutos(),
+      insumos: window.secaoInsumos?.coletarDadosInsumos() || this.coletarInsumos(),
+      maoDeObra: window.secaoMaoDeObra?.coletarDadosMaoDeObra() || null
     };
 
     // Seções 9-13 são calculadas/geradas automaticamente
@@ -1000,8 +1001,22 @@ class FinanciamentoModule {
 
     // Restaurar seção 8: Matriz Produto-Insumo
     if (dados.secao8) {
-      this.restaurarProdutos(dados.secao8.produtos);
-      this.restaurarInsumos(dados.secao8.insumos);
+      // Delegar para módulos especializados (fallback para métodos legados)
+      if (window.secaoReceitas?.restaurarDadosProdutos) {
+        window.secaoReceitas.restaurarDadosProdutos(dados.secao8.produtos);
+      } else {
+        this.restaurarProdutos(dados.secao8.produtos);
+      }
+
+      if (window.secaoInsumos?.restaurarDadosInsumos) {
+        window.secaoInsumos.restaurarDadosInsumos(dados.secao8.insumos);
+      } else {
+        this.restaurarInsumos(dados.secao8.insumos);
+      }
+
+      if (window.secaoMaoDeObra?.restaurarDadosMaoDeObra && dados.secao8.maoDeObra) {
+        window.secaoMaoDeObra.restaurarDadosMaoDeObra(dados.secao8.maoDeObra);
+      }
     }
 
     // Seções 9-13 são calculadas automaticamente e não precisam de restauração
