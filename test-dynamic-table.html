@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste DynamicTable v2.0</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    h1 {
+      color: #FF002D;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .test-section {
+      margin-bottom: 40px;
+    }
+
+    .test-section h2 {
+      color: #091A30;
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    /* DynamicTable Styles */
+    .dynamic-table-wrapper {
+      border: 1px solid #e1e8ed;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .table-header {
+      background: #f8f9fa;
+      border-bottom: 2px solid #e1e8ed;
+    }
+
+    .table-body {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .table-footer {
+      background: #f8f9fa;
+      border-top: 2px solid #e1e8ed;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e1e8ed;
+    }
+
+    th {
+      font-weight: 600;
+      color: #091A30;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      color: #555;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #FF002D;
+      box-shadow: 0 0 0 2px rgba(255, 0, 45, 0.1);
+    }
+
+    .form-control.field-error {
+      border-color: #dc3545;
+      background-color: #fff5f5;
+    }
+
+    .form-control.field-warning {
+      border-color: #ffc107;
+      background-color: #fffbf0;
+    }
+
+    .required {
+      color: #dc3545;
+      margin-left: 4px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-outline-primary {
+      background: transparent;
+      border: 2px solid #FF002D;
+      color: #FF002D;
+    }
+
+    .btn-outline-primary:hover {
+      background: #FF002D;
+      color: white;
+    }
+
+    .btn-outline-danger {
+      background: transparent;
+      border: 1px solid #dc3545;
+      color: #dc3545;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .btn-outline-danger:hover {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .btn-icon:hover {
+      background: #f8f9fa;
+      border-color: #999;
+    }
+
+    .add-row-container {
+      padding: 15px;
+      text-align: center;
+      background: #f8f9fa;
+    }
+
+    .total-row {
+      background: #fff3cd;
+      font-weight: 600;
+    }
+
+    .total-label {
+      color: #091A30;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .total-value {
+      color: #FF002D;
+      font-size: 16px;
+    }
+
+    /* Controles de Teste */
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .controls button {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+    }
+
+    .btn-info {
+      background: #17a2b8;
+      color: white;
+      border: none;
+    }
+
+    .btn-info:hover {
+      background: #138496;
+    }
+
+    .btn-warning {
+      background: #ffc107;
+      color: #333;
+      border: none;
+    }
+
+    .btn-warning:hover {
+      background: #e0a800;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e7f3ff;
+      border-left: 4px solid #2196F3;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .status h3 {
+      margin-bottom: 10px;
+      color: #2196F3;
+      font-size: 14px;
+    }
+
+    .status pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .test-results {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    .test-results h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .test-item {
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .test-item.pass {
+      background: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+
+    .test-item.fail {
+      background: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Teste DynamicTable v2.0</h1>
+    <p class="subtitle">Teste completo do componente consolidado com todas as funcionalidades</p>
+
+    <!-- ==================== TESTE 1: Tabela de Investimentos ==================== -->
+    <div class="test-section">
+      <h2>Teste 1: Tabela de Investimentos (Item, Valor, Quantidade, Total)</h2>
+      <div id="investimentos-container"></div>
+    </div>
+
+    <!-- ==================== Controles de Teste ==================== -->
+    <div class="test-section">
+      <h2>Controles de Teste</h2>
+      <div class="controls">
+        <button class="btn btn-success" onclick="adicionarLinha()">➕ Adicionar Linha</button>
+        <button class="btn btn-info" onclick="validarTabela()">✅ Validar Tabela</button>
+        <button class="btn btn-warning" onclick="exportarJSON()">📥 Exportar JSON</button>
+        <button class="btn btn-secondary" onclick="importarDados()">📤 Importar Dados Exemplo</button>
+        <button class="btn btn-secondary" onclick="limparLocalStorage()">🗑️ Limpar LocalStorage</button>
+        <button class="btn btn-secondary" onclick="recarregarPagina()">🔄 Recarregar Página</button>
+        <button class="btn btn-success" onclick="executarTodosTestes()">🚀 Executar TODOS os Testes</button>
+      </div>
+    </div>
+
+    <!-- ==================== Status ==================== -->
+    <div class="status">
+      <h3>📊 Status</h3>
+      <pre id="status">Aguardando inicialização...</pre>
+    </div>
+
+    <!-- ==================== Resultados dos Testes ==================== -->
+    <div id="test-results-container"></div>
+  </div>
+
+  <!-- DynamicTable v2.0 -->
+  <script src="./src/assets/js/shared/DynamicTable.js"></script>
+
+  <script>
+    let tableInvestimentos;
+
+    // ==================== INICIALIZAÇÃO ====================
+    async function init() {
+      updateStatus('Inicializando DynamicTable v2.0...');
+
+      try {
+        // Criar tabela de investimentos
+        tableInvestimentos = new DynamicTable({
+          tableId: 'investimentos',
+          containerId: 'investimentos-container',
+          columns: [
+            {
+              name: 'item',
+              label: 'Item',
+              type: 'text',
+              required: true,
+              width: '300px'
+            },
+            {
+              name: 'valor',
+              label: 'Valor Unitário (R$)',
+              type: 'currency',
+              required: true,
+              includeInTotal: true,
+              width: '180px'
+            },
+            {
+              name: 'quantidade',
+              label: 'Quantidade',
+              type: 'number',
+              required: true,
+              includeInTotal: true,
+              width: '120px'
+            },
+            {
+              name: 'total',
+              label: 'Total (R$)',
+              type: 'currency',
+              calculated: true,
+              formula: 'valor * quantidade',
+              includeInTotal: true,
+              width: '180px'
+            }
+          ],
+          options: {
+            minRows: 1,
+            maxRows: 50,
+            showTotal: true,
+            allowDelete: true,
+            allowAdd: true
+          },
+          persistence: {
+            type: 'localstorage' // localStorage para teste
+          }
+        });
+
+        // Event listeners
+        tableInvestimentos.on('onChange', (data) => {
+          console.log('📝 onChange:', data);
+          updateStatus(`Mudança detectada: ${data.action} na linha ${data.rowId || 'N/A'}`);
+        });
+
+        tableInvestimentos.on('onValidate', (data) => {
+          console.log('✅ onValidate:', data);
+          if (data.valid) {
+            updateStatus('Validação OK: Todos os campos estão corretos');
+          } else {
+            updateStatus(`Validação: ${data.errors.length} erro(s), ${data.warnings.length} aviso(s)`);
+          }
+        });
+
+        tableInvestimentos.on('onError', (data) => {
+          console.log('❌ onError:', data);
+          updateStatus(`Erros: ${data.errors.length} erro(s) encontrados`);
+        });
+
+        tableInvestimentos.on('onRowAdded', (data) => {
+          console.log('➕ onRowAdded:', data);
+          updateStatus(`Linha adicionada: ${data.rowId}`);
+        });
+
+        tableInvestimentos.on('onRowRemoved', (data) => {
+          console.log('🗑️ onRowRemoved:', data);
+          updateStatus(`Linha removida: ${data.rowId}`);
+        });
+
+        // Inicializar
+        await tableInvestimentos.init();
+
+        updateStatus('✅ DynamicTable v2.0 inicializado com sucesso!');
+      } catch (error) {
+        updateStatus(`❌ Erro na inicialização: ${error.message}`);
+        console.error(error);
+      }
+    }
+
+    // ==================== FUNÇÕES DE TESTE ====================
+    function adicionarLinha() {
+      try {
+        const rowId = tableInvestimentos.addRow({
+          item: 'Novo Item',
+          valor: 1000,
+          quantidade: 1
+        });
+        updateStatus(`✅ Linha adicionada: ${rowId}`);
+      } catch (error) {
+        updateStatus(`❌ Erro ao adicionar linha: ${error.message}`);
+      }
+    }
+
+    function validarTabela() {
+      try {
+        const resultado = tableInvestimentos.validate();
+        tableInvestimentos.showValidationFeedback(resultado);
+
+        if (resultado.valid) {
+          updateStatus(`✅ Validação OK: ${resultado.errors.length} erro(s), ${resultado.warnings.length} aviso(s)`);
+        } else {
+          let msg = `❌ Validação FALHOU:\n`;
+          resultado.errors.forEach(err => {
+            msg += `- Linha ${err.rowIndex + 1}, ${err.columnLabel}: ${err.message}\n`;
+          });
+          resultado.warnings.forEach(warn => {
+            msg += `⚠️ Linha ${warn.rowIndex + 1}, ${warn.columnLabel}: ${warn.message}\n`;
+          });
+          updateStatus(msg);
+        }
+      } catch (error) {
+        updateStatus(`❌ Erro na validação: ${error.message}`);
+      }
+    }
+
+    function exportarJSON() {
+      try {
+        const data = tableInvestimentos.toJSON();
+        const json = JSON.stringify(data, null, 2);
+        console.log('📥 Export JSON:', data);
+
+        // Criar download
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `investimentos_${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        updateStatus(`✅ JSON exportado: ${data.rows.length} linha(s)`);
+      } catch (error) {
+        updateStatus(`❌ Erro no export: ${error.message}`);
+      }
+    }
+
+    function importarDados() {
+      try {
+        const dadosExemplo = {
+          rows: [
+            { item: 'Máquina de Produção', valor: 150000, quantidade: 2 },
+            { item: 'Computadores', valor: 5000, quantidade: 10 },
+            { item: 'Móveis de Escritório', valor: 8000, quantidade: 5 },
+            { item: 'Sistema de Automação', valor: 80000, quantidade: 1 },
+            { item: 'Veículos', valor: 45000, quantidade: 3 }
+          ]
+        };
+
+        tableInvestimentos.fromJSON(dadosExemplo);
+        updateStatus(`✅ ${dadosExemplo.rows.length} linhas importadas com sucesso`);
+      } catch (error) {
+        updateStatus(`❌ Erro no import: ${error.message}`);
+      }
+    }
+
+    function limparLocalStorage() {
+      localStorage.removeItem('dynamictable_investimentos');
+      updateStatus('✅ LocalStorage limpo. Recarregue a página para resetar.');
+    }
+
+    function recarregarPagina() {
+      location.reload();
+    }
+
+    // ==================== TESTES AUTOMATIZADOS ====================
+    async function executarTodosTestes() {
+      const results = [];
+      const container = document.getElementById('test-results-container');
+      container.innerHTML = '<div class="test-results"><h3>🧪 Resultados dos Testes Automatizados</h3></div>';
+      const resultsDiv = container.querySelector('.test-results');
+
+      // Teste 1: Adicionar 5 linhas
+      try {
+        tableInvestimentos.clearTable();
+        for (let i = 1; i <= 5; i++) {
+          tableInvestimentos.addRow({
+            item: `Item ${i}`,
+            valor: 1000 * i,
+            quantidade: i
+          }, true);
+        }
+        const count = tableInvestimentos.getData().length;
+        if (count === 5) {
+          results.push({ name: 'Teste 1: Adicionar 5 linhas', pass: true });
+        } else {
+          throw new Error(`Esperado 5 linhas, obtido ${count}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 1: Adicionar 5 linhas', pass: false, error: error.message });
+      }
+
+      // Teste 2: Remover linha do meio
+      try {
+        const rows = tableInvestimentos.getData();
+        const middleRowId = rows[2].id;
+        tableInvestimentos.removeRow = function(rowId) {
+          const index = this.rows.findIndex(r => r.id === rowId);
+          if (index !== -1) {
+            this.rows.splice(index, 1);
+            const tr = this.tbody.querySelector(`tr[data-row-id="${rowId}"]`);
+            if (tr) tr.remove();
+            this.updateTotals();
+          }
+        };
+        tableInvestimentos.removeRow(middleRowId);
+        const count = tableInvestimentos.getData().length;
+        if (count === 4) {
+          results.push({ name: 'Teste 2: Remover linha do meio', pass: true });
+        } else {
+          throw new Error(`Esperado 4 linhas, obtido ${count}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 2: Remover linha do meio', pass: false, error: error.message });
+      }
+
+      // Teste 3: Select All
+      try {
+        tableInvestimentos.selectAll(true);
+        const selected = tableInvestimentos.getSelectedRows();
+        if (selected.length === 4) {
+          results.push({ name: 'Teste 3: Select All', pass: true });
+        } else {
+          throw new Error(`Esperado 4 selecionadas, obtido ${selected.length}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 3: Select All', pass: false, error: error.message });
+      }
+
+      // Teste 4: Clone Row
+      try {
+        const rows = tableInvestimentos.getData();
+        const firstRowId = rows[0].id;
+        const newRowId = tableInvestimentos.cloneRow(firstRowId);
+        const count = tableInvestimentos.getData().length;
+        if (count === 5) {
+          results.push({ name: 'Teste 4: Clone Row', pass: true });
+        } else {
+          throw new Error(`Esperado 5 linhas após clone, obtido ${count}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 4: Clone Row', pass: false, error: error.message });
+      }
+
+      // Teste 5: Campos calculados
+      try {
+        const rows = tableInvestimentos.getData();
+        const row = rows[0];
+        const expectedTotal = row.valor * row.quantidade;
+        const actualTotal = row.total;
+        if (Math.abs(actualTotal - expectedTotal) < 0.01) {
+          results.push({ name: 'Teste 5: Campos calculados (Total = Valor × Qtd)', pass: true });
+        } else {
+          throw new Error(`Esperado ${expectedTotal}, obtido ${actualTotal}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 5: Campos calculados', pass: false, error: error.message });
+      }
+
+      // Teste 6: Totalizadores
+      try {
+        const totals = tableInvestimentos.getTotals();
+        if (totals.valor && totals.quantidade && totals.total) {
+          results.push({ name: 'Teste 6: Totalizadores', pass: true });
+        } else {
+          throw new Error('Totalizadores não calculados corretamente');
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 6: Totalizadores', pass: false, error: error.message });
+      }
+
+      // Teste 7: Persistência (Export/Import)
+      try {
+        const exportData = tableInvestimentos.toJSON();
+        tableInvestimentos.clearTable();
+        tableInvestimentos.fromJSON(exportData);
+        const count = tableInvestimentos.getData().length;
+        if (count === exportData.rows.length) {
+          results.push({ name: 'Teste 7: Persistência (Export/Import)', pass: true });
+        } else {
+          throw new Error(`Esperado ${exportData.rows.length} linhas, obtido ${count}`);
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 7: Persistência', pass: false, error: error.message });
+      }
+
+      // Teste 8: Validação
+      try {
+        tableInvestimentos.clearTable();
+        tableInvestimentos.addRow({ item: '', valor: 1000, quantidade: 1 }, true); // item vazio (required)
+        const validacao = tableInvestimentos.validate();
+        if (!validacao.valid && validacao.errors.length > 0) {
+          results.push({ name: 'Teste 8: Validação (required)', pass: true });
+        } else {
+          throw new Error('Validação não detectou campo obrigatório vazio');
+        }
+      } catch (error) {
+        results.push({ name: 'Teste 8: Validação', pass: false, error: error.message });
+      }
+
+      // Renderizar resultados
+      results.forEach(result => {
+        const div = document.createElement('div');
+        div.className = `test-item ${result.pass ? 'pass' : 'fail'}`;
+        div.innerHTML = `
+          ${result.pass ? '✅' : '❌'} ${result.name}
+          ${result.error ? `<br><small>Erro: ${result.error}</small>` : ''}
+        `;
+        resultsDiv.appendChild(div);
+      });
+
+      const passCount = results.filter(r => r.pass).length;
+      const totalCount = results.length;
+      updateStatus(`🧪 Testes concluídos: ${passCount}/${totalCount} passaram (${Math.round(passCount / totalCount * 100)}%)`);
+
+      // Restaurar dados exemplo
+      importarDados();
+    }
+
+    // ==================== UTILITÁRIOS ====================
+    function updateStatus(message) {
+      const statusEl = document.getElementById('status');
+      const timestamp = new Date().toLocaleTimeString('pt-BR');
+      statusEl.textContent = `[${timestamp}] ${message}`;
+    }
+
+    // ==================== AUTO-INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      init();
+    });
+  </script>
+</body>
+</html>
