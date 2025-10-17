@@ -617,7 +617,46 @@ class FinanciamentoModule {
       responsavelNome: this.getFieldValue('responsavelNome'),
       responsavelCargo: this.getFieldValue('responsavelCargo'),
       responsavelEmail: this.getFieldValue('responsavelEmail'),
-      responsavelTelefone: this.getFieldValue('responsavelTelefone')
+      responsavelTelefone: this.getFieldValue('responsavelTelefone'),
+      // Extended Contatos (FASE 1)
+      emailSecundario: this.getFieldValue('emailSecundario'),
+      telefoneAlternativo: this.getFieldValue('telefoneAlternativo'),
+      website: this.getFieldValue('website'),
+      // Infraestrutura (FASE 1)
+      areaConstruida: this.getFieldValue('areaConstruida', 'number'),
+      capacidadeInstalada: this.getFieldValue('capacidadeInstalada'),
+      tecnologiasPrincipais: this.getFieldValue('tecnologiasPrincipais'),
+      equipamentosPrincipais: this.getFieldValue('equipamentosPrincipais'),
+      infraestruturaLogistica: this.getFieldValue('infraestruturaLogistica'),
+      infraestruturaTI: this.getFieldValue('infraestruturaTI'),
+      // Certificações e Acreditações (FASE 1)
+      certificacaoISO9001: this.getFieldValue('certificacaoISO9001'),
+      certificacaoISO14001: this.getFieldValue('certificacaoISO14001'),
+      certificacaoISO45001: this.getFieldValue('certificacaoISO45001'),
+      certificacaoANVISA: this.getFieldValue('certificacaoANVISA'),
+      certificacaoINMETRO: this.getFieldValue('certificacaoINMETRO'),
+      outrasCertificacoes: this.getFieldValue('outrasCertificacoes'),
+      validadeCertificacoes: this.getFieldValue('validadeCertificacoes'),
+      auditoriasExternas: this.getFieldValue('auditoriasExternas'),
+      // Selos e Registros Especiais (FASE 1)
+      selosSustentabilidade: this.getFieldValue('selosSustentabilidade'),
+      selosQualidade: this.getFieldValue('selosQualidade'),
+      registroExportacao: this.getFieldValue('registroExportacao'),
+      registrosSetoriais: this.getFieldValue('registrosSetoriais'),
+      premiosReconhecimentos: this.getFieldValue('premiosReconhecimentos'),
+      // Parcerias e Relacionamentos Estratégicos (FASE 1)
+      parceriasUniversidades: this.getFieldValue('parceriasUniversidades'),
+      parceriasEmpresas: this.getFieldValue('parceriasEmpresas'),
+      participacaoAssociacoes: this.getFieldValue('participacaoAssociacoes'),
+      redesColaboracao: this.getFieldValue('redesColaboracao'),
+      // Histórico de Inovação (FASE 1)
+      investimentoPD: this.getFieldValue('investimentoPD'),
+      patentesRegistradas: this.getFieldValue('patentesRegistradas'),
+      projetosInovacao: this.getFieldValue('projetosInovacao'),
+      lancamentosRecentes: this.getFieldValue('lancamentosRecentes'),
+      // Compliance e Governança (FASE 1)
+      programaCompliance: this.getFieldValue('programaCompliance'),
+      politicasGovernanca: this.getFieldValue('politicasGovernanca')
     };
 
     // Coletar seção 2: Regime Tributário
@@ -830,6 +869,45 @@ class FinanciamentoModule {
       this.setFieldValue('coordenadasGeograficas', dados.secao1.coordenadasGeograficas);
       this.setFieldValue('pontoReferencia', dados.secao1.pontoReferencia);
       this.setFieldValue('areaTerreno', dados.secao1.areaTerreno);
+      // Extended Contatos (FASE 1)
+      this.setFieldValue('emailSecundario', dados.secao1.emailSecundario);
+      this.setFieldValue('telefoneAlternativo', dados.secao1.telefoneAlternativo);
+      this.setFieldValue('website', dados.secao1.website);
+      // Infraestrutura (FASE 1)
+      this.setFieldValue('areaConstruida', dados.secao1.areaConstruida);
+      this.setFieldValue('capacidadeInstalada', dados.secao1.capacidadeInstalada);
+      this.setFieldValue('tecnologiasPrincipais', dados.secao1.tecnologiasPrincipais);
+      this.setFieldValue('equipamentosPrincipais', dados.secao1.equipamentosPrincipais);
+      this.setFieldValue('infraestruturaLogistica', dados.secao1.infraestruturaLogistica);
+      this.setFieldValue('infraestruturaTI', dados.secao1.infraestruturaTI);
+      // Certificações e Acreditações (FASE 1)
+      this.setFieldValue('certificacaoISO9001', dados.secao1.certificacaoISO9001);
+      this.setFieldValue('certificacaoISO14001', dados.secao1.certificacaoISO14001);
+      this.setFieldValue('certificacaoISO45001', dados.secao1.certificacaoISO45001);
+      this.setFieldValue('certificacaoANVISA', dados.secao1.certificacaoANVISA);
+      this.setFieldValue('certificacaoINMETRO', dados.secao1.certificacaoINMETRO);
+      this.setFieldValue('outrasCertificacoes', dados.secao1.outrasCertificacoes);
+      this.setFieldValue('validadeCertificacoes', dados.secao1.validadeCertificacoes);
+      this.setFieldValue('auditoriasExternas', dados.secao1.auditoriasExternas);
+      // Selos e Registros Especiais (FASE 1)
+      this.setFieldValue('selosSustentabilidade', dados.secao1.selosSustentabilidade);
+      this.setFieldValue('selosQualidade', dados.secao1.selosQualidade);
+      this.setFieldValue('registroExportacao', dados.secao1.registroExportacao);
+      this.setFieldValue('registrosSetoriais', dados.secao1.registrosSetoriais);
+      this.setFieldValue('premiosReconhecimentos', dados.secao1.premiosReconhecimentos);
+      // Parcerias e Relacionamentos Estratégicos (FASE 1)
+      this.setFieldValue('parceriasUniversidades', dados.secao1.parceriasUniversidades);
+      this.setFieldValue('parceriasEmpresas', dados.secao1.parceriasEmpresas);
+      this.setFieldValue('participacaoAssociacoes', dados.secao1.participacaoAssociacoes);
+      this.setFieldValue('redesColaboracao', dados.secao1.redesColaboracao);
+      // Histórico de Inovação (FASE 1)
+      this.setFieldValue('investimentoPD', dados.secao1.investimentoPD);
+      this.setFieldValue('patentesRegistradas', dados.secao1.patentesRegistradas);
+      this.setFieldValue('projetosInovacao', dados.secao1.projetosInovacao);
+      this.setFieldValue('lancamentosRecentes', dados.secao1.lancamentosRecentes);
+      // Compliance e Governança (FASE 1)
+      this.setFieldValue('programaCompliance', dados.secao1.programaCompliance);
+      this.setFieldValue('politicasGovernanca', dados.secao1.politicasGovernanca);
 
       // Recalcular tempo no mercado após restaurar dataInicioOperacoes
       if (dados.secao1.dataInicioOperacoes) {

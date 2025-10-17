@@ -358,6 +358,209 @@
                                     <label for="responsavelTelefone">Telefone *</label>
                                     <input type="tel" id="responsavelTelefone" name="responsavelTelefone" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="emailSecundario">E-mail Secundário</label>
+                                    <input type="email" id="emailSecundario" name="emailSecundario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefoneAlternativo">Telefone Alternativo</label>
+                                    <input type="tel" id="telefoneAlternativo" name="telefoneAlternativo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="url" id="website" name="website" placeholder="https://www.exemplo.com.br">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Infraestrutura -->
+                        <div class="form-group full-width">
+                            <h3>Infraestrutura</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="areaConstruida">Área Construída (m²)</label>
+                                    <input type="number" id="areaConstruida" name="areaConstruida" min="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label for="capacidadeInstalada">Capacidade Instalada</label>
+                                    <input type="text" id="capacidadeInstalada" name="capacidadeInstalada" placeholder="Ex: 5000 unidades/mês">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tecnologiasPrincipais">Tecnologias Principais Utilizadas</label>
+                                    <textarea id="tecnologiasPrincipais" name="tecnologiasPrincipais" rows="2" placeholder="Ex: ERP SAP, CRM Salesforce, automação industrial"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="equipamentosPrincipais">Equipamentos Principais</label>
+                                    <textarea id="equipamentosPrincipais" name="equipamentosPrincipais" rows="2" placeholder="Descreva os principais equipamentos e maquinário"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="infraestruturaLogistica">Infraestrutura Logística</label>
+                                    <textarea id="infraestruturaLogistica" name="infraestruturaLogistica" rows="2" placeholder="Ex: Frota própria, armazéns, centros de distribuição"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="infraestruturaTI">Infraestrutura de TI</label>
+                                    <textarea id="infraestruturaTI" name="infraestruturaTI" rows="2" placeholder="Ex: Servidores, backup, segurança da informação"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificações ISO/ANVISA/INMETRO -->
+                        <div class="form-group full-width">
+                            <h3>Certificações e Acreditações</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="certificacaoISO9001">Certificação ISO 9001 (Qualidade)</label>
+                                    <select id="certificacaoISO9001" name="certificacaoISO9001">
+                                        <option value="">Não possui</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                        <option value="renovacao">Em renovação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificacaoISO14001">Certificação ISO 14001 (Ambiental)</label>
+                                    <select id="certificacaoISO14001" name="certificacaoISO14001">
+                                        <option value="">Não possui</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                        <option value="renovacao">Em renovação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificacaoISO45001">Certificação ISO 45001 (Saúde e Segurança)</label>
+                                    <select id="certificacaoISO45001" name="certificacaoISO45001">
+                                        <option value="">Não possui</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                        <option value="renovacao">Em renovação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificacaoANVISA">Certificação ANVISA</label>
+                                    <select id="certificacaoANVISA" name="certificacaoANVISA">
+                                        <option value="">Não aplicável</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                        <option value="renovacao">Em renovação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificacaoINMETRO">Certificação INMETRO</label>
+                                    <select id="certificacaoINMETRO" name="certificacaoINMETRO">
+                                        <option value="">Não aplicável</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                        <option value="renovacao">Em renovação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="outrasCertificacoes">Outras Certificações Relevantes</label>
+                                    <textarea id="outrasCertificacoes" name="outrasCertificacoes" rows="2" placeholder="Ex: ISO 27001, FSSC 22000, GMP, HACCP, etc."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="validadeCertificacoes">Validade das Principais Certificações</label>
+                                    <textarea id="validadeCertificacoes" name="validadeCertificacoes" rows="2" placeholder="Informe as datas de validade das certificações principais"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="auditoriasCertificacao">Auditorias de Certificação Recentes</label>
+                                    <textarea id="auditoriasCertificacao" name="auditoriasCertificacao" rows="2" placeholder="Descreva auditorias recentes e seus resultados"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selos e Registros -->
+                        <div class="form-group full-width">
+                            <h3>Selos e Registros Especiais</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="seloSustentabilidade">Selos de Sustentabilidade</label>
+                                    <textarea id="seloSustentabilidade" name="seloSustentabilidade" rows="2" placeholder="Ex: Selo Verde, Carbono Neutro, FSC, LEED"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="seloQualidade">Selos de Qualidade</label>
+                                    <textarea id="seloQualidade" name="seloQualidade" rows="2" placeholder="Ex: Selo ABNT, Procel, Rumo Certo"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registroExportacao">Registro para Exportação</label>
+                                    <select id="registroExportacao" name="registroExportacao">
+                                        <option value="">Não possui</option>
+                                        <option value="vigente">Vigente</option>
+                                        <option value="processo">Em processo de obtenção</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registrosSetoriais">Registros Setoriais Específicos</label>
+                                    <textarea id="registrosSetoriais" name="registrosSetoriais" rows="2" placeholder="Ex: Registro ANP, CREA, CRQ, etc."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="premiacoesReconhecimentos">Premiações e Reconhecimentos</label>
+                                    <textarea id="premiacoesReconhecimentos" name="premiacoesReconhecimentos" rows="2" placeholder="Descreva prêmios recebidos e reconhecimentos obtidos"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parcerias Estratégicas -->
+                        <div class="form-group full-width">
+                            <h3>Parcerias e Relacionamentos Estratégicos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="parceriasUniversidades">Parcerias com Universidades/Centros de Pesquisa</label>
+                                    <textarea id="parceriasUniversidades" name="parceriasUniversidades" rows="2" placeholder="Descreva parcerias para P&D, inovação e capacitação"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="parceriasEmpresariais">Parcerias Empresariais Estratégicas</label>
+                                    <textarea id="parceriasEmpresariais" name="parceriasEmpresariais" rows="2" placeholder="Ex: Joint ventures, alianças comerciais, fornecedores estratégicos"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="participacaoAssociacoes">Participação em Associações/Entidades de Classe</label>
+                                    <textarea id="participacaoAssociacoes" name="participacaoAssociacoes" rows="2" placeholder="Ex: FIEMG, FIEG, sindicatos, federações"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="redeColaboracao">Redes de Colaboração</label>
+                                    <textarea id="redeColaboracao" name="redeColaboracao" rows="2" placeholder="Ex: APLs, clusters industriais, ecossistemas de inovação"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Histórico de Inovação -->
+                        <div class="form-group full-width">
+                            <h3>Histórico de Inovação</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="investimentoPD">Investimento em P&D (% Faturamento/ano)</label>
+                                    <input type="number" id="investimentoPD" name="investimentoPD" min="0" max="100" step="0.1" placeholder="Ex: 5.5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="patentesRegistradas">Patentes Registradas/Pendentes</label>
+                                    <textarea id="patentesRegistradas" name="patentesRegistradas" rows="2" placeholder="Descreva patentes registradas ou em processo de registro"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projetosInovacao">Projetos de Inovação em Andamento</label>
+                                    <textarea id="projetosInovacao" name="projetosInovacao" rows="2" placeholder="Descreva projetos atuais de P&D e inovação"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lancamentosRecentes">Lançamentos de Produtos/Serviços Recentes</label>
+                                    <textarea id="lancamentosRecentes" name="lancamentosRecentes" rows="2" placeholder="Produtos/serviços lançados nos últimos 2 anos"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compliance e Governança -->
+                        <div class="form-group full-width">
+                            <h3>Compliance e Governança</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="programaCompliance">Programa de Compliance</label>
+                                    <select id="programaCompliance" name="programaCompliance">
+                                        <option value="">Não possui</option>
+                                        <option value="implantado">Implantado</option>
+                                        <option value="processo">Em processo de implantação</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="politicasGovernanca">Políticas de Governança Corporativa</label>
+                                    <textarea id="politicasGovernanca" name="politicasGovernanca" rows="2" placeholder="Descreva políticas de governança, código de ética, controles internos"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
