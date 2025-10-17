@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste - Componentes de Input Especializados</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #091A30 0%, #1a3a5c 100%);
+      color: #091A30;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #FF002D 0%, #cc0024 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #FF002D;
+    }
+
+    .section h2 {
+      color: #091A30;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section h3 {
+      color: #091A30;
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .test-case {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .test-case h4 {
+      color: #091A30;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .test-case p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: #091A30;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #FF002D;
+      box-shadow: 0 0 0 3px rgba(255, 0, 45, 0.1);
+    }
+
+    .form-group input.error {
+      border-color: #f44336;
+      background-color: #ffebee;
+    }
+
+    .form-group input.warning-high {
+      border-color: #ff9800;
+      background-color: #fff3e0;
+    }
+
+    .output {
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: #f5f5f5;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #333;
+      border-left: 3px solid #FF002D;
+    }
+
+    .test-results {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .test-results h3 {
+      margin-top: 0;
+    }
+
+    .test-item {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f9fa;
+    }
+
+    .test-item.pass {
+      background: #e8f5e9;
+      border-left: 3px solid #4caf50;
+    }
+
+    .test-item.fail {
+      background: #ffebee;
+      border-left: 3px solid #f44336;
+    }
+
+    .test-item .test-name {
+      font-weight: 500;
+      color: #091A30;
+    }
+
+    .test-item .test-status {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .test-item.pass .test-status {
+      color: #4caf50;
+    }
+
+    .test-item.fail .test-status {
+      color: #f44336;
+    }
+
+    .test-summary {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #091A30;
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .test-summary .stat {
+      text-align: center;
+    }
+
+    .test-summary .stat-value {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .test-summary .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    #dynamic-table-container {
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #FF002D 0%, #cc0024 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 0, 45, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #0d47a1;
+    }
+
+    .dynamic-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .dynamic-table th,
+    .dynamic-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .dynamic-table th {
+      background: #091A30;
+      color: white;
+      font-weight: 600;
+    }
+
+    .dynamic-table tbody tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .dynamic-table tbody tr:hover {
+      background: #e3f2fd;
+    }
+
+    .dynamic-table input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .dynamic-table tfoot {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧪 Teste - Componentes de Input Especializados</h1>
+      <p>CurrencyInput • PercentageInput • DatePicker</p>
+    </header>
+
+    <div class="content">
+      <!-- SECTION 1: CurrencyInput Tests -->
+      <div class="section" id="section-currency">
+        <h2>💰 CurrencyInput - Testes Visuais</h2>
+
+        <div class="test-case">
+          <h4>Teste 1.1: Input básico com formatação automática</h4>
+          <p>Digite valores e veja a formatação R$ X.XXX,XX sendo aplicada automaticamente ao desfocar.</p>
+          <div class="form-group">
+            <label for="currency-basic">Valor:</label>
+            <input type="text" id="currency-basic" class="currency-input" placeholder="Digite um valor">
+          </div>
+          <div class="output" id="output-currency-basic">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.2: Validação de valor mínimo (R$ 100,00)</h4>
+          <p>Tente digitar valores abaixo de R$ 100,00. O campo deve exibir erro e tooltip.</p>
+          <div class="form-group">
+            <label for="currency-min">Valor (mín: R$ 100,00):</label>
+            <input type="text" id="currency-min" class="currency-input" data-min="100" placeholder="Mínimo R$ 100,00">
+          </div>
+          <div class="output" id="output-currency-min">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.3: Validação de valor máximo (R$ 10.000,00)</h4>
+          <p>Tente digitar valores acima de R$ 10.000,00. O campo deve exibir erro.</p>
+          <div class="form-group">
+            <label for="currency-max">Valor (máx: R$ 10.000,00):</label>
+            <input type="text" id="currency-max" class="currency-input" data-max="10000" placeholder="Máximo R$ 10.000,00">
+          </div>
+          <div class="output" id="output-currency-max">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.4: Faixa de valores (R$ 500,00 - R$ 5.000,00)</h4>
+          <p>Digite valores dentro e fora da faixa permitida.</p>
+          <div class="form-group">
+            <label for="currency-range">Valor (R$ 500 - R$ 5.000):</label>
+            <input type="text" id="currency-range" class="currency-input" data-min="500" data-max="5000" placeholder="R$ 500 a R$ 5.000">
+          </div>
+          <div class="output" id="output-currency-range">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.5: Valores negativos permitidos</h4>
+          <p>Digite valores negativos. A formatação deve aceitar e formatar corretamente.</p>
+          <div class="form-group">
+            <label for="currency-negative">Valor (negativos permitidos):</label>
+            <input type="text" id="currency-negative" class="currency-input" data-allow-negative="true" placeholder="Aceita negativos">
+          </div>
+          <div class="output" id="output-currency-negative">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.6: Callback onChange</h4>
+          <p>A cada mudança de valor, um callback é disparado exibindo o valor numérico.</p>
+          <div class="form-group">
+            <label for="currency-callback">Valor (com callback):</label>
+            <input type="text" id="currency-callback" class="currency-input" placeholder="Digite para testar callback">
+          </div>
+          <div class="output" id="output-currency-callback">onChange disparado: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 1.7: Valores extremos</h4>
+          <p>Teste com valores muito grandes (ex: 999.999.999,99) e muito pequenos (ex: 0,01).</p>
+          <div class="form-group">
+            <label for="currency-extreme">Valor (teste extremos):</label>
+            <input type="text" id="currency-extreme" class="currency-input" placeholder="Digite valores extremos">
+          </div>
+          <div class="output" id="output-currency-extreme">Valor: (aguardando entrada)</div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: PercentageInput Tests -->
+      <div class="section" id="section-percentage">
+        <h2>📊 PercentageInput - Testes Visuais</h2>
+
+        <div class="test-case">
+          <h4>Teste 2.1: Input básico com formatação XX,XX%</h4>
+          <p>Digite valores e veja a formatação percentual sendo aplicada automaticamente.</p>
+          <div class="form-group">
+            <label for="percentage-basic">Percentual:</label>
+            <input type="text" id="percentage-basic" class="percentage-input" placeholder="Digite um percentual">
+          </div>
+          <div class="output" id="output-percentage-basic">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.2: Validação 0-100% (padrão)</h4>
+          <p>Tente digitar valores fora da faixa 0-100%. Erro deve ser exibido.</p>
+          <div class="form-group">
+            <label for="percentage-default">Percentual (0-100%):</label>
+            <input type="text" id="percentage-default" class="percentage-input" placeholder="0% a 100%">
+          </div>
+          <div class="output" id="output-percentage-default">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.3: Alerta visual para valores > 100% ⚠️</h4>
+          <p>Digite valores acima de 100%. O campo deve exibir alerta amarelo (não erro vermelho).</p>
+          <div class="form-group">
+            <label for="percentage-warning">Percentual (alerta > 100%):</label>
+            <input type="text" id="percentage-warning" class="percentage-input" data-max="200" placeholder="Digite > 100%">
+          </div>
+          <div class="output" id="output-percentage-warning">Valor: (aguardando entrada)</div>
+          <div class="info-box">
+            💡 <strong>Nota:</strong> Valores acima de 100% exibem alerta amarelo (warning-high), não erro vermelho.
+          </div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.4: Faixa customizada (20% - 80%)</h4>
+          <p>Digite valores dentro e fora da faixa customizada.</p>
+          <div class="form-group">
+            <label for="percentage-custom">Percentual (20-80%):</label>
+            <input type="text" id="percentage-custom" class="percentage-input" data-min="20" data-max="80" placeholder="20% a 80%">
+          </div>
+          <div class="output" id="output-percentage-custom">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.5: Decimais configuráveis (4 casas)</h4>
+          <p>Digite valores com até 4 casas decimais (ex: 12,3456%).</p>
+          <div class="form-group">
+            <label for="percentage-decimals">Percentual (4 decimais):</label>
+            <input type="text" id="percentage-decimals" class="percentage-input" data-decimals="4" placeholder="XX,XXXX%">
+          </div>
+          <div class="output" id="output-percentage-decimals">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.6: Callback onValidate</h4>
+          <p>A cada validação (blur), um callback exibe status de validação.</p>
+          <div class="form-group">
+            <label for="percentage-validate">Percentual (com validação):</label>
+            <input type="text" id="percentage-validate" class="percentage-input" placeholder="Digite e desfoque">
+          </div>
+          <div class="output" id="output-percentage-validate">onValidate disparado: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 2.7: Valores inteiros (0 decimais)</h4>
+          <p>Digite percentuais sem casas decimais (ex: 50%).</p>
+          <div class="form-group">
+            <label for="percentage-integer">Percentual (inteiro):</label>
+            <input type="text" id="percentage-integer" class="percentage-input" data-decimals="0" placeholder="XX%">
+          </div>
+          <div class="output" id="output-percentage-integer">Valor: (aguardando entrada)</div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: DatePicker Tests -->
+      <div class="section" id="section-date">
+        <h2>📅 DatePicker - Testes Visuais</h2>
+
+        <div class="test-case">
+          <h4>Teste 3.1: Input básico de data</h4>
+          <p>Selecione uma data usando o picker nativo do navegador.</p>
+          <div class="form-group">
+            <label for="date-basic">Data:</label>
+            <input type="text" id="date-basic" class="date-picker" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-basic">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.2: Data com valor mínimo (2024-01-01)</h4>
+          <p>Tente selecionar datas antes de 01/01/2024. O picker deve restringir.</p>
+          <div class="form-group">
+            <label for="date-min">Data (mín: 01/01/2024):</label>
+            <input type="text" id="date-min" class="date-picker" data-min="2024-01-01" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-min">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.3: Data com valor máximo (2025-12-31)</h4>
+          <p>Tente selecionar datas após 31/12/2025. O picker deve restringir.</p>
+          <div class="form-group">
+            <label for="date-max">Data (máx: 31/12/2025):</label>
+            <input type="text" id="date-max" class="date-picker" data-max="2025-12-31" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-max">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.4: Faixa de datas (01/10/2025 - 17/10/2025)</h4>
+          <p>Selecione datas apenas dentro da faixa especificada.</p>
+          <div class="form-group">
+            <label for="date-range">Data (01/10/2025 - 17/10/2025):</label>
+            <input type="text" id="date-range" class="date-picker" data-min="2025-10-01" data-max="2025-10-17" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-range">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.5: Campo obrigatório</h4>
+          <p>Deixe o campo vazio e desfoque. Deve exibir erro de campo obrigatório.</p>
+          <div class="form-group">
+            <label for="date-required">Data (obrigatória):</label>
+            <input type="text" id="date-required" class="date-picker" required placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-required">Valor: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.6: Callback onChange</h4>
+          <p>A cada mudança de data, um callback exibe a data selecionada.</p>
+          <div class="form-group">
+            <label for="date-callback">Data (com callback):</label>
+            <input type="text" id="date-callback" class="date-picker" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-callback">onChange disparado: (aguardando entrada)</div>
+        </div>
+
+        <div class="test-case">
+          <h4>Teste 3.7: Formato de exibição DD/MM/YYYY</h4>
+          <p>Verifique que o formato exibido é sempre brasileiro (DD/MM/YYYY).</p>
+          <div class="form-group">
+            <label for="date-format">Data (formato BR):</label>
+            <input type="text" id="date-format" class="date-picker" data-display-format="DD/MM/YYYY" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="output" id="output-date-format">Valor formatado: (aguardando entrada)</div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: Automated Tests -->
+      <div class="section" id="section-automated">
+        <h2>🤖 Testes Automatizados</h2>
+        <p>Executando 15 testes automatizados para validar todas as funcionalidades...</p>
+
+        <button class="btn" onclick="runAllTests()">▶️ Executar Todos os Testes</button>
+
+        <div class="test-results" id="test-results">
+          <h3>Resultados dos Testes</h3>
+          <div id="test-output">
+            <p style="color: #666; font-style: italic;">Clique no botão acima para executar os testes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: DynamicTable Integration -->
+      <div class="section" id="section-integration">
+        <h2>🔗 Integração com DynamicTable</h2>
+        <p>Exemplo de uso dos três componentes dentro de uma DynamicTable dinâmica.</p>
+
+        <div class="info-box">
+          💡 <strong>Nota:</strong> Este exemplo demonstra como os componentes de input se integram perfeitamente com o DynamicTable v2.0, aplicando máscaras e validações automaticamente.
+        </div>
+
+        <div id="dynamic-table-container">
+          <table id="products-table" class="dynamic-table">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Preço (R$)</th>
+                <th>Margem (%)</th>
+                <th>Data Lançamento</th>
+                <th>Preço Final (R$)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td><strong>TOTAL</strong></td>
+                <td id="total-preco"></td>
+                <td id="avg-margem"></td>
+                <td>-</td>
+                <td id="total-final"></td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <button class="btn" onclick="addProductRow()">➕ Adicionar Produto</button>
+          <button class="btn" onclick="getTableData()">📊 Obter Dados</button>
+        </div>
+
+        <div class="output" id="table-output" style="display: none; margin-top: 1rem;">
+          <strong>Dados da Tabela:</strong>
+          <pre id="table-data-json" style="white-space: pre-wrap; margin-top: 0.5rem;"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./src/assets/js/components/currency-input.js"></script>
+  <script src="./src/assets/js/components/percentage-input.js"></script>
+  <script src="./src/assets/js/components/date-picker.js"></script>
+  <script src="./src/assets/js/shared/DynamicTable.js"></script>
+
+  <script>
+    // ============================================
+    // SECTION 1: CurrencyInput Tests Setup
+    // ============================================
+
+    // Test 1.1: Basic
+    const currencyBasic = new CurrencyInput(document.getElementById('currency-basic'), {
+      onChange: (value) => {
+        document.getElementById('output-currency-basic').textContent = `Valor: ${value.toFixed(2)}`;
+      }
+    });
+
+    // Test 1.2: Min validation
+    const currencyMin = new CurrencyInput(document.getElementById('currency-min'), {
+      min: 100,
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-currency-min');
+        output.textContent = `Valor: ${value.toFixed(2)} | Válido: ${isValid ? '✅' : '❌'}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 1.3: Max validation
+    const currencyMax = new CurrencyInput(document.getElementById('currency-max'), {
+      max: 10000,
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-currency-max');
+        output.textContent = `Valor: ${value.toFixed(2)} | Válido: ${isValid ? '✅' : '❌'}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 1.4: Range
+    const currencyRange = new CurrencyInput(document.getElementById('currency-range'), {
+      min: 500,
+      max: 5000,
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-currency-range');
+        output.textContent = `Valor: ${value.toFixed(2)} | Válido: ${isValid ? '✅' : '❌'}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 1.5: Negative values
+    const currencyNegative = new CurrencyInput(document.getElementById('currency-negative'), {
+      allowNegative: true,
+      onChange: (value) => {
+        document.getElementById('output-currency-negative').textContent = `Valor: ${value.toFixed(2)}`;
+      }
+    });
+
+    // Test 1.6: onChange callback
+    const currencyCallback = new CurrencyInput(document.getElementById('currency-callback'), {
+      onChange: (value) => {
+        document.getElementById('output-currency-callback').textContent = `onChange disparado: ${value} (${typeof value})`;
+      }
+    });
+
+    // Test 1.7: Extreme values
+    const currencyExtreme = new CurrencyInput(document.getElementById('currency-extreme'), {
+      onChange: (value) => {
+        document.getElementById('output-currency-extreme').textContent = `Valor: ${value.toFixed(2)}`;
+      }
+    });
+
+    // ============================================
+    // SECTION 2: PercentageInput Tests Setup
+    // ============================================
+
+    // Test 2.1: Basic
+    const percentageBasic = new PercentageInput(document.getElementById('percentage-basic'), {
+      onChange: (value) => {
+        document.getElementById('output-percentage-basic').textContent = `Valor: ${value.toFixed(2)}%`;
+      }
+    });
+
+    // Test 2.2: Default 0-100%
+    const percentageDefault = new PercentageInput(document.getElementById('percentage-default'), {
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-percentage-default');
+        output.textContent = `Valor: ${value.toFixed(2)}% | Válido: ${isValid ? '✅' : '❌'}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 2.3: Warning for >100%
+    const percentageWarning = new PercentageInput(document.getElementById('percentage-warning'), {
+      max: 200,
+      onChange: (value) => {
+        const output = document.getElementById('output-percentage-warning');
+        let status = '✅';
+        if (value > 100) status = '⚠️ Alerta: > 100%';
+        output.textContent = `Valor: ${value.toFixed(2)}% | Status: ${status}`;
+      }
+    });
+
+    // Test 2.4: Custom range
+    const percentageCustom = new PercentageInput(document.getElementById('percentage-custom'), {
+      min: 20,
+      max: 80,
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-percentage-custom');
+        output.textContent = `Valor: ${value.toFixed(2)}% | Válido: ${isValid ? '✅' : '❌'}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 2.5: Custom decimals (4)
+    const percentageDecimals = new PercentageInput(document.getElementById('percentage-decimals'), {
+      decimals: 4,
+      onChange: (value) => {
+        document.getElementById('output-percentage-decimals').textContent = `Valor: ${value.toFixed(4)}%`;
+      }
+    });
+
+    // Test 2.6: onValidate callback
+    const percentageValidate = new PercentageInput(document.getElementById('percentage-validate'), {
+      onValidate: ({ value, isValid, errors }) => {
+        const output = document.getElementById('output-percentage-validate');
+        output.textContent = `onValidate disparado: Valor=${value.toFixed(2)}% | Válido=${isValid}`;
+        if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+      }
+    });
+
+    // Test 2.7: Integer (0 decimals)
+    const percentageInteger = new PercentageInput(document.getElementById('percentage-integer'), {
+      decimals: 0,
+      onChange: (value) => {
+        document.getElementById('output-percentage-integer').textContent = `Valor: ${value.toFixed(0)}%`;
+      }
+    });
+
+    // ============================================
+    // SECTION 3: DatePicker Tests Setup
+    // ============================================
+
+    // Test 3.1: Basic
+    const dateBasic = new DatePicker(document.getElementById('date-basic'), {
+      onChange: (dateObj, dateString) => {
+        const output = document.getElementById('output-date-basic');
+        if (dateObj) {
+          const formatted = dateBasic.getValueFormatted();
+          output.textContent = `Valor: ${formatted} (${dateString})`;
+        } else {
+          output.textContent = 'Valor: (vazio)';
+        }
+      }
+    });
+
+    // Test 3.2: Min date
+    const dateMin = new DatePicker(document.getElementById('date-min'), {
+      min: '2024-01-01',
+      onValidate: ({ value, valueString, isValid, errors }) => {
+        const output = document.getElementById('output-date-min');
+        if (value) {
+          const formatted = dateMin.getValueFormatted();
+          output.textContent = `Valor: ${formatted} | Válido: ${isValid ? '✅' : '❌'}`;
+          if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+        } else {
+          output.textContent = 'Valor: (vazio)';
+        }
+      }
+    });
+
+    // Test 3.3: Max date
+    const dateMax = new DatePicker(document.getElementById('date-max'), {
+      max: '2025-12-31',
+      onValidate: ({ value, valueString, isValid, errors }) => {
+        const output = document.getElementById('output-date-max');
+        if (value) {
+          const formatted = dateMax.getValueFormatted();
+          output.textContent = `Valor: ${formatted} | Válido: ${isValid ? '✅' : '❌'}`;
+          if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+        } else {
+          output.textContent = 'Valor: (vazio)';
+        }
+      }
+    });
+
+    // Test 3.4: Date range
+    const dateRange = new DatePicker(document.getElementById('date-range'), {
+      min: '2025-10-01',
+      max: '2025-10-17',
+      onValidate: ({ value, valueString, isValid, errors }) => {
+        const output = document.getElementById('output-date-range');
+        if (value) {
+          const formatted = dateRange.getValueFormatted();
+          output.textContent = `Valor: ${formatted} | Válido: ${isValid ? '✅' : '❌'}`;
+          if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+        } else {
+          output.textContent = 'Valor: (vazio)';
+        }
+      }
+    });
+
+    // Test 3.5: Required
+    const dateRequired = new DatePicker(document.getElementById('date-required'), {
+      required: true,
+      onValidate: ({ value, valueString, isValid, errors }) => {
+        const output = document.getElementById('output-date-required');
+        if (value) {
+          const formatted = dateRequired.getValueFormatted();
+          output.textContent = `Valor: ${formatted} | Válido: ${isValid ? '✅' : '❌'}`;
+        } else {
+          output.textContent = `Valor: (vazio) | Válido: ${isValid ? '✅' : '❌'}`;
+          if (!isValid) output.textContent += ` | Erros: ${errors.join(', ')}`;
+        }
+      }
+    });
+
+    // Test 3.6: onChange callback
+    const dateCallback = new DatePicker(document.getElementById('date-callback'), {
+      onChange: (dateObj, dateString) => {
+        const output = document.getElementById('output-date-callback');
+        if (dateObj) {
+          output.textContent = `onChange disparado: ${dateObj.toLocaleDateString('pt-BR')} (Date object)`;
+        } else {
+          output.textContent = 'onChange disparado: null';
+        }
+      }
+    });
+
+    // Test 3.7: Format display
+    const dateFormat = new DatePicker(document.getElementById('date-format'), {
+      displayFormat: 'DD/MM/YYYY',
+      onChange: (dateObj, dateString) => {
+        const output = document.getElementById('output-date-format');
+        if (dateObj) {
+          const formatted = dateFormat.getValueFormatted();
+          output.textContent = `Valor formatado: ${formatted}`;
+        } else {
+          output.textContent = 'Valor formatado: (vazio)';
+        }
+      }
+    });
+
+    // ============================================
+    // SECTION 4: Automated Tests
+    // ============================================
+
+    function runAllTests() {
+      const tests = [];
+
+      // CurrencyInput Tests (5 tests)
+      tests.push(testCurrencyFormatting());
+      tests.push(testCurrencyValidation());
+      tests.push(testCurrencyNegative());
+      tests.push(testCurrencyParsing());
+      tests.push(testCurrencyCallbacks());
+
+      // PercentageInput Tests (5 tests)
+      tests.push(testPercentageFormatting());
+      tests.push(testPercentageValidation());
+      tests.push(testPercentageWarning());
+      tests.push(testPercentageDecimals());
+      tests.push(testPercentageCallbacks());
+
+      // DatePicker Tests (5 tests)
+      tests.push(testDateValidation());
+      tests.push(testDateMinMax());
+      tests.push(testDateFormatting());
+      tests.push(testDateRequired());
+      tests.push(testDateCallbacks());
+
+      displayTestResults(tests);
+    }
+
+    // CurrencyInput Automated Tests
+    function testCurrencyFormatting() {
+      const input = document.createElement('input');
+      const instance = new CurrencyInput(input);
+      instance.setValue(1234.56);
+      const formatted = input.value;
+      const expected = 'R$ 1.234,56';
+      return {
+        name: 'CurrencyInput - Formatação básica',
+        pass: formatted === expected,
+        details: `Esperado: "${expected}", Obtido: "${formatted}"`
+      };
+    }
+
+    function testCurrencyValidation() {
+      const input = document.createElement('input');
+      const instance = new CurrencyInput(input, { min: 100, max: 1000 });
+      const validation1 = instance.validate(50);
+      const validation2 = instance.validate(500);
+      const validation3 = instance.validate(1500);
+      return {
+        name: 'CurrencyInput - Validação min/max',
+        pass: !validation1.isValid && validation2.isValid && !validation3.isValid,
+        details: `Min=100, Max=1000: 50=${!validation1.isValid}, 500=${validation2.isValid}, 1500=${!validation3.isValid}`
+      };
+    }
+
+    function testCurrencyNegative() {
+      const input = document.createElement('input');
+      const instance = new CurrencyInput(input, { allowNegative: true });
+      instance.setValue(-100.50);
+      const value = instance.getValue();
+      return {
+        name: 'CurrencyInput - Valores negativos',
+        pass: value === -100.50,
+        details: `Esperado: -100.50, Obtido: ${value}`
+      };
+    }
+
+    function testCurrencyParsing() {
+      const input = document.createElement('input');
+      const instance = new CurrencyInput(input);
+      input.value = 'R$ 1.234,56';
+      const parsed = instance.getValue();
+      return {
+        name: 'CurrencyInput - Parse de valor formatado',
+        pass: parsed === 1234.56,
+        details: `"R$ 1.234,56" → ${parsed}`
+      };
+    }
+
+    function testCurrencyCallbacks() {
+      let callbackFired = false;
+      const input = document.createElement('input');
+      const instance = new CurrencyInput(input, {
+        onChange: () => { callbackFired = true; }
+      });
+      input.dispatchEvent(new Event('input'));
+      return {
+        name: 'CurrencyInput - Callbacks onChange',
+        pass: callbackFired,
+        details: `Callback disparado: ${callbackFired}`
+      };
+    }
+
+    // PercentageInput Automated Tests
+    function testPercentageFormatting() {
+      const input = document.createElement('input');
+      const instance = new PercentageInput(input);
+      instance.setValue(45.67);
+      const formatted = input.value;
+      const expected = '45,67%';
+      return {
+        name: 'PercentageInput - Formatação básica',
+        pass: formatted === expected,
+        details: `Esperado: "${expected}", Obtido: "${formatted}"`
+      };
+    }
+
+    function testPercentageValidation() {
+      const input = document.createElement('input');
+      const instance = new PercentageInput(input, { min: 0, max: 100 });
+      const validation1 = instance.validate(-10);
+      const validation2 = instance.validate(50);
+      const validation3 = instance.validate(150);
+      return {
+        name: 'PercentageInput - Validação 0-100%',
+        pass: !validation1.isValid && validation2.isValid && !validation3.isValid,
+        details: `Min=0, Max=100: -10=${!validation1.isValid}, 50=${validation2.isValid}, 150=${!validation3.isValid}`
+      };
+    }
+
+    function testPercentageWarning() {
+      const input = document.createElement('input');
+      const instance = new PercentageInput(input, { max: 200 });
+      instance.setValue(120);
+      // Simulate blur to trigger warning
+      input.dispatchEvent(new Event('blur'));
+      const hasWarning = input.classList.contains('warning-high');
+      return {
+        name: 'PercentageInput - Alerta visual >100%',
+        pass: hasWarning,
+        details: `Classe warning-high aplicada: ${hasWarning}`
+      };
+    }
+
+    function testPercentageDecimals() {
+      const input = document.createElement('input');
+      const instance = new PercentageInput(input, { decimals: 4 });
+      instance.setValue(12.3456);
+      const formatted = input.value;
+      const expected = '12,3456%';
+      return {
+        name: 'PercentageInput - Decimais configuráveis',
+        pass: formatted === expected,
+        details: `4 decimais: Esperado "${expected}", Obtido "${formatted}"`
+      };
+    }
+
+    function testPercentageCallbacks() {
+      let callbackFired = false;
+      const input = document.createElement('input');
+      const instance = new PercentageInput(input, {
+        onChange: () => { callbackFired = true; }
+      });
+      input.dispatchEvent(new Event('input'));
+      return {
+        name: 'PercentageInput - Callbacks onChange',
+        pass: callbackFired,
+        details: `Callback disparado: ${callbackFired}`
+      };
+    }
+
+    // DatePicker Automated Tests
+    function testDateValidation() {
+      const input = document.createElement('input');
+      const instance = new DatePicker(input);
+      input.value = '2025-10-17';
+      const validation = instance.validate(input.value);
+      return {
+        name: 'DatePicker - Validação de data válida',
+        pass: validation.isValid,
+        details: `Data "2025-10-17" válida: ${validation.isValid}`
+      };
+    }
+
+    function testDateMinMax() {
+      const input = document.createElement('input');
+      const instance = new DatePicker(input, { min: '2025-01-01', max: '2025-12-31' });
+      const validation1 = instance.validate('2024-12-31');
+      const validation2 = instance.validate('2025-06-15');
+      const validation3 = instance.validate('2026-01-01');
+      return {
+        name: 'DatePicker - Validação min/max',
+        pass: !validation1.isValid && validation2.isValid && !validation3.isValid,
+        details: `Min=2025-01-01, Max=2025-12-31: 2024=${!validation1.isValid}, 2025-06=${validation2.isValid}, 2026=${!validation3.isValid}`
+      };
+    }
+
+    function testDateFormatting() {
+      const input = document.createElement('input');
+      const instance = new DatePicker(input, { displayFormat: 'DD/MM/YYYY' });
+      input.value = '2025-10-17';
+      const formatted = instance.getValueFormatted();
+      const expected = '17/10/2025';
+      return {
+        name: 'DatePicker - Formatação DD/MM/YYYY',
+        pass: formatted === expected,
+        details: `Esperado: "${expected}", Obtido: "${formatted}"`
+      };
+    }
+
+    function testDateRequired() {
+      const input = document.createElement('input');
+      const instance = new DatePicker(input, { required: true });
+      const validation1 = instance.validate('');
+      const validation2 = instance.validate('2025-10-17');
+      return {
+        name: 'DatePicker - Campo obrigatório',
+        pass: !validation1.isValid && validation2.isValid,
+        details: `Vazio=${!validation1.isValid}, Preenchido=${validation2.isValid}`
+      };
+    }
+
+    function testDateCallbacks() {
+      let callbackFired = false;
+      const input = document.createElement('input');
+      const instance = new DatePicker(input, {
+        onChange: () => { callbackFired = true; }
+      });
+      input.dispatchEvent(new Event('change'));
+      return {
+        name: 'DatePicker - Callbacks onChange',
+        pass: callbackFired,
+        details: `Callback disparado: ${callbackFired}`
+      };
+    }
+
+    function displayTestResults(tests) {
+      const outputDiv = document.getElementById('test-output');
+      const passed = tests.filter(t => t.pass).length;
+      const failed = tests.filter(t => !t.pass).length;
+      const total = tests.length;
+
+      let html = '';
+
+      tests.forEach(test => {
+        const cssClass = test.pass ? 'pass' : 'fail';
+        const status = test.pass ? '✅ PASS' : '❌ FAIL';
+        html += `
+          <div class="test-item ${cssClass}">
+            <span class="test-name">${test.name}</span>
+            <span class="test-status">${status}</span>
+          </div>
+        `;
+      });
+
+      html += `
+        <div class="test-summary">
+          <div class="stat">
+            <span class="stat-value">${total}</span>
+            <span class="stat-label">Total</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" style="color: #4caf50;">${passed}</span>
+            <span class="stat-label">Passou</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" style="color: #f44336;">${failed}</span>
+            <span class="stat-label">Falhou</span>
+          </div>
+        </div>
+      `;
+
+      outputDiv.innerHTML = html;
+    }
+
+    // ============================================
+    // SECTION 5: DynamicTable Integration
+    // ============================================
+
+    let productsTable;
+    let productCounter = 0;
+
+    // Initialize DynamicTable
+    document.addEventListener('DOMContentLoaded', () => {
+      productsTable = new DynamicTable('products-table', {
+        columns: [
+          { key: 'produto', label: 'Produto', type: 'text', required: true },
+          { key: 'preco', label: 'Preço (R$)', type: 'currency', required: true },
+          { key: 'margem', label: 'Margem (%)', type: 'percentage', required: true },
+          { key: 'data', label: 'Data Lançamento', type: 'date', required: true },
+          {
+            key: 'precoFinal',
+            label: 'Preço Final (R$)',
+            type: 'currency',
+            calculated: true,
+            formula: (row) => {
+              const preco = parseFloat(row.preco) || 0;
+              const margem = parseFloat(row.margem) || 0;
+              return preco * (1 + margem / 100);
+            }
+          }
+        ],
+        enablePersistence: false,
+        enableValidation: true,
+        enableTotals: true,
+        totalColumns: {
+          preco: { type: 'sum', label: 'TOTAL' },
+          margem: { type: 'average', label: 'MÉDIA' },
+          precoFinal: { type: 'sum', label: 'TOTAL' }
+        }
+      });
+
+      // Apply input components to table cells
+      applyInputComponents();
+    });
+
+    function addProductRow() {
+      productCounter++;
+      productsTable.addRow({
+        produto: `Produto ${productCounter}`,
+        preco: 0,
+        margem: 0,
+        data: '',
+        precoFinal: 0
+      });
+
+      // Reapply input components after adding row
+      setTimeout(() => applyInputComponents(), 100);
+    }
+
+    function applyInputComponents() {
+      // Apply CurrencyInput to currency cells
+      const currencyCells = document.querySelectorAll('#products-table tbody input[type="text"]');
+      currencyCells.forEach(input => {
+        const columnKey = input.closest('td').dataset.column;
+
+        if (columnKey === 'preco' || columnKey === 'precoFinal') {
+          if (!input.classList.contains('currency-input-initialized')) {
+            new CurrencyInput(input);
+            input.classList.add('currency-input-initialized');
+          }
+        } else if (columnKey === 'margem') {
+          if (!input.classList.contains('percentage-input-initialized')) {
+            new PercentageInput(input, { max: 200 });
+            input.classList.add('percentage-input-initialized');
+          }
+        } else if (columnKey === 'data') {
+          if (!input.classList.contains('date-picker-initialized')) {
+            new DatePicker(input, { min: '2024-01-01', max: '2025-12-31' });
+            input.classList.add('date-picker-initialized');
+          }
+        }
+      });
+    }
+
+    function getTableData() {
+      const data = productsTable.getData();
+      const outputDiv = document.getElementById('table-output');
+      const jsonPre = document.getElementById('table-data-json');
+
+      jsonPre.textContent = JSON.stringify(data, null, 2);
+      outputDiv.style.display = 'block';
+
+      console.log('Dados da Tabela:', data);
+    }
+
+    console.log('✓ Teste de Componentes de Input carregado com sucesso');
+  </script>
+</body>
+</html>

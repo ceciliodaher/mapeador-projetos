@@ -143,12 +143,21 @@ class PercentageInput {
       });
     }
 
-    // Aplicar/remover classe de erro
-    if (validation.isValid) {
+    // Aplicar/remover classe de erro ou alerta
+    // Prioridade: alerta visual para >100% (amarelo) > erro de validação (vermelho)
+    if (value > 100 && value <= this.options.max) {
+      // Valor acima de 100% mas dentro do max: alerta amarelo
+      this.input.classList.add('warning-high');
       this.input.classList.remove('error');
+      this.input.title = '⚠️ Atenção: Valor acima de 100%';
+    } else if (validation.isValid) {
+      // Válido e <= 100%: sem erros ou alertas
+      this.input.classList.remove('error', 'warning-high');
       this.input.title = '';
     } else {
+      // Inválido: erro vermelho
       this.input.classList.add('error');
+      this.input.classList.remove('warning-high');
       this.input.title = validation.errors.join('; ');
     }
   }
