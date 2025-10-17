@@ -578,3 +578,13 @@ class SecaoInvestimentos {
 if (typeof window !== 'undefined') {
     window.SecaoInvestimentos = SecaoInvestimentos;
 }
+
+// Inicializar quando DOM estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+    const investimentosContainer = document.getElementById('investimentos-tbody');
+    if (investimentosContainer) {
+        window.secaoInvestimentos = new SecaoInvestimentos();
+        window.secaoInvestimentos.init();
+        console.log('✓ SecaoInvestimentos inicializada e disponível globalmente');
+    }
+});
