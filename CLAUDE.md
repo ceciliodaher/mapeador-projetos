@@ -3,7 +3,78 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-Web application for collecting investment credit information (CEI - Crédito Especial para Investimento) for submission to SECON-GO (Secretaria de Estado da Economia de Goiás). This is a comprehensive client-side application with landing page, multi-step form system, validation, import/export capabilities, and complete data management.
+**Portal Unificado Expertzy** - Sistema dual para incentivos fiscais e mapeamento de projetos em Goiás.
+
+Este projeto oferece **dois caminhos distintos**:
+
+1. **Formulários de Incentivos Fiscais** - Para empresas que já têm projeto definido e querem solicitar incentivos (CEI, ProGoiás) junto à SECON-GO
+2. **Questionário de Mapeamento** - Para empresas que precisam de diagnóstico, identificação de projetos e orientação estratégica (NOVO - Sprint 1 e 2)
+
+Sistema client-side completo com portal unificado, navegação inteligente, multi-step forms, validação, IndexedDB, auto-save, import/export e integração com IA (Serena MCP).
+
+## Project Structure
+
+```
+incentivos-formulario/
+├── index.html                          # Portal principal (NOVO - Sprint Integração)
+├── src/
+│   ├── pages/
+│   │   ├── incentivos.html            # Landing incentivos (ex-index.html)
+│   │   ├── selector.html              # Seleção de programa
+│   │   ├── formulario-cei.html        # Formulário CEI (14 seções)
+│   │   ├── formulario-progoias.html   # Formulário ProGoiás (17 seções)
+│   │   ├── questionario-mapeamento.html # Questionário (10 seções) - NOVO
+│   │   └── test-indexeddb.html        # Teste IndexedDB - NOVO
+│   ├── assets/
+│   │   ├── images/
+│   │   │   └── expertzy_logo.png
+│   │   ├── css/
+│   │   │   ├── styles-base.css        # Estilos compartilhados
+│   │   │   ├── selector.css           # Estilos do selector
+│   │   │   ├── tabs.css               # Navegação por abas
+│   │   │   ├── questionario-styles.css # Estilos do questionário - NOVO
+│   │   │   └── portal.css             # Estilos do portal - NOVO
+│   │   └── js/
+│   │       ├── database/              # Sistema IndexedDB - NOVO
+│   │       │   ├── indexeddb-schema.js
+│   │       │   └── indexeddb-manager.js
+│   │       ├── questionario/          # Módulos do questionário - NOVO
+│   │       │   ├── questionario-module.js
+│   │       │   └── auto-save.js
+│   │       ├── core.js
+│   │       ├── validation.js
+│   │       ├── export.js
+│   │       ├── import.js
+│   │       ├── tabs.js
+│   │       ├── cei-module.js
+│   │       └── progoias-module.js
+│   ├── data/                          # Arquivos de dados de exemplo
+│   │   ├── dados-teste-completo.json
+│   │   ├── exemplo_completo_cei.json
+│   │   └── Projeto_CEI_Indústria_Exemplo_S_A_2025-08-24.json
+│   └── legacy/                        # Arquivos legados (mantidos para referência)
+│       ├── script.js
+│       ├── import-functions.js
+│       └── styles.css
+├── .serena/                            # Serena MCP - NOVO
+│   ├── config.yaml
+│   ├── agents/
+│   │   ├── classificador-projetos.yaml
+│   │   └── analisador-viabilidade.yaml
+│   └── workflows/
+│       ├── preenchimento-respondente.yaml
+│       └── analise-especialista.yaml
+├── config/
+│   └── questionario-config.json       # NOVO
+├── documentos/                         # Documentação oficial
+├── tests/
+├── SPRINT1_COMPLETO.md                # NOVO - Documentação Sprint 1
+├── SPRINT2_COMPLETO.md                # NOVO - Documentação Sprint 2
+├── INTEGRACAO_SISTEMAS.md             # NOVO - Plano de integração
+├── CLAUDE.md
+├── README.md
+└── package.json
+```
 
 ## Development Commands
 
@@ -20,15 +91,16 @@ python -m http.server 8000
 
 # Option 3: Using Node.js http-server
 npx http-server -p 8000
+# Then navigate to http://localhost:8000
 ```
 
 ### Validation and Testing
 ```bash
 # No automated tests currently exist
-# Manual testing: 
+# Manual testing:
 # 1. Open index.html to test landing page
-# 2. Navigate to formulario.html to test all 14 form sections
-# 3. Test import/export functionality with sample JSON files
+# 2. Navigate to src/pages/formulario-cei.html to test all 14 form sections
+# 3. Test import/export functionality with sample JSON files from src/data/
 # 4. Browser console: Check for JavaScript errors during form interaction
 ```
 
@@ -46,13 +118,19 @@ npx http-server -p 8000
   - Google Fonts (Inter) for typography
 
 ### Key Files
-- `index.html`: Landing page with project information and navigation
-- `formulario.html`: Main form application with all 14 sections
-- `script.js`: Core form logic, validation, navigation, and export functions (line 3: totalSteps = 14)
-- `import-functions.js`: JSON import functionality and data processing
-- `styles.css`: Complete Expertzy brand styling system
-- `dados-teste-completo.json`: Sample data file for testing
-- `exemplo_completo_cei.json`: Complete example data structure
+- `index.html`: Landing page with project information and navigation (página principal)
+- `src/pages/formulario-cei.html`: Main CEI form application with all 14 sections
+- `src/pages/formulario-progoias.html`: ProGoiás form application with 17 sections
+- `src/pages/selector.html`: Program selection page
+- `src/assets/js/core.js`: Core form logic and utilities
+- `src/assets/js/validation.js`: Form validation system
+- `src/assets/js/export.js`: Export functionality (PDF, Excel, JSON, CSV)
+- `src/assets/js/import.js`: JSON import functionality and data processing
+- `src/assets/js/tabs.js`: Tab navigation system with free navigation
+- `src/assets/css/styles-base.css`: Complete Expertzy brand styling system
+- `src/data/dados-teste-completo.json`: Sample data file for testing
+- `src/data/exemplo_completo_cei.json`: Complete example data structure
+- `src/legacy/script.js`: Legacy monolithic script (line 3: totalSteps = 14)
 
 ### Form Sections & Navigation (14 Sections)
 The form uses a step-based navigation system controlled by `currentStep` variable:
@@ -107,7 +185,13 @@ Por motivos de segurança dos dados, o upload direto de arquivos está temporari
 - **Arquivos necessários**:
   - Projeto exportado em PDF (gerado pelo sistema)
   - Projeto exportado em JSON (para possíveis edições futuras)
-  - Todos os documentos listados na Seção 6
+  - Todos os documentos listados na Seção 6, incluindo:
+    - Projeto Arquitetônico ou Layout Industrial
+    - Licença Ambiental (quando exigida)
+    - Certidões Negativas de Débitos (Federal, Estadual e Municipal)
+    - Balanços Patrimoniais (últimos 3 exercícios e último balancete)
+    - Orçamentos ou Propostas Comerciais
+    - **Cronograma Físico-Financeiro Detalhado de Obras Civis** (com fases da obra, valores por etapa, prazos e curva S de desembolso)
 
 ## Business Rules & Constraints
 
@@ -328,3 +412,403 @@ Base_Calculo_ST = Valor_Operacao × (1 + MVA)
 - **API SECON-GO**: Submissão eletrônica de projetos
 - **BI Tools**: Exportação para Power BI/Tableau
 - **ERP**: Integração com SAP/TOTVS para dados históricos
+## Sistema Dual: Incentivos vs Questionário
+
+Este projeto oferece **dois sistemas distintos e complementares**:
+
+### 1. Formulários de Incentivos Fiscais (Sistema Original)
+
+**Público-alvo:** Empresas que já têm projeto definido e documentação pronta
+
+**Fluxo de navegação:**
+```
+Portal (index.html)
+  → Incentivos (incentivos.html)
+    → Selector (selector.html)
+      → CEI (formulario-cei.html) OU ProGoiás (formulario-progoias.html)
+```
+
+**Características:**
+- Formulários oficiais SECON-GO
+- 14 seções (CEI) ou 17 seções (ProGoiás)
+- Validação completa
+- Exportação PDF/JSON/Excel/CSV
+- Import de dados salvos
+
+**Páginas:** `incentivos.html`, `selector.html`, `formulario-cei.html`, `formulario-progoias.html`
+
+---
+
+### 2. Questionário de Mapeamento (Sistema Novo - Sprint 1 e 2)
+
+**Público-alvo:** Empresas que precisam de diagnóstico e identificação de projetos
+
+**Fluxo de navegação:**
+```
+Portal (index.html)
+  → Questionário (questionario-mapeamento.html)
+    → 10 seções wizard
+      → Exportação JSON/PDF
+        → [Futuro] Sugestão de programas
+```
+
+**Características:**
+- **10 seções wizard** com navegação progressiva
+- **IndexedDB nativo** para persistência local
+- **Auto-save** (30s periódico + 3s debounce)
+- **Classificação automática** de projetos (inovação vs comum)
+- **Análise de sinergias** entre projetos
+- **Exportação com checksum SHA-256**
+- **Integração Serena MCP** (4 agentes especializados)
+
+**Tecnologias:**
+- IndexedDB: `indexeddb-schema.js`, `indexeddb-manager.js`
+- Módulos: `questionario-module.js`, `auto-save.js`
+- CSS: `questionario-styles.css`
+- Config: `questionario-config.json`
+- IA: `.serena/` (agents + workflows)
+
+**Documentação completa:**
+- **SPRINT1_COMPLETO.md** - Setup Serena MCP + IndexedDB
+- **SPRINT2_COMPLETO.md** - Módulo respondente completo
+
+---
+
+### Integração Futura (Sprint 3+)
+
+**Objetivo:** Criar fluxo integrado do questionário para os formulários
+
+**Funcionalidades planejadas:**
+
+1. **Sistema de Sugestão** (fim do questionário - seção 10)
+   - Analisar dados coletados (projetos, faturamento, investimentos)
+   - Calcular score de compatibilidade com cada programa
+   - Sugerir programas adequados (CEI, ProGoiás, FOMENTAR)
+   - Botões para iniciar formulário específico
+
+2. **Mapeamento de Dados**
+   - Dados da empresa (seção 1 questionário) → Seção 1 formulários
+   - Projetos (seção 2 questionário) → Descrição do empreendimento
+   - Timeline (seção 6 questionário) → Cronograma físico-financeiro
+   - Necessidades (seção 5 questionário) → Detalhamento dos investimentos
+
+3. **Pré-preenchimento Automático**
+   - Importar JSON do questionário no formulário
+   - Mapear campos compatíveis automaticamente
+   - Permitir edição e complementação
+
+**Documentação:**
+- **INTEGRACAO_SISTEMAS.md** - Plano detalhado de integração
+
+---
+
+### Navegação entre Sistemas
+
+**Portal Principal** (`index.html`):
+- Card 1: "Formulários de Incentivos Fiscais" → Sistema de incentivos
+- Card 2: "Questionário de Mapeamento" → Sistema de diagnóstico
+
+**Breadcrumbs:**
+- Todas as páginas possuem link "← Voltar ao Portal"
+- Questionário possui breadcrumb: "Portal Expertzy → Questionário de Mapeamento"
+- Selector possui breadcrumb implícito via botões de navegação
+
+**Consistência:**
+- Mesmo header Expertzy em todas as páginas
+- Brand colors (#FF002D vermelho, #091A30 navy)
+- `styles-base.css` compartilhado
+- CSS específico por sistema (portal.css, questionario-styles.css, selector.css)
+
+---
+
+## IndexedDB Financiamento (SPRINT 3)
+
+### Visão Geral
+
+**Database:** `expertzy_financiamento` v1
+**Schema:** `/src/assets/js/database/financiamento-indexeddb-schema.js` (463 linhas)
+**Alinhamento:** 100% com `budget.py` (17 objetos Python → 4 stores JavaScript)
+
+O schema IndexedDB para o módulo de financiamento foi **consolidado** na Sprint 3, eliminando duplicação de código e garantindo consistência com a estrutura de dados Python.
+
+**Consolidação realizada:**
+- ✅ Schema duplicado inline em `financiamento-module.js` **removido** (40 linhas)
+- ✅ Schema dedicado com todos os indexes completos
+- ✅ `FinanciamentoModule` refatorado para usar `window.FinanciamentoIndexedDB`
+- ✅ Dependência obrigatória validada no init
+- ✅ 15 testes automatizados criados
+
+### Arquitetura: 4 Object Stores
+
+```
+expertzy_financiamento (v1)
+├── formulario (dados simples)
+│   ├── keyPath: 'id'
+│   └── indexes: timestamp, sectionId
+├── dynamicTables (126 tabelas)
+│   ├── keyPath: 'id'
+│   └── indexes: timestamp, sectionId, tableId (unique)
+├── autosave (backup temporário)
+│   ├── keyPath: 'id'
+│   └── indexes: timestamp, type
+└── calculatedResults (cache de cálculos)
+    ├── keyPath: 'id'
+    └── indexes: timestamp, calculatorType
+```
+
+### Alinhamento com budget.py
+
+O schema JavaScript mapeia **17 objetos Python** para **4 stores otimizados**:
+
+| Store JavaScript | Objetos Python (budget.py) |
+|------------------|----------------------------|
+| **formulario** | `controle`, `projeto`, `orcamento`, `tributos` (config), `estrutura_societaria` |
+| **dynamicTables** | `receitas.produtos_servicos`, `quantidade`, `insumos`, `mao_obra` (producao/administrativo/ensino), `custos` (fixos/variaveis), `tributos` (tabelas), `depreciacao`, `giro`, `financiamentos`, `dividas` (curto/longo prazo), `capex` |
+| **autosave** | Backup completo de `self.data` |
+| **calculatedResults** | `fluxo_caixa` (mensal/anual), `dre_historico`, `bp_historico`, `indicadores` |
+
+### API Completa
+
+**Exportado globalmente em `window.FinanciamentoIndexedDB`:**
+
+```javascript
+// CRUD Básico
+await FinanciamentoIndexedDB.saveToStore(storeName, registro);
+const data = await FinanciamentoIndexedDB.loadFromStore(storeName, id);
+const allData = await FinanciamentoIndexedDB.loadAllFromStore(storeName);
+await FinanciamentoIndexedDB.deleteFromStore(storeName, id);
+await FinanciamentoIndexedDB.clearStore(storeName);
+
+// Buscas por Index
+const results = await FinanciamentoIndexedDB.findByIndex(storeName, indexName, value);
+
+// Utilitários
+const count = await FinanciamentoIndexedDB.countRecords(storeName);
+await FinanciamentoIndexedDB.deleteDatabase();
+```
+
+### Integração com FinanciamentoModule
+
+**1. Carregamento de Scripts (ordem obrigatória):**
+
+```html
+<!-- CORRETO: Schema ANTES do módulo -->
+<script src="../assets/js/database/financiamento-indexeddb-schema.js"></script>
+<script src="../assets/js/financiamento/financiamento-module.js"></script>
+
+<!-- ❌ ERRADO: Módulo sem schema -->
+<script src="../assets/js/financiamento/financiamento-module.js"></script>
+<!-- Erro: "Dependência obrigatória ausente - FinanciamentoIndexedDB" -->
+```
+
+**2. Inicialização no Módulo:**
+
+```javascript
+// /src/assets/js/financiamento/financiamento-module.js
+
+class FinanciamentoModule {
+  async init() {
+    // Verificar dependência obrigatória
+    const dependenciasObrigatorias = [
+      'FinanciamentoIndexedDB',  // ⬅️ Adicionado na Sprint 3
+      'TaxCalculator',
+      // ... outras
+    ];
+
+    this.verificarDependencias(dependenciasObrigatorias);
+
+    // Conectar ao IndexedDB via schema dedicado
+    await this.initIndexedDB();
+  }
+
+  async initIndexedDB() {
+    if (typeof window.FinanciamentoIndexedDB === 'undefined') {
+      throw new Error('FinanciamentoIndexedDB não disponível');
+    }
+
+    this.db = await window.FinanciamentoIndexedDB.openDatabase();
+  }
+
+  // Métodos refatorados para usar schema dedicado
+  async salvarDados(storeName, registro) {
+    await window.FinanciamentoIndexedDB.saveToStore(storeName, registro);
+  }
+
+  async carregarDados(storeName, id) {
+    return await window.FinanciamentoIndexedDB.loadFromStore(storeName, id);
+  }
+}
+```
+
+### Exemplos de Uso
+
+**Salvar dados de seção:**
+```javascript
+await FinanciamentoIndexedDB.saveToStore('formulario', {
+  id: 'secao1-dados',
+  sectionId: 1,
+  timestamp: new Date().toISOString(),
+  razaoSocial: 'Empresa Exemplo LTDA',
+  cnpj: '12.345.678/0001-90',
+  inscricaoEstadual: '123456789'
+});
+```
+
+**Salvar tabela dinâmica:**
+```javascript
+await FinanciamentoIndexedDB.saveToStore('dynamicTables', {
+  id: 'table-produtos-ano1',
+  tableId: 'table-produtos-ano1',  // Index UNIQUE
+  sectionId: 8,
+  timestamp: new Date().toISOString(),
+  data: {
+    columns: [
+      { key: 'produto', label: 'Produto', type: 'text' },
+      { key: 'quantidade', label: 'Quantidade', type: 'number' },
+      { key: 'preco', label: 'Preço (R$)', type: 'currency' }
+    ],
+    rows: [
+      { id: '1', produto: 'Produto A', quantidade: 1000, preco: 50.00 },
+      { id: '2', produto: 'Produto B', quantidade: 2000, preco: 75.00 }
+    ],
+    totals: { quantidade: 3000, preco: 125.00 }
+  }
+});
+```
+
+**Buscar por index:**
+```javascript
+// Buscar dados da seção 1
+const secao1 = await FinanciamentoIndexedDB.findByIndex(
+  'formulario',
+  'sectionId',
+  1
+);
+
+// Buscar tabela específica
+const table = await FinanciamentoIndexedDB.findByIndex(
+  'dynamicTables',
+  'tableId',
+  'table-produtos-ano1'
+);
+```
+
+**Cache de cálculos:**
+```javascript
+// Salvar resultado de DRE calculada
+await FinanciamentoIndexedDB.saveToStore('calculatedResults', {
+  id: 'calc-dre-2025',
+  calculatorType: 'DRE',
+  timestamp: new Date().toISOString(),
+  resultado: {
+    receitaBruta: 1000000,
+    deducoes: 100000,
+    receitaLiquida: 900000,
+    lucroLiquido: 200000
+  },
+  ttl: 3600000  // 1 hora
+});
+
+// Recuperar cálculos de DRE
+const dreResults = await FinanciamentoIndexedDB.findByIndex(
+  'calculatedResults',
+  'calculatorType',
+  'DRE'
+);
+```
+
+### Testes
+
+**Arquivo:** `/test-financiamento-indexeddb.html`
+
+**15 Testes Automatizados:**
+1. ✅ CRUD formulario
+2. ✅ CRUD dynamicTables
+3. ✅ CRUD autosave
+4. ✅ CRUD calculatedResults
+5. ✅ Index timestamp
+6. ✅ Index sectionId
+7. ✅ Index tableId (unique)
+8. ✅ Index type
+9. ✅ Index calculatorType
+10. ✅ Validação: save sem id
+11. ✅ Validação: load não existente
+12. ✅ Operação: deleteFromStore
+13. ✅ Operação: clearStore
+14. ✅ Operação: countRecords
+15. ✅ Backup/Restore JSON
+
+**Executar testes:**
+```bash
+# Abrir no navegador
+open test-financiamento-indexeddb.html
+
+# Clicar em "▶️ Executar Todos os Testes (15)"
+```
+
+### Troubleshooting
+
+**Erro: "Dependência obrigatória ausente - FinanciamentoIndexedDB"**
+
+**Causa:** Schema não foi carregado antes do módulo principal
+
+**Solução:**
+```html
+<!-- ORDEM CORRETA -->
+<script src="../assets/js/database/financiamento-indexeddb-schema.js"></script>
+<script src="../assets/js/financiamento/financiamento-module.js"></script>
+```
+
+**Erro: "data deve conter propriedade 'id'"**
+
+**Causa:** Tentativa de salvar registro sem `id`
+
+**Solução:**
+```javascript
+// ❌ ERRADO
+await FinanciamentoIndexedDB.saveToStore('formulario', {
+  razaoSocial: 'Teste'
+});
+
+// ✅ CORRETO
+await FinanciamentoIndexedDB.saveToStore('formulario', {
+  id: 'secao1-dados',  // ⬅️ ID obrigatório
+  razaoSocial: 'Teste'
+});
+```
+
+**Cache desatualizado após mudanças nos dados**
+
+**Solução:**
+```javascript
+// Invalidar cache manualmente
+await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', 'calc-dre-2025');
+
+// Ou limpar todo o cache
+await FinanciamentoIndexedDB.clearStore('calculatedResults');
+```
+
+### Performance: 126 Tabelas Dinâmicas
+
+**❌ EVITAR: Loop síncrono**
+```javascript
+for (const table of tables) {
+  await saveTable(table);  // Muito lento
+}
+```
+
+**✅ PREFERIR: Promise.all para operações independentes**
+```javascript
+await Promise.all(tables.map(table => saveTable(table)));
+```
+
+### Referências
+
+- **Schema Completo:** `/src/assets/js/database/financiamento-indexeddb-schema.js`
+- **Documentação:** `/src/assets/js/database/README.md` (520 linhas)
+- **Testes:** `/test-financiamento-indexeddb.html` (800+ linhas)
+- **Referência Python:** `/documentos/financiamento-mvp/budget.py`
+- **Módulo Principal:** `/src/assets/js/financiamento/financiamento-module.js`
+
+---
+

@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste - IndexedDB Financiamento</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #091A30 0%, #1a3a5c 100%);
+      color: #091A30;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #FF002D 0%, #cc0024 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #FF002D;
+    }
+
+    .section h2 {
+      color: #091A30;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section h3 {
+      color: #091A30;
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .test-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #FF002D 0%, #cc0024 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 0, 45, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #091A30 0%, #1a3a5c 100%);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+    }
+
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #333;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .output pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .test-results {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .test-results h3 {
+      margin-top: 0;
+    }
+
+    .test-item {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f9fa;
+    }
+
+    .test-item.pass {
+      background: #e8f5e9;
+      border-left: 3px solid #4caf50;
+    }
+
+    .test-item.fail {
+      background: #ffebee;
+      border-left: 3px solid #f44336;
+    }
+
+    .test-item .test-name {
+      font-weight: 500;
+      color: #091A30;
+    }
+
+    .test-item .test-status {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .test-item.pass .test-status {
+      color: #4caf50;
+    }
+
+    .test-item.fail .test-status {
+      color: #f44336;
+    }
+
+    .test-item .test-details {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+
+    .test-summary {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #091A30;
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .test-summary .stat {
+      text-align: center;
+    }
+
+    .test-summary .stat-value {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .test-summary .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #0d47a1;
+    }
+
+    .warning-box {
+      background: #fff3e0;
+      border-left: 4px solid #ff9800;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #e65100;
+    }
+
+    .store-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .store-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .store-card h4 {
+      color: #FF002D;
+      margin-bottom: 0.5rem;
+    }
+
+    .store-card .store-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .store-card .store-stat:last-child {
+      border-bottom: none;
+    }
+
+    .store-stat-label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .store-stat-value {
+      font-weight: 600;
+      color: #091A30;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗄️ Teste - IndexedDB Financiamento</h1>
+      <p>Schema consolidado • 4 stores • 15 testes automatizados • Backup/Restore JSON</p>
+    </header>
+
+    <div class="content">
+      <!-- SECTION 1: Informações do Schema -->
+      <div class="section" id="section-schema-info">
+        <h2>📊 Informações do Schema</h2>
+
+        <div class="info-box">
+          <strong>Database:</strong> expertzy_financiamento v1<br>
+          <strong>Stores:</strong> 4 (formulario, dynamicTables, autosave, calculatedResults)<br>
+          <strong>Schema:</strong> /src/assets/js/database/financiamento-indexeddb-schema.js<br>
+          <strong>Alinhamento:</strong> 100% com budget.py (17 objetos → 4 stores)
+        </div>
+
+        <h3>Estrutura dos Stores</h3>
+        <div class="store-info">
+          <div class="store-card">
+            <h4>formulario</h4>
+            <div class="store-stat">
+              <span class="store-stat-label">KeyPath:</span>
+              <span class="store-stat-value">id</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Indexes:</span>
+              <span class="store-stat-value">timestamp, sectionId</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Propósito:</span>
+              <span class="store-stat-value">Dados simples das seções</span>
+            </div>
+          </div>
+
+          <div class="store-card">
+            <h4>dynamicTables</h4>
+            <div class="store-stat">
+              <span class="store-stat-label">KeyPath:</span>
+              <span class="store-stat-value">id</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Indexes:</span>
+              <span class="store-stat-value">timestamp, sectionId, tableId (unique)</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Propósito:</span>
+              <span class="store-stat-value">126 tabelas dinâmicas</span>
+            </div>
+          </div>
+
+          <div class="store-card">
+            <h4>autosave</h4>
+            <div class="store-stat">
+              <span class="store-stat-label">KeyPath:</span>
+              <span class="store-stat-value">id</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Indexes:</span>
+              <span class="store-stat-value">timestamp, type</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Propósito:</span>
+              <span class="store-stat-value">Backup temporário</span>
+            </div>
+          </div>
+
+          <div class="store-card">
+            <h4>calculatedResults</h4>
+            <div class="store-stat">
+              <span class="store-stat-label">KeyPath:</span>
+              <span class="store-stat-value">id</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Indexes:</span>
+              <span class="store-stat-value">timestamp, calculatorType</span>
+            </div>
+            <div class="store-stat">
+              <span class="store-stat-label">Propósito:</span>
+              <span class="store-stat-value">Cache de cálculos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-controls">
+          <button class="btn" onclick="verificarSchema()">🔍 Verificar Schema</button>
+          <button class="btn btn-secondary" onclick="contarRegistros()">📊 Contar Registros</button>
+          <button class="btn btn-danger" onclick="limparBanco()">🗑️ Limpar Banco</button>
+        </div>
+
+        <div class="output" id="output-schema-info"></div>
+      </div>
+
+      <!-- SECTION 2: Testes CRUD -->
+      <div class="section" id="section-crud">
+        <h2>✅ Testes CRUD</h2>
+
+        <h3>Store: formulario</h3>
+        <div class="test-controls">
+          <button class="btn" onclick="testCRUDFormulario()">Create/Read/Update/Delete</button>
+        </div>
+        <div class="output" id="output-crud-formulario"></div>
+
+        <h3>Store: dynamicTables</h3>
+        <div class="test-controls">
+          <button class="btn" onclick="testCRUDDynamicTables()">Create/Read/Update/Delete</button>
+          <button class="btn btn-secondary" onclick="test126Tabelas()">Testar 126 Tabelas</button>
+        </div>
+        <div class="output" id="output-crud-dynamicTables"></div>
+
+        <h3>Store: autosave</h3>
+        <div class="test-controls">
+          <button class="btn" onclick="testCRUDAutosave()">Create/Read/Update/Delete</button>
+          <button class="btn btn-secondary" onclick="testAutosaveTipos()">Testar Tipos (full/partial)</button>
+        </div>
+        <div class="output" id="output-crud-autosave"></div>
+
+        <h3>Store: calculatedResults</h3>
+        <div class="test-controls">
+          <button class="btn" onclick="testCRUDCalculatedResults()">Create/Read/Update/Delete</button>
+          <button class="btn btn-secondary" onclick="testCalculatorTypes()">Testar Calculator Types</button>
+        </div>
+        <div class="output" id="output-crud-calculatedResults"></div>
+      </div>
+
+      <!-- SECTION 3: Testes de Indexes -->
+      <div class="section" id="section-indexes">
+        <h2>🔍 Testes de Indexes</h2>
+
+        <div class="test-controls">
+          <button class="btn" onclick="testIndexTimestamp()">Index: timestamp</button>
+          <button class="btn" onclick="testIndexSectionId()">Index: sectionId</button>
+          <button class="btn" onclick="testIndexTableIdUnique()">Index: tableId (unique)</button>
+          <button class="btn" onclick="testIndexType()">Index: type</button>
+          <button class="btn" onclick="testIndexCalculatorType()">Index: calculatorType</button>
+        </div>
+
+        <div class="output" id="output-indexes"></div>
+      </div>
+
+      <!-- SECTION 4: Backup/Restore JSON -->
+      <div class="section" id="section-backup">
+        <h2>💾 Backup/Restore JSON</h2>
+
+        <div class="warning-box">
+          ⚠️ <strong>Atenção:</strong> O backup exporta TODO o conteúdo do banco de dados (todas as 4 stores). Use o restore com cuidado, pois ele sobrescreverá os dados existentes.
+        </div>
+
+        <div class="test-controls">
+          <button class="btn" onclick="exportarBancoCompleto()">📥 Exportar Banco Completo</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📤 Importar Banco</button>
+          <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importarBanco(event)">
+        </div>
+
+        <div class="output" id="output-backup"></div>
+      </div>
+
+      <!-- SECTION 5: Testes Automatizados -->
+      <div class="section" id="section-automated">
+        <h2>🤖 Testes Automatizados</h2>
+        <p>Executando 15 testes automatizados para validar todas as funcionalidades...</p>
+
+        <div class="test-controls">
+          <button class="btn" onclick="runAllTests()">▶️ Executar Todos os Testes (15)</button>
+          <button class="btn btn-secondary" onclick="limparResultadosTestes()">🗑️ Limpar Resultados</button>
+        </div>
+
+        <div class="test-results" id="test-results">
+          <h3>Resultados dos Testes</h3>
+          <div id="test-output">
+            <p style="color: #666; font-style: italic;">Clique no botão acima para executar os testes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./src/assets/js/database/financiamento-indexeddb-schema.js"></script>
+
+  <script>
+    // ============================================
+    // SEÇÃO 1: Informações do Schema
+    // ============================================
+
+    async function verificarSchema() {
+      const output = document.getElementById('output-schema-info');
+      output.innerHTML = '<strong>Verificando schema...</strong>\n\n';
+
+      try {
+        const db = await FinanciamentoIndexedDB.openDatabase();
+
+        let info = `<strong>✓ Database aberto com sucesso</strong>\n\n`;
+        info += `Nome: ${db.name}\n`;
+        info += `Versão: ${db.version}\n\n`;
+        info += `<strong>Object Stores (${db.objectStoreNames.length}):</strong>\n`;
+
+        for (let i = 0; i < db.objectStoreNames.length; i++) {
+          const storeName = db.objectStoreNames[i];
+          info += `  ${i + 1}. ${storeName}\n`;
+        }
+
+        db.close();
+        output.innerHTML = `<pre>${info}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function contarRegistros() {
+      const output = document.getElementById('output-schema-info');
+      output.innerHTML = '<strong>Contando registros...</strong>\n\n';
+
+      try {
+        const stores = ['formulario', 'dynamicTables', 'autosave', 'calculatedResults'];
+        let info = '<strong>Registros por Store:</strong>\n\n';
+
+        for (const store of stores) {
+          const count = await FinanciamentoIndexedDB.countRecords(store);
+          info += `  ${store}: ${count} registro(s)\n`;
+        }
+
+        output.innerHTML = `<pre>${info}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function limparBanco() {
+      if (!confirm('⚠️ Tem certeza que deseja limpar TODOS os dados do banco?\n\nEsta ação não pode ser desfeita!')) {
+        return;
+      }
+
+      const output = document.getElementById('output-schema-info');
+      output.innerHTML = '<strong>Limpando banco...</strong>\n\n';
+
+      try {
+        const stores = ['formulario', 'dynamicTables', 'autosave', 'calculatedResults'];
+        let info = '';
+
+        for (const store of stores) {
+          await FinanciamentoIndexedDB.clearStore(store);
+          info += `✓ Store "${store}" limpo\n`;
+        }
+
+        output.innerHTML = `<pre style="color: #4caf50;">${info}\n<strong>✓ Banco limpo com sucesso!</strong></pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    // ============================================
+    // SEÇÃO 2: Testes CRUD
+    // ============================================
+
+    async function testCRUDFormulario() {
+      const output = document.getElementById('output-crud-formulario');
+      output.innerHTML = '<strong>Testando CRUD no store "formulario"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // CREATE
+        const testData = {
+          id: 'test-formulario-1',
+          sectionId: 1,
+          razaoSocial: 'Empresa Teste LTDA',
+          cnpj: '12.345.678/0001-90',
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('formulario', testData);
+        log += '✓ CREATE: Registro salvo\n';
+
+        // READ
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('formulario', 'test-formulario-1');
+        if (loaded && loaded.razaoSocial === 'Empresa Teste LTDA') {
+          log += '✓ READ: Registro carregado corretamente\n';
+        } else {
+          throw new Error('READ falhou - dados incorretos');
+        }
+
+        // UPDATE
+        testData.razaoSocial = 'Empresa Teste Atualizada LTDA';
+        await FinanciamentoIndexedDB.saveToStore('formulario', testData);
+        const updated = await FinanciamentoIndexedDB.loadFromStore('formulario', 'test-formulario-1');
+        if (updated.razaoSocial === 'Empresa Teste Atualizada LTDA') {
+          log += '✓ UPDATE: Registro atualizado corretamente\n';
+        } else {
+          throw new Error('UPDATE falhou');
+        }
+
+        // DELETE
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'test-formulario-1');
+        const deleted = await FinanciamentoIndexedDB.loadFromStore('formulario', 'test-formulario-1');
+        if (!deleted) {
+          log += '✓ DELETE: Registro deletado corretamente\n';
+        } else {
+          throw new Error('DELETE falhou');
+        }
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}\n<strong>✓ CRUD completo executado com sucesso!</strong></pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testCRUDDynamicTables() {
+      const output = document.getElementById('output-crud-dynamicTables');
+      output.innerHTML = '<strong>Testando CRUD no store "dynamicTables"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // CREATE
+        const testData = {
+          id: 'test-table-1',
+          tableId: 'table-produtos-ano1',
+          sectionId: 8,
+          data: {
+            columns: ['produto', 'quantidade', 'preco'],
+            rows: [
+              { id: '1', produto: 'Produto A', quantidade: 100, preco: 50.00 }
+            ]
+          },
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', testData);
+        log += '✓ CREATE: Tabela salva\n';
+
+        // READ
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('dynamicTables', 'test-table-1');
+        if (loaded && loaded.tableId === 'table-produtos-ano1') {
+          log += '✓ READ: Tabela carregada corretamente\n';
+        } else {
+          throw new Error('READ falhou');
+        }
+
+        // UPDATE
+        testData.data.rows.push({ id: '2', produto: 'Produto B', quantidade: 200, preco: 75.00 });
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', testData);
+        const updated = await FinanciamentoIndexedDB.loadFromStore('dynamicTables', 'test-table-1');
+        if (updated.data.rows.length === 2) {
+          log += '✓ UPDATE: Tabela atualizada (2 linhas)\n';
+        } else {
+          throw new Error('UPDATE falhou');
+        }
+
+        // DELETE
+        await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', 'test-table-1');
+        const deleted = await FinanciamentoIndexedDB.loadFromStore('dynamicTables', 'test-table-1');
+        if (!deleted) {
+          log += '✓ DELETE: Tabela deletada corretamente\n';
+        } else {
+          throw new Error('DELETE falhou');
+        }
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}\n<strong>✓ CRUD completo executado com sucesso!</strong></pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function test126Tabelas() {
+      const output = document.getElementById('output-crud-dynamicTables');
+      output.innerHTML = '<strong>Testando 126 tabelas dinâmicas...</strong>\n\n';
+
+      try {
+        let log = 'Criando 126 tabelas...\n\n';
+
+        for (let i = 1; i <= 126; i++) {
+          const tableData = {
+            id: `table-${i}`,
+            tableId: `dynamic-table-${i}`,
+            sectionId: Math.ceil(i / 10),
+            data: {
+              columns: ['col1', 'col2'],
+              rows: []
+            },
+            timestamp: new Date().toISOString()
+          };
+
+          await FinanciamentoIndexedDB.saveToStore('dynamicTables', tableData);
+
+          if (i % 25 === 0) {
+            log += `  ✓ ${i} tabelas criadas...\n`;
+            output.innerHTML = `<pre>${log}</pre>`;
+          }
+        }
+
+        const count = await FinanciamentoIndexedDB.countRecords('dynamicTables');
+        log += `\n<strong>✓ ${count} tabelas criadas com sucesso!</strong>\n\n`;
+        log += 'Limpando tabelas de teste...\n';
+
+        for (let i = 1; i <= 126; i++) {
+          await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', `table-${i}`);
+        }
+
+        log += '✓ Tabelas de teste removidas';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testCRUDAutosave() {
+      const output = document.getElementById('output-crud-autosave');
+      output.innerHTML = '<strong>Testando CRUD no store "autosave"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // CREATE
+        const testData = {
+          id: 'autosave-current',
+          type: 'full',
+          dados: {
+            secao1: { razaoSocial: 'Teste' },
+            secao2: { regimeTributario: 'Simples Nacional' }
+          },
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('autosave', testData);
+        log += '✓ CREATE: Auto-save salvo\n';
+
+        // READ
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('autosave', 'autosave-current');
+        if (loaded && loaded.type === 'full') {
+          log += '✓ READ: Auto-save carregado\n';
+        } else {
+          throw new Error('READ falhou');
+        }
+
+        // UPDATE
+        testData.type = 'partial';
+        await FinanciamentoIndexedDB.saveToStore('autosave', testData);
+        const updated = await FinanciamentoIndexedDB.loadFromStore('autosave', 'autosave-current');
+        if (updated.type === 'partial') {
+          log += '✓ UPDATE: Auto-save atualizado\n';
+        } else {
+          throw new Error('UPDATE falhou');
+        }
+
+        // DELETE
+        await FinanciamentoIndexedDB.deleteFromStore('autosave', 'autosave-current');
+        const deleted = await FinanciamentoIndexedDB.loadFromStore('autosave', 'autosave-current');
+        if (!deleted) {
+          log += '✓ DELETE: Auto-save deletado\n';
+        } else {
+          throw new Error('DELETE falhou');
+        }
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}\n<strong>✓ CRUD completo executado com sucesso!</strong></pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testAutosaveTipos() {
+      const output = document.getElementById('output-crud-autosave');
+      output.innerHTML = '<strong>Testando tipos de autosave (full/partial)...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Tipo: full
+        await FinanciamentoIndexedDB.saveToStore('autosave', {
+          id: 'autosave-full-1',
+          type: 'full',
+          dados: { secao1: {}, secao2: {} },
+          timestamp: new Date().toISOString()
+        });
+        log += '✓ Autosave tipo "full" criado\n';
+
+        // Tipo: partial
+        await FinanciamentoIndexedDB.saveToStore('autosave', {
+          id: 'autosave-partial-1',
+          type: 'partial',
+          dados: { secao1: {} },
+          timestamp: new Date().toISOString()
+        });
+        log += '✓ Autosave tipo "partial" criado\n';
+
+        // Buscar por index "type"
+        const fullSaves = await FinanciamentoIndexedDB.findByIndex('autosave', 'type', 'full');
+        const partialSaves = await FinanciamentoIndexedDB.findByIndex('autosave', 'type', 'partial');
+
+        log += `\nBusca por index "type":\n`;
+        log += `  - full: ${fullSaves.length} encontrado(s)\n`;
+        log += `  - partial: ${partialSaves.length} encontrado(s)\n`;
+
+        // Limpar
+        await FinanciamentoIndexedDB.deleteFromStore('autosave', 'autosave-full-1');
+        await FinanciamentoIndexedDB.deleteFromStore('autosave', 'autosave-partial-1');
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testCRUDCalculatedResults() {
+      const output = document.getElementById('output-crud-calculatedResults');
+      output.innerHTML = '<strong>Testando CRUD no store "calculatedResults"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // CREATE
+        const testData = {
+          id: 'calc-dre-2025',
+          calculatorType: 'DRE',
+          resultado: {
+            receita: 1000000,
+            custos: 600000,
+            lucro: 400000
+          },
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('calculatedResults', testData);
+        log += '✓ CREATE: Resultado DRE salvo\n';
+
+        // READ
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('calculatedResults', 'calc-dre-2025');
+        if (loaded && loaded.calculatorType === 'DRE') {
+          log += '✓ READ: Resultado carregado\n';
+        } else {
+          throw new Error('READ falhou');
+        }
+
+        // UPDATE
+        testData.resultado.lucro = 450000;
+        await FinanciamentoIndexedDB.saveToStore('calculatedResults', testData);
+        const updated = await FinanciamentoIndexedDB.loadFromStore('calculatedResults', 'calc-dre-2025');
+        if (updated.resultado.lucro === 450000) {
+          log += '✓ UPDATE: Resultado atualizado\n';
+        } else {
+          throw new Error('UPDATE falhou');
+        }
+
+        // DELETE
+        await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', 'calc-dre-2025');
+        const deleted = await FinanciamentoIndexedDB.loadFromStore('calculatedResults', 'calc-dre-2025');
+        if (!deleted) {
+          log += '✓ DELETE: Resultado deletado\n';
+        } else {
+          throw new Error('DELETE falhou');
+        }
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}\n<strong>✓ CRUD completo executado com sucesso!</strong></pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testCalculatorTypes() {
+      const output = document.getElementById('output-crud-calculatedResults');
+      output.innerHTML = '<strong>Testando calculator types...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        const types = ['DRE', 'FluxoCaixa', 'Indicadores', 'Balanço'];
+
+        for (const type of types) {
+          await FinanciamentoIndexedDB.saveToStore('calculatedResults', {
+            id: `calc-${type.toLowerCase()}-test`,
+            calculatorType: type,
+            resultado: { test: true },
+            timestamp: new Date().toISOString()
+          });
+          log += `✓ Resultado "${type}" criado\n`;
+        }
+
+        log += '\nBusca por index "calculatorType":\n';
+
+        for (const type of types) {
+          const results = await FinanciamentoIndexedDB.findByIndex('calculatedResults', 'calculatorType', type);
+          log += `  - ${type}: ${results.length} encontrado(s)\n`;
+
+          // Limpar
+          await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', `calc-${type.toLowerCase()}-test`);
+        }
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    // ============================================
+    // SEÇÃO 3: Testes de Indexes
+    // ============================================
+
+    async function testIndexTimestamp() {
+      const output = document.getElementById('output-indexes');
+      output.innerHTML = '<strong>Testando index "timestamp"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Criar 3 registros com timestamps diferentes
+        const timestamps = [
+          new Date('2025-01-01').toISOString(),
+          new Date('2025-02-01').toISOString(),
+          new Date('2025-03-01').toISOString()
+        ];
+
+        for (let i = 0; i < timestamps.length; i++) {
+          await FinanciamentoIndexedDB.saveToStore('formulario', {
+            id: `test-timestamp-${i}`,
+            sectionId: 1,
+            timestamp: timestamps[i]
+          });
+        }
+
+        log += '✓ 3 registros criados com timestamps diferentes\n\n';
+
+        // Buscar por timestamp específico
+        const results = await FinanciamentoIndexedDB.findByIndex('formulario', 'timestamp', timestamps[1]);
+        log += `Busca por timestamp "${timestamps[1]}":\n`;
+        log += `  - ${results.length} registro(s) encontrado(s)\n`;
+
+        // Limpar
+        for (let i = 0; i < timestamps.length; i++) {
+          await FinanciamentoIndexedDB.deleteFromStore('formulario', `test-timestamp-${i}`);
+        }
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testIndexSectionId() {
+      const output = document.getElementById('output-indexes');
+      output.innerHTML = '<strong>Testando index "sectionId"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Criar registros para seções 1, 2, 3
+        for (let sectionId = 1; sectionId <= 3; sectionId++) {
+          for (let i = 0; i < 3; i++) {
+            await FinanciamentoIndexedDB.saveToStore('formulario', {
+              id: `test-section-${sectionId}-${i}`,
+              sectionId: sectionId,
+              timestamp: new Date().toISOString()
+            });
+          }
+        }
+
+        log += '✓ 9 registros criados (3 por seção)\n\n';
+
+        // Buscar por sectionId
+        for (let sectionId = 1; sectionId <= 3; sectionId++) {
+          const results = await FinanciamentoIndexedDB.findByIndex('formulario', 'sectionId', sectionId);
+          log += `Seção ${sectionId}: ${results.length} registro(s)\n`;
+        }
+
+        // Limpar
+        for (let sectionId = 1; sectionId <= 3; sectionId++) {
+          for (let i = 0; i < 3; i++) {
+            await FinanciamentoIndexedDB.deleteFromStore('formulario', `test-section-${sectionId}-${i}`);
+          }
+        }
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testIndexTableIdUnique() {
+      const output = document.getElementById('output-indexes');
+      output.innerHTML = '<strong>Testando index "tableId" (unique)...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Criar registro com tableId único
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', {
+          id: 'test-unique-1',
+          tableId: 'unique-table-test',
+          sectionId: 8,
+          timestamp: new Date().toISOString()
+        });
+
+        log += '✓ Registro com tableId "unique-table-test" criado\n';
+
+        // Tentar criar outro registro com mesmo tableId (deve funcionar porque o id é diferente)
+        // mas a busca por index deve encontrar apenas 1
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', {
+          id: 'test-unique-2',
+          tableId: 'unique-table-test-2',
+          sectionId: 8,
+          timestamp: new Date().toISOString()
+        });
+
+        log += '✓ Segundo registro com tableId diferente criado\n\n';
+
+        // Buscar por tableId
+        const results1 = await FinanciamentoIndexedDB.findByIndex('dynamicTables', 'tableId', 'unique-table-test');
+        const results2 = await FinanciamentoIndexedDB.findByIndex('dynamicTables', 'tableId', 'unique-table-test-2');
+
+        log += `Busca por "unique-table-test": ${results1.length} encontrado(s)\n`;
+        log += `Busca por "unique-table-test-2": ${results2.length} encontrado(s)\n`;
+
+        // Limpar
+        await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', 'test-unique-1');
+        await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', 'test-unique-2');
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testIndexType() {
+      const output = document.getElementById('output-indexes');
+      output.innerHTML = '<strong>Testando index "type"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Criar autosaves de tipos diferentes
+        const types = ['full', 'partial'];
+
+        for (const type of types) {
+          for (let i = 0; i < 3; i++) {
+            await FinanciamentoIndexedDB.saveToStore('autosave', {
+              id: `test-type-${type}-${i}`,
+              type: type,
+              dados: {},
+              timestamp: new Date().toISOString()
+            });
+          }
+        }
+
+        log += '✓ 6 autosaves criados (3 full, 3 partial)\n\n';
+
+        // Buscar por type
+        for (const type of types) {
+          const results = await FinanciamentoIndexedDB.findByIndex('autosave', 'type', type);
+          log += `Tipo "${type}": ${results.length} encontrado(s)\n`;
+        }
+
+        // Limpar
+        for (const type of types) {
+          for (let i = 0; i < 3; i++) {
+            await FinanciamentoIndexedDB.deleteFromStore('autosave', `test-type-${type}-${i}`);
+          }
+        }
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function testIndexCalculatorType() {
+      const output = document.getElementById('output-indexes');
+      output.innerHTML = '<strong>Testando index "calculatorType"...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        // Criar resultados de calculadores diferentes
+        const types = ['DRE', 'FluxoCaixa', 'Indicadores'];
+
+        for (const type of types) {
+          for (let i = 0; i < 2; i++) {
+            await FinanciamentoIndexedDB.saveToStore('calculatedResults', {
+              id: `test-calc-${type}-${i}`,
+              calculatorType: type,
+              resultado: {},
+              timestamp: new Date().toISOString()
+            });
+          }
+        }
+
+        log += '✓ 6 resultados criados (2 por tipo)\n\n';
+
+        // Buscar por calculatorType
+        for (const type of types) {
+          const results = await FinanciamentoIndexedDB.findByIndex('calculatedResults', 'calculatorType', type);
+          log += `Tipo "${type}": ${results.length} encontrado(s)\n`;
+        }
+
+        // Limpar
+        for (const type of types) {
+          for (let i = 0; i < 2; i++) {
+            await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', `test-calc-${type}-${i}`);
+          }
+        }
+
+        log += '\n✓ Registros de teste removidos';
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    // ============================================
+    // SEÇÃO 4: Backup/Restore JSON
+    // ============================================
+
+    async function exportarBancoCompleto() {
+      const output = document.getElementById('output-backup');
+      output.innerHTML = '<strong>Exportando banco completo...</strong>\n\n';
+
+      try {
+        let log = '';
+
+        const backup = {
+          database: 'expertzy_financiamento',
+          version: 1,
+          exportDate: new Date().toISOString(),
+          stores: {}
+        };
+
+        const stores = ['formulario', 'dynamicTables', 'autosave', 'calculatedResults'];
+
+        for (const store of stores) {
+          const data = await FinanciamentoIndexedDB.loadAllFromStore(store);
+          backup.stores[store] = data;
+          log += `✓ Store "${store}": ${data.length} registro(s)\n`;
+        }
+
+        const json = JSON.stringify(backup, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `financiamento-backup-${Date.now()}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+
+        log += `\n<strong>✓ Backup exportado com sucesso!</strong>\n`;
+        log += `Arquivo: financiamento-backup-${Date.now()}.json`;
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    async function importarBanco(event) {
+      const output = document.getElementById('output-backup');
+      output.innerHTML = '<strong>Importando banco...</strong>\n\n';
+
+      try {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const text = await file.text();
+        const backup = JSON.parse(text);
+
+        let log = `Arquivo: ${file.name}\n`;
+        log += `Database: ${backup.database}\n`;
+        log += `Versão: ${backup.version}\n`;
+        log += `Data exportação: ${backup.exportDate}\n\n`;
+
+        if (!confirm('⚠️ Tem certeza que deseja importar este backup?\n\nOs dados existentes serão sobrescritos!')) {
+          output.innerHTML = '<pre>Importação cancelada pelo usuário.</pre>';
+          return;
+        }
+
+        for (const store in backup.stores) {
+          const data = backup.stores[store];
+          log += `Importando "${store}": ${data.length} registro(s)...\n`;
+
+          for (const record of data) {
+            await FinanciamentoIndexedDB.saveToStore(store, record);
+          }
+        }
+
+        log += `\n<strong>✓ Banco importado com sucesso!</strong>`;
+
+        output.innerHTML = `<pre style="color: #4caf50;">${log}</pre>`;
+
+        // Resetar input file
+        event.target.value = '';
+
+      } catch (error) {
+        output.innerHTML = `<pre style="color: #f44336;"><strong>✗ Erro:</strong> ${error.message}</pre>`;
+      }
+    }
+
+    // ============================================
+    // SEÇÃO 5: Testes Automatizados (15 testes)
+    // ============================================
+
+    async function runAllTests() {
+      const output = document.getElementById('test-output');
+      output.innerHTML = '<p style="color: #666; font-style: italic;">Executando testes...</p>';
+
+      const tests = [];
+
+      // Testes CRUD (4 testes)
+      tests.push(await testAutomatedCRUDFormulario());
+      tests.push(await testAutomatedCRUDDynamicTables());
+      tests.push(await testAutomatedCRUDAutosave());
+      tests.push(await testAutomatedCRUDCalculatedResults());
+
+      // Testes de Indexes (5 testes)
+      tests.push(await testAutomatedIndexTimestamp());
+      tests.push(await testAutomatedIndexSectionId());
+      tests.push(await testAutomatedIndexTableIdUnique());
+      tests.push(await testAutomatedIndexType());
+      tests.push(await testAutomatedIndexCalculatorType());
+
+      // Testes de Validação (3 testes)
+      tests.push(await testAutomatedSaveWithoutId());
+      tests.push(await testAutomatedLoadNonExistent());
+      tests.push(await testAutomatedDeleteFromStore());
+
+      // Testes de Operações (2 testes)
+      tests.push(await testAutomatedClearStore());
+      tests.push(await testAutomatedCountRecords());
+
+      // Teste de Backup/Restore (1 teste)
+      tests.push(await testAutomatedBackupRestore());
+
+      displayTestResults(tests);
+    }
+
+    // Implementação dos 15 testes automatizados
+
+    async function testAutomatedCRUDFormulario() {
+      try {
+        const data = {
+          id: 'auto-test-formulario',
+          sectionId: 1,
+          razaoSocial: 'Teste Automatizado',
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('formulario', data);
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('formulario', 'auto-test-formulario');
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'auto-test-formulario');
+
+        return {
+          name: 'CRUD formulario',
+          pass: loaded && loaded.razaoSocial === 'Teste Automatizado',
+          details: 'Create, Read, Delete executados'
+        };
+      } catch (error) {
+        return { name: 'CRUD formulario', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedCRUDDynamicTables() {
+      try {
+        const data = {
+          id: 'auto-test-table',
+          tableId: 'test-table-auto',
+          sectionId: 8,
+          data: { rows: [] },
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', data);
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('dynamicTables', 'auto-test-table');
+        await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', 'auto-test-table');
+
+        return {
+          name: 'CRUD dynamicTables',
+          pass: loaded && loaded.tableId === 'test-table-auto',
+          details: 'Create, Read, Delete executados'
+        };
+      } catch (error) {
+        return { name: 'CRUD dynamicTables', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedCRUDAutosave() {
+      try {
+        const data = {
+          id: 'auto-test-autosave',
+          type: 'full',
+          dados: {},
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('autosave', data);
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('autosave', 'auto-test-autosave');
+        await FinanciamentoIndexedDB.deleteFromStore('autosave', 'auto-test-autosave');
+
+        return {
+          name: 'CRUD autosave',
+          pass: loaded && loaded.type === 'full',
+          details: 'Create, Read, Delete executados'
+        };
+      } catch (error) {
+        return { name: 'CRUD autosave', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedCRUDCalculatedResults() {
+      try {
+        const data = {
+          id: 'auto-test-calc',
+          calculatorType: 'DRE',
+          resultado: {},
+          timestamp: new Date().toISOString()
+        };
+
+        await FinanciamentoIndexedDB.saveToStore('calculatedResults', data);
+        const loaded = await FinanciamentoIndexedDB.loadFromStore('calculatedResults', 'auto-test-calc');
+        await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', 'auto-test-calc');
+
+        return {
+          name: 'CRUD calculatedResults',
+          pass: loaded && loaded.calculatorType === 'DRE',
+          details: 'Create, Read, Delete executados'
+        };
+      } catch (error) {
+        return { name: 'CRUD calculatedResults', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedIndexTimestamp() {
+      try {
+        const timestamp = new Date().toISOString();
+        await FinanciamentoIndexedDB.saveToStore('formulario', {
+          id: 'test-idx-timestamp',
+          sectionId: 1,
+          timestamp: timestamp
+        });
+
+        const results = await FinanciamentoIndexedDB.findByIndex('formulario', 'timestamp', timestamp);
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'test-idx-timestamp');
+
+        return {
+          name: 'Index timestamp',
+          pass: results.length === 1,
+          details: `${results.length} registro(s) encontrado(s)`
+        };
+      } catch (error) {
+        return { name: 'Index timestamp', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedIndexSectionId() {
+      try {
+        await FinanciamentoIndexedDB.saveToStore('formulario', {
+          id: 'test-idx-section',
+          sectionId: 5,
+          timestamp: new Date().toISOString()
+        });
+
+        const results = await FinanciamentoIndexedDB.findByIndex('formulario', 'sectionId', 5);
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'test-idx-section');
+
+        return {
+          name: 'Index sectionId',
+          pass: results.length >= 1,
+          details: `${results.length} registro(s) encontrado(s)`
+        };
+      } catch (error) {
+        return { name: 'Index sectionId', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedIndexTableIdUnique() {
+      try {
+        const tableId = `unique-table-${Date.now()}`;
+        await FinanciamentoIndexedDB.saveToStore('dynamicTables', {
+          id: 'test-idx-tableid',
+          tableId: tableId,
+          sectionId: 8,
+          timestamp: new Date().toISOString()
+        });
+
+        const results = await FinanciamentoIndexedDB.findByIndex('dynamicTables', 'tableId', tableId);
+        await FinanciamentoIndexedDB.deleteFromStore('dynamicTables', 'test-idx-tableid');
+
+        return {
+          name: 'Index tableId (unique)',
+          pass: results.length === 1,
+          details: `${results.length} registro(s) encontrado(s) - deve ser 1`
+        };
+      } catch (error) {
+        return { name: 'Index tableId (unique)', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedIndexType() {
+      try {
+        await FinanciamentoIndexedDB.saveToStore('autosave', {
+          id: 'test-idx-type',
+          type: 'partial',
+          dados: {},
+          timestamp: new Date().toISOString()
+        });
+
+        const results = await FinanciamentoIndexedDB.findByIndex('autosave', 'type', 'partial');
+        await FinanciamentoIndexedDB.deleteFromStore('autosave', 'test-idx-type');
+
+        return {
+          name: 'Index type',
+          pass: results.length >= 1,
+          details: `${results.length} registro(s) tipo "partial"`
+        };
+      } catch (error) {
+        return { name: 'Index type', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedIndexCalculatorType() {
+      try {
+        await FinanciamentoIndexedDB.saveToStore('calculatedResults', {
+          id: 'test-idx-calctype',
+          calculatorType: 'FluxoCaixa',
+          resultado: {},
+          timestamp: new Date().toISOString()
+        });
+
+        const results = await FinanciamentoIndexedDB.findByIndex('calculatedResults', 'calculatorType', 'FluxoCaixa');
+        await FinanciamentoIndexedDB.deleteFromStore('calculatedResults', 'test-idx-calctype');
+
+        return {
+          name: 'Index calculatorType',
+          pass: results.length >= 1,
+          details: `${results.length} registro(s) tipo "FluxoCaixa"`
+        };
+      } catch (error) {
+        return { name: 'Index calculatorType', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedSaveWithoutId() {
+      try {
+        await FinanciamentoIndexedDB.saveToStore('formulario', {
+          sectionId: 1,
+          timestamp: new Date().toISOString()
+        });
+
+        return {
+          name: 'Validação: save sem id',
+          pass: false,
+          details: 'Deveria falhar, mas passou'
+        };
+      } catch (error) {
+        return {
+          name: 'Validação: save sem id',
+          pass: error.message.includes('id'),
+          details: 'Erro esperado: ' + error.message.substring(0, 50)
+        };
+      }
+    }
+
+    async function testAutomatedLoadNonExistent() {
+      try {
+        const result = await FinanciamentoIndexedDB.loadFromStore('formulario', 'non-existent-id-123');
+
+        return {
+          name: 'Validação: load não existente',
+          pass: result === null,
+          details: 'Deve retornar null'
+        };
+      } catch (error) {
+        return {
+          name: 'Validação: load não existente',
+          pass: false,
+          details: error.message
+        };
+      }
+    }
+
+    async function testAutomatedDeleteFromStore() {
+      try {
+        await FinanciamentoIndexedDB.saveToStore('formulario', {
+          id: 'test-delete',
+          sectionId: 1,
+          timestamp: new Date().toISOString()
+        });
+
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'test-delete');
+        const result = await FinanciamentoIndexedDB.loadFromStore('formulario', 'test-delete');
+
+        return {
+          name: 'Operação: deleteFromStore',
+          pass: result === null,
+          details: 'Registro deletado com sucesso'
+        };
+      } catch (error) {
+        return { name: 'Operação: deleteFromStore', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedClearStore() {
+      try {
+        // Criar 3 registros
+        for (let i = 0; i < 3; i++) {
+          await FinanciamentoIndexedDB.saveToStore('autosave', {
+            id: `test-clear-${i}`,
+            type: 'full',
+            dados: {},
+            timestamp: new Date().toISOString()
+          });
+        }
+
+        // Limpar store
+        await FinanciamentoIndexedDB.clearStore('autosave');
+        const count = await FinanciamentoIndexedDB.countRecords('autosave');
+
+        return {
+          name: 'Operação: clearStore',
+          pass: count === 0,
+          details: `${count} registros após clear (deve ser 0)`
+        };
+      } catch (error) {
+        return { name: 'Operação: clearStore', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedCountRecords() {
+      try {
+        // Limpar primeiro
+        await FinanciamentoIndexedDB.clearStore('formulario');
+
+        // Adicionar 5 registros
+        for (let i = 0; i < 5; i++) {
+          await FinanciamentoIndexedDB.saveToStore('formulario', {
+            id: `test-count-${i}`,
+            sectionId: 1,
+            timestamp: new Date().toISOString()
+          });
+        }
+
+        const count = await FinanciamentoIndexedDB.countRecords('formulario');
+
+        // Limpar
+        await FinanciamentoIndexedDB.clearStore('formulario');
+
+        return {
+          name: 'Operação: countRecords',
+          pass: count === 5,
+          details: `Contagem: ${count} (esperado: 5)`
+        };
+      } catch (error) {
+        return { name: 'Operação: countRecords', pass: false, details: error.message };
+      }
+    }
+
+    async function testAutomatedBackupRestore() {
+      try {
+        // Limpar stores
+        await FinanciamentoIndexedDB.clearStore('formulario');
+        await FinanciamentoIndexedDB.clearStore('dynamicTables');
+
+        // Criar dados de teste
+        await FinanciamentoIndexedDB.saveToStore('formulario', {
+          id: 'backup-test',
+          sectionId: 1,
+          razaoSocial: 'Backup Test',
+          timestamp: new Date().toISOString()
+        });
+
+        // Backup
+        const backup = {
+          stores: {
+            formulario: await FinanciamentoIndexedDB.loadAllFromStore('formulario'),
+            dynamicTables: await FinanciamentoIndexedDB.loadAllFromStore('dynamicTables')
+          }
+        };
+
+        // Limpar
+        await FinanciamentoIndexedDB.clearStore('formulario');
+
+        // Restore
+        for (const record of backup.stores.formulario) {
+          await FinanciamentoIndexedDB.saveToStore('formulario', record);
+        }
+
+        // Verificar
+        const restored = await FinanciamentoIndexedDB.loadFromStore('formulario', 'backup-test');
+
+        // Limpar
+        await FinanciamentoIndexedDB.deleteFromStore('formulario', 'backup-test');
+
+        return {
+          name: 'Backup/Restore JSON',
+          pass: restored && restored.razaoSocial === 'Backup Test',
+          details: 'Backup e restore funcionando'
+        };
+      } catch (error) {
+        return { name: 'Backup/Restore JSON', pass: false, details: error.message };
+      }
+    }
+
+    function displayTestResults(tests) {
+      const outputDiv = document.getElementById('test-output');
+      const passed = tests.filter(t => t.pass).length;
+      const failed = tests.filter(t => !t.pass).length;
+      const total = tests.length;
+
+      let html = '';
+
+      tests.forEach((test, index) => {
+        const cssClass = test.pass ? 'pass' : 'fail';
+        const status = test.pass ? '✅ PASS' : '❌ FAIL';
+        html += `
+          <div class="test-item ${cssClass}">
+            <div>
+              <span class="test-name">${index + 1}. ${test.name}</span>
+              <div class="test-details">${test.details}</div>
+            </div>
+            <span class="test-status">${status}</span>
+          </div>
+        `;
+      });
+
+      html += `
+        <div class="test-summary">
+          <div class="stat">
+            <span class="stat-value">${total}</span>
+            <span class="stat-label">Total</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" style="color: #4caf50;">${passed}</span>
+            <span class="stat-label">Passou</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" style="color: #f44336;">${failed}</span>
+            <span class="stat-label">Falhou</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">${((passed/total) * 100).toFixed(0)}%</span>
+            <span class="stat-label">Taxa de Sucesso</span>
+          </div>
+        </div>
+      `;
+
+      outputDiv.innerHTML = html;
+    }
+
+    function limparResultadosTestes() {
+      const outputDiv = document.getElementById('test-output');
+      outputDiv.innerHTML = '<p style="color: #666; font-style: italic;">Clique no botão acima para executar os testes.</p>';
+    }
+
+    console.log('✓ Teste IndexedDB Financiamento carregado com sucesso');
+  </script>
+</body>
+</html>

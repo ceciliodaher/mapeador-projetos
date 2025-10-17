@@ -89,6 +89,7 @@ class FinanciamentoModule {
    */
   verificarDependencias() {
     const dependenciasObrigatorias = [
+      'FinanciamentoIndexedDB',
       'TaxCalculator',
       'ReformaTributariaCalculator',
       'SistemaApuracaoHibrido',
@@ -109,48 +110,21 @@ class FinanciamentoModule {
   }
 
   /**
-   * Inicializa IndexedDB
+   * Inicializa IndexedDB usando schema dedicado
    */
   async initIndexedDB() {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open(this.dbName, this.dbVersion);
+    // Verificar dependência obrigatória
+    if (typeof window.FinanciamentoIndexedDB === 'undefined') {
+      throw new Error('FinanciamentoModule: FinanciamentoIndexedDB não disponível - obrigatório para persistência');
+    }
 
-      request.onerror = () => {
-        reject(new Error('FinanciamentoModule: Erro ao abrir IndexedDB'));
-      };
-
-      request.onsuccess = (event) => {
-        this.db = event.target.result;
-        console.log('✓ IndexedDB conectado');
-        resolve();
-      };
-
-      request.onupgradeneeded = (event) => {
-        const db = event.target.result;
-
-        // Object store para dados do formulário
-        if (!db.objectStoreNames.contains('formulario')) {
-          const store = db.createObjectStore('formulario', { keyPath: 'id' });
-          store.createIndex('timestamp', 'timestamp', { unique: false });
-          console.log('✓ Object store "formulario" criado');
-        }
-
-        // Object store para auto-save temporário
-        if (!db.objectStoreNames.contains('autosave')) {
-          db.createObjectStore('autosave', { keyPath: 'id' });
-          console.log('✓ Object store "autosave" criado');
-        }
-
-        // Object store para tabelas dinâmicas (DynamicTable instances)
-        if (!db.objectStoreNames.contains('dynamicTables')) {
-          const store = db.createObjectStore('dynamicTables', { keyPath: 'id' });
-          store.createIndex('timestamp', 'timestamp', { unique: false });
-          store.createIndex('sectionId', 'sectionId', { unique: false });
-          store.createIndex('tableId', 'tableId', { unique: false });
-          console.log('✓ Object store "dynamicTables" criado');
-        }
-      };
-    });
+    try {
+      // Usar schema dedicado (financiamento-indexeddb-schema.js)
+      this.db = await window.FinanciamentoIndexedDB.openDatabase();
+      console.log('✓ IndexedDB conectado via schema dedicado');
+    } catch (error) {
+      throw new Error(`FinanciamentoModule: Erro ao conectar IndexedDB - ${error.message}`);
+    }
   }
 
   /**
@@ -432,17 +406,14 @@ class FinanciamentoModule {
   }
 
   /**
-   * Salva dados no IndexedDB
+   * Salva dados no IndexedDB usando schema dedicado
    */
   async salvarDados(storeName, registro) {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction([storeName], 'readwrite');
-      const store = transaction.objectStore(storeName);
-      const request = store.put(registro);
-
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(new Error('Erro ao salvar no IndexedDB'));
-    });
+    try {
+      await window.FinanciamentoIndexedDB.saveToStore(storeName, registro);
+    } catch (error) {
+      throw new Error(`FinanciamentoModule.salvarDados: Erro ao salvar em "${storeName}" - ${error.message}`);
+    }
   }
 
   /**
@@ -468,24 +439,20 @@ class FinanciamentoModule {
   }
 
   /**
-   * Carrega dados do IndexedDB
+   * Carrega dados do IndexedDB usando schema dedicado
    */
   async carregarDados(storeName, id) {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction([storeName], 'readonly');
-      const store = transaction.objectStore(storeName);
-      const request = store.get(id);
+    try {
+      const result = await window.FinanciamentoIndexedDB.loadFromStore(storeName, id);
 
-      request.onsuccess = () => {
-        if (request.result) {
-          resolve(request.result);
-        } else {
-          reject(new Error('Dados não encontrados'));
-        }
-      };
+      if (!result) {
+        throw new Error('Dados não encontrados');
+      }
 
-      request.onerror = () => reject(new Error('Erro ao carregar do IndexedDB'));
-    });
+      return result;
+    } catch (error) {
+      throw new Error(`FinanciamentoModule.carregarDados: Erro ao carregar de "${storeName}" - ${error.message}`);
+    }
   }
 
   /**
