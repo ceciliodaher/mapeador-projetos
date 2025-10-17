@@ -1,3 +1,101 @@
 {
-  "listas": []
+  "listas": [
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "categoria",
+      "label": "Categoria de Investimento",
+      "descricao": "Classificação do tipo de investimento segundo natureza do ativo",
+      "opcoes": [
+        {"valor": "", "label": "Selecione..."},
+        {"valor": "Terreno", "label": "Terreno"},
+        {"valor": "Obras Civis", "label": "Obras Civis"},
+        {"valor": "Edificações", "label": "Edificações"},
+        {"valor": "Máquinas e Equipamentos", "label": "Máquinas e Equipamentos"},
+        {"valor": "Instalações", "label": "Instalações"},
+        {"valor": "Móveis e Utensílios", "label": "Móveis e Utensílios"},
+        {"valor": "Veículos", "label": "Veículos"},
+        {"valor": "Equipamentos de Informática", "label": "Equipamentos de Informática"},
+        {"valor": "Software", "label": "Software"},
+        {"valor": "Projetos e Estudos", "label": "Projetos e Estudos"},
+        {"valor": "Treinamento", "label": "Treinamento"},
+        {"valor": "Outros", "label": "Outros"}
+      ]
+    },
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "unidade",
+      "label": "Unidade de Medida",
+      "descricao": "Unidade de medida para quantificação do item de investimento",
+      "opcoes": [
+        {"valor": "", "label": "-"},
+        {"valor": "UN", "label": "UN", "descricao": "Unidade"},
+        {"valor": "M", "label": "M", "descricao": "Metro"},
+        {"valor": "M²", "label": "M²", "descricao": "Metro Quadrado"},
+        {"valor": "M³", "label": "M³", "descricao": "Metro Cúbico"},
+        {"valor": "KG", "label": "KG", "descricao": "Quilograma"},
+        {"valor": "T", "label": "T", "descricao": "Tonelada"},
+        {"valor": "L", "label": "L", "descricao": "Litro"},
+        {"valor": "SERV", "label": "SERV", "descricao": "Serviço"},
+        {"valor": "VERBA", "label": "VERBA", "descricao": "Verba"},
+        {"valor": "CJ", "label": "CJ", "descricao": "Conjunto"}
+      ]
+    },
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "anoDesembolso",
+      "label": "Ano de Desembolso",
+      "descricao": "Ano previsto para realização do desembolso do investimento (0 = ano corrente)",
+      "opcoes": [
+        {"valor": "", "label": "-"},
+        {"valor": "0", "label": "Ano 0", "descricao": "Ano corrente"},
+        {"valor": "1", "label": "Ano 1", "descricao": "Primeiro ano"},
+        {"valor": "2", "label": "Ano 2", "descricao": "Segundo ano"},
+        {"valor": "3", "label": "Ano 3", "descricao": "Terceiro ano"},
+        {"valor": "4", "label": "Ano 4", "descricao": "Quarto ano"},
+        {"valor": "5", "label": "Ano 5", "descricao": "Quinto ano"}
+      ]
+    },
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "coberturaTerceiros",
+      "label": "Cobertura - Recursos de Terceiros",
+      "descricao": "Fonte de financiamento de recursos de terceiros (fundos constitucionais, bancos de desenvolvimento, instituições financeiras)",
+      "opcoes": [
+        {"valor": "", "label": "Nenhuma"},
+        {"valor": "FCO", "label": "FCO - Fundo Centro-Oeste", "descricao": "Fundo Constitucional de Financiamento do Centro-Oeste"},
+        {"valor": "FNE", "label": "FNE - Fundo Nordeste", "descricao": "Fundo Constitucional de Financiamento do Nordeste"},
+        {"valor": "FNO", "label": "FNO - Fundo Norte", "descricao": "Fundo Constitucional de Financiamento do Norte"},
+        {"valor": "FINEP", "label": "FINEP", "descricao": "Financiadora de Estudos e Projetos"},
+        {"valor": "BNDES", "label": "BNDES", "descricao": "Banco Nacional de Desenvolvimento Econômico e Social"},
+        {"valor": "Banco Privado", "label": "Banco Privado", "descricao": "Instituições financeiras privadas"},
+        {"valor": "Outro", "label": "Outro", "descricao": "Outras fontes de financiamento"}
+      ]
+    },
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "coberturaProprios",
+      "label": "Cobertura - Recursos Próprios",
+      "descricao": "Origem dos recursos próprios da empresa para financiamento do investimento",
+      "opcoes": [
+        {"valor": "", "label": "Nenhuma"},
+        {"valor": "Capital Social", "label": "Capital Social", "descricao": "Aporte de capital pelos sócios/acionistas"},
+        {"valor": "Lucros Acumulados", "label": "Lucros Acumulados", "descricao": "Lucros retidos de exercícios anteriores"},
+        {"valor": "Reinvestimento", "label": "Reinvestimento", "descricao": "Reinvestimento de lucros do exercício"},
+        {"valor": "Investimentos Realizados", "label": "Investimentos Realizados", "descricao": "Investimentos já executados que entram como contrapartida"},
+        {"valor": "Outro", "label": "Outro", "descricao": "Outras fontes de recursos próprios"}
+      ]
+    },
+    {
+      "secao": "Seção 8: Orçamento dos Investimentos Projetados",
+      "campo": "temOrcamento",
+      "label": "Possui Orçamento",
+      "descricao": "Indica se existe orçamento formal do fornecedor para o item de investimento",
+      "opcoes": [
+        {"valor": "", "label": "-"},
+        {"valor": "Sim", "label": "Sim", "descricao": "Orçamento formal detalhado"},
+        {"valor": "Não", "label": "Não", "descricao": "Sem orçamento disponível"},
+        {"valor": "Cotação", "label": "Cotação", "descricao": "Cotação preliminar (não formal)"}
+      ]
+    }
+  ]
 }
