@@ -60,70 +60,187 @@
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    <div class="progress-steps">
-                        <div class="tab-item active" data-tab="1" role="button" tabindex="0" aria-label="Ir para seção 1 - Empresa">
-                            <div class="step-number">1</div>
-                            <div class="step-label">Empresa</div>
+                    <!-- Navegação Hierárquica (2 Níveis) - SPRINT 0 -->
+
+                    <!-- NÍVEL 1: Navbar Principal (7 Seções) -->
+                    <div class="section-navbar">
+                        <button type="button" class="section-btn active" data-section="1" aria-label="Seção 1: Identificação">
+                            <span class="section-number">1</span>
+                            <span class="section-label">Identificação</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="2" aria-label="Seção 2: Situação Atual">
+                            <span class="section-number">2</span>
+                            <span class="section-label">Situação Atual</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="3" aria-label="Seção 3: Operações Projetadas">
+                            <span class="section-number">3</span>
+                            <span class="section-label">Operações Projetadas</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="4" aria-label="Seção 4: Investimentos e Funding">
+                            <span class="section-number">4</span>
+                            <span class="section-label">Investimentos e Funding</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="5" aria-label="Seção 5: Integrações">
+                            <span class="section-number">5</span>
+                            <span class="section-label">Integrações</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="6" aria-label="Seção 6: Demonstrativos Projetados">
+                            <span class="section-number">6</span>
+                            <span class="section-label">Demonstrativos Projetados</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                        <button type="button" class="section-btn" data-section="7" aria-label="Seção 7: Análises e Decisão">
+                            <span class="section-number">7</span>
+                            <span class="section-label">Análises e Decisão</span>
+                            <span class="section-icon">▼</span>
+                        </button>
+                    </div>
+
+                    <!-- NÍVEL 2: Subnavbars (Tabs Internas) -->
+
+                    <!-- Subnavbar: Seção 1 - Identificação (2 tabs) -->
+                    <div class="subsection-navbar active" data-parent-section="1">
+                        <div class="breadcrumb">Seção 1: Identificação</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item active" data-tab="1" role="button" tabindex="0">
+                                <span class="tab-number">1.1</span>
+                                <span class="tab-label">Empresa</span>
+                            </div>
+                            <div class="tab-item" data-tab="2" role="button" tabindex="0">
+                                <span class="tab-number">1.2</span>
+                                <span class="tab-label">Projeto</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="2" role="button" tabindex="0" aria-label="Ir para seção 2 - Projeto">
-                            <div class="step-number">2</div>
-                            <div class="step-label">Projeto</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 2 - Situação Atual (5 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="2">
+                        <div class="breadcrumb">Seção 2: Situação Atual</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="3" role="button" tabindex="0">
+                                <span class="tab-number">2.1</span>
+                                <span class="tab-label">Regime Tributário</span>
+                            </div>
+                            <div class="tab-item" data-tab="4" role="button" tabindex="0">
+                                <span class="tab-number">2.2</span>
+                                <span class="tab-label">Balanço Atual</span>
+                            </div>
+                            <div class="tab-item" data-tab="5" role="button" tabindex="0">
+                                <span class="tab-number">2.3</span>
+                                <span class="tab-label">DRE Histórico</span>
+                            </div>
+                            <div class="tab-item" data-tab="6" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">2.4</span>
+                                <span class="tab-label">Endividamento 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="7" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">2.5</span>
+                                <span class="tab-label">Ciclos Financeiros 🔒</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="3" role="button" tabindex="0" aria-label="Ir para seção 3 - Regime">
-                            <div class="step-number">3</div>
-                            <div class="step-label">Regime</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 3 - Operações Projetadas (4 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="3">
+                        <div class="breadcrumb">Seção 3: Operações Projetadas</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="8" role="button" tabindex="0">
+                                <span class="tab-number">3.1</span>
+                                <span class="tab-label">Receitas</span>
+                            </div>
+                            <div class="tab-item" data-tab="9" role="button" tabindex="0">
+                                <span class="tab-number">3.2</span>
+                                <span class="tab-label">Insumos</span>
+                            </div>
+                            <div class="tab-item" data-tab="10" role="button" tabindex="0">
+                                <span class="tab-number">3.3</span>
+                                <span class="tab-label">Mão-de-Obra</span>
+                            </div>
+                            <div class="tab-item" data-tab="11" role="button" tabindex="0">
+                                <span class="tab-number">3.4</span>
+                                <span class="tab-label">Custos</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="4" role="button" tabindex="0" aria-label="Ir para seção 4 - Histórico">
-                            <div class="step-number">4</div>
-                            <div class="step-label">Histórico</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 4 - Investimentos e Funding (4 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="4">
+                        <div class="breadcrumb">Seção 4: Investimentos e Funding</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="12" role="button" tabindex="0">
+                                <span class="tab-number">4.1</span>
+                                <span class="tab-label">Investimentos Fixos</span>
+                            </div>
+                            <div class="tab-item" data-tab="13" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">4.2</span>
+                                <span class="tab-label">Financiamentos 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="14" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">4.3</span>
+                                <span class="tab-label">Capital de Giro 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="15" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">4.4</span>
+                                <span class="tab-label">Usos e Fontes 🔒</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="5" role="button" tabindex="0" aria-label="Ir para seção 4 - Receitas">
-                            <div class="step-number">5</div>
-                            <div class="step-label">Receitas</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 5 - Integrações (2 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="5">
+                        <div class="breadcrumb">Seção 5: Integrações</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="16" role="button" tabindex="0">
+                                <span class="tab-number">5.1</span>
+                                <span class="tab-label">Matriz Produto-Insumo</span>
+                            </div>
+                            <div class="tab-item" data-tab="17" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">5.2</span>
+                                <span class="tab-label">Depreciação 🔒</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="6" role="button" tabindex="0" aria-label="Ir para seção 5 - Insumos">
-                            <div class="step-number">6</div>
-                            <div class="step-label">Insumos</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 6 - Demonstrativos Projetados (3 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="6">
+                        <div class="breadcrumb">Seção 6: Demonstrativos Projetados</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="18" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">6.1</span>
+                                <span class="tab-label">DRE Projetado 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="19" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">6.2</span>
+                                <span class="tab-label">Balanço Projetado 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="20" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">6.3</span>
+                                <span class="tab-label">Fluxo de Caixa 🔒</span>
+                            </div>
                         </div>
-                        <div class="tab-item" data-tab="7" role="button" tabindex="0" aria-label="Ir para seção 6 - Mão-de-Obra">
-                            <div class="step-number">7</div>
-                            <div class="step-label">Mão-de-Obra</div>
-                        </div>
-                        <div class="tab-item" data-tab="8" role="button" tabindex="0" aria-label="Ir para seção 7 - Custos">
-                            <div class="step-number">8</div>
-                            <div class="step-label">Custos</div>
-                        </div>
-                        <div class="tab-item" data-tab="9" role="button" tabindex="0" aria-label="Ir para seção 8 - Investimentos">
-                            <div class="step-number">9</div>
-                            <div class="step-label">Investimentos</div>
-                        </div>
-                        <div class="tab-item" data-tab="10" role="button" tabindex="0" aria-label="Ir para seção 9 - Cronograma">
-                            <div class="step-number">10</div>
-                            <div class="step-label">Cronograma</div>
-                        </div>
-                        <div class="tab-item" data-tab="11" role="button" tabindex="0" aria-label="Ir para seção 10 - Matriz">
-                            <div class="step-number">11</div>
-                            <div class="step-label">Matriz</div>
-                        </div>
-                        <div class="tab-item" data-tab="12" role="button" tabindex="0" aria-label="Ir para seção 11 - DRE">
-                            <div class="step-number">12</div>
-                            <div class="step-label">DRE</div>
-                        </div>
-                        <div class="tab-item" data-tab="13" role="button" tabindex="0" aria-label="Ir para seção 12 - Fluxo Caixa">
-                            <div class="step-number">13</div>
-                            <div class="step-label">Fluxo Caixa</div>
-                        </div>
-                        <div class="tab-item" data-tab="14" role="button" tabindex="0" aria-label="Ir para seção 13 - Indicadores">
-                            <div class="step-number">14</div>
-                            <div class="step-label">Indicadores</div>
-                        </div>
-                        <div class="tab-item" data-tab="15" role="button" tabindex="0">
-                          <div class="step-number">15</div>
-                          <div class="step-label">Impostos</div>
-                        </div>
-                        <div class="tab-item" data-tab="16" role="button" tabindex="0">
-                          <div class="step-number">16</div>
-                          <div class="step-label">Cenários</div>
+                    </div>
+
+                    <!-- Subnavbar: Seção 7 - Análises e Decisão (3 tabs) -->
+                    <div class="subsection-navbar" data-parent-section="7">
+                        <div class="breadcrumb">Seção 7: Análises e Decisão</div>
+                        <div class="subsection-tabs">
+                            <div class="tab-item" data-tab="21" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">7.1</span>
+                                <span class="tab-label">Indicadores 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="22" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">7.2</span>
+                                <span class="tab-label">Impostos 🔒</span>
+                            </div>
+                            <div class="tab-item" data-tab="23" data-protected="true" role="button" tabindex="0">
+                                <span class="tab-number">7.3</span>
+                                <span class="tab-label">Cenários 🔒</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,7 +250,7 @@
                 <!-- Seção 1: Identificação da Empresa -->
                 <div class="form-section active" data-section="1" id="section-1" role="tabpanel" aria-labelledby="tab-1">
                     <div class="section-header">
-                        <h2 class="section-title">1. Identificação da Empresa</h2>
+                        <h2 class="section-title">1.1 Identificação da Empresa</h2>
                         <p class="section-description">Dados cadastrais da empresa para análise financeira.</p>
                     </div>
 
@@ -657,7 +774,7 @@
                 <!-- Seção 2: Caracterização do Projeto (Sprint 7) -->
                 <div class="form-section" data-section="2" id="section-2" role="tabpanel" aria-labelledby="tab-2">
                     <div class="section-header">
-                        <h2 class="section-title">2. Caracterização do Projeto</h2>
+                        <h2 class="section-title">1.2 Caracterização do Projeto</h2>
                         <p class="section-description">Dados descritivos, localização e cronograma de implantação do projeto.</p>
                     </div>
 
@@ -842,7 +959,7 @@
                 <!-- Seção 3: Regime Tributário e Parâmetros -->
                 <div class="form-section" data-section="3" id="section-3" role="tabpanel" aria-labelledby="tab-3">
                     <div class="section-header">
-                        <h2 class="section-title">3. Regime Tributário e Parâmetros</h2>
+                        <h2 class="section-title">2.1 Regime Tributário e Premissas</h2>
                         <p class="section-description">Definição do regime tributário e parâmetros para simulação.</p>
                     </div>
 
@@ -976,7 +1093,7 @@
                 <!-- Seção 4: Histórico Financeiro -->
                 <div class="form-section" data-section="4" id="section-4" role="tabpanel" aria-labelledby="tab-4">
                     <div class="section-header">
-                        <h2 class="section-title">4. Histórico Financeiro</h2>
+                        <h2 class="section-title">2.2 Balanço Patrimonial Atual</h2>
                         <p class="section-description">Dados financeiros dos últimos 3 exercícios (quando disponíveis).</p>
                     </div>
 
@@ -1071,10 +1188,58 @@
                     </div>
                 </div>
 
-                <!-- Seção 4: Receitas Projetadas -->
-                <div class="form-section" data-section="5" id="section-5" role="tabpanel" aria-labelledby="tab-4">
+                <!-- Seção 5: DRE Histórico (PLACEHOLDER) -->
+                <div class="form-section" data-section="5" id="section-5" role="tabpanel" aria-labelledby="tab-5">
                     <div class="section-header">
-                        <h2 class="section-title">4. Receitas Projetadas</h2>
+                        <h2 class="section-title">2.3 Demonstração de Resultado Histórico</h2>
+                        <p class="section-description">Histórico de DRE dos últimos 3 anos.</p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> DRE Histórico será implementado em breve.</p>
+                        <p>Esta seção permitirá importar ou preencher manualmente as DREs históricas da empresa para análise comparativa.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 6: Endividamento Atual (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="6" id="section-6" role="tabpanel" aria-labelledby="tab-6">
+                    <div class="section-header">
+                        <h2 class="section-title">2.4 Endividamento Atual da Empresa 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Gestão de dívidas e empréstimos EXISTENTES da empresa.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Endividamento será implementado em breve.</p>
+                        <p>Esta seção gerenciará dívidas atuais (curto e longo prazo), fornecedores, impostos a pagar, e sistemas de amortização (SAC/PRICE/Americano).</p>
+                    </div>
+                </div>
+
+                <!-- Seção 7: Ciclos Financeiros (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-7">
+                    <div class="section-header">
+                        <h2 class="section-title">2.5 Ciclos Financeiros e Operacionais 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Cálculo de PMR, PMP, PME e NCG.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Ciclos Financeiros será implementado em breve.</p>
+                        <p>Esta seção calculará automaticamente PMR (Prazo Médio Recebimento), PMP (Prazo Médio Pagamento), PME (Prazo Médio Estocagem) e NCG (Necessidade de Capital de Giro) baseado em inputs do usuário sobre prazos e giro de estoques.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 4: Receitas Projetadas -->
+                <div class="form-section" data-section="8" id="section-8" role="tabpanel" aria-labelledby="tab-8">
+                    <div class="section-header">
+                        <h2 class="section-title">3.1 Produtos e Receitas Projetadas</h2>
                         <p class="section-description">Produtos fabricados e projeções de vendas para cálculo de ICMS.</p>
                     </div>
 
@@ -1185,9 +1350,9 @@
                 </div>
 
                 <!-- Seção 5: Insumos e Matérias-Primas -->
-                <div class="form-section" data-section="6" id="section-6" role="tabpanel" aria-labelledby="tab-5">
+                <div class="form-section" data-section="9" id="section-9" role="tabpanel" aria-labelledby="tab-9">
                     <div class="section-header">
-                        <h2 class="section-title">6. Insumos</h2>
+                        <h2 class="section-title">3.2 Insumos e Matérias-Primas</h2>
                         <p class="section-description">Insumos e matérias-primas utilizados na produção.</p>
                     </div>
 
@@ -1319,9 +1484,9 @@
                 </div>
 
                 <!-- Seção 6: Mão-de-Obra Requerida (Formato Tabular Detalhado) -->
-                <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-6">
+                <div class="form-section" data-section="10" id="section-10" role="tabpanel" aria-labelledby="tab-10">
                     <div class="section-header">
-                        <h2 class="section-title">7. Mão-de-Obra Requerida</h2>
+                        <h2 class="section-title">3.3 Recursos Humanos</h2>
                         <p class="section-description">Detalhamento completo da mão-de-obra fixa e variável com projeções anuais (formato tabular).</p>
                     </div>
 
@@ -1651,9 +1816,9 @@
                 </div>
 
                 <!-- Seção 7: Estrutura de Custos -->
-                <div class="form-section" data-section="8" id="section-8" role="tabpanel" aria-labelledby="tab-7">
+                <div class="form-section" data-section="11" id="section-11" role="tabpanel" aria-labelledby="tab-11">
                     <div class="section-header">
-                        <h2 class="section-title">8. Estrutura de Custos</h2>
+                        <h2 class="section-title">3.4 Custos Operacionais</h2>
                         <p class="section-description">Detalhamento dos custos fixos e variáveis projetados.</p>
                     </div>
 
@@ -1747,9 +1912,9 @@
                 </div>
 
                 <!-- Seção 8: Investimentos Planejados -->
-                <div class="form-section" data-section="9" id="section-9" role="tabpanel" aria-labelledby="tab-8">
+                <div class="form-section" data-section="12" id="section-12" role="tabpanel" aria-labelledby="tab-12">
                     <div class="section-header">
-                        <h2 class="section-title">9. Orçamento dos Investimentos Projetados</h2>
+                        <h2 class="section-title">4.1 Orçamento de Investimentos Fixos</h2>
                         <p class="section-description">Detalhamento completo dos investimentos necessários ao projeto, incluindo especificações técnicas, quantidades, valores e origem dos recursos.</p>
                     </div>
 
@@ -1875,10 +2040,44 @@
                     </div>
                 </div>
 
-                <!-- Seção 9: Cronograma Financeiro -->
-                <div class="form-section" data-section="10" id="section-10" role="tabpanel" aria-labelledby="tab-9">
+                <!-- Seção 13: Financiamentos Solicitados (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="13" id="section-13" role="tabpanel" aria-labelledby="tab-13">
                     <div class="section-header">
-                        <h2 class="section-title">10. Cronograma Financeiro</h2>
+                        <h2 class="section-title">4.2 Financiamentos Solicitados 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Financiamentos NOVOS para o projeto (BNDES, FCO, FINEP).
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Financiamentos será implementado em breve.</p>
+                        <p>Esta seção gerenciará financiamentos solicitados para o projeto com sistemas SAC, PRICE e Americano, prazos de até 240 meses, carência, e geração automática de tabelas de amortização.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 14: Capital de Giro (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="14" id="section-14" role="tabpanel" aria-labelledby="tab-14">
+                    <div class="section-header">
+                        <h2 class="section-title">4.3 Necessidade de Capital de Giro 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Cálculo automático de NCG baseado em ciclos financeiros.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Capital de Giro será implementado em breve.</p>
+                        <p>Esta seção calculará automaticamente a Necessidade de Capital de Giro (NCG) com base nos Ciclos Financeiros (Seção 2.5) e projeções de receitas/custos.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 9: Cronograma Financeiro -->
+                <div class="form-section" data-section="15" id="section-15" role="tabpanel" aria-labelledby="tab-15">
+                    <div class="section-header">
+                        <h2 class="section-title">4.4 Cronograma de Usos e Fontes</h2>
                         <p class="section-description">Distribuição temporal dos investimentos e início das operações.</p>
                     </div>
 
@@ -1922,9 +2121,9 @@
                 </div>
 
                 <!-- Seção 10: Matriz Produto-Insumo -->
-                <div class="form-section matriz-section" data-section="10" id="section-10" role="tabpanel" aria-labelledby="tab-10">
+                <div class="form-section matriz-section" data-section="16" id="section-16" role="tabpanel" aria-labelledby="tab-16">
                     <div class="section-header">
-                        <h2 class="section-title">10. Matriz Produto-Insumo</h2>
+                        <h2 class="section-title">5.1 Matriz Produto-Insumo</h2>
                         <p class="section-description">Relacionamento entre produtos fabricados e insumos consumidos.</p>
                     </div>
 
@@ -1995,10 +2194,27 @@
                     <div class="matriz-product-list-container"></div>
                 </div>
 
-                <!-- Seção 11: DRE Projetado -->
-                <div class="form-section" data-section="12" id="section-12" role="tabpanel" aria-labelledby="tab-11">
+                <!-- Seção 17: Depreciação e Amortização (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="17" id="section-17" role="tabpanel" aria-labelledby="tab-17">
                     <div class="section-header">
-                        <h2 class="section-title">12. DRE Projetado</h2>
+                        <h2 class="section-title">5.2 Depreciação e Amortização 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Cálculo segregado: Depreciação Existente + Pós-Investimento.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Depreciação será implementado em breve.</p>
+                        <p>Esta seção calculará a depreciação dos ativos EXISTENTES da empresa (imobilizado atual) e a depreciação PÓS-INVESTIMENTO (novos ativos do projeto), impactando a DRE projetada.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 11: DRE Projetado -->
+                <div class="form-section" data-section="18" id="section-18" role="tabpanel" aria-labelledby="tab-18">
+                    <div class="section-header">
+                        <h2 class="section-title">6.1 DRE Projetada</h2>
                         <p class="section-description">Demonstração de Resultado do Exercício projetada para 5 anos.</p>
                     </div>
 
@@ -2035,10 +2251,27 @@
                     </div>
                 </div>
 
-                <!-- Seção 12: Fluxo de Caixa -->
-                <div class="form-section" data-section="13" id="section-13" role="tabpanel" aria-labelledby="tab-12">
+                <!-- Seção 19: Balanço Patrimonial Projetado (PLACEHOLDER - PROTEGIDA) -->
+                <div class="form-section" data-section="19" id="section-19" role="tabpanel" aria-labelledby="tab-19">
                     <div class="section-header">
-                        <h2 class="section-title">13. Fluxo de Caixa Projetado</h2>
+                        <h2 class="section-title">6.2 Balanço Patrimonial Projetado 🔒</h2>
+                        <p class="section-description">
+                            <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
+                            Projeção de Balanço Patrimonial para 5 anos.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <h3>⚠️ Seção em Desenvolvimento</h3>
+                        <p><strong>Sprint Futuro:</strong> Balanço Projetado será implementado em breve.</p>
+                        <p>Esta seção calculará automaticamente o Balanço Patrimonial projetado (Ativo, Passivo, PL) para 5 anos com base nas projeções de DRE, investimentos, depreciação e fluxo de caixa.</p>
+                    </div>
+                </div>
+
+                <!-- Seção 12: Fluxo de Caixa -->
+                <div class="form-section" data-section="20" id="section-20" role="tabpanel" aria-labelledby="tab-20">
+                    <div class="section-header">
+                        <h2 class="section-title">6.3 Fluxo de Caixa Projetado</h2>
                         <p class="section-description">Fluxo de caixa projetado considerando Split Payment (Reforma Tributária).</p>
                     </div>
 
@@ -2088,9 +2321,9 @@
                 </div>
 
                 <!-- Seção 13: Indicadores Financeiros -->
-                <div class="form-section" data-section="14" id="section-14" role="tabpanel" aria-labelledby="tab-13">
+                <div class="form-section" data-section="21" id="section-21" role="tabpanel" aria-labelledby="tab-21">
                     <div class="section-header">
-                        <h2 class="section-title">14. Indicadores de Viabilidade</h2>
+                        <h2 class="section-title">7.1 Dashboard de Indicadores</h2>
                         <p class="section-description">Indicadores financeiros calculados automaticamente.</p>
                     </div>
 
@@ -2173,9 +2406,9 @@
                 </div>
 
                 <!-- Seção 14: Apuração de Impostos (PROTEGIDA) -->
-                <div class="form-section" data-section="15" id="section-15" role="tabpanel" aria-labelledby="tab-14">
+                <div class="form-section" data-section="22" id="section-22" role="tabpanel" aria-labelledby="tab-22">
                     <div class="section-header">
-                        <h2 class="section-title">15. Apuração de Impostos</h2>
+                        <h2 class="section-title">7.2 Apuração de Impostos Detalhada</h2>
                         <p class="section-description">Cálculo automático de impostos - Sistema Atual vs Reforma Tributária.</p>
                         <div class="alert alert-info">
                             <strong>🔒 Seção Protegida:</strong> Esta seção é calculada automaticamente e não pode ser editada.
@@ -2291,9 +2524,9 @@
                 </div>
 
                 <!-- Seção 15: Cenários e Relatórios -->
-                <div class="form-section" data-section="16" id="section-16" role="tabpanel" aria-labelledby="tab-16">
+                <div class="form-section" data-section="23" id="section-23" role="tabpanel" aria-labelledby="tab-23">
                     <div class="section-header">
-                        <h2 class="section-title">16. Análise de Cenários e Relatórios</h2>
+                        <h2 class="section-title">7.3 Análise de Cenários e Sensibilidade</h2>
                         <p class="section-description">Simulação de cenários otimista/realista/pessimista e geração de relatórios.</p>
                     </div>
 

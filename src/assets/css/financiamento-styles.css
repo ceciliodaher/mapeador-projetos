@@ -34,6 +34,252 @@
 /* Estilos individuais dos tab-item definidos em tabs.css */
 
 /* ====================================================================
+   SECTION: HIERARCHICAL NAVIGATION (Sprint 0)
+   Navegação em 2 níveis: Seções (1-9) → Subseções/Tabs (1-18)
+   ==================================================================== */
+
+/* NÍVEL 1: Navbar Principal (Seções) */
+.section-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--navy);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.section-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.section-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.section-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    box-shadow: 0 4px 12px rgba(255, 0, 45, 0.4);
+}
+
+.section-btn .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.section-btn.active .section-number {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.section-btn .section-label {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.section-btn .section-icon {
+    margin-left: 4px;
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.section-btn.active .section-icon {
+    transform: rotate(180deg);
+}
+
+/* NÍVEL 2: Subnavbars (Tabs Internas) */
+.subsection-navbar {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--gray-50);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 2px solid var(--gray-200);
+}
+
+.subsection-navbar.active {
+    display: flex;
+}
+
+.subsection-navbar .breadcrumb {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gray-300);
+}
+
+.subsection-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Tab Items (dentro de subsection-navbar) */
+.subsection-tabs .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.subsection-tabs .tab-item:hover:not(.active) {
+    background: rgba(255, 0, 45, 0.05);
+    border-color: var(--gray-400);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.subsection-tabs .tab-item.active {
+    background: linear-gradient(135deg, var(--red) 0%, #c51162 100%);
+    border-color: var(--red);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 0, 45, 0.3);
+}
+
+.subsection-tabs .tab-item .tab-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gray-600);
+}
+
+.subsection-tabs .tab-item.active .tab-number {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.subsection-tabs .tab-item .tab-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--navy);
+}
+
+.subsection-tabs .tab-item.active .tab-label {
+    color: white;
+}
+
+/* Protected Tabs - Modo Analista */
+.subsection-tabs .tab-item[data-protected="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+}
+
+.subsection-tabs .tab-item[data-protected="true"]::after {
+    content: '🔒';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+}
+
+.analyst-mode .subsection-tabs .tab-item[data-protected="true"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.analyst-mode .subsection-tabs .tab-item[data-protected="true"]::after {
+    content: '🔓';
+}
+
+/* Responsive - Hierarchical Navigation */
+@media (max-width: 1024px) {
+    .section-navbar {
+        gap: 0.4rem;
+        padding: 0.75rem;
+    }
+
+    .section-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .section-btn .section-number {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+
+    .subsection-tabs .tab-item {
+        min-width: 100px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .section-btn {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .subsection-navbar {
+        padding: 0.75rem;
+    }
+
+    .subsection-tabs {
+        flex-direction: column;
+    }
+
+    .subsection-tabs .tab-item {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-btn .section-label {
+        font-size: 0.75rem;
+    }
+
+    .section-btn .section-icon {
+        display: none;
+    }
+
+    .subsection-navbar .breadcrumb {
+        font-size: 0.8rem;
+    }
+
+    .subsection-tabs .tab-item .tab-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* ====================================================================
    SECTION: PROGRESS TRACKER
    ==================================================================== */
 
