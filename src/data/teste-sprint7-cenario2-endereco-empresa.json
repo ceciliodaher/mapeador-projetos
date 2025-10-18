@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T10:05:00.000Z",
+    "cenarioTeste": "Sprint 7 - Cenário 2: Usar Endereço da Empresa",
+    "descricao": "Testa funcionalidade de copiar endereço da Seção 1 automaticamente"
+  },
+  "secao1": {
+    "razaoSocial": "EMPRESA TESTE ENDEREÇO LTDA",
+    "nomeFantasia": "Teste Endereço",
+    "cnpj": "98.765.432/0001-10",
+    "inscricaoEstadual": "987654321",
+    "dataConstituicao": "2018-03-20",
+    "uf": "GO",
+    "municipio": "Goiânia",
+    "endereco": "Av. T-4, Setor Bueno",
+    "atividadePrincipal": "Serviços de Consultoria",
+    "descricaoAtividade": "Consultoria empresarial e gestão de projetos",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 300000,
+    "numeroSocios": 1,
+    "dataUltimaAlteracao": "2023-06-15",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "Carlos Alberto Pereira",
+        "tipoPessoa": "PF",
+        "documento": "111.222.333-44",
+        "participacao": 100.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "carlos@teste.com",
+        "telefone": "(62) 99999-8888"
+      }
+    ],
+    "dataInicioOperacoes": "2018-05-01",
+    "tempoMercado": "7 anos e 5 meses",
+    "qtdeFuncionariosAtual": 15,
+    "capacidadeProdutivaAtual": "50 projetos/ano",
+    "certificacoesAtuais": "PMI, Scrum Master",
+    "principaisProdutosServicos": "Consultoria, Gestão de Projetos, Treinamentos",
+    "responsavelNome": "Carlos Alberto Pereira",
+    "responsavelCargo": "Diretor Geral",
+    "responsavelEmail": "carlos@teste.com",
+    "responsavelTelefone": "(62) 99999-8888",
+    "cep": "74215-120",
+    "logradouro": "Avenida T-4",
+    "numero": "850",
+    "complemento": "Sala 302, Edifício Business",
+    "bairro": "Setor Bueno",
+    "coordenadasGeograficas": "-16.6952, -49.2707",
+    "pontoReferencia": "Em frente ao Flamboyant Shopping",
+    "areaTerreno": 0
+  },
+  "secao1B": {
+    "tipoProjeto": "Implantacao",
+    "objetivo": "Implantar nova unidade operacional para expansão dos serviços de consultoria empresarial na região",
+    "descricaoDetalhada": "O projeto contempla a implantação de uma nova sede administrativa com estrutura completa para atendimento a clientes corporativos, incluindo salas de reunião, espaço de coworking e centro de treinamentos. O investimento visa posicionar a empresa como referência regional em consultoria empresarial.",
+    "localizacao": {
+      "usarEnderecoEmpresa": true,
+      "cep": "74215-120",
+      "endereco": "Avenida T-4",
+      "numero": "850",
+      "complemento": "Sala 302, Edifício Business",
+      "bairro": "Setor Bueno",
+      "cidade": "Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 350,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-02-01",
+      "dataFimImplantacao": "2025-05-31",
+      "dataInicioOperacao": "2025-06-01",
+      "prazoTotalMeses": 4
+    },
+    "analiseMercado": "Mercado de consultoria empresarial em Goiás cresceu 45% nos últimos 2 anos, com demanda concentrada em empresas de médio e grande porte",
+    "justificativaEconomica": "Investimento de R$ 800.000,00 para estruturação completa, com expectativa de aumento de faturamento em 80% e ROI de 35% ao ano"
+  },
+  "secao2": {
+    "regimeTributario": "Lucro Presumido",
+    "simplesAnexo": "",
+    "setorEconomico": "Serviços",
+    "anoBase": 2024,
+    "periodoProjecao": 5,
+    "anoFinal": 2029,
+    "tma": 15.0,
+    "inflacaoAnual": 4.0,
+    "pmr": 60,
+    "pmp": 30,
+    "percVendasPrazo": 80.0
+  }
+}

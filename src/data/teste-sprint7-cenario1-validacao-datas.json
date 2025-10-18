@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T10:00:00.000Z",
+    "cenarioTeste": "Sprint 7 - Cenário 1: Validação de Datas",
+    "descricao": "Testa validação cruzada de datas (fim > início, operação >= fim)"
+  },
+  "secao1": {
+    "razaoSocial": "TESTE SPRINT 7 - VALIDAÇÃO LTDA",
+    "nomeFantasia": "Teste Datas",
+    "cnpj": "12.345.678/0001-90",
+    "inscricaoEstadual": "123456789",
+    "dataConstituicao": "2020-01-15",
+    "uf": "GO",
+    "municipio": "Goiânia",
+    "endereco": "Rua dos Testes, 100",
+    "atividadePrincipal": "Indústria de Teste",
+    "descricaoAtividade": "Fabricação de produtos para testes de software",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 500000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2024-01-01",
+    "enquadramentoFiscal": "Lucro Real",
+    "socios": [
+      {
+        "nome": "João da Silva",
+        "tipoPessoa": "PF",
+        "documento": "123.456.789-00",
+        "participacao": 60.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "joao@teste.com",
+        "telefone": "(62) 98765-4321"
+      },
+      {
+        "nome": "Maria Santos",
+        "tipoPessoa": "PF",
+        "documento": "987.654.321-00",
+        "participacao": 40.0,
+        "qualificacao": "Sócia",
+        "email": "maria@teste.com",
+        "telefone": "(62) 98765-1234"
+      }
+    ],
+    "dataInicioOperacoes": "2020-06-01",
+    "tempoMercado": "5 anos e 4 meses",
+    "qtdeFuncionariosAtual": 50,
+    "capacidadeProdutivaAtual": "10000 unidades/mês",
+    "certificacoesAtuais": "ISO 9001",
+    "principaisProdutosServicos": "Produtos teste A, B e C",
+    "responsavelNome": "João da Silva",
+    "responsavelCargo": "Diretor",
+    "responsavelEmail": "joao@teste.com",
+    "responsavelTelefone": "(62) 98765-4321",
+    "cep": "74000-000",
+    "logradouro": "Av. Goiás",
+    "numero": "1000",
+    "complemento": "Galpão 1",
+    "bairro": "Centro",
+    "coordenadasGeograficas": "-16.6869, -49.2648",
+    "pontoReferencia": "Próximo ao Terminal Central",
+    "areaTerreno": 10000
+  },
+  "secao1B": {
+    "tipoProjeto": "Ampliacao",
+    "objetivo": "Expandir capacidade produtiva em 50% para atender demanda crescente do mercado nacional",
+    "descricaoDetalhada": "Este projeto visa ampliar a planta industrial existente através da aquisição de novos equipamentos automatizados, construção de novo galpão industrial de 2.000m² e contratação de 30 novos funcionários especializados. A ampliação permitirá aumentar a produção de 10.000 para 15.000 unidades/mês.",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74125-000",
+      "endereco": "Rodovia GO-010, Km 5",
+      "numero": "S/N",
+      "complemento": "Distrito Industrial",
+      "bairro": "Setor Industrial",
+      "cidade": "Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 5000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-01-01",
+      "dataFimImplantacao": "2025-06-30",
+      "dataInicioOperacao": "2025-07-01",
+      "prazoTotalMeses": 6
+    },
+    "analiseMercado": "O mercado apresenta crescimento médio de 30% ao ano nos últimos 3 anos, com demanda reprimida identificada na região Centro-Oeste",
+    "justificativaEconomica": "Investimento total de R$ 2.500.000,00 com ROI esperado de 25% ao ano, TIR de 28% e payback estimado em 4 anos"
+  },
+  "secao2": {
+    "regimeTributario": "Lucro Real",
+    "simplesAnexo": "",
+    "setorEconomico": "Indústria",
+    "anoBase": 2024,
+    "periodoProjecao": 5,
+    "anoFinal": 2029,
+    "tma": 12.0,
+    "inflacaoAnual": 4.5,
+    "pmr": 30,
+    "pmp": 45,
+    "percVendasPrazo": 60.0
+  }
+}

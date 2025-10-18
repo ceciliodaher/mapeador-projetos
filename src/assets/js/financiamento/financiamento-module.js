@@ -655,6 +655,19 @@ class FinanciamentoModule {
       politicasGovernanca: this.getFieldValue('politicasGovernanca')
     };
 
+    // Coletar seção 1B: Caracterização do Projeto (Sprint 7)
+    if (window.secaoProjeto && typeof window.secaoProjeto.coletarDadosProjeto === 'function') {
+      try {
+        dados.secao1B = window.secaoProjeto.coletarDadosProjeto();
+      } catch (error) {
+        console.warn('FinanciamentoModule: Erro ao coletar dados da Seção 1B (Projeto):', error.message);
+        dados.secao1B = null;
+      }
+    } else {
+      console.log('FinanciamentoModule: SecaoProjeto não disponível');
+      dados.secao1B = null;
+    }
+
     // Coletar seção 2: Regime Tributário
     dados.secao2 = {
       regimeTributario: this.getFieldValue('regimeTributario'),
@@ -917,6 +930,11 @@ class FinanciamentoModule {
       if (dados.secao1.dataInicioOperacoes) {
         this.calcularTempoMercado();
       }
+    }
+
+    // Seção 1B: Caracterização do Projeto (Sprint 7)
+    if (window.secaoProjeto?.restaurarDadosProjeto && dados.secao1B) {
+      window.secaoProjeto.restaurarDadosProjeto(dados.secao1B);
     }
 
     // Restaurar seção 2: Regime Tributário

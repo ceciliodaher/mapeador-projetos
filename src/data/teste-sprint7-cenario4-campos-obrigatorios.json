@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T10:15:00.000Z",
+    "cenarioTeste": "Sprint 7 - Cenário 4: Validação de Campos Obrigatórios",
+    "descricao": "Testa validações de required e minlength nos campos de texto"
+  },
+  "secao1": {
+    "razaoSocial": "EMPRESA VALIDAÇÃO DE CAMPOS LTDA",
+    "nomeFantasia": "Validação Teste",
+    "cnpj": "11.222.333/0001-44",
+    "inscricaoEstadual": "112223334",
+    "dataConstituicao": "2019-09-05",
+    "uf": "GO",
+    "municipio": "Goiânia",
+    "endereco": "Rua da Validação, 500",
+    "atividadePrincipal": "Comércio Atacadista",
+    "descricaoAtividade": "Distribuição de produtos alimentícios para rede varejista",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 1000000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2024-03-10",
+    "enquadramentoFiscal": "Lucro Real",
+    "socios": [
+      {
+        "nome": "Ricardo Mendes",
+        "tipoPessoa": "PF",
+        "documento": "222.333.444-55",
+        "participacao": 55.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "ricardo@validacao.com",
+        "telefone": "(62) 98888-5555"
+      },
+      {
+        "nome": "Patricia Lima",
+        "tipoPessoa": "PF",
+        "documento": "555.666.777-88",
+        "participacao": 45.0,
+        "qualificacao": "Sócia",
+        "email": "patricia@validacao.com",
+        "telefone": "(62) 98777-4444"
+      }
+    ],
+    "dataInicioOperacoes": "2019-11-15",
+    "tempoMercado": "5 anos e 11 meses",
+    "qtdeFuncionariosAtual": 35,
+    "capacidadeProdutivaAtual": "1500 toneladas/mês",
+    "certificacoesAtuais": "ANVISA, INMETRO",
+    "principaisProdutosServicos": "Distribuição de alimentos secos, enlatados e bebidas",
+    "responsavelNome": "Ricardo Mendes",
+    "responsavelCargo": "Diretor Comercial",
+    "responsavelEmail": "ricardo@validacao.com",
+    "responsavelTelefone": "(62) 98888-5555",
+    "cep": "74455-280",
+    "logradouro": "Avenida Central",
+    "numero": "1500",
+    "complemento": "Armazém A",
+    "bairro": "Setor Garavelo",
+    "coordenadasGeograficas": "-16.7195, -49.2584",
+    "pontoReferencia": "Próximo ao CEASA",
+    "areaTerreno": 12000
+  },
+  "secao1B": {
+    "tipoProjeto": "Ampliacao",
+    "objetivo": "Expandir capacidade de armazenagem em 100% para atender crescimento da demanda regional por produtos alimentícios não perecíveis e aumentar portfolio de clientes",
+    "descricaoDetalhada": "O projeto de ampliação contempla a construção de novo centro de distribuição climatizado de 6.000m² com tecnologia de armazenagem vertical automatizada, sistema WMS integrado ao ERP corporativo, doca com 8 posições para carga/descarga simultânea, área de picking automatizado e câmara fria de 1.500m³ para produtos refrigerados. A ampliação permitirá duplicar a capacidade atual de 1.500 para 3.000 toneladas/mês, reduzir tempo de separação de pedidos em 60% e atender novos clientes da região Norte e Nordeste",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74455-300",
+      "endereco": "Rodovia GO-070, Km 8",
+      "numero": "S/N",
+      "complemento": "Módulo 12, Área Industrial",
+      "bairro": "Setor Industrial",
+      "cidade": "Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 15000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-04-01",
+      "dataFimImplantacao": "2025-10-31",
+      "dataInicioOperacao": "2025-11-01",
+      "prazoTotalMeses": 7
+    },
+    "analiseMercado": "O setor de distribuição alimentícia em Goiás apresenta crescimento médio de 12% ao ano desde 2020. A região Centro-Oeste possui déficit de infraestrutura logística moderna, com apenas 35% dos centros de distribuição equipados com tecnologia adequada. Demanda por produtos não perecíveis cresceu 28% nos últimos 18 meses devido à expansão do varejo",
+    "justificativaEconomica": "Investimento total de R$ 8.500.000,00 distribuídos em obras civis (40%), equipamentos (45%) e tecnologia (15%). Projeção de aumento de faturamento de R$ 18MM para R$ 32MM em 3 anos. TIR estimada em 26,5%, VPL de R$ 6.200.000,00 (TMA 12% a.a.) e payback descontado de 4,2 anos. Economia operacional anual de R$ 1.800.000,00 com redução de perdas (35%), otimização de fretes (20%) e ganho de escala nas compras (15%)"
+  },
+  "secao2": {
+    "regimeTributario": "Lucro Real",
+    "simplesAnexo": "",
+    "setorEconomico": "Comércio",
+    "anoBase": 2024,
+    "periodoProjecao": 6,
+    "anoFinal": 2030,
+    "tma": 12.0,
+    "inflacaoAnual": 4.8,
+    "pmr": 35,
+    "pmp": 50,
+    "percVendasPrazo": 75.0
+  }
+}

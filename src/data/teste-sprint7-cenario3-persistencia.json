@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T10:10:00.000Z",
+    "cenarioTeste": "Sprint 7 - Cenário 3: Persistência (Auto-save e Restauração)",
+    "descricao": "Testa auto-save no IndexedDB e restauração após reload da página"
+  },
+  "secao1": {
+    "razaoSocial": "INDÚSTRIA PERSISTÊNCIA S/A",
+    "nomeFantasia": "Persistência Industrial",
+    "cnpj": "45.678.901/0001-23",
+    "inscricaoEstadual": "456789012",
+    "dataConstituicao": "2015-07-10",
+    "uf": "GO",
+    "municipio": "Anápolis",
+    "endereco": "Distrito Agroindustrial de Anápolis - DAIA",
+    "atividadePrincipal": "Fabricação de componentes eletrônicos",
+    "descricaoAtividade": "Produção de placas de circuito impresso e componentes eletrônicos",
+    "tipoSocietario": "S/A",
+    "capitalSocial": 5000000,
+    "numeroSocios": 3,
+    "dataUltimaAlteracao": "2024-08-20",
+    "enquadramentoFiscal": "Lucro Real",
+    "socios": [
+      {
+        "nome": "TECH INVESTIMENTOS LTDA",
+        "tipoPessoa": "PJ",
+        "documento": "11.222.333/0001-44",
+        "participacao": 45.0,
+        "qualificacao": "Acionista Majoritário",
+        "email": "tech@investimentos.com",
+        "telefone": "(62) 3333-4444"
+      },
+      {
+        "nome": "Fernando Oliveira",
+        "tipoPessoa": "PF",
+        "documento": "444.555.666-77",
+        "participacao": 35.0,
+        "qualificacao": "Acionista e Diretor Técnico",
+        "email": "fernando@persistencia.com",
+        "telefone": "(62) 99888-7777"
+      },
+      {
+        "nome": "Ana Paula Costa",
+        "tipoPessoa": "PF",
+        "documento": "777.888.999-00",
+        "participacao": 20.0,
+        "qualificacao": "Acionista",
+        "email": "ana@persistencia.com",
+        "telefone": "(62) 99777-6666"
+      }
+    ],
+    "dataInicioOperacoes": "2015-11-01",
+    "tempoMercado": "9 anos e 11 meses",
+    "qtdeFuncionariosAtual": 120,
+    "capacidadeProdutivaAtual": "50.000 placas/mês",
+    "certificacoesAtuais": "ISO 9001, ISO 14001, IPC-A-610",
+    "principaisProdutosServicos": "Placas de circuito impresso, Montagem SMD, Componentes eletrônicos",
+    "responsavelNome": "Fernando Oliveira",
+    "responsavelCargo": "Diretor Técnico",
+    "responsavelEmail": "fernando@persistencia.com",
+    "responsavelTelefone": "(62) 99888-7777",
+    "cep": "75133-600",
+    "logradouro": "Rua das Indústrias",
+    "numero": "2500",
+    "complemento": "Galpão Industrial 10",
+    "bairro": "DAIA",
+    "coordenadasGeograficas": "-16.3414, -48.9753",
+    "pontoReferencia": "Distrito Agroindustrial de Anápolis, próximo ao aeroporto",
+    "areaTerreno": 25000
+  },
+  "secao1B": {
+    "tipoProjeto": "Modernizacao",
+    "objetivo": "Modernizar linha de produção com tecnologia Industry 4.0 para aumentar eficiência em 40% e reduzir desperdícios",
+    "descricaoDetalhada": "Projeto de modernização tecnológica contemplando a substituição de equipamentos obsoletos por maquinário de última geração com automação inteligente, implementação de sistema MES (Manufacturing Execution System), IoT para monitoramento em tempo real e treinamento completo da equipe técnica. A modernização permitirá maior flexibilidade produtiva, rastreabilidade total e redução de 30% no consumo energético.",
+    "localizacao": {
+      "usarEnderecoEmpresa": true,
+      "cep": "75133-600",
+      "endereco": "Rua das Indústrias",
+      "numero": "2500",
+      "complemento": "Galpão Industrial 10",
+      "bairro": "DAIA",
+      "cidade": "Anápolis",
+      "uf": "GO"
+    },
+    "areaTotalM2": 8000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-03-01",
+      "dataFimImplantacao": "2026-02-28",
+      "dataInicioOperacao": "2026-03-15",
+      "prazoTotalMeses": 12
+    },
+    "analiseMercado": "Setor de eletrônicos no Brasil cresceu 18% em 2023, com previsão de expansão de 22% para 2024-2025. Demanda por placas de alta qualidade aumentou 35% com expansão da indústria automotiva e de automação industrial",
+    "justificativaEconomica": "Investimento total de R$ 12.500.000,00 com economia operacional anual estimada em R$ 3.200.000,00, TIR projetada de 32%, VPL de R$ 8.400.000,00 e payback de 3,9 anos. Redução de custos com retrabalho (40%), energia (30%) e mão de obra direta (25%)"
+  },
+  "secao2": {
+    "regimeTributario": "Lucro Real",
+    "simplesAnexo": "",
+    "setorEconomico": "Indústria",
+    "anoBase": 2024,
+    "periodoProjecao": 7,
+    "anoFinal": 2031,
+    "tma": 14.0,
+    "inflacaoAnual": 4.2,
+    "pmr": 45,
+    "pmp": 60,
+    "percVendasPrazo": 70.0
+  }
+}

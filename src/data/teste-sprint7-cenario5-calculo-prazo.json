@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T10:20:00.000Z",
+    "cenarioTeste": "Sprint 7 - Cenário 5: Cálculo Automático de Prazo",
+    "descricao": "Testa cálculo automático de prazo total em meses (Math.ceil(diffDays / 30))"
+  },
+  "secao1": {
+    "razaoSocial": "CÁLCULO PRAZO INDUSTRIAL LTDA",
+    "nomeFantasia": "Prazo Industrial",
+    "cnpj": "33.444.555/0001-66",
+    "inscricaoEstadual": "334445556",
+    "dataConstituicao": "2017-04-12",
+    "uf": "GO",
+    "municipio": "Aparecida de Goiânia",
+    "endereco": "Avenida Independência",
+    "atividadePrincipal": "Fabricação de móveis planejados",
+    "descricaoAtividade": "Produção e instalação de móveis sob medida residenciais e corporativos",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 800000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2023-11-20",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "Marcos Vieira",
+        "tipoPessoa": "PF",
+        "documento": "666.777.888-99",
+        "participacao": 50.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "marcos@prazo.com",
+        "telefone": "(62) 99666-3333"
+      },
+      {
+        "nome": "Juliana Rocha",
+        "tipoPessoa": "PF",
+        "documento": "999.000.111-22",
+        "participacao": 50.0,
+        "qualificacao": "Sócia",
+        "email": "juliana@prazo.com",
+        "telefone": "(62) 99555-2222"
+      }
+    ],
+    "dataInicioOperacoes": "2017-06-01",
+    "tempoMercado": "8 anos e 4 meses",
+    "qtdeFuncionariosAtual": 45,
+    "capacidadeProdutivaAtual": "120 ambientes/mês",
+    "certificacoesAtuais": "INMETRO, FSC",
+    "principaisProdutosServicos": "Móveis planejados residenciais, corporativos e comerciais",
+    "responsavelNome": "Marcos Vieira",
+    "responsavelCargo": "Diretor Industrial",
+    "responsavelEmail": "marcos@prazo.com",
+    "responsavelTelefone": "(62) 99666-3333",
+    "cep": "74920-760",
+    "logradouro": "Avenida Independência",
+    "numero": "3200",
+    "complemento": "Galpão Industrial",
+    "bairro": "Setor Oeste",
+    "coordenadasGeograficas": "-16.8231, -49.2439",
+    "pontoReferencia": "Próximo ao Aparecida Shopping",
+    "areaTerreno": 6000
+  },
+  "secao1B": {
+    "tipoProjeto": "Relocalizacao",
+    "objetivo": "Relocalizar unidade fabril para novo distrito industrial com área 3x maior e infraestrutura moderna para expansão futura",
+    "descricaoDetalhada": "Projeto de relocalização completa da fábrica de móveis planejados para novo galpão no Distrito Agroindustrial de Aparecida de Goiânia (DAIAG). O novo espaço contará com layout industrial otimizado, linha de produção automatizada com centro de usinagem CNC, setor de pintura robotizado, área de estoque climatizado de 1.200m² e showroom de 800m² para atendimento B2B e B2C. A mudança estratégica permitirá triplicar a capacidade produtiva de 120 para 360 ambientes/mês",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74985-200",
+      "endereco": "Avenida das Indústrias",
+      "numero": "4500",
+      "complemento": "Lote 45, Quadra D",
+      "bairro": "DAIAG",
+      "cidade": "Aparecida de Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 18000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-01-01",
+      "dataFimImplantacao": "2026-12-31",
+      "dataInicioOperacao": "2027-01-15",
+      "prazoTotalMeses": 24
+    },
+    "analiseMercado": "Mercado de móveis planejados em Goiás apresenta taxa de crescimento composta de 16,5% ao ano desde 2019. Segmento corporativo (escritórios, clínicas, varejo) representa oportunidade de R$ 85MM/ano ainda subatendida. Região metropolitana de Goiânia possui déficit habitacional de 42.000 unidades, impulsionando reformas e projetos de interiores",
+    "justificativaEconomica": "Investimento total de R$ 15.800.000,00 contemplando aquisição de terreno (25%), obras civis (35%), equipamentos (30%) e capital de giro (10%). Projeção de receita crescendo de R$ 9,6MM para R$ 28,5MM em 5 anos. TIR de 29,8%, VPL de R$ 12.300.000,00 (TMA 13% a.a.), payback descontado de 5,1 anos. Ganhos de eficiência operacional: redução de 40% no lead time de produção, 25% de economia com energia e 30% de redução de perdas de material"
+  },
+  "secao2": {
+    "regimeTributario": "Lucro Presumido",
+    "simplesAnexo": "",
+    "setorEconomico": "Indústria",
+    "anoBase": 2024,
+    "periodoProjecao": 8,
+    "anoFinal": 2032,
+    "tma": 13.0,
+    "inflacaoAnual": 4.3,
+    "pmr": 40,
+    "pmp": 55,
+    "percVendasPrazo": 65.0
+  }
+}
