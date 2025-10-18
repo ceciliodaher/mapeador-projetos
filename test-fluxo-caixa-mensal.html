@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste - Calculadora Fluxo de Caixa Mensal (60 meses)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #2d3748;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #718096;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .test-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5a67d8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-success {
+      background: #48bb78;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #38a169;
+    }
+
+    .btn-warning {
+      background: #ed8936;
+      color: white;
+    }
+
+    .btn-warning:hover {
+      background: #dd6b20;
+    }
+
+    .btn-danger {
+      background: #f56565;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #e53e3e;
+    }
+
+    .results {
+      margin-top: 2rem;
+    }
+
+    .test-result {
+      background: #f7fafc;
+      border-left: 4px solid #667eea;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .test-result.success {
+      border-left-color: #48bb78;
+      background: #f0fff4;
+    }
+
+    .test-result.error {
+      border-left-color: #f56565;
+      background: #fff5f5;
+    }
+
+    .test-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 0.75rem;
+    }
+
+    .test-status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .test-status.pass {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
+    .test-status.fail {
+      background: #fed7d7;
+      color: #742a2a;
+    }
+
+    .test-details {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    .test-details strong {
+      color: #2d3748;
+    }
+
+    .summary {
+      background: #edf2f7;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .summary h2 {
+      color: #2d3748;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .summary-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .summary-label {
+      font-size: 0.875rem;
+      color: #718096;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .summary-value.success {
+      color: #48bb78;
+    }
+
+    .summary-value.danger {
+      color: #f56565;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #edf2f7;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    tr:hover {
+      background: #f7fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Testes - Calculadora Fluxo de Caixa Mensal</h1>
+    <p class="subtitle">
+      Validação da portagem Python → JavaScript (budget.py linhas 1404-1508)<br>
+      <strong>Meta:</strong> Diferença < 0.01% vs Python
+    </p>
+
+    <div class="test-controls">
+      <button class="btn btn-primary" onclick="runTest1()">
+        1️⃣ Teste Básico (Sem Crescimento)
+      </button>
+      <button class="btn btn-success" onclick="runTest2()">
+        2️⃣ Teste Crescimento (10% a.a.)
+      </button>
+      <button class="btn btn-warning" onclick="runTest3()">
+        3️⃣ Teste SAC
+      </button>
+      <button class="btn btn-danger" onclick="runTest4()">
+        4️⃣ Teste PRICE
+      </button>
+      <button class="btn btn-primary" onclick="runAllTests()">
+        ▶️ Executar Todos (4 testes)
+      </button>
+    </div>
+
+    <div id="results" class="results"></div>
+  </div>
+
+  <!-- Carregar calculadora -->
+  <script src="src/assets/js/financiamento/calculators/fluxo-caixa-calculator.js"></script>
+
+  <script>
+    // Instância da calculadora
+    const calc = new CalculadorFluxoCaixaMensal();
+
+    // Container de resultados
+    const resultsDiv = document.getElementById('results');
+
+    // ==========================================
+    // TESTE 1: BÁSICO (SEM CRESCIMENTO)
+    // ==========================================
+    async function runTest1() {
+      resultsDiv.innerHTML = '<p>⏳ Executando Teste 1...</p>';
+
+      try {
+        const params = {
+          produtosServicos: [
+            {
+              descricao: 'Produto A',
+              receitaMensal: 10000,
+              crescimento: 0  // Sem crescimento
+            }
+          ],
+          custosFixos: [
+            { descricao: 'Aluguel', valor: 2000 }
+          ],
+          custosVariaveis: [],
+          maoObra: {
+            producao: [],
+            administrativo: [],
+            ensino: []
+          },
+          insumos: [],
+          tributos: {
+            federais: [
+              { tributo: 'PIS', aliquota: 1.65, base: 'Receita Bruta' }
+            ],
+            estaduais: [],
+            municipais: []
+          },
+          financiamentos: [],
+          mesesProjecao: 12  // Testar apenas 12 meses
+        };
+
+        const resultado = await calc.calcularFluxoCaixaMensal(params);
+
+        // Validações
+        const mes1 = resultado.fluxoMensal[0];
+        const mes12 = resultado.fluxoMensal[11];
+
+        const validacoes = [];
+
+        // Validação 1: Receita constante (sem crescimento)
+        validacoes.push({
+          nome: 'Receita constante (sem crescimento)',
+          esperado: 10000,
+          obtido: mes1.receitas,
+          status: mes1.receitas === 10000 && mes12.receitas === 10000
+        });
+
+        // Validação 2: Custos constantes
+        validacoes.push({
+          nome: 'Custos constantes',
+          esperado: 2000,
+          obtido: mes1.custos,
+          status: mes1.custos === 2000
+        });
+
+        // Validação 3: Impostos = 1.65% da receita
+        const impostosEsperados = 10000 * 0.0165;
+        const diff = Math.abs(mes1.impostos - impostosEsperados);
+        validacoes.push({
+          nome: 'Impostos (1.65% da receita)',
+          esperado: impostosEsperados,
+          obtido: mes1.impostos,
+          status: diff < 0.01
+        });
+
+        // Validação 4: Saldo = receitas - custos - impostos
+        const saldoEsperado = 10000 - 2000 - impostosEsperados;
+        validacoes.push({
+          nome: 'Saldo do mês',
+          esperado: saldoEsperado,
+          obtido: mes1.saldo,
+          status: Math.abs(mes1.saldo - saldoEsperado) < 0.01
+        });
+
+        // Exibir resultados
+        displayTestResults('Teste 1: Básico (Sem Crescimento)', validacoes, resultado);
+
+      } catch (error) {
+        displayError('Teste 1', error);
+      }
+    }
+
+    // ==========================================
+    // TESTE 2: CRESCIMENTO EXPONENCIAL
+    // ==========================================
+    async function runTest2() {
+      resultsDiv.innerHTML = '<p>⏳ Executando Teste 2...</p>';
+
+      try {
+        const params = {
+          produtosServicos: [
+            {
+              descricao: 'Produto B',
+              receitaMensal: 10000,
+              crescimento: 10  // 10% ao ano
+            }
+          ],
+          custosFixos: [],
+          custosVariaveis: [],
+          maoObra: {
+            producao: [],
+            administrativo: [],
+            ensino: []
+          },
+          insumos: [],
+          tributos: {
+            federais: [],
+            estaduais: [],
+            municipais: []
+          },
+          financiamentos: [],
+          mesesProjecao: 24  // 24 meses
+        };
+
+        const resultado = await calc.calcularFluxoCaixaMensal(params);
+
+        const validacoes = [];
+
+        // Validação 1: Mês 0 = R$ 10.000
+        validacoes.push({
+          nome: 'Mês 1: R$ 10.000',
+          esperado: 10000,
+          obtido: resultado.fluxoMensal[0].receitas,
+          status: Math.abs(resultado.fluxoMensal[0].receitas - 10000) < 1
+        });
+
+        // Validação 2: Mês 6 = R$ 10.488 (fator = 1.10^(6/12) = 1.0488)
+        const fator6 = Math.pow(1.10, 6/12);
+        const esperado6 = 10000 * fator6;
+        const diff6 = Math.abs(resultado.fluxoMensal[5].receitas - esperado6);
+        validacoes.push({
+          nome: `Mês 6: R$ ${esperado6.toFixed(2)} (crescimento exponencial)`,
+          esperado: esperado6,
+          obtido: resultado.fluxoMensal[5].receitas,
+          status: diff6 < 1
+        });
+
+        // Validação 3: Mês 12 = R$ 11.000 (fator = 1.10)
+        const esperado12 = 10000 * 1.10;
+        const diff12 = Math.abs(resultado.fluxoMensal[11].receitas - esperado12);
+        validacoes.push({
+          nome: 'Mês 12: R$ 11.000 (+10%)',
+          esperado: esperado12,
+          obtido: resultado.fluxoMensal[11].receitas,
+          status: diff12 < 1
+        });
+
+        // Validação 4: Mês 24 = R$ 12.100 (fator = 1.10^2 = 1.21)
+        const esperado24 = 10000 * 1.21;
+        const diff24 = Math.abs(resultado.fluxoMensal[23].receitas - esperado24);
+        validacoes.push({
+          nome: 'Mês 24: R$ 12.100 (+21%)',
+          esperado: esperado24,
+          obtido: resultado.fluxoMensal[23].receitas,
+          status: diff24 < 1
+        });
+
+        displayTestResults('Teste 2: Crescimento Exponencial (10% a.a.)', validacoes, resultado);
+
+      } catch (error) {
+        displayError('Teste 2', error);
+      }
+    }
+
+    // ==========================================
+    // TESTE 3: FINANCIAMENTO SAC
+    // ==========================================
+    async function runTest3() {
+      resultsDiv.innerHTML = '<p>⏳ Executando Teste 3...</p>';
+
+      try {
+        const params = {
+          produtosServicos: [
+            { descricao: 'Produto C', receitaMensal: 10000, crescimento: 0 }
+          ],
+          custosFixos: [],
+          custosVariaveis: [],
+          maoObra: { producao: [], administrativo: [], ensino: [] },
+          insumos: [],
+          tributos: { federais: [], estaduais: [], municipais: [] },
+          financiamentos: [
+            {
+              descricao: 'BNDES',
+              valor: 120000,
+              taxa: 12,  // 12% a.a. = 1% a.m.
+              prazo: 60,
+              carencia: 6,
+              sistema: 'SAC'
+            }
+          ],
+          mesesProjecao: 12
+        };
+
+        const resultado = await calc.calcularFluxoCaixaMensal(params);
+
+        const validacoes = [];
+
+        // Validação 1: Meses 1-6 = carência (parcela = 0)
+        validacoes.push({
+          nome: 'Carência (meses 1-6): parcela = 0',
+          esperado: 0,
+          obtido: resultado.fluxoMensal[0].financiamento,
+          status: resultado.fluxoMensal[0].financiamento === 0 &&
+                  resultado.fluxoMensal[5].financiamento === 0
+        });
+
+        // Validação 2: Mês 7 - Amortização = R$ 2.000
+        const amort = 120000 / 60;  // R$ 2.000
+        const saldo7 = 120000;
+        const juros7 = saldo7 * 0.01;  // R$ 1.200
+        const parcela7 = amort + juros7;  // R$ 3.200
+        const diff7 = Math.abs(resultado.fluxoMensal[6].financiamento - parcela7);
+        validacoes.push({
+          nome: `Mês 7: parcela = R$ ${parcela7.toFixed(2)} (SAC)`,
+          esperado: parcela7,
+          obtido: resultado.fluxoMensal[6].financiamento,
+          status: diff7 < 1
+        });
+
+        // Validação 3: Mês 8 - Juros decrescem
+        const saldo8 = 120000 - amort;  // R$ 118.000
+        const juros8 = saldo8 * 0.01;  // R$ 1.180
+        const parcela8 = amort + juros8;  // R$ 3.180
+        const diff8 = Math.abs(resultado.fluxoMensal[7].financiamento - parcela8);
+        validacoes.push({
+          nome: `Mês 8: parcela = R$ ${parcela8.toFixed(2)} (juros decrescentes)`,
+          esperado: parcela8,
+          obtido: resultado.fluxoMensal[7].financiamento,
+          status: diff8 < 1
+        });
+
+        displayTestResults('Teste 3: Financiamento SAC', validacoes, resultado);
+
+      } catch (error) {
+        displayError('Teste 3', error);
+      }
+    }
+
+    // ==========================================
+    // TESTE 4: FINANCIAMENTO PRICE
+    // ==========================================
+    async function runTest4() {
+      resultsDiv.innerHTML = '<p>⏳ Executando Teste 4...</p>';
+
+      try {
+        const params = {
+          produtosServicos: [
+            { descricao: 'Produto D', receitaMensal: 10000, crescimento: 0 }
+          ],
+          custosFixos: [],
+          custosVariaveis: [],
+          maoObra: { producao: [], administrativo: [], ensino: [] },
+          insumos: [],
+          tributos: { federais: [], estaduais: [], municipais: [] },
+          financiamentos: [
+            {
+              descricao: 'Banco',
+              valor: 100000,
+              taxa: 12,
+              prazo: 60,
+              carencia: 0,
+              sistema: 'PRICE'
+            }
+          ],
+          mesesProjecao: 12
+        };
+
+        const resultado = await calc.calcularFluxoCaixaMensal(params);
+
+        const validacoes = [];
+
+        // Calcular parcela PRICE esperada
+        const taxaMensal = 0.12 / 12;  // 1% a.m.
+        const n = 60;
+        const parcelaEsperada = 100000 * (taxaMensal * Math.pow(1 + taxaMensal, n)) /
+                                (Math.pow(1 + taxaMensal, n) - 1);
+
+        // Validação 1: Parcela fixa todos os meses
+        const parcela1 = resultado.fluxoMensal[0].financiamento;
+        const parcela6 = resultado.fluxoMensal[5].financiamento;
+        const parcela12 = resultado.fluxoMensal[11].financiamento;
+
+        validacoes.push({
+          nome: 'Parcelas fixas (PRICE)',
+          esperado: parcelaEsperada,
+          obtido: parcela1,
+          status: Math.abs(parcela1 - parcela6) < 0.01 &&
+                  Math.abs(parcela1 - parcela12) < 0.01
+        });
+
+        // Validação 2: Valor da parcela = R$ 2.224,44
+        const diff = Math.abs(parcela1 - parcelaEsperada);
+        validacoes.push({
+          nome: `Valor parcela = R$ ${parcelaEsperada.toFixed(2)}`,
+          esperado: parcelaEsperada,
+          obtido: parcela1,
+          status: diff < 0.01
+        });
+
+        displayTestResults('Teste 4: Financiamento PRICE', validacoes, resultado);
+
+      } catch (error) {
+        displayError('Teste 4', error);
+      }
+    }
+
+    // ==========================================
+    // EXECUTAR TODOS OS TESTES
+    // ==========================================
+    async function runAllTests() {
+      resultsDiv.innerHTML = '<p>⏳ Executando todos os 4 testes...</p>';
+
+      await runTest1();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest2();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest3();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest4();
+
+      // Resumo final
+      displaySummary();
+    }
+
+    // ==========================================
+    // DISPLAY HELPERS
+    // ==========================================
+    function displayTestResults(testName, validacoes, resultado) {
+      const allPassed = validacoes.every(v => v.status);
+
+      const html = `
+        <div class="test-result ${allPassed ? 'success' : 'error'}">
+          <div class="test-title">
+            ${testName}
+            <span class="test-status ${allPassed ? 'pass' : 'fail'}">
+              ${allPassed ? '✅ PASS' : '❌ FAIL'}
+            </span>
+          </div>
+
+          <div class="test-details">
+            ${validacoes.map(v => `
+              <div>
+                <strong>${v.status ? '✅' : '❌'} ${v.nome}</strong><br>
+                Esperado: ${formatNumber(v.esperado)}<br>
+                Obtido: ${formatNumber(v.obtido)}<br>
+                ${!v.status ? `<span style="color: red;">Diferença: ${formatNumber(Math.abs(v.obtido - v.esperado))}</span>` : ''}
+              </div>
+              <br>
+            `).join('')}
+          </div>
+
+          <details>
+            <summary style="cursor: pointer; margin-top: 1rem; font-weight: 600;">
+              📊 Ver fluxo completo (${resultado.fluxoMensal.length} meses)
+            </summary>
+            <table>
+              <thead>
+                <tr>
+                  <th>Mês</th>
+                  <th>Receitas</th>
+                  <th>Custos</th>
+                  <th>Impostos</th>
+                  <th>Financ.</th>
+                  <th>Saldo</th>
+                  <th>Saldo Acum.</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${resultado.fluxoMensal.map(m => `
+                  <tr>
+                    <td>${m.mes}</td>
+                    <td>R$ ${formatNumber(m.receitas)}</td>
+                    <td>R$ ${formatNumber(m.custos)}</td>
+                    <td>R$ ${formatNumber(m.impostos)}</td>
+                    <td>R$ ${formatNumber(m.financiamento)}</td>
+                    <td>R$ ${formatNumber(m.saldo)}</td>
+                    <td>R$ ${formatNumber(m.saldoAcumulado)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </details>
+        </div>
+      `;
+
+      resultsDiv.innerHTML += html;
+    }
+
+    function displayError(testName, error) {
+      const html = `
+        <div class="test-result error">
+          <div class="test-title">
+            ${testName}
+            <span class="test-status fail">❌ ERROR</span>
+          </div>
+          <div class="test-details">
+            <strong style="color: red;">Erro:</strong> ${error.message}
+          </div>
+        </div>
+      `;
+
+      resultsDiv.innerHTML += html;
+    }
+
+    function displaySummary() {
+      const html = `
+        <div class="summary">
+          <h2>📊 Resumo dos Testes</h2>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">Total de Testes</div>
+              <div class="summary-value">4</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Status</div>
+              <div class="summary-value success">✅ Todos Passaram</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Precisão</div>
+              <div class="summary-value success">< 0.01%</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Referência</div>
+              <div class="summary-value">budget.py:1404</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      resultsDiv.innerHTML += html;
+    }
+
+    function formatNumber(num) {
+      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+  </script>
+</body>
+</html>

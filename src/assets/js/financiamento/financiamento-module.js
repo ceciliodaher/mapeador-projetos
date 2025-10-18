@@ -22,6 +22,7 @@ class FinanciamentoModule {
     this.sistemaHibrido = null;
     this.calculadorDRE = null;
     this.calculadorFluxoCaixa = null;
+    this.calculadorFluxoCaixaMensal = null;  // NOVO: Calculadora mensal (60 meses) - budget.py
     this.calculadorIndicadores = null;
 
     // Módulos de abas
@@ -95,6 +96,7 @@ class FinanciamentoModule {
       'SistemaApuracaoHibrido',
       'CalculadorDREProjetado',
       'CalculadorFluxoCaixa',
+      'CalculadorFluxoCaixaMensal',  // NOVO: Calculadora mensal (60 meses) - budget.py
       'CalculadorIndicadores',
       'AbaApuracaoImpostos',
       'AbaCenariosAnalise',
@@ -150,15 +152,18 @@ class FinanciamentoModule {
       this.taxCalculator
     );
 
-    // Calculador Fluxo de Caixa
+    // Calculador Fluxo de Caixa (anual - 5 anos)
     this.calculadorFluxoCaixa = new window.CalculadorFluxoCaixa(
       this.calculadorDRE
     );
 
+    // Calculador Fluxo de Caixa Mensal (60 meses) - NOVO: Portado de budget.py
+    this.calculadorFluxoCaixaMensal = new window.CalculadorFluxoCaixaMensal();
+
     // Calculador Indicadores
     this.calculadorIndicadores = new window.CalculadorIndicadores();
 
-    console.log('✓ Calculadores inicializados');
+    console.log('✓ Calculadores inicializados (incluindo mensal 60 meses)');
   }
 
   /**
@@ -293,7 +298,6 @@ class FinanciamentoModule {
       btnModeAnalista.classList.remove('active');
       progressContainer.classList.remove('analyst-mode');
 
-      // Se estiver em seção protegida, redirecionar para seção 11
       const currentTab = window.tabNavigation?.currentTab || 1;
       if (currentTab > 11) {
         window.tabNavigation.switchToTab(11);
@@ -309,12 +313,18 @@ class FinanciamentoModule {
       progressContainer.classList.add('analyst-mode');
       console.log('🔄 Modo: Analista (seções 1-13)');
     });
+
+    // ADICIONAR ESTAS LINHAS: Iniciar automaticamente em Modo Analista durante desenvolvimento
+    btnModeAnalista.click();
+    console.log('🔧 Modo Analista ativado automaticamente (desenvolvimento)');
   }
 
   /**
    * Configura proteção para seções restritas
    */
   configurarProtecaoSecoes() {
+    // PROTEÇÃO DESABILITADA PARA DESENVOLVIMENTO
+    /*
     const progressContainer = document.querySelector('.progress-container');
 
     // Interceptar cliques em tabs protegidas (capture phase)
@@ -331,7 +341,11 @@ class FinanciamentoModule {
         }
       }
     }, true); // true = capture phase (antes do TabNavigation)
+    */
+
+    console.log('⚠️ Proteção de seções DESABILITADA para desenvolvimento');
   }
+  
 
   // ==========================================
   // AUTO-SAVE
