@@ -1224,20 +1224,192 @@
                     </div>
                 </div>
 
-                <!-- Seção 7: Ciclos Financeiros (PLACEHOLDER - PROTEGIDA) -->
+                <!-- Seção 7: Ciclos Financeiros -->
                 <div class="form-section" data-section="7" id="section-7" role="tabpanel" aria-labelledby="tab-7">
                     <div class="section-header">
                         <h2 class="section-title">2.5 Ciclos Financeiros e Operacionais 🔒</h2>
                         <p class="section-description">
                             <span class="badge badge-info">Seção Protegida - Modo Analista</span><br>
-                            Cálculo de PMR, PMP, PME e NCG.
+                            Composição de estoques, prazos e cálculo de NCG (Necessidade de Capital de Giro).
                         </p>
                     </div>
 
-                    <div class="alert alert-info" style="margin-top: 2rem;">
-                        <h3>⚠️ Seção em Desenvolvimento</h3>
-                        <p><strong>Sprint Futuro:</strong> Ciclos Financeiros será implementado em breve.</p>
-                        <p>Esta seção calculará automaticamente PMR (Prazo Médio Recebimento), PMP (Prazo Médio Pagamento), PME (Prazo Médio Estocagem) e NCG (Necessidade de Capital de Giro) baseado em inputs do usuário sobre prazos e giro de estoques.</p>
+                    <div class="form-grid">
+                        <!-- Seção 1: Composição de Estoques -->
+                        <div class="form-group full-width">
+                            <h3>Composição de Estoques</h3>
+                            <p style="color: #666; margin-bottom: 1rem;">
+                                Informe o percentual e prazo médio de cada tipo de estoque. <strong>Os percentuais devem somar 100%.</strong>
+                            </p>
+
+                            <div class="form-grid">
+                                <!-- Matéria-Prima -->
+                                <div class="form-group">
+                                    <label for="percEstoqueMP">% Estoque Matéria-Prima *</label>
+                                    <input type="number" id="percEstoqueMP" name="percEstoqueMP"
+                                           min="0" max="100" step="0.1" value="40" required>
+                                    <small>Percentual do estoque total</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmeMP">PME Matéria-Prima (dias) *</label>
+                                    <input type="number" id="pmeMP" name="pmeMP"
+                                           min="0" max="365" step="0.1" value="30" required>
+                                    <small>Giro típico: 30-60 dias</small>
+                                </div>
+
+                                <!-- WIP (Work In Progress) -->
+                                <div class="form-group">
+                                    <label for="percEstoqueWIP">% Estoque WIP (Produção) *</label>
+                                    <input type="number" id="percEstoqueWIP" name="percEstoqueWIP"
+                                           min="0" max="100" step="0.1" value="15" required>
+                                    <small>Work In Progress (em produção)</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmeWIP">PME WIP (dias) *</label>
+                                    <input type="number" id="pmeWIP" name="pmeWIP"
+                                           min="0" max="365" step="0.1" value="10" required>
+                                    <small>Giro típico: 5-15 dias</small>
+                                </div>
+
+                                <!-- Produtos Acabados -->
+                                <div class="form-group">
+                                    <label for="percEstoquePA">% Estoque Produtos Acabados *</label>
+                                    <input type="number" id="percEstoquePA" name="percEstoquePA"
+                                           min="0" max="100" step="0.1" value="35" required>
+                                    <small>Produtos aguardando venda</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmePA">PME Produtos Acabados (dias) *</label>
+                                    <input type="number" id="pmePA" name="pmePA"
+                                           min="0" max="365" step="0.1" value="25" required>
+                                    <small>Giro típico: 15-45 dias</small>
+                                </div>
+
+                                <!-- Peças de Reposição -->
+                                <div class="form-group">
+                                    <label for="percEstoqueReposicao">% Estoque Peças de Reposição</label>
+                                    <input type="number" id="percEstoqueReposicao" name="percEstoqueReposicao"
+                                           min="0" max="100" step="0.1" value="10">
+                                    <small>Manutenção/reposição (opcional)</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pmeReposicao">PME Peças Reposição (dias)</label>
+                                    <input type="number" id="pmeReposicao" name="pmeReposicao"
+                                           min="0" max="365" step="0.1" value="120">
+                                    <small>Giro típico: 90-180 dias</small>
+                                </div>
+                            </div>
+
+                            <!-- Alerta de Validação Percentual -->
+                            <div id="alertaPercentualEstoque" class="alert" style="display:none; margin-top: 1rem;"></div>
+                        </div>
+
+                        <!-- Seção 2: Prazos Consolidados -->
+                        <div class="form-group full-width">
+                            <h3>Prazos Consolidados e Parâmetros</h3>
+                            <div class="form-grid">
+                                <!-- PME Ponderado (calculado) -->
+                                <div class="form-group">
+                                    <label for="pmePonderado">PME Ponderado (dias)</label>
+                                    <input type="number" id="pmePonderado" name="pmePonderado" readonly
+                                           style="background-color: #f0f0f0;">
+                                    <small>Média ponderada dos estoques</small>
+                                </div>
+
+                                <!-- % Compras a Prazo -->
+                                <div class="form-group">
+                                    <label for="percComprasPrazo">% Compras a Prazo *</label>
+                                    <input type="number" id="percComprasPrazo" name="percComprasPrazo"
+                                           min="0" max="100" step="0.1" value="50" required>
+                                    <small>Percentual de compras não à vista</small>
+                                </div>
+
+                                <!-- Valor Total Estoque (opcional) -->
+                                <div class="form-group">
+                                    <label for="valorTotalEstoque">Valor Total Estoque (R$)</label>
+                                    <input type="text" id="valorTotalEstoque" name="valorTotalEstoque"
+                                           data-mask="currency">
+                                    <small>Valor total dos estoques - opcional</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seção 3: Ciclos Calculados -->
+                        <div class="form-group full-width">
+                            <h3>Ciclos Calculados</h3>
+                            <div class="alert alert-info">
+                                <p><strong>ℹ️ Cálculos Automáticos:</strong></p>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                    <li><strong>Ciclo Operacional</strong> = PMR + PME Ponderado</li>
+                                    <li><strong>Ciclo Financeiro</strong> = (PMR + PME Ponderado) - PMP</li>
+                                </ul>
+                                <p style="margin-top: 0.5rem; margin-bottom: 0;">
+                                    <small>PMR e PMP são obtidos da <strong>Tab 2.1 (Regime Tributário)</strong></small>
+                                </p>
+                            </div>
+
+                            <div class="form-grid">
+                                <!-- Ciclo Operacional -->
+                                <div class="form-group">
+                                    <label for="cicloOperacional">Ciclo Operacional (dias)</label>
+                                    <input type="number" id="cicloOperacional" name="cicloOperacional" readonly
+                                           style="background-color: #f0f0f0;">
+                                    <small>PMR + PME Ponderado</small>
+                                </div>
+
+                                <!-- Ciclo Financeiro -->
+                                <div class="form-group">
+                                    <label for="cicloFinanceiro">Ciclo Financeiro (dias)</label>
+                                    <input type="number" id="cicloFinanceiro" name="cicloFinanceiro" readonly
+                                           style="background-color: #f0f0f0;">
+                                    <small>(PMR + PME Ponderado) - PMP</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seção 4: NCG Calculada -->
+                        <div class="form-group full-width">
+                            <h3>Necessidade de Capital de Giro (NCG)</h3>
+                            <div class="alert alert-info">
+                                <p><strong>ℹ️ Fórmula NCG:</strong></p>
+                                <p style="margin: 0.5rem 0;">
+                                    NCG = (Receita × PMR/30) + (Custos × PME/30) - (Custos × PMP/30)
+                                </p>
+                                <p style="margin-top: 0.5rem; margin-bottom: 0;">
+                                    <small>Receitas são obtidas do <strong>Tab 8 (Receitas)</strong></small>
+                                </p>
+                            </div>
+
+                            <div class="form-grid">
+                                <!-- NCG Diária -->
+                                <div class="form-group">
+                                    <label for="ncgDiaria">NCG Diária (R$)</label>
+                                    <input type="text" id="ncgDiaria" name="ncgDiaria" readonly
+                                           data-mask="currency" style="background-color: #f0f0f0;">
+                                    <small>Necessidade de capital por dia</small>
+                                </div>
+
+                                <!-- NCG Mensal -->
+                                <div class="form-group">
+                                    <label for="ncgMensal">NCG Mensal (R$)</label>
+                                    <input type="text" id="ncgMensal" name="ncgMensal" readonly
+                                           data-mask="currency" style="background-color: #f0f0f0;">
+                                    <small>Necessidade de capital por mês</small>
+                                </div>
+
+                                <!-- NCG Anual -->
+                                <div class="form-group">
+                                    <label for="ncgAnual">NCG Anual (R$)</label>
+                                    <input type="text" id="ncgAnual" name="ncgAnual" readonly
+                                           data-mask="currency" style="background-color: #f0f0f0;">
+                                    <small>Necessidade de capital por ano</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2689,6 +2861,7 @@
     <script src="../assets/js/financiamento/calculador-fluxo-caixa.js"></script>
     <script src="../assets/js/financiamento/calculators/fluxo-caixa-calculator.js"></script> <!-- NOVO: Mensal (60 meses) -->
     <script src="../assets/js/financiamento/calculador-indicadores.js"></script>
+    <script src="../assets/js/financiamento/calculador-ciclos-financeiros.js"></script>   <!-- SPRINT 8: PME Ponderado, Ciclos, NCG -->
 
     <!-- SPRINT 6: Calculadores VPL, TIR (Secante) e Payback -->
     <script src="../assets/js/financiamento/calculators/tir-calculator.js"></script>        <!-- TIR Método da Secante (Python) -->
@@ -2714,6 +2887,7 @@
     <script src="../assets/js/financiamento/secao-empresa.js"></script>
     <script src="../assets/js/financiamento/secao-projeto.js"></script>
     <script src="../assets/js/financiamento/secao-regime-tributario.js"></script>
+    <script src="../assets/js/financiamento/secao-ciclos-financeiros.js"></script>   <!-- SPRINT 8: Tab 2.5 Ciclos Financeiros -->
     <script src="../assets/js/financiamento/secao-receitas.js"></script>
     <script src="../assets/js/financiamento/secao-insumos.js"></script>
     <script src="../assets/js/financiamento/secao-mao-de-obra.js"></script>
