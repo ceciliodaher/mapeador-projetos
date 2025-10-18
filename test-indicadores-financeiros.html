@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testes: VPL, TIR (Secante) e Payback</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .test-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .test-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-section h3 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .test-result {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border-left: 4px solid #667eea;
+        }
+
+        .test-result.pass {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .test-result.fail {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .test-result.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .result-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .result-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .result-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .badge-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .summary-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧪 Testes: VPL, TIR e Payback</h1>
+            <p>Validação de Calculadoras Financeiras vs Python (budget.py)</p>
+            <p style="font-size: 0.9em; color: #999; margin-top: 10px;">
+                VPL diff &lt; R$ 0.01 | TIR diff &lt; 0.01% | Payback diff &lt; 0.5 mês
+            </p>
+        </div>
+
+        <!-- Controls -->
+        <div class="test-controls">
+            <button class="btn btn-primary" onclick="runAllTests()">
+                ▶️ Executar Todos os Testes (6)
+            </button>
+            <button class="btn btn-secondary" onclick="runTest1()">Teste 1: TIR Secante vs Newton</button>
+            <button class="btn btn-secondary" onclick="runTest2()">Teste 2: TIR Proteções</button>
+            <button class="btn btn-secondary" onclick="runTest3()">Teste 3: VPL Mensal vs Anual</button>
+            <button class="btn btn-secondary" onclick="runTest4()">Teste 4: Payback Python</button>
+            <button class="btn btn-secondary" onclick="runTest5()">Teste 5: Caso Real</button>
+            <button class="btn btn-secondary" onclick="runTest6()">Teste 6: Edge Cases</button>
+            <button class="btn btn-secondary" onclick="clearResults()">🗑️ Limpar</button>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/assets/js/financiamento/calculators/tir-calculator.js"></script>
+    <script src="src/assets/js/financiamento/calculators/vpl-calculator.js"></script>
+    <script src="src/assets/js/financiamento/calculators/payback-calculator.js"></script>
+
+    <script>
+        // Instanciar calculadoras
+        const calcTIR = new CalculadorTIR();
+        const calcVPL = new CalculadorVPL();
+        const calcPayback = new CalculadorPayback();
+
+        // ==========================================
+        // TESTE 1: TIR Secante vs Newton-Raphson
+        // ==========================================
+        function runTest1() {
+            appendResult('<div class="test-section"><h2>📊 TESTE 1: TIR Secante vs Newton-Raphson</h2></div>');
+
+            // Dados: Fluxo irregular (comum em projetos reais)
+            const params = {
+                investimentoInicial: 100000,
+                fluxosCaixa: [
+                    -5000, 10000, 15000, 20000, 25000,  // Meses 1-5
+                    30000, 28000, 26000, 24000, 22000,  // Meses 6-10
+                    20000, 18000, 16000, 14000, 12000,  // Meses 11-15
+                    10000, 8000, 6000, 4000, 2000,      // Meses 16-20
+                    1000, 1000, 1000, 1000, 1000,       // Meses 21-25
+                    1000, 1000, 1000, 1000, 1000,       // Meses 26-30
+                    1000, 1000, 1000, 1000, 1000,       // Meses 31-35
+                    1000, 1000, 1000, 1000, 1000,       // Meses 36-40
+                    1000, 1000, 1000, 1000, 1000,       // Meses 41-45
+                    1000, 1000, 1000, 1000, 1000,       // Meses 46-50
+                    1000, 1000, 1000, 1000, 1000,       // Meses 51-55
+                    1000, 1000, 1000, 1000, 1000        // Meses 56-60
+                ],
+                periodicidade: 'mensal'
+            };
+
+            // Comparar métodos
+            const comparacao = calcTIR.compararMetodos(params);
+
+            // Validar convergência
+            const secanteOK = comparacao.secante.converged;
+            const newtonOK = comparacao.newtonRaphson.converged;
+
+            let html = '<table class="result-table">';
+            html += '<tr><th>Método</th><th>TIR (%)</th><th>Iterações</th><th>Converged</th></tr>';
+            html += `<tr><td>Secante (Python)</td><td>${comparacao.secante.tir.toFixed(4)}</td><td>${comparacao.secante.iteracoes}</td><td>${secanteOK ? '✅' : '❌'}</td></tr>`;
+            html += `<tr><td>Newton-Raphson (JS)</td><td>${comparacao.newtonRaphson.tir.toFixed(4)}</td><td>${comparacao.newtonRaphson.iteracoes}</td><td>${newtonOK ? '✅' : '❌'}</td></tr>`;
+            html += '</table>';
+
+            html += `<div class="test-result ${comparacao.comparacao.diferencaPercentual < 0.01 ? 'pass' : 'fail'}">`;
+            html += `<strong>Diferença:</strong> ${comparacao.comparacao.diferencaAbsoluta.toFixed(6)}% (${comparacao.comparacao.diferencaPercentual.toFixed(4)}% relativa)<br>`;
+            html += `<strong>Critério:</strong> ${comparacao.comparacao.diferencaPercentual < 0.01 ? '✅ PASS' : '❌ FAIL'} (diff < 0.01%)<br>`;
+            html += `<strong>Observação:</strong> ${comparacao.comparacao.observacao}`;
+            html += '</div>';
+
+            appendResult(html);
+        }
+
+        // ==========================================
+        // TESTE 2: TIR Proteções Numéricas
+        // ==========================================
+        function runTest2() {
+            appendResult('<div class="test-section"><h2>🛡️ TESTE 2: TIR Proteções Numéricas</h2></div>');
+
+            // Cenário 1: Taxa limite -1
+            appendResult('<h3>Cenário 1: Fluxos que levam taxa para -1 (proteção rate <= -1)</h3>');
+            const cenario1 = {
+                investimentoInicial: 100000,
+                fluxosCaixa: Array(60).fill(-1000),  // Todos fluxos negativos
+                periodicidade: 'mensal'
+            };
+
+            const result1 = calcTIR.calcularTIRSecante(cenario1);
+            let html1 = `<div class="test-result ${result1.protecoes.rateLimitado ? 'pass' : 'fail'}">`;
+            html1 += `<strong>TIR:</strong> ${result1.tir.toFixed(2)}%<br>`;
+            html1 += `<strong>Proteção ativada:</strong> ${result1.protecoes.rateLimitado ? '✅ SIM' : '❌ NÃO'}<br>`;
+            html1 += `<strong>Convergiu:</strong> ${result1.converged ? 'SIM' : 'NÃO'}<br>`;
+            html1 += `<strong>Observação:</strong> Taxa ajustada para -0.9999 evitando divisão por zero`;
+            html1 += '</div>';
+            appendResult(html1);
+
+            // Cenário 2: Overflow (fluxos muito grandes)
+            appendResult('<h3>Cenário 2: Fluxos gigantes (proteção overflow)</h3>');
+            const cenario2 = {
+                investimentoInicial: 1000,
+                fluxosCaixa: Array(60).fill(1e15),  // Fluxos enormes
+                periodicidade: 'mensal'
+            };
+
+            const result2 = calcTIR.calcularTIRSecante(cenario2);
+            let html2 = `<div class="test-result ${result2.converged ? 'pass' : 'warning'}">`;
+            html2 += `<strong>TIR:</strong> ${result2.tir.toFixed(2)}%<br>`;
+            html2 += `<strong>Overflow detectado:</strong> ${result2.protecoes.overflowDetectado ? '⚠️ SIM' : 'NÃO'}<br>`;
+            html2 += `<strong>Convergiu:</strong> ${result2.converged ? '✅ SIM' : '❌ NÃO'}<br>`;
+            html2 += `<strong>Observação:</strong> Proteção contra overflow funcionando`;
+            html2 += '</div>';
+            appendResult(html2);
+
+            // Cenário 3: Denominador zero (vpl1 ≈ vpl0)
+            appendResult('<h3>Cenário 3: Fluxos constantes (proteção denominador zero)</h3>');
+            const cenario3 = {
+                investimentoInicial: 50000,
+                fluxosCaixa: Array(60).fill(1000),  // Fluxos perfeitamente constantes
+                periodicidade: 'mensal'
+            };
+
+            const result3 = calcTIR.calcularTIRSecante(cenario3);
+            let html3 = `<div class="test-result ${result3.converged || result3.protecoes.denominadorZero ? 'pass' : 'fail'}">`;
+            html3 += `<strong>TIR:</strong> ${result3.tir.toFixed(2)}%<br>`;
+            html3 += `<strong>Proteção denominador zero:</strong> ${result3.protecoes.denominadorZero ? '⚠️ ATIVADA' : 'NÃO'}<br>`;
+            html3 += `<strong>Convergiu:</strong> ${result3.converged ? '✅ SIM' : '❌ NÃO'}<br>`;
+            html3 += `<strong>Observação:</strong> ${result3.motivo || 'Calculado normalmente'}`;
+            html3 += '</div>';
+            appendResult(html3);
+        }
+
+        // ==========================================
+        // TESTE 3: VPL - Conversão TMA (CORRIGIDO)
+        // ==========================================
+        function runTest3() {
+            appendResult('<div class="test-section"><h2>📅 TESTE 3: VPL - Conversão TMA Mensal</h2></div>');
+
+            const tma = 12;  // 12% ao ano
+            const investimento = 200000;
+            const fluxoMensal = 5000;
+
+            // Calcular VPL mensal
+            const vplMensal = calcVPL.calcularVPL({
+                investimentoInicial: investimento,
+                fluxosCaixa: Array(60).fill(fluxoMensal),
+                tma,
+                periodicidade: 'mensal'
+            });
+
+            // Calcular VPL anual (para demonstração)
+            const vplAnual = calcVPL.calcularVPL({
+                investimentoInicial: investimento,
+                fluxosCaixa: Array(5).fill(fluxoMensal * 12),  // 60k por ano
+                tma,
+                periodicidade: 'anual'
+            });
+
+            // CORREÇÃO: Validar CONVERSÃO TMA (não VPLs iguais!)
+            // Fórmula: TMA_mensal = (1 + TMA_anual)^(1/12) - 1
+            const tmaEsperada = (Math.pow(1 + tma / 100, 1 / 12) - 1) * 100;
+            const diferencaTMA = Math.abs(vplMensal.taxaPeriodo - tmaEsperada);
+
+            let html = '<table class="result-table">';
+            html += '<tr><th>Periodicidade</th><th>VPL</th><th>Taxa Período</th><th>Períodos</th></tr>';
+            html += `<tr><td>Mensal</td><td>R$ ${vplMensal.vpl.toFixed(2)}</td><td>${vplMensal.taxaPeriodo.toFixed(4)}%</td><td>60</td></tr>`;
+            html += `<tr><td>Anual</td><td>R$ ${vplAnual.vpl.toFixed(2)}</td><td>${vplAnual.taxaPeriodo.toFixed(4)}%</td><td>5</td></tr>`;
+            html += '</table>';
+
+            html += `<div class="test-result ${diferencaTMA < 0.01 ? 'pass' : 'fail'}">`;
+            html += `<strong>TMA Anual:</strong> ${tma}% a.a.<br>`;
+            html += `<strong>TMA Mensal Calculada:</strong> ${vplMensal.taxaPeriodo.toFixed(4)}%<br>`;
+            html += `<strong>TMA Mensal Esperada:</strong> ${tmaEsperada.toFixed(4)}%<br>`;
+            html += `<strong>Diferença TMA:</strong> ${diferencaTMA.toFixed(6)}%<br>`;
+            html += `<strong>Critério:</strong> ${diferencaTMA < 0.01 ? '✅ PASS' : '❌ FAIL'} (diff TMA < 0.01%)<br>`;
+            html += `<strong>VPL Mensal:</strong> R$ ${vplMensal.vpl.toFixed(2)}<br>`;
+            html += `<strong>VPL Anual:</strong> R$ ${vplAnual.vpl.toFixed(2)}<br>`;
+            html += `<strong>Observação:</strong> Teste valida CONVERSÃO TMA (não equivalência de VPL). VPL mensal ≠ VPL anual é CORRETO devido ao efeito do tempo.`;
+            html += '</div>';
+
+            appendResult(html);
+        }
+
+        // ==========================================
+        // TESTE 4: Payback Python (sem interpolação)
+        // ==========================================
+        function runTest4() {
+            appendResult('<div class="test-section"><h2>⏱️ TESTE 4: Payback Python (mês inteiro)</h2></div>');
+
+            const params = {
+                investimentoInicial: 120000,
+                fluxosCaixa: [
+                    8000, 8000, 8000, 8000, 8000,       // Meses 1-5: 40k
+                    10000, 10000, 10000, 10000, 10000,  // Meses 6-10: 50k
+                    12000, 12000, 12000                 // Meses 11-13: 36k (total 126k)
+                ].concat(Array(47).fill(5000)),         // Resto: 5k/mês
+                periodicidade: 'mensal'
+            };
+
+            // Calcular Payback Simples
+            const paybackSimples = calcPayback.calcularPaybackSimples(params);
+
+            // Calcular Payback Descontado (TMA 12%)
+            const paybackDescontado = calcPayback.calcularPaybackDescontado({
+                ...params,
+                tma: 12
+            });
+
+            // Valores esperados do Python
+            const pythonSimples = 13;  // Mês 13 (acumulado 126k > 120k)
+            const pythonDescontado = 14;  // Um pouco maior devido ao desconto
+
+            let html = '<table class="result-table">';
+            html += '<tr><th>Tipo</th><th>JavaScript</th><th>Python (esperado)</th><th>Diferença</th><th>Status</th></tr>';
+            html += `<tr><td>Payback Simples</td><td>${paybackSimples.periodosPayback} meses</td><td>${pythonSimples} meses</td><td>${Math.abs(paybackSimples.periodosPayback - pythonSimples)} meses</td><td>${Math.abs(paybackSimples.periodosPayback - pythonSimples) < 0.5 ? '✅ PASS' : '❌ FAIL'}</td></tr>`;
+            html += `<tr><td>Payback Descontado</td><td>${paybackDescontado.periodosPayback} meses</td><td>${pythonDescontado} meses</td><td>${Math.abs(paybackDescontado.periodosPayback - pythonDescontado)} meses</td><td>${Math.abs(paybackDescontado.periodosPayback - pythonDescontado) < 0.5 ? '✅ PASS' : '❌ FAIL'}</td></tr>`;
+            html += '</table>';
+
+            html += `<div class="test-result ${paybackSimples.periodosPayback === pythonSimples ? 'pass' : 'fail'}">`;
+            html += `<strong>Método:</strong> ${paybackSimples.metodo}<br>`;
+            html += `<strong>Interpretação:</strong> ${paybackSimples.interpretacao}<br>`;
+            html += `<strong>Observação:</strong> SEM interpolação (retorna mês inteiro como Python)`;
+            html += '</div>';
+
+            appendResult(html);
+        }
+
+        // ==========================================
+        // TESTE 5: Caso Real (dados do Python)
+        // ==========================================
+        function runTest5() {
+            appendResult('<div class="test-section"><h2>🏭 TESTE 5: Caso Real (dados Python)</h2></div>');
+
+            // Dados reais de um projeto Python (gerados por gerar_dados_teste.py)
+            const params = {
+                investimentoInicial: 500000,
+                fluxosCaixa: [
+                    // Ano 1: Ramp-up
+                    20000, 25000, 30000, 35000, 40000,
+                    45000, 45000, 45000, 45000, 45000,
+                    50000, 50000,
+                    // Ano 2: Estabilização
+                    50000, 50000, 50000, 50000, 50000, 50000,
+                    50000, 50000, 50000, 50000, 50000, 50000,
+                    // Ano 3: Pico
+                    52000, 52000, 52000, 52000, 52000, 52000,
+                    52000, 52000, 52000, 52000, 52000, 52000,
+                    // Ano 4: Declínio leve
+                    48000, 48000, 48000, 48000, 48000, 48000,
+                    46000, 46000, 46000, 46000, 46000, 46000,
+                    // Ano 5: Estabilização final
+                    44000, 44000, 44000, 44000, 44000, 44000,
+                    42000, 42000, 42000, 42000, 42000, 42000
+                ],
+                tma: 12,
+                periodicidade: 'mensal'
+            };
+
+            // Valores esperados do Python (calculados por gerar_dados_teste.py)
+            const pythonVPL = 1602623.63;    // VPL calculado no Python
+            const pythonTIR = 161.06;        // TIR anual (%)
+            const pythonPayback = 13;        // Meses
+
+            // Calcular com JavaScript
+            const vpl = calcVPL.calcularVPL(params);
+            const tir = calcTIR.calcularTIRSecante(params);
+            const payback = calcPayback.calcularPaybackSimples(params);
+
+            // Validar diferenças
+            const diffVPL = Math.abs(vpl.vpl - pythonVPL);
+            const diffTIR = Math.abs(tir.tir - pythonTIR);
+            const diffPayback = Math.abs(payback.periodosPayback - pythonPayback);
+
+            let html = '<table class="result-table">';
+            html += '<tr><th>Indicador</th><th>JavaScript</th><th>Python</th><th>Diferença</th><th>Status</th></tr>';
+            html += `<tr><td>VPL</td><td>R$ ${vpl.vpl.toFixed(2)}</td><td>R$ ${pythonVPL.toFixed(2)}</td><td>R$ ${diffVPL.toFixed(2)}</td><td>${diffVPL < 0.01 ? '✅ PASS' : '❌ FAIL'}</td></tr>`;
+            html += `<tr><td>TIR</td><td>${tir.tir.toFixed(2)}%</td><td>${pythonTIR.toFixed(2)}%</td><td>${diffTIR.toFixed(4)}%</td><td>${diffTIR < 0.01 ? '✅ PASS' : '❌ FAIL'}</td></tr>`;
+            html += `<tr><td>Payback</td><td>${payback.periodosPayback} meses</td><td>${pythonPayback} meses</td><td>${diffPayback} meses</td><td>${diffPayback < 0.5 ? '✅ PASS' : '❌ FAIL'}</td></tr>`;
+            html += '</table>';
+
+            const allPass = (diffVPL < 0.01) && (diffTIR < 0.01) && (diffPayback < 0.5);
+
+            html += `<div class="test-result ${allPass ? 'pass' : 'fail'}">`;
+            html += `<strong>Resultado Geral:</strong> ${allPass ? '✅ TODOS PASSARAM' : '❌ FALHAS DETECTADAS'}<br>`;
+            html += `<strong>Convergência TIR:</strong> ${tir.converged ? 'SIM' : 'NÃO'} (${tir.iteracoes} iterações)<br>`;
+            html += `<strong>Viabilidade VPL:</strong> ${vpl.viavel ? 'VIÁVEL' : 'INVIÁVEL'}<br>`;
+            html += `<strong>Observação:</strong> Teste com dados reais de projeto Python`;
+            html += '</div>';
+
+            appendResult(html);
+        }
+
+        // ==========================================
+        // TESTE 6: Edge Cases
+        // ==========================================
+        function runTest6() {
+            appendResult('<div class="test-section"><h2>⚠️ TESTE 6: Edge Cases</h2></div>');
+
+            // Caso 1: Investimento NUNCA recuperado
+            appendResult('<h3>Caso 1: Investimento não recuperado</h3>');
+            const caso1 = {
+                investimentoInicial: 1000000,
+                fluxosCaixa: Array(60).fill(5000),  // Total 300k < 1M
+                tma: 12,
+                periodicidade: 'mensal'
+            };
+
+            const payback1 = calcPayback.calcularPaybackSimples(caso1);
+            const vpl1 = calcVPL.calcularVPL(caso1);
+
+            let html1 = `<div class="test-result ${!payback1.recuperado && !vpl1.viavel ? 'pass' : 'warning'}">`;
+            html1 += `<strong>Payback recuperado:</strong> ${payback1.recuperado ? 'SIM' : '❌ NÃO'}<br>`;
+            html1 += `<strong>Payback:</strong> ${payback1.periodosPayback} meses (fallback para total de períodos)<br>`;
+            html1 += `<strong>VPL:</strong> R$ ${vpl1.vpl.toFixed(2)} (${vpl1.viavel ? 'VIÁVEL' : '❌ INVIÁVEL'})<br>`;
+            html1 += `<strong>Percentual recuperado:</strong> ${payback1.detalhamento.percentualRecuperado.toFixed(2)}%<br>`;
+            html1 += `<strong>Observação:</strong> Sistema detecta corretamente investimento não recuperado`;
+            html1 += '</div>';
+            appendResult(html1);
+
+            // Caso 2: TMA muito alta (VPL negativo garantido)
+            appendResult('<h3>Caso 2: TMA muito alta (50% a.a.)</h3>');
+            const caso2 = {
+                investimentoInicial: 100000,
+                fluxosCaixa: Array(60).fill(3000),
+                tma: 50,  // 50% ao ano
+                periodicidade: 'mensal'
+            };
+
+            const vpl2 = calcVPL.calcularVPL(caso2);
+
+            let html2 = `<div class="test-result ${!vpl2.viavel ? 'pass' : 'fail'}">`;
+            html2 += `<strong>VPL:</strong> R$ ${vpl2.vpl.toFixed(2)}<br>`;
+            html2 += `<strong>Taxa período:</strong> ${vpl2.taxaPeriodo.toFixed(4)}% a.m.<br>`;
+            html2 += `<strong>Viável:</strong> ${vpl2.viavel ? 'SIM' : '❌ NÃO'}<br>`;
+            html2 += `<strong>Observação:</strong> TMA muito alta torna projeto inviável (como esperado)`;
+            html2 += '</div>';
+            appendResult(html2);
+
+            // Caso 3: Todos fluxos positivos (TIR muito alta)
+            appendResult('<h3>Caso 3: Projeto altamente lucrativo</h3>');
+            const caso3 = {
+                investimentoInicial: 50000,
+                fluxosCaixa: Array(60).fill(5000),  // Total 300k
+                tma: 12,
+                periodicidade: 'mensal'
+            };
+
+            const tir3 = calcTIR.calcularTIRSecante(caso3);
+            const vpl3 = calcVPL.calcularVPL(caso3);
+            const payback3 = calcPayback.calcularPaybackSimples(caso3);
+
+            let html3 = `<div class="test-result ${tir3.converged && vpl3.viavel ? 'pass' : 'fail'}">`;
+            html3 += `<strong>TIR:</strong> ${tir3.tir.toFixed(2)}% a.a. (${tir3.converged ? '✅ Convergiu' : '❌ Não convergiu'})<br>`;
+            html3 += `<strong>VPL:</strong> R$ ${vpl3.vpl.toFixed(2)} (${vpl3.viavel ? '✅ VIÁVEL' : 'INVIÁVEL'})<br>`;
+            html3 += `<strong>Payback:</strong> ${payback3.periodosPayback} meses<br>`;
+            html3 += `<strong>Observação:</strong> Projeto altamente lucrativo - todos indicadores positivos`;
+            html3 += '</div>';
+            appendResult(html3);
+        }
+
+        // ==========================================
+        // EXECUTAR TODOS OS TESTES
+        // ==========================================
+        function runAllTests() {
+            clearResults();
+            appendResult('<div class="test-section"><h2>🚀 Executando Todos os Testes...</h2></div>');
+
+            const startTime = Date.now();
+
+            // Executar sequencialmente
+            runTest1();
+            runTest2();
+            runTest3();
+            runTest4();
+            runTest5();
+            runTest6();
+
+            const endTime = Date.now();
+            const duration = (endTime - startTime) / 1000;
+
+            // Summary
+            let summary = '<div class="test-section">';
+            summary += '<h2>📊 Resumo Geral</h2>';
+            summary += '<div class="summary">';
+            summary += `<div class="summary-card"><h3>Testes Executados</h3><div class="value">6</div></div>`;
+            summary += `<div class="summary-card"><h3>Tempo Total</h3><div class="value">${duration.toFixed(2)}s</div></div>`;
+            summary += `<div class="summary-card"><h3>Calculadoras</h3><div class="value">3</div></div>`;
+            summary += `<div class="summary-card"><h3>Método TIR</h3><div class="value">Secante</div></div>`;
+            summary += '</div>';
+            summary += '</div>';
+
+            appendResult(summary);
+        }
+
+        // ==========================================
+        // HELPERS
+        // ==========================================
+        function appendResult(html) {
+            document.getElementById('results').innerHTML += html;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Auto-run ao carregar página
+        window.addEventListener('load', () => {
+            console.log('✅ Testes de VPL, TIR e Payback carregados');
+            console.log('📊 Calculadoras disponíveis:', { calcTIR, calcVPL, calcPayback });
+        });
+    </script>
+</body>
+</html>

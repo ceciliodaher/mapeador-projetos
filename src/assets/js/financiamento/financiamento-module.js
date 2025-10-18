@@ -25,6 +25,11 @@ class FinanciamentoModule {
     this.calculadorFluxoCaixaMensal = null;  // NOVO: Calculadora mensal (60 meses) - budget.py
     this.calculadorIndicadores = null;
 
+    // SPRINT 6: Calculadores VPL, TIR (Secante) e Payback
+    this.calculadorTIR = null;          // TIR com Método da Secante (Python)
+    this.calculadorVPL = null;          // VPL com suporte mensal/anual
+    this.calculadorPayback = null;      // Payback simples e descontado (Python)
+
     // Módulos de abas
     this.abaApuracaoImpostos = null;
     this.abaCenariosAnalise = null;
@@ -98,6 +103,9 @@ class FinanciamentoModule {
       'CalculadorFluxoCaixa',
       'CalculadorFluxoCaixaMensal',  // NOVO: Calculadora mensal (60 meses) - budget.py
       'CalculadorIndicadores',
+      'CalculadorTIR',               // SPRINT 6: TIR Método da Secante
+      'CalculadorVPL',               // SPRINT 6: VPL mensal/anual
+      'CalculadorPayback',           // SPRINT 6: Payback Python
       'AbaApuracaoImpostos',
       'AbaCenariosAnalise',
       'ExportadorExcel',
@@ -163,7 +171,12 @@ class FinanciamentoModule {
     // Calculador Indicadores
     this.calculadorIndicadores = new window.CalculadorIndicadores();
 
-    console.log('✓ Calculadores inicializados (incluindo mensal 60 meses)');
+    // SPRINT 6: Calculadores VPL, TIR (Secante) e Payback
+    this.calculadorTIR = new window.CalculadorTIR();           // TIR Método da Secante (Python)
+    this.calculadorVPL = new window.CalculadorVPL();           // VPL mensal/anual
+    this.calculadorPayback = new window.CalculadorPayback();   // Payback Python
+
+    console.log('✓ Calculadores inicializados (incluindo mensal 60 meses + VPL/TIR/Payback)');
   }
 
   /**
