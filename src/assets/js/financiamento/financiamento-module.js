@@ -566,6 +566,8 @@ class FinanciamentoModule {
       numeroSocios: this.getFieldValue('numeroSocios'),
       dataUltimaAlteracao: this.getFieldValue('dataUltimaAlteracao'),
       enquadramentoFiscal: this.getFieldValue('enquadramentoFiscal'),
+      // Quadro Societário (Task 4: Sprint 4)
+      socios: window.secaoEmpresa?.coletarDadosSocios() || [],
       // Histórico Operacional (Task 2.1.2)
       dataInicioOperacoes: this.getFieldValue('dataInicioOperacoes'),
       tempoMercado: this.getFieldValue('tempoMercado', 'number'),
@@ -821,6 +823,10 @@ class FinanciamentoModule {
       this.setFieldValue('numeroSocios', dados.secao1.numeroSocios);
       this.setFieldValue('dataUltimaAlteracao', dados.secao1.dataUltimaAlteracao);
       this.setFieldValue('enquadramentoFiscal', dados.secao1.enquadramentoFiscal);
+      // Quadro Societário (Task 4: Sprint 4)
+      if (window.secaoEmpresa?.restaurarDadosSocios && dados.secao1.socios) {
+        window.secaoEmpresa.restaurarDadosSocios(dados.secao1.socios);
+      }
       // Histórico Operacional (Task 2.1.2)
       this.setFieldValue('dataInicioOperacoes', dados.secao1.dataInicioOperacoes);
       this.setFieldValue('tempoMercado', dados.secao1.tempoMercado);
