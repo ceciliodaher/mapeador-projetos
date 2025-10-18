@@ -1,0 +1,267 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T15:00:00.000Z",
+    "cenarioTeste": "Sprint 8 - Cenário 3: Empresa de Serviços",
+    "descricao": "Projeto de serviços focado em tecnologia: Software, Equipamentos de Informática, Treinamento e Projetos/Estudos"
+  },
+  "secao1": {
+    "razaoSocial": "TECH SOLUTIONS CONSULTORIA LTDA",
+    "nomeFantasia": "Tech Solutions",
+    "cnpj": "34.567.890/0001-12",
+    "inscricaoEstadual": "ISENTO",
+    "dataConstituicao": "2021-02-10",
+    "uf": "GO",
+    "municipio": "Goiânia",
+    "endereco": "Avenida T-4, 1200",
+    "atividadePrincipal": "Desenvolvimento de software sob encomenda",
+    "descricaoAtividade": "Consultoria e desenvolvimento de sistemas corporativos",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 300000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2024-03-20",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "Ricardo Tech",
+        "tipoPessoa": "PF",
+        "documento": "333.444.555-66",
+        "participacao": 60.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "ricardo@techsolutions.com.br",
+        "telefone": "(62) 99444-3333"
+      },
+      {
+        "nome": "Fernanda Dev",
+        "tipoPessoa": "PF",
+        "documento": "777.888.999-00",
+        "participacao": 40.0,
+        "qualificacao": "Sócia",
+        "email": "fernanda@techsolutions.com.br",
+        "telefone": "(62) 99222-1111"
+      }
+    ]
+  },
+  "secao1B": {
+    "tipoProjeto": "Modernizacao",
+    "objetivo": "Modernizar infraestrutura tecnológica e capacitar equipe em novas tecnologias cloud e IA",
+    "descricaoDetalhada": "Projeto de modernização completa da infraestrutura de TI incluindo upgrade de estações de trabalho para desenvolvimento, licenciamento de ferramentas cloud, implementação de plataforma DevOps, capacitação intensiva da equipe técnica em cloud computing, IA e metodologias ágeis, além de contratação de consultoria especializada para implantação de melhores práticas",
+    "localizacao": {
+      "usarEnderecoEmpresa": true,
+      "cep": "74215-120",
+      "endereco": "Avenida T-4",
+      "numero": "1200",
+      "complemento": "Sala 801, Ed. Business Tower",
+      "bairro": "Setor Bueno",
+      "cidade": "Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 250,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-05-01",
+      "dataFimImplantacao": "2025-11-30",
+      "dataInicioOperacao": "2025-12-01",
+      "prazoTotalMeses": 7
+    }
+  },
+  "secao3": {
+    "regimeTributario": "Lucro Presumido",
+    "setorEconomico": "servicosProfissionais",
+    "anoBase": 2025,
+    "periodoProjecao": 5,
+    "anoFinal": 2030,
+    "tma": 15.0,
+    "inflacaoAnual": 4.3
+  },
+  "secaoInvestimentos": {
+    "investimentos": [
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Workstation MacBook Pro M3 Max",
+        "especificacao": "MacBook Pro 16\" M3 Max, 64GB RAM, 2TB SSD",
+        "quantidade": "10",
+        "unidade": "UN",
+        "valorUnitario": "R$ 32.000,00",
+        "valorTotal": "R$ 320.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 224.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 96.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 320.000,00",
+        "fornecedor": "Apple Brasil",
+        "cnpj": "00.623.904/0001-73",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Servidor Dell PowerEdge R750",
+        "especificacao": "Servidor Dell PowerEdge R750, Xeon Silver, 128GB RAM, 8TB SSD RAID",
+        "quantidade": "2",
+        "unidade": "UN",
+        "valorUnitario": "R$ 75.000,00",
+        "valorTotal": "R$ 150.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 105.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 45.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 150.000,00",
+        "fornecedor": "Dell Brasil",
+        "cnpj": "72.381.189/0001-10",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Software",
+        "item": "Plataforma DevOps Azure + GitHub Enterprise",
+        "especificacao": "Licenças Azure DevOps 20 usuários + GitHub Enterprise + CI/CD pipelines - 36 meses",
+        "quantidade": "1",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 180.000,00",
+        "valorTotal": "R$ 180.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "33",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 126.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 54.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 180.000,00",
+        "fornecedor": "Microsoft Brasil",
+        "cnpj": "04.712.500/0001-07",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Software",
+        "item": "Suite JetBrains All Products Pack",
+        "especificacao": "Licenças JetBrains completas (IntelliJ, PyCharm, WebStorm, etc) para 20 desenvolvedores - 36 meses",
+        "quantidade": "1",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 95.000,00",
+        "valorTotal": "R$ 95.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "33",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 95.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 95.000,00",
+        "fornecedor": "JetBrains",
+        "cnpj": "Exterior",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Treinamento",
+        "item": "Certificação AWS Cloud Practitioner e Solutions Architect",
+        "especificacao": "Treinamento oficial AWS + exames de certificação para 15 profissionais",
+        "quantidade": "15",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 8.000,00",
+        "valorTotal": "R$ 120.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Reinvestimento",
+          "valor": "R$ 120.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 120.000,00",
+        "fornecedor": "AWS Training",
+        "cnpj": "Exterior",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Treinamento",
+        "item": "Bootcamp IA e Machine Learning",
+        "especificacao": "Programa intensivo de 160h em Python, TensorFlow, PyTorch para 10 desenvolvedores",
+        "quantidade": "10",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 12.000,00",
+        "valorTotal": "R$ 120.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Reinvestimento",
+          "valor": "R$ 120.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 120.000,00",
+        "fornecedor": "Data Science Academy",
+        "cnpj": "28.555.644/0001-95",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Projetos e Estudos",
+        "item": "Consultoria Implantação DevOps e Metodologias Ágeis",
+        "especificacao": "6 meses de consultoria especializada para transição DevOps, Scrum, Kanban",
+        "quantidade": "1",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 180.000,00",
+        "valorTotal": "R$ 180.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 126.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 54.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 180.000,00",
+        "fornecedor": "Consultoria Ágil Brasil",
+        "cnpj": "12.345.678/0009-01",
+        "temOrcamento": "Sim"
+      }
+    ],
+    "capitalGiro": "R$ 200.000,00",
+    "jurosPreOp": "R$ 0,00",
+    "investimentosComoContrapartida": false,
+    "notasInvestimentos": "Projeto de modernização tecnológica focado em software, equipamentos de TI e capacitação. Total de investimentos fixos: R$ 1.165.000,00. Financiamento FINEP: R$ 581.000,00 (49,9%). Recursos próprios: R$ 584.000,00 (50,1%). Foco em tecnologia cloud, IA e metodologias ágeis para aumentar competitividade e produtividade."
+  }
+}

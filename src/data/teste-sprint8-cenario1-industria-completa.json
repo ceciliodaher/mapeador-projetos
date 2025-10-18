@@ -1,0 +1,397 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T14:30:00.000Z",
+    "cenarioTeste": "Sprint 8 - Cenário 1: Indústria Completa",
+    "descricao": "Projeto industrial com investimentos em todas as 12 categorias para testar totalizadores e gráfico pizza"
+  },
+  "secao1": {
+    "razaoSocial": "INDÚSTRIA COMPLETA INDUSTRIAL LTDA",
+    "nomeFantasia": "Indústria Completa",
+    "cnpj": "12.345.678/0001-90",
+    "inscricaoEstadual": "123456789",
+    "dataConstituicao": "2020-03-15",
+    "uf": "GO",
+    "municipio": "Goiânia",
+    "endereco": "Avenida Industrial, 1000",
+    "atividadePrincipal": "Fabricação de máquinas e equipamentos industriais",
+    "descricaoAtividade": "Produção de equipamentos industriais para diversos segmentos",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 1500000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2024-06-10",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "João Industrial",
+        "tipoPessoa": "PF",
+        "documento": "111.222.333-44",
+        "participacao": 60.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "joao@industriacompleta.com",
+        "telefone": "(62) 99888-7777"
+      },
+      {
+        "nome": "Maria Produção",
+        "tipoPessoa": "PF",
+        "documento": "555.666.777-88",
+        "participacao": 40.0,
+        "qualificacao": "Sócia",
+        "email": "maria@industriacompleta.com",
+        "telefone": "(62) 99666-5555"
+      }
+    ]
+  },
+  "secao1B": {
+    "tipoProjeto": "Ampliacao",
+    "objetivo": "Expandir capacidade produtiva em 150% para atender demanda crescente no setor industrial",
+    "descricaoDetalhada": "Projeto de ampliação da unidade fabril incluindo aquisição de terreno adjacente, construção de novo galpão industrial de 3.000m², instalação de linha de produção automatizada, aquisição de máquinas CNC de última geração e modernização completa dos sistemas de TI e gestão",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74000-100",
+      "endereco": "Avenida Industrial",
+      "numero": "2000",
+      "complemento": "Galpão 2",
+      "bairro": "Distrito Industrial",
+      "cidade": "Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 5000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-03-01",
+      "dataFimImplantacao": "2026-08-31",
+      "dataInicioOperacao": "2026-09-01",
+      "prazoTotalMeses": 18
+    }
+  },
+  "secao3": {
+    "regimeTributario": "Lucro Presumido",
+    "setorEconomico": "padrao",
+    "anoBase": 2025,
+    "periodoProjecao": 5,
+    "anoFinal": 2030,
+    "tma": 13.5,
+    "inflacaoAnual": 4.2
+  },
+  "secaoInvestimentos": {
+    "investimentos": [
+      {
+        "categoria": "Terreno",
+        "item": "Terreno Industrial 2.000m²",
+        "especificacao": "Terreno plano, com escritura, em Distrito Industrial",
+        "quantidade": "1",
+        "unidade": "UN",
+        "valorUnitario": "R$ 600.000,00",
+        "valorTotal": "R$ 600.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 420.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 180.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 600.000,00",
+        "fornecedor": "Imobiliária Industrial GO",
+        "cnpj": "11.222.333/0001-44",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Obras Civis",
+        "item": "Construção Galpão Industrial 3.000m²",
+        "especificacao": "Galpão metálico pré-fabricado, pé-direito 8m, pontes rolantes",
+        "quantidade": "3000",
+        "unidade": "M²",
+        "valorUnitario": "R$ 850,00",
+        "valorTotal": "R$ 2.550.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "4",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 1.785.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 765.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 2.550.000,00",
+        "fornecedor": "Construtora Industrial Ltda",
+        "cnpj": "22.333.444/0001-55",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Edificações",
+        "item": "Sala Administrativa 200m²",
+        "especificacao": "Edifício 2 andares, alvenaria, acabamento médio/alto",
+        "quantidade": "200",
+        "unidade": "M²",
+        "valorUnitario": "R$ 1.200,00",
+        "valorTotal": "R$ 240.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "4",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 168.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 72.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 240.000,00",
+        "fornecedor": "Construtora Industrial Ltda",
+        "cnpj": "22.333.444/0001-55",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Máquinas e Equipamentos",
+        "item": "Centro de Usinagem CNC 5 eixos",
+        "especificacao": "Marca: DMG Mori, Modelo: DMU 50, capacidade 500kg",
+        "quantidade": "2",
+        "unidade": "UN",
+        "valorUnitario": "R$ 1.800.000,00",
+        "valorTotal": "R$ 3.600.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "BNDES",
+          "valor": "R$ 2.880.000,00",
+          "percentual": "80"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 720.000,00",
+          "percentual": "20%"
+        },
+        "aRealizar": "R$ 3.600.000,00",
+        "fornecedor": "DMG Mori Brasil",
+        "cnpj": "33.444.555/0001-66",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Instalações",
+        "item": "Sistema Elétrico Industrial Trifásico 380V",
+        "especificacao": "Subestação 500kVA, quadros, cabos, aterramento",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 350.000,00",
+        "valorTotal": "R$ 350.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 245.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 105.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 350.000,00",
+        "fornecedor": "Eletroinstal GO",
+        "cnpj": "44.555.666/0001-77",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Móveis e Utensílios",
+        "item": "Mobiliário Escritório Completo",
+        "especificacao": "Mesas, cadeiras, armários, estações de trabalho para 25 funcionários",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 120.000,00",
+        "valorTotal": "R$ 120.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 120.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 120.000,00",
+        "fornecedor": "Móveis Corporativos GO",
+        "cnpj": "55.666.777/0001-88",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Veículos",
+        "item": "Empilhadeira a Diesel 3 toneladas",
+        "especificacao": "Marca: Hyster, Modelo: H3.0FT, capacidade 3000kg",
+        "quantidade": "2",
+        "unidade": "UN",
+        "valorUnitario": "R$ 180.000,00",
+        "valorTotal": "R$ 360.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "Banco Privado",
+          "valor": "R$ 288.000,00",
+          "percentual": "80"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 72.000,00",
+          "percentual": "20%"
+        },
+        "aRealizar": "R$ 360.000,00",
+        "fornecedor": "Hyster GO",
+        "cnpj": "66.777.888/0001-99",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Estações de Trabalho CAD/CAM",
+        "especificacao": "Dell Precision 7920, i9 32GB RAM, GPU Quadro RTX 4000",
+        "quantidade": "5",
+        "unidade": "UN",
+        "valorUnitario": "R$ 28.000,00",
+        "valorTotal": "R$ 140.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 140.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 140.000,00",
+        "fornecedor": "Dell Brasil",
+        "cnpj": "77.888.999/0001-00",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Software",
+        "item": "Sistema ERP Industrial com MES",
+        "especificacao": "TOTVS Protheus Industrial + Manufacturing Execution System",
+        "quantidade": "1",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 250.000,00",
+        "valorTotal": "R$ 250.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 175.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 75.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 250.000,00",
+        "fornecedor": "TOTVS Brasil",
+        "cnpj": "88.999.000/0001-11",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Projetos e Estudos",
+        "item": "Projeto Executivo Industrial Completo",
+        "especificacao": "Projeto arquitetônico, estrutural, elétrico, hidráulico, AVCB",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 150.000,00",
+        "valorTotal": "R$ 150.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 150.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 150.000,00",
+        "fornecedor": "Projetos Industriais GO",
+        "cnpj": "99.000.111/0001-22",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Treinamento",
+        "item": "Capacitação Operação Máquinas CNC",
+        "especificacao": "Treinamento técnico de 40h para 8 operadores",
+        "quantidade": "8",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 5.000,00",
+        "valorTotal": "R$ 40.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "0",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Reinvestimento",
+          "valor": "R$ 40.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 40.000,00",
+        "fornecedor": "SENAI GO",
+        "cnpj": "00.111.222/0001-33",
+        "temOrcamento": "Cotação"
+      },
+      {
+        "categoria": "Outros",
+        "item": "Ferramentas e Dispositivos",
+        "especificacao": "Ferramentas de corte, dispositivos de fixação, gabaritos",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 100.000,00",
+        "valorTotal": "R$ 100.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 100.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 100.000,00",
+        "fornecedor": "Ferramentaria Industrial",
+        "cnpj": "11.222.444/0001-55",
+        "temOrcamento": "Cotação"
+      }
+    ],
+    "capitalGiro": "R$ 800.000,00",
+    "jurosPreOp": "R$ 150.000,00",
+    "investimentosComoContrapartida": false,
+    "notasInvestimentos": "Projeto completo de ampliação industrial com todas as categorias de investimento. Total de investimentos fixos: R$ 8.500.000,00. Financiamento via FCO e BNDES totalizando R$ 5.961.000,00 (70,1%). Recursos próprios: R$ 2.539.000,00 (29,9%). Contrapartida não aplicável pois nenhum investimento foi realizado."
+  }
+}

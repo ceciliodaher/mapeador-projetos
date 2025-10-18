@@ -2655,3 +2655,165 @@
         width: 100%;
     }
 }
+
+/* ====================================================================
+   SPRINT 8: TOTALIZADORES POR CATEGORIA E GRÁFICO PIZZA
+   ==================================================================== */
+
+/* Seção de Totalizadores por Categoria */
+.categoria-totals-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.categoria-totals-section h3 {
+    color: var(--navy);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.categoria-totals-section .section-description {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid de Cards de Categoria */
+.categoria-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Card Individual de Categoria */
+.categoria-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--navy);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.categoria-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.categoria-card-header {
+    margin-bottom: 0.75rem;
+}
+
+.categoria-nome {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+}
+
+.categoria-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.categoria-valor {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--red);
+    font-family: 'Inter', sans-serif;
+}
+
+.categoria-percentual {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* Empty State */
+.categoria-cards-grid .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray-500);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+/* Seção do Gráfico */
+.chart-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-section h3 {
+    color: var(--navy);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.chart-section .section-description {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Container do Canvas */
+.chart-container {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.chart-container canvas {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+}
+
+/* Responsividade para Cards de Categoria */
+@media (max-width: 768px) {
+    .categoria-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .categoria-totals-section,
+    .chart-section {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .chart-container {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .categoria-valor {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .categoria-card {
+        padding: 1rem;
+    }
+
+    .categoria-valor {
+        font-size: 1.1rem;
+    }
+
+    .categoria-percentual {
+        font-size: 0.8rem;
+    }
+}

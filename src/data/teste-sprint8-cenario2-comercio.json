@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T14:45:00.000Z",
+    "cenarioTeste": "Sprint 8 - Cenário 2: Comércio",
+    "descricao": "Projeto comercial focado em categorias específicas: Obras Civis, Móveis, Equipamentos de Informática, Veículos e Outros"
+  },
+  "secao1": {
+    "razaoSocial": "COMÉRCIO ATACADISTA GOIÁS LTDA",
+    "nomeFantasia": "Atacadista Goiás",
+    "cnpj": "23.456.789/0001-01",
+    "inscricaoEstadual": "234567890",
+    "dataConstituicao": "2018-08-20",
+    "uf": "GO",
+    "municipio": "Aparecida de Goiânia",
+    "endereco": "Rua Comercial, 500",
+    "atividadePrincipal": "Comércio atacadista de produtos alimentícios",
+    "descricaoAtividade": "Distribuição de produtos alimentícios para varejo",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 800000,
+    "numeroSocios": 3,
+    "dataUltimaAlteracao": "2024-05-15",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "Carlos Comerciante",
+        "tipoPessoa": "PF",
+        "documento": "222.333.444-55",
+        "participacao": 50.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "carlos@atacadistagoias.com",
+        "telefone": "(62) 99777-6666"
+      },
+      {
+        "nome": "Ana Distribuidora",
+        "tipoPessoa": "PF",
+        "documento": "666.777.888-99",
+        "participacao": 30.0,
+        "qualificacao": "Sócia",
+        "email": "ana@atacadistagoias.com",
+        "telefone": "(62) 99555-4444"
+      },
+      {
+        "nome": "Pedro Logística",
+        "tipoPessoa": "PF",
+        "documento": "000.111.222-33",
+        "participacao": 20.0,
+        "qualificacao": "Sócio",
+        "email": "pedro@atacadistagoias.com",
+        "telefone": "(62) 99333-2222"
+      }
+    ]
+  },
+  "secao1B": {
+    "tipoProjeto": "Implantacao",
+    "objetivo": "Implantar novo centro de distribuição com capacidade de 5.000 toneladas/mês",
+    "descricaoDetalhada": "Projeto de implantação de centro de distribuição de 2.500m² incluindo área de armazenagem refrigerada, escritórios administrativos, docas para carga/descarga simultânea de 8 caminhões, sistema de gestão WMS integrado e frota própria de veículos utilitários para entregas urbanas",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74985-300",
+      "endereco": "Rodovia GO-040",
+      "numero": "Km 12",
+      "complemento": "Lote 15",
+      "bairro": "Setor Industrial",
+      "cidade": "Aparecida de Goiânia",
+      "uf": "GO"
+    },
+    "areaTotalM2": 2500,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-04-01",
+      "dataFimImplantacao": "2026-03-31",
+      "dataInicioOperacao": "2026-04-01",
+      "prazoTotalMeses": 12
+    }
+  },
+  "secao3": {
+    "regimeTributario": "Lucro Presumido",
+    "setorEconomico": "padrao",
+    "anoBase": 2025,
+    "periodoProjecao": 5,
+    "anoFinal": 2030,
+    "tma": 12.0,
+    "inflacaoAnual": 4.5
+  },
+  "secaoInvestimentos": {
+    "investimentos": [
+      {
+        "categoria": "Obras Civis",
+        "item": "Centro de Distribuição 2.500m²",
+        "especificacao": "Galpão estrutura metálica, câmara fria 500m², piso industrial",
+        "quantidade": "2500",
+        "unidade": "M²",
+        "valorUnitario": "R$ 920,00",
+        "valorTotal": "R$ 2.300.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "4",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 1.610.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 690.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 2.300.000,00",
+        "fornecedor": "Construtora Atacado GO",
+        "cnpj": "12.345.678/0001-90",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Móveis e Utensílios",
+        "item": "Estantes Porta-Paletes",
+        "especificacao": "Estruturas metálicas modulares, capacidade 2 ton/vão, altura 8m",
+        "quantidade": "200",
+        "unidade": "M",
+        "valorUnitario": "R$ 850,00",
+        "valorTotal": "R$ 170.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 170.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 170.000,00",
+        "fornecedor": "Estantes Industriais GO",
+        "cnpj": "23.456.789/0001-01",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Móveis e Utensílios",
+        "item": "Mobiliário Escritório Administrativo",
+        "especificacao": "15 estações de trabalho completas + sala reunião",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 65.000,00",
+        "valorTotal": "R$ 65.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 65.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 65.000,00",
+        "fornecedor": "Móveis Corporativos GO",
+        "cnpj": "34.567.890/0001-12",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Veículos",
+        "item": "Van Furgão Refrigerada",
+        "especificacao": "Fiat Ducato Furgão Refrigerado, capacidade 1.500kg",
+        "quantidade": "3",
+        "unidade": "UN",
+        "valorUnitario": "R$ 180.000,00",
+        "valorTotal": "R$ 540.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "Banco Privado",
+          "valor": "R$ 432.000,00",
+          "percentual": "80"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 108.000,00",
+          "percentual": "20%"
+        },
+        "aRealizar": "R$ 540.000,00",
+        "fornecedor": "Fiat GO",
+        "cnpj": "45.678.901/0001-23",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Sistema de Gestão WMS Completo",
+        "especificacao": "Servidor Dell + 15 terminais + impressoras térmicas + coletores RF",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 220.000,00",
+        "valorTotal": "R$ 220.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 154.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 66.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 220.000,00",
+        "fornecedor": "TI Distribuição Ltda",
+        "cnpj": "56.789.012/0001-34",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Outros",
+        "item": "Sistema de Refrigeração Industrial",
+        "especificacao": "Central de refrigeração para câmara fria 500m³, -18°C",
+        "quantidade": "1",
+        "unidade": "UN",
+        "valorUnitario": "R$ 380.000,00",
+        "valorTotal": "R$ 380.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 266.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 114.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 380.000,00",
+        "fornecedor": "Refrigeração Industrial GO",
+        "cnpj": "67.890.123/0001-45",
+        "temOrcamento": "Sim"
+      }
+    ],
+    "capitalGiro": "R$ 450.000,00",
+    "jurosPreOp": "R$ 80.000,00",
+    "investimentosComoContrapartida": false,
+    "notasInvestimentos": "Projeto comercial de centro de distribuição. Total de investimentos fixos: R$ 3.675.000,00. Financiamento via FCO, FINEP e Banco Privado totalizando R$ 2.462.000,00 (67%). Recursos próprios: R$ 1.213.000,00 (33%). Foco em infraestrutura logística, armazenagem e tecnologia."
+  }
+}

@@ -1854,6 +1854,25 @@
                         </label>
                         <small>Se marcado, os valores já investidos/executados serão contabilizados como recursos próprios na análise de financiamento, reduzindo o aporte necessário.</small>
                     </div>
+
+                    <!-- SPRINT 8: Totalizadores por Categoria -->
+                    <div class="categoria-totals-section">
+                        <h3>📊 Distribuição por Categoria de Investimento</h3>
+                        <p class="section-description">Visualização detalhada dos investimentos agrupados por categoria</p>
+                        <div class="categoria-cards-grid" id="categoriaTotalsGrid">
+                            <!-- Gerado dinamicamente via secao-investimentos.js -->
+                            <p class="empty-state">Adicione investimentos para visualizar a distribuição por categoria.</p>
+                        </div>
+                    </div>
+
+                    <!-- SPRINT 8: Gráfico Pizza -->
+                    <div class="chart-section">
+                        <h3>📈 Gráfico de Distribuição dos Investimentos</h3>
+                        <p class="section-description">Representação visual proporcional das categorias de investimento</p>
+                        <div class="chart-container">
+                            <canvas id="investimentosPizzaChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Seção 9: Cronograma Financeiro -->

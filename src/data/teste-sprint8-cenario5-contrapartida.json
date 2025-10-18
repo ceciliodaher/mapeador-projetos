@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T15:30:00.000Z",
+    "cenarioTeste": "Sprint 8 - Cenário 5: Contrapartida de Investimentos Realizados",
+    "descricao": "Testa funcionalidade de contrapartida: investimentos já realizados contam como recursos próprios, reduzindo aporte necessário"
+  },
+  "secao1": {
+    "razaoSocial": "CONTRAPARTIDA INDUSTRIAL E COMERCIAL LTDA",
+    "nomeFantasia": "Contrapartida Ind.",
+    "cnpj": "56.789.012/0001-34",
+    "inscricaoEstadual": "567890123",
+    "dataConstituicao": "2017-07-12",
+    "uf": "GO",
+    "municipio": "Senador Canedo",
+    "endereco": "Avenida Central, 300",
+    "atividadePrincipal": "Fabricação de produtos químicos",
+    "descricaoAtividade": "Produção de produtos químicos industriais",
+    "tipoSocietario": "LTDA",
+    "capitalSocial": 2000000,
+    "numeroSocios": 2,
+    "dataUltimaAlteracao": "2024-08-25",
+    "enquadramentoFiscal": "Lucro Presumido",
+    "socios": [
+      {
+        "nome": "Paulo Químico",
+        "tipoPessoa": "PF",
+        "documento": "555.666.777-88",
+        "participacao": 70.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "paulo@contrapartida.com",
+        "telefone": "(62) 99111-2222"
+      },
+      {
+        "nome": "Lucia Industrial",
+        "tipoPessoa": "PF",
+        "documento": "888.999.000-11",
+        "participacao": 30.0,
+        "qualificacao": "Sócia",
+        "email": "lucia@contrapartida.com",
+        "telefone": "(62) 99333-4444"
+      }
+    ]
+  },
+  "secao1B": {
+    "tipoProjeto": "Ampliacao",
+    "objetivo": "Ampliar capacidade produtiva aproveitando investimentos já realizados como contrapartida para financiamento",
+    "descricaoDetalhada": "Projeto de ampliação que já teve alguns investimentos realizados antecipadamente pela empresa (terreno adquirido, projeto executivo contratado, parte das máquinas compradas). Esses investimentos realizados serão utilizados como contrapartida de recursos próprios no financiamento do restante do projeto",
+    "localizacao": {
+      "usarEnderecoEmpresa": false,
+      "cep": "74000-500",
+      "endereco": "Rodovia BR-153",
+      "numero": "Km 8",
+      "complemento": "Distrito Industrial II",
+      "bairro": "Setor Industrial",
+      "cidade": "Senador Canedo",
+      "uf": "GO"
+    },
+    "areaTotalM2": 4000,
+    "cronograma": {
+      "dataInicioImplantacao": "2024-09-01",
+      "dataFimImplantacao": "2026-02-28",
+      "dataInicioOperacao": "2026-03-01",
+      "prazoTotalMeses": 18
+    }
+  },
+  "secao3": {
+    "regimeTributario": "Lucro Presumido",
+    "setorEconomico": "padrao",
+    "anoBase": 2025,
+    "periodoProjecao": 5,
+    "anoFinal": 2030,
+    "tma": 14.0,
+    "inflacaoAnual": 4.4
+  },
+  "secaoInvestimentos": {
+    "investimentos": [
+      {
+        "categoria": "Terreno",
+        "item": "Terreno Industrial 3.000m²",
+        "especificacao": "Terreno já adquirido em 2024 - INVESTIMENTO REALIZADO",
+        "quantidade": "1",
+        "unidade": "UN",
+        "valorUnitario": "R$ 800.000,00",
+        "valorTotal": "R$ 800.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 800.000,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Investimentos Realizados",
+          "valor": "R$ 800.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 0,00",
+        "fornecedor": "Imóveis Ind. Senador Canedo",
+        "cnpj": "12.345.678/0010-11",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Projetos e Estudos",
+        "item": "Projeto Executivo Completo",
+        "especificacao": "Projeto já contratado e executado - INVESTIMENTO REALIZADO",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 180.000,00",
+        "valorTotal": "R$ 180.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "0",
+        "realizado": "R$ 180.000,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Investimentos Realizados",
+          "valor": "R$ 180.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 0,00",
+        "fornecedor": "Projetos Químicos GO",
+        "cnpj": "23.456.789/0011-22",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Máquinas e Equipamentos",
+        "item": "Reator Químico 5.000L - Parcialmente Pago",
+        "especificacao": "Equipamento com 40% já pago - PARCIALMENTE REALIZADO",
+        "quantidade": "2",
+        "unidade": "UN",
+        "valorUnitario": "R$ 600.000,00",
+        "valorTotal": "R$ 1.200.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 480.000,00",
+        "recursosTerceiros": {
+          "cobertura": "BNDES",
+          "valor": "R$ 720.000,00",
+          "percentual": "60"
+        },
+        "recursosProprios": {
+          "cobertura": "Investimentos Realizados",
+          "valor": "R$ 480.000,00",
+          "percentual": "40%"
+        },
+        "aRealizar": "R$ 720.000,00",
+        "fornecedor": "Reatores Industriais Ltda",
+        "cnpj": "34.567.890/0012-33",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Obras Civis",
+        "item": "Galpão Industrial 3.500m²",
+        "especificacao": "Obra a ser iniciada - INVESTIMENTO FUTURO",
+        "quantidade": "3500",
+        "unidade": "M²",
+        "valorUnitario": "R$ 900,00",
+        "valorTotal": "R$ 3.150.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "4",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 2.205.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 945.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 3.150.000,00",
+        "fornecedor": "Construtora Industrial GO",
+        "cnpj": "45.678.901/0013-44",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Instalações",
+        "item": "Sistema de Tratamento de Efluentes",
+        "especificacao": "Sistema ETE completo - INVESTIMENTO FUTURO",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 450.000,00",
+        "valorTotal": "R$ 450.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 315.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 135.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 450.000,00",
+        "fornecedor": "Saneamento Industrial S/A",
+        "cnpj": "56.789.012/0014-55",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Sistema de Controle de Processos (DCS)",
+        "especificacao": "Sistema digital de controle distribuído - INVESTIMENTO FUTURO",
+        "quantidade": "1",
+        "unidade": "VERBA",
+        "valorUnitario": "R$ 320.000,00",
+        "valorTotal": "R$ 320.000,00",
+        "anoDesembolso": "1",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 224.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Reinvestimento",
+          "valor": "R$ 96.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 320.000,00",
+        "fornecedor": "Automação Industrial Brasil",
+        "cnpj": "67.890.123/0015-66",
+        "temOrcamento": "Sim"
+      }
+    ],
+    "capitalGiro": "R$ 600.000,00",
+    "jurosPreOp": "R$ 120.000,00",
+    "investimentosComoContrapartida": true,
+    "notasInvestimentos": "ANÁLISE DE CONTRAPARTIDA:\n\nInvestimentos JÁ REALIZADOS (usados como contrapartida):\n- Terreno: R$ 800.000,00 (100% realizado)\n- Projeto Executivo: R$ 180.000,00 (100% realizado)\n- Reatores (40% pagos): R$ 480.000,00\nTOTAL REALIZADO: R$ 1.460.000,00\n\nCom CHECKBOX MARCADA (investimentos como contrapartida = SIM):\n- Os R$ 1.460.000,00 já investidos REDUZEM o aporte de recursos próprios necessário\n- Empresa precisa aportar MENOS R$ 1.460.000,00 do que seria necessário\n- Isso permite financiar maior % do projeto\n\nInvestimentos A REALIZAR:\n- Obras Civis: R$ 3.150.000,00\n- Instalações: R$ 450.000,00\n- Equipamentos TI: R$ 320.000,00\n- Reatores (60% restante): R$ 720.000,00\nTOTAL A REALIZAR: R$ 4.640.000,00\n\nRECURSOS:\n- Terceiros (FCO + BNDES + FINEP): R$ 3.464.000,00 (58,8%)\n- Próprios necessários: R$ 2.656.000,00 (45,1%)\n- MENOS: Já investidos: R$ 1.460.000,00\n- APORTE NECESSÁRIO: R$ 1.196.000,00 (20,3%)\n\nTOTAL GERAL DO PROJETO: R$ 5.880.000,00 (fixos) + R$ 720.000,00 (giro+juros) = R$ 6.600.000,00"
+  }
+}

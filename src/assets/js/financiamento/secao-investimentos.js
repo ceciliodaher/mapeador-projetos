@@ -375,6 +375,11 @@ class SecaoInvestimentos {
         this.totalARealizar.textContent = this.formatCurrency(sumARealizar);
 
         this.updateGrandTotal();
+
+        // SPRINT 8: Atualizar totalizadores por categoria e gráfico
+        const totaisPorCategoria = this.calcularTotaisPorCategoria();
+        this.atualizarCardsCategorias(totaisPorCategoria);
+        this.renderizarGraficoPizza(totaisPorCategoria);
     }
 
     updateGrandTotal() {
@@ -384,6 +389,209 @@ class SecaoInvestimentos {
         const grandTotal = totalFixos + capitalGiro + jurosPreOp;
 
         this.grandTotalValor.textContent = this.formatCurrency(grandTotal);
+    }
+
+    /**
+     * SPRINT 8: Calcular totais por categoria
+     * Retorna objeto com soma de cada categoria
+     */
+    calcularTotaisPorCategoria() {
+        const categorias = {
+            'Terreno': 0,
+            'Obras Civis': 0,
+            'Edificações': 0,
+            'Máquinas e Equipamentos': 0,
+            'Instalações': 0,
+            'Móveis e Utensílios': 0,
+            'Veículos': 0,
+            'Equipamentos de Informática': 0,
+            'Software': 0,
+            'Projetos e Estudos': 0,
+            'Treinamento': 0,
+            'Outros': 0
+        };
+
+        const rows = this.tbody.querySelectorAll('.investimento-row');
+
+        rows.forEach(row => {
+            const categoriaInput = row.querySelector('.input-categoria');
+            const valorTotalInput = row.querySelector('.input-valor-total');
+
+            if (!categoriaInput || !valorTotalInput) return;
+
+            const categoria = categoriaInput.value;
+            const valorTotal = this.parseCurrency(valorTotalInput.value);
+
+            if (categoria && valorTotal > 0) {
+                categorias[categoria] += valorTotal;
+            }
+        });
+
+        return categorias;
+    }
+
+    /**
+     * SPRINT 8: Atualizar cards visuais de categorias
+     */
+    atualizarCardsCategorias(totaisPorCategoria) {
+        const container = document.getElementById('categoriaTotalsGrid');
+        if (!container) {
+            console.warn('Container #categoriaTotalsGrid não encontrado - cards não serão renderizados');
+            return;
+        }
+
+        // Calcular total geral para percentuais
+        const totalGeral = Object.values(totaisPorCategoria).reduce((sum, val) => sum + val, 0);
+
+        // Limpar container
+        container.innerHTML = '';
+
+        // Cores para cada categoria (paleta Expertzy)
+        const cores = {
+            'Terreno': '#FF002D',
+            'Obras Civis': '#FF4D6D',
+            'Edificações': '#FF7F9F',
+            'Máquinas e Equipamentos': '#091A30',
+            'Instalações': '#1A2F50',
+            'Móveis e Utensílios': '#2A4570',
+            'Veículos': '#3B5A90',
+            'Equipamentos de Informática': '#4C6FB0',
+            'Software': '#5D85D0',
+            'Projetos e Estudos': '#6E9AF0',
+            'Treinamento': '#7FB0FF',
+            'Outros': '#8FC6FF'
+        };
+
+        // Renderizar apenas categorias com valor > 0
+        Object.entries(totaisPorCategoria).forEach(([categoria, valor]) => {
+            if (valor <= 0) return;
+
+            const percentual = totalGeral > 0 ? (valor / totalGeral) * 100 : 0;
+
+            const card = document.createElement('div');
+            card.className = 'categoria-card';
+            card.style.borderLeftColor = cores[categoria] || '#091A30';
+
+            card.innerHTML = `
+                <div class="categoria-card-header">
+                    <span class="categoria-nome">${categoria}</span>
+                </div>
+                <div class="categoria-card-body">
+                    <div class="categoria-valor">${this.formatCurrency(valor)}</div>
+                    <div class="categoria-percentual">${percentual.toFixed(1)}% do total</div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        // Se nenhuma categoria tem valor, mostrar mensagem
+        if (totalGeral === 0) {
+            container.innerHTML = '<p class="empty-state">Nenhum investimento cadastrado ainda.</p>';
+        }
+    }
+
+    /**
+     * SPRINT 8: Renderizar gráfico pizza com Chart.js
+     */
+    renderizarGraficoPizza(totaisPorCategoria) {
+        const canvas = document.getElementById('investimentosPizzaChart');
+        if (!canvas) {
+            console.warn('Canvas #investimentosPizzaChart não encontrado - gráfico não será renderizado');
+            return;
+        }
+
+        // Verificar se Chart.js está disponível
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js não disponível - obrigatório para gráfico pizza');
+            return;
+        }
+
+        // Destruir gráfico anterior se existir
+        if (this.pizzaChart) {
+            this.pizzaChart.destroy();
+        }
+
+        // Filtrar categorias com valor > 0
+        const labels = [];
+        const data = [];
+        const backgroundColors = [
+            '#FF002D', '#FF4D6D', '#FF7F9F', '#091A30',
+            '#1A2F50', '#2A4570', '#3B5A90', '#4C6FB0',
+            '#5D85D0', '#6E9AF0', '#7FB0FF', '#8FC6FF'
+        ];
+
+        const cores = [];
+        let colorIndex = 0;
+
+        Object.entries(totaisPorCategoria).forEach(([categoria, valor]) => {
+            if (valor > 0) {
+                labels.push(categoria);
+                data.push(valor);
+                cores.push(backgroundColors[colorIndex % backgroundColors.length]);
+                colorIndex++;
+            }
+        });
+
+        // Se não há dados, limpar canvas
+        if (data.length === 0) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '16px Inter, sans-serif';
+            ctx.fillStyle = '#666';
+            ctx.textAlign = 'center';
+            ctx.fillText('Nenhum dado para exibir', canvas.width / 2, canvas.height / 2);
+            return;
+        }
+
+        // Criar novo gráfico
+        const ctx = canvas.getContext('2d');
+        this.pizzaChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Investimentos',
+                    data: data,
+                    backgroundColor: cores,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Inter, sans-serif',
+                                size: 12
+                            },
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                const formatted = value.toLocaleString('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                });
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                                return `${label}: ${formatted} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        console.log('✓ Gráfico pizza renderizado com', data.length, 'categorias');
     }
 
     coletarDadosInvestimentos() {

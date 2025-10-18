@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "versao": "1.0",
+    "tipo": "financiamento",
+    "dataExportacao": "2025-10-18T15:15:00.000Z",
+    "cenarioTeste": "Sprint 8 - Cenário 4: Validação de Cálculos",
+    "descricao": "Testa cálculos automáticos: terceiros + próprios = 100%, valor total = quantidade × valor unitário, e totalizadores gerais"
+  },
+  "secao1": {
+    "razaoSocial": "VALIDAÇÃO CÁLCULOS INDUSTRIAL S/A",
+    "nomeFantasia": "Validação Ind.",
+    "cnpj": "45.678.901/0001-23",
+    "inscricaoEstadual": "456789012",
+    "dataConstituicao": "2019-11-05",
+    "uf": "GO",
+    "municipio": "Anápolis",
+    "endereco": "Rua dos Testes, 100",
+    "atividadePrincipal": "Testes de validação industrial",
+    "descricaoAtividade": "Empresa fictícia para testes de validação",
+    "tipoSocietario": "S/A",
+    "capitalSocial": 1000000,
+    "numeroSocios": 1,
+    "dataUltimaAlteracao": "2024-01-10",
+    "enquadramentoFiscal": "Lucro Real",
+    "socios": [
+      {
+        "nome": "Teste Validador",
+        "tipoPessoa": "PF",
+        "documento": "444.555.666-77",
+        "participacao": 100.0,
+        "qualificacao": "Diretor Presidente",
+        "email": "teste@validacao.com",
+        "telefone": "(62) 99000-0000"
+      }
+    ]
+  },
+  "secao1B": {
+    "tipoProjeto": "Modernizacao",
+    "objetivo": "Testar validações de cálculos automáticos do sistema de investimentos",
+    "descricaoDetalhada": "Projeto de teste para validar que todos os cálculos estão funcionando corretamente: quantidade × valor unitário = valor total, percentual terceiros + percentual próprios = 100%, somas de totalizadores, e atualização automática ao modificar valores",
+    "localizacao": {
+      "usarEnderecoEmpresa": true,
+      "cep": "75000-000",
+      "endereco": "Rua dos Testes",
+      "numero": "100",
+      "complemento": "",
+      "bairro": "Centro",
+      "cidade": "Anápolis",
+      "uf": "GO"
+    },
+    "areaTotalM2": 1000,
+    "cronograma": {
+      "dataInicioImplantacao": "2025-06-01",
+      "dataFimImplantacao": "2025-12-31",
+      "dataInicioOperacao": "2026-01-01",
+      "prazoTotalMeses": 7
+    }
+  },
+  "secao3": {
+    "regimeTributario": "Lucro Real",
+    "setorEconomico": "padrao",
+    "anoBase": 2025,
+    "periodoProjecao": 5,
+    "anoFinal": 2030,
+    "tma": 10.0,
+    "inflacaoAnual": 4.0
+  },
+  "secaoInvestimentos": {
+    "investimentos": [
+      {
+        "categoria": "Máquinas e Equipamentos",
+        "item": "Equipamento Teste 80% Terceiros",
+        "especificacao": "Testa financiamento 80% terceiros + 20% próprios",
+        "quantidade": "5",
+        "unidade": "UN",
+        "valorUnitario": "R$ 100.000,00",
+        "valorTotal": "R$ 500.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "10",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "BNDES",
+          "valor": "R$ 400.000,00",
+          "percentual": "80"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 100.000,00",
+          "percentual": "20%"
+        },
+        "aRealizar": "R$ 500.000,00",
+        "fornecedor": "Fornecedor Teste 1",
+        "cnpj": "11.111.111/0001-11",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Equipamentos de Informática",
+        "item": "Equipamento Teste 60% Terceiros",
+        "especificacao": "Testa financiamento 60% terceiros + 40% próprios",
+        "quantidade": "10",
+        "unidade": "UN",
+        "valorUnitario": "R$ 15.000,00",
+        "valorTotal": "R$ 150.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 90.000,00",
+          "percentual": "60"
+        },
+        "recursosProprios": {
+          "cobertura": "Lucros Acumulados",
+          "valor": "R$ 60.000,00",
+          "percentual": "40%"
+        },
+        "aRealizar": "R$ 150.000,00",
+        "fornecedor": "Fornecedor Teste 2",
+        "cnpj": "22.222.222/0002-22",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Veículos",
+        "item": "Veículo Teste 100% Próprios",
+        "especificacao": "Testa financiamento 0% terceiros + 100% próprios",
+        "quantidade": "2",
+        "unidade": "UN",
+        "valorUnitario": "R$ 80.000,00",
+        "valorTotal": "R$ 160.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "",
+          "valor": "R$ 0,00",
+          "percentual": "0"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 160.000,00",
+          "percentual": "100%"
+        },
+        "aRealizar": "R$ 160.000,00",
+        "fornecedor": "Fornecedor Teste 3",
+        "cnpj": "33.333.333/0003-33",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Software",
+        "item": "Software Teste 50% Cada",
+        "especificacao": "Testa divisão igual 50% terceiros + 50% próprios",
+        "quantidade": "1",
+        "unidade": "SERV",
+        "valorUnitario": "R$ 200.000,00",
+        "valorTotal": "R$ 200.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "20",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FINEP",
+          "valor": "R$ 100.000,00",
+          "percentual": "50"
+        },
+        "recursosProprios": {
+          "cobertura": "Reinvestimento",
+          "valor": "R$ 100.000,00",
+          "percentual": "50%"
+        },
+        "aRealizar": "R$ 200.000,00",
+        "fornecedor": "Fornecedor Teste 4",
+        "cnpj": "44.444.444/0004-44",
+        "temOrcamento": "Sim"
+      },
+      {
+        "categoria": "Obras Civis",
+        "item": "Obra Teste 70% Terceiros",
+        "especificacao": "Testa financiamento 70% terceiros + 30% próprios (padrão FCO)",
+        "quantidade": "500",
+        "unidade": "M²",
+        "valorUnitario": "R$ 1.000,00",
+        "valorTotal": "R$ 500.000,00",
+        "anoDesembolso": "0",
+        "depreciacao": "4",
+        "realizado": "R$ 0,00",
+        "recursosTerceiros": {
+          "cobertura": "FCO",
+          "valor": "R$ 350.000,00",
+          "percentual": "70"
+        },
+        "recursosProprios": {
+          "cobertura": "Capital Social",
+          "valor": "R$ 150.000,00",
+          "percentual": "30%"
+        },
+        "aRealizar": "R$ 500.000,00",
+        "fornecedor": "Fornecedor Teste 5",
+        "cnpj": "55.555.555/0005-55",
+        "temOrcamento": "Sim"
+      }
+    ],
+    "capitalGiro": "R$ 250.000,00",
+    "jurosPreOp": "R$ 50.000,00",
+    "investimentosComoContrapartida": false,
+    "notasInvestimentos": "TESTES DE VALIDAÇÃO:\n\n1. CÁLCULO QUANTIDADE × VALOR UNITÁRIO:\n   - Equipamento 1: 5 × R$ 100.000 = R$ 500.000 ✓\n   - Equipamento 2: 10 × R$ 15.000 = R$ 150.000 ✓\n   - Veículo: 2 × R$ 80.000 = R$ 160.000 ✓\n   - Software: 1 × R$ 200.000 = R$ 200.000 ✓\n   - Obra: 500 × R$ 1.000 = R$ 500.000 ✓\n\n2. CÁLCULO TERCEIROS + PRÓPRIOS = 100%:\n   - Equipamento 1: 80% + 20% = 100% ✓\n   - Equipamento 2: 60% + 40% = 100% ✓\n   - Veículo: 0% + 100% = 100% ✓\n   - Software: 50% + 50% = 100% ✓\n   - Obra: 70% + 30% = 100% ✓\n\n3. TOTALIZADORES:\n   - Total Investimentos Fixos: R$ 1.510.000,00\n   - Total Terceiros: R$ 940.000,00 (62,25%)\n   - Total Próprios: R$ 570.000,00 (37,75%)\n   - Total A Realizar: R$ 1.510.000,00\n   - Capital Giro: R$ 250.000,00\n   - Juros Pré-Op: R$ 50.000,00\n   - TOTAL GERAL: R$ 1.810.000,00"
+  }
+}
