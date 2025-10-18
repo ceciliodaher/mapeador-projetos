@@ -812,3 +812,249 @@ await Promise.all(tables.map(table => saveTable(table)));
 
 ---
 
+## Formulário de Financiamento - Seção 1: A Empresa (SPRINT 4)
+
+### Visão Geral
+
+**Status:** ✅ COMPLETO (2025-10-17)
+**Duração:** 4-5 horas
+**Commit:** 437f4ea
+
+A primeira seção completamente funcional do formulário de financiamento, servindo como **template de referência** para as 16 seções restantes.
+
+**Arquivo Principal:** `/src/assets/js/financiamento/secao-empresa.js` (525 linhas)
+
+### Características Implementadas
+
+- ✅ **Quadro Societário Dinâmico** com add/remove sócios
+- ✅ **Validação Capital Total = 100%** em tempo real
+- ✅ **Manual Clone Pattern** (consistente com `secao-receitas.js`)
+- ✅ **Campo `numeroSocios` readonly** auto-calculado
+- ✅ **ZERO FALLBACKS** - erros explícitos ao invés de valores default
+- ✅ **Empty State Handling** - mensagens neutras vs erros
+- ✅ **Integração completa IndexedDB** (coleta/restauração)
+- ✅ **3 Estados de validação:** válido/inválido/neutro
+
+### Pattern: Manual Clone (NÃO DynamicTable)
+
+**Por que não usar DynamicTable?**
+- Seções existentes usam clone manual (consistência)
+- Mais simples para debugging
+- Menos overhead
+
+**Estrutura:**
+```javascript
+class SecaoEmpresa {
+    // Add sócio via clone
+    addSocioEntry() {
+        const template = entries[0].cloneNode(true);
+        this.updateEntryIndexes(template, 'socio', newIndex);
+        this.clearEntryValues(template);
+        this.addRemoveButton(template, 'socio', newIndex);
+        container.appendChild(template);
+    }
+
+    // Validação em tempo real
+    updateCapitalValidation() {
+        // Empty state check - NO FALLBACK
+        const allEmpty = participacoes.every(p => p === '' || p === null || p === undefined);
+        if (allEmpty) {
+            // Estado neutro
+            statusDisplay.textContent = 'ℹ️ Aguardando preenchimento';
+            validationBox.className = 'validation-message neutral';
+            return;
+        }
+
+        // Validar via FieldValidator
+        const result = window.FieldValidator.validateCapitalTotal(participacoes);
+        // ... update UI ...
+    }
+
+    // Coleta de dados - NO FALLBACKS
+    coletarDadosSocios() {
+        const participacao = parseFloat(participacaoStr);
+        if (isNaN(participacao)) {
+            throw new Error(`Participação do sócio ${index} inválida`);
+        }
+        return { nome, tipoPessoa, documento, participacao, ... };
+    }
+
+    // Restauração - NO FALLBACKS
+    restaurarDadosSocios(dados) {
+        if (!Array.isArray(dados) || dados.length === 0) {
+            throw new Error('dados deve ser um array não-vazio');
+        }
+        // ... restore logic with explicit validation ...
+    }
+}
+
+window.secaoEmpresa = new SecaoEmpresa();
+```
+
+### FieldValidator - Validações Empresariais
+
+**Arquivo:** `/src/assets/js/validation.js` (linhas 586-712)
+
+```javascript
+class FieldValidator {
+    // Validar soma = 100%
+    static validateCapitalTotal(participacoes) {
+        // Validar cada valor - NO FALLBACKS
+        for (let i = 0; i < participacoes.length; i++) {
+            const p = participacoes[i];
+            if (p === null || p === undefined || p === '') {
+                throw new Error(`Participação do sócio ${i + 1} não informada`);
+            }
+            const parsed = parseFloat(p);
+            if (isNaN(parsed)) {
+                throw new Error(`Participação do sócio ${i + 1} inválida: "${p}"`);
+            }
+        }
+
+        const total = participacoes.reduce((sum, p) => sum + parseFloat(p), 0);
+        const rounded = Math.round(total * 100) / 100;
+
+        if (rounded === 100.0) {
+            return { isValid: true, total: rounded, message: '✓ Total correto' };
+        } else if (rounded < 100.0) {
+            const falta = (100 - rounded).toFixed(2);
+            return { isValid: false, total: rounded, message: `⚠️ Faltam ${falta}%` };
+        } else {
+            const excede = (rounded - 100).toFixed(2);
+            return { isValid: false, total: rounded, message: `❌ Excede em ${excede}%` };
+        }
+    }
+
+    // Validar documentos únicos
+    static validateUniqueDocuments(documentos) {
+        // ... validação de duplicatas ...
+    }
+}
+
+// CRITICAL: Export to window
+if (typeof window !== 'undefined') {
+    window.FormValidator = FormValidator;
+    window.FieldFormatter = FieldFormatter;
+    window.FieldAutoFormatter = FieldAutoFormatter;
+    window.FieldValidator = FieldValidator; // ⬅️ ADICIONADO no SPRINT 4
+}
+```
+
+### Estados de Validação
+
+1. **Neutro (Empty State):**
+   - Todos campos vazios (página carregando)
+   - Mensagem: "ℹ️ Aguardando preenchimento"
+   - Cor: cinza
+   - **NÃO é erro**
+
+2. **Válido:**
+   - Total = 100.00%
+   - Mensagem: "✓ Total correto"
+   - Cor: verde
+
+3. **Inválido:**
+   - Total ≠ 100%
+   - Mensagem: "⚠️ Faltam X%" ou "❌ Excede em X%"
+   - Cor: vermelho/laranja
+
+### Estrutura de Dados
+
+```json
+{
+  "secao1": {
+    "numeroSocios": 3,
+    "socios": [
+      {
+        "nome": "João Silva",
+        "tipoPessoa": "PF",
+        "documento": "123.456.789-00",
+        "participacao": 50.0,
+        "qualificacao": "Sócio Administrador",
+        "email": "joao@empresa.com",
+        "telefone": "(62) 98765-4321"
+      }
+    ]
+  }
+}
+```
+
+### Integração com Sistema
+
+**Coleta (financiamento-module.js linha 570):**
+```javascript
+socios: window.secaoEmpresa?.coletarDadosSocios() || [],
+```
+
+**Restauração (financiamento-module.js linhas 827-829):**
+```javascript
+if (window.secaoEmpresa?.restaurarDadosSocios && dados.secao1.socios) {
+    window.secaoEmpresa.restaurarDadosSocios(dados.secao1.socios);
+}
+```
+
+### NO FALLBACKS - Princípio Seguido Rigorosamente
+
+**❌ ERRADO:**
+```javascript
+const value = parseFloat(participacaoField.value) || 0; // Fallback silencioso
+```
+
+**✅ CORRETO:**
+```javascript
+const participacaoStr = getFieldValue('participacao');
+const participacao = parseFloat(participacaoStr);
+if (isNaN(participacao)) {
+    throw new Error(`Participação do sócio ${index} inválida: "${participacaoStr}"`);
+}
+```
+
+**Exceção: Valor Inicial HTML**
+```html
+<input type="number" id="socio1_participacao" name="socio1_participacao"
+       min="0" max="100" step="0.01" value="0.00" required>
+```
+
+**NÃO é fallback de código porque:**
+- ✅ Valor **visível** no HTML (não escondido no código)
+- ✅ Usuário pode ver e editar
+- ✅ Similar ao padrão de telefone com zeros exemplificativos
+- ✅ Resolve problema de `parseFloat("")` sem usar `|| 0` no código
+
+### Problemas Resolvidos
+
+1. **FieldValidator undefined** → Exportado para `window`
+2. **Validação em estado inicial vazio** → Empty state check
+3. **Auto-save coletando dados vazios** → Valor inicial `0.00` no HTML
+
+### Arquivos Modificados
+
+| Arquivo | Mudanças |
+|---------|----------|
+| `secao-empresa.js` | +525 linhas (NOVO) |
+| `validation.js` | +127 linhas (FieldValidator) |
+| `formulario-financiamento.html` | +79 linhas (Quadro Societário) |
+| `financiamento-styles.css` | +214 linhas (CSS) |
+| `financiamento-module.js` | +6 linhas (integração) |
+
+**Total:** +951 linhas
+
+### Documentação Completa
+
+**Arquivo:** `/documentos/financiamento/SPRINT4_COMPLETO.md`
+
+Contém:
+- 8 cenários de teste manual (todos passando)
+- Estrutura completa de dados
+- Fluxo de integração detalhado
+- Princípios NO FALLBACKS aplicados
+- Troubleshooting completo
+
+### Próximos Passos
+
+**Sprint 5:** Seção 2 - Caracterização do Projeto (3-4 horas)
+- Usar `secao-empresa.js` como template
+- Aplicar mesmo padrão: NO FALLBACKS + Manual Clone + IndexedDB
+
+---
+
