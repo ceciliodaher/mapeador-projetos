@@ -41,10 +41,10 @@ class SecaoRegimeTributario {
      */
     async loadConfig() {
         try {
-            const response = await fetch('../config/aliquotas-tributarias-2025.json');
+            const response = await fetch('/config/aliquotas-tributarias-2025.json');
 
             if (!response.ok) {
-                throw new Error(`SecaoRegimeTributario: Config aliquotas-tributarias-2025.json não encontrado (HTTP ${response.status})`);
+                throw new Error(`SecaoRegimeTributario: Config não encontrado (HTTP ${response.status}): ${response.url}`);
             }
 
             this.config = await response.json();
