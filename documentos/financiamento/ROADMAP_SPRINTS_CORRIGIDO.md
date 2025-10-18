@@ -265,7 +265,7 @@ Dados cadastrais da empresa (razão social, CNPJ, sócios, capital social) e inf
 | 4 | **2.2** | Balanço Patrimonial Atual | 15 | 🔴 Pendente | Todos | - |
 | 5 | **2.3** | DRE Histórico | Novo | 🔴 Pendente | Todos | - |
 | 6 | **2.4** | Endividamento Atual | 14A | 🔴 Pendente | 🔒 Analista | - |
-| 7 | **2.5** | Ciclos Financeiros | 11B | 🔴 Pendente | 🔒 Analista | - |
+| 7 | **2.5** | Ciclos Financeiros | 11B | ✅ Implementado | Todos | secao-ciclos-financeiros.js |
 
 **Descrição:**
 Situação financeira atual da empresa antes do projeto.
@@ -291,16 +291,28 @@ Situação financeira atual da empresa antes do projeto.
 - Dívidas de longo prazo (empréstimos bancários existentes)
 - Sistemas de amortização (SAC/PRICE/Americano)
 
-**Tab 2.5 (Ciclos Financeiros - PROTEGIDA):**
-- PMR (Prazo Médio Recebimento)
-- PMP (Prazo Médio Pagamento)
-- PME (Prazo Médio Estocagem)
-- NCG (Necessidade de Capital de Giro) = (PMR + PME - PMP) / 360 × Receita Anual
+**Tab 2.5 (Ciclos Financeiros):**
+- **Composição de Estoques (4 tipos):**
+  - % Matéria-Prima + PME (dias)
+  - % WIP (Produtos em Processo) + PME (dias)
+  - % Produtos Acabados + PME (dias)
+  - % Peças de Reposição + PME (dias)
+  - Validação: percentuais devem somar 100%
+- **Prazos Consolidados:**
+  - PME Ponderado (calculado automaticamente = Σ(% × PME))
+  - % Compras a Prazo (vs à vista)
+- **Ciclos Calculados (readonly):**
+  - Ciclo Operacional = PMR + PME Ponderado
+  - Ciclo Financeiro = (PMR + PME Ponderado) - PMP
+- **NCG (Necessidade de Capital de Giro - readonly):**
+  - NCG Diária = (Receita × PMR/30) + (Custos × PME/30) - (Custos × PMP/30)
+  - NCG Mensal = NCG Diária × 30
+  - NCG Anual = NCG Mensal × 12
 
-**Inputs necessários:**
-- Prazos de pagamento e recebimento
-- % vendas/compras à vista vs à prazo
-- Giro de estoques (matérias-primas, produtos acabados, WIP)
+**Integração Cross-Tab:**
+- Lê PMR/PMP de Tab 2.1 (Regime Tributário)
+- Lê Receitas de Tab 8 (Receitas Projetadas)
+- Calculador: `calculador-ciclos-financeiros.js` (NO FALLBACKS)
 
 ---
 
@@ -526,14 +538,14 @@ Análises financeiras para tomada de decisão.
 
 ---
 
-### FASE 4: OPERAÇÕES (Sprints 10-13) - 🔴 0 DE 4
+### FASE 4: OPERAÇÕES (Sprints 10-13) - 🟡 0.5 DE 6
 **Duração:** 16-20 horas
-**Progresso:** 0%
+**Progresso:** 8.3%
 
 - 🔴 **Sprint 10:** Tab 8 - Receitas Projetadas (Seção 3.1)
 - 🔴 **Sprint 11:** Tab 9 - Insumos (Seção 3.2)
 - 🔴 **Sprint 11A:** Tab 11 - Custos (Seção 3.4)
-- 🔴 **Sprint 11B:** Tab 7 - Ciclos Financeiros + Tab 14 - Capital de Giro (Seções 2.5 + 4.3)
+- 🟡 **Sprint 11B:** Tab 7 - Ciclos Financeiros (Seção 2.5) - ✅ CONCLUÍDO | Tab 14 - Capital de Giro (Seção 4.3) - 🔴 PENDENTE
 - 🔴 **Sprint 12:** Tab 16 - Matriz Produto-Insumo (Seção 5.1)
 - 🔴 **Sprint 13:** Tab 10 - Recursos Humanos (Seção 3.3)
 

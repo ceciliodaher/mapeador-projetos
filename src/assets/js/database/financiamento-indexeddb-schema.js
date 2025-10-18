@@ -4,12 +4,15 @@
  *
  * Object Stores:
  * 1. formulario - Dados de campos simples (Seções 1, 2, 3, etc)
+ *    - Tab 2.1 (regimeTributario): PMR, PMP, % Vendas Prazo, TMA, Inflação
+ *    - Tab 2.5 (ciclosFinanceiros): PME desagregado (MP/WIP/PA/Reposição), % Compras Prazo,
+ *                                    Ciclos calculados (Operacional, Financeiro), NCG (diária/mensal/anual)
  * 2. dynamicTables - Dados das 126 tabelas dinâmicas
  * 3. autosave - Backup temporário (auto-save periódico)
  * 4. calculatedResults - Cache de resultados calculados (DRE, Fluxo de Caixa, etc)
  *
  * @version 1.0.0
- * @date 2025-10-16
+ * @date 2025-10-18 (atualizado com ciclos financeiros)
  */
 
 // Constantes
