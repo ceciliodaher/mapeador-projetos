@@ -812,6 +812,143 @@ await Promise.all(tables.map(table => saveTable(table)));
 
 ---
 
+## Formulário de Financiamento - Navegação Hierárquica (SPRINT 0)
+
+### Visão Geral
+
+**Status:** ✅ COMPLETO (2025-10-18)
+**Duração:** 4-5 horas
+**Commit:** 4bad23a
+
+Sistema de navegação hierárquica de 2 níveis implementado e funcional, organizando **7 seções principais** com **23 tabs** distribuídos.
+
+**Arquivos Principais:**
+- `tabs.js` (621 linhas) - HierarchicalNavigation class
+- `formulario-financiamento.html` (+405 linhas) - Navbar hierárquico + 23 form-sections
+- `financiamento-styles.css` (+246 linhas) - Estilos navegação 2 níveis
+- `ROADMAP_SPRINTS_CORRIGIDO.md` (v3.0) - Documentação completa
+
+### Estrutura Hierárquica Implementada
+
+**NÍVEL 1:** Navbar superior com 7 seções principais
+**NÍVEL 2:** Subsection-navbars com 23 tabs
+
+```
+📁 SEÇÃO 1: IDENTIFICAÇÃO (2 tabs)
+   └─ 1.1 Empresa | 1.2 Projeto
+
+📁 SEÇÃO 2: SITUAÇÃO ATUAL (5 tabs)
+   └─ 2.1 Regime | 2.2 Balanço | 2.3 DRE Histórico
+   └─ 2.4 Endividamento 🔒 | 2.5 Ciclos Financeiros 🔒
+
+📁 SEÇÃO 3: OPERAÇÕES PROJETADAS (4 tabs)
+   └─ 3.1 Receitas | 3.2 Insumos | 3.3 Mão-de-Obra | 3.4 Custos
+
+📁 SEÇÃO 4: INVESTIMENTOS E FUNDING (4 tabs)
+   └─ 4.1 Investimentos | 4.2 Financiamentos 🔒
+   └─ 4.3 Capital de Giro 🔒 | 4.4 Usos e Fontes 🔒
+
+📁 SEÇÃO 5: INTEGRAÇÕES (2 tabs)
+   └─ 5.1 Matriz Produto-Insumo | 5.2 Depreciação 🔒
+
+📁 SEÇÃO 6: DEMONSTRATIVOS PROJETADOS (3 tabs) - 🔒 TODAS
+   └─ 6.1 DRE Projetado | 6.2 Balanço Projetado | 6.3 Fluxo de Caixa
+
+📁 SEÇÃO 7: ANÁLISES E DECISÃO (3 tabs) - 🔒 TODAS
+   └─ 7.1 Indicadores | 7.2 Impostos | 7.3 Cenários
+```
+
+**Visibilidade:**
+- **Modo Usuário:** 10 tabs visíveis
+- **Modo Analista:** 23 tabs visíveis (13 protegidas 🔒)
+
+### Bugs Críticos Corrigidos
+
+#### BUG #1: Seletor Ambíguo (CRÍTICO)
+
+**Problema:** `querySelector('[data-section="${tabNumber}"]')` retornava **section-button** ao invés de **form-section**.
+
+**Correção (tabs.js:207):**
+```javascript
+// ❌ ANTES (ambíguo)
+const targetSection = document.querySelector(`[data-section="${tabNumber}"]`);
+
+// ✅ DEPOIS (específico)
+const targetSection = document.querySelector(`.form-section[data-section="${tabNumber}"]`);
+```
+
+#### BUG #2: CSS Inline Bloqueando Subtabs (CRÍTICO)
+
+**Problema:** `style="display: none;"` inline nas subsection-navbars vencia classe `.active`.
+
+**Correção:** Removido CSS inline de 6 subsection-navbars (seções 2-7).
+
+```html
+<!-- ❌ ANTES -->
+<div class="subsection-navbar" data-parent-section="2" style="display: none;">
+
+<!-- ✅ DEPOIS -->
+<div class="subsection-navbar" data-parent-section="2">
+```
+
+#### BUG #3: Validação de Seção Incorreta
+
+**Problema:** Validação aceitava seções 8-9 (inexistentes).
+
+**Correção (tabs.js:115):**
+```javascript
+// ❌ ANTES
+if (sectionNumber < 1 || sectionNumber > 9) return;
+
+// ✅ DEPOIS
+if (sectionNumber < 1 || sectionNumber > 7) return;
+```
+
+### Código-Chave: sectionMap
+
+```javascript
+// tabs.js linha 18-29
+this.sectionMap = {
+    1: [1, 2],           // Identificação (2 tabs)
+    2: [3, 4, 5, 6, 7],  // Situação Atual (5 tabs)
+    3: [8, 9, 10, 11],   // Operações Projetadas (4 tabs)
+    4: [12, 13, 14, 15], // Investimentos e Funding (4 tabs)
+    5: [16, 17],         // Integrações (2 tabs)
+    6: [18, 19, 20],     // Demonstrativos Projetados (3 tabs)
+    7: [21, 22, 23]      // Análises e Decisão (3 tabs)
+};
+
+this.protectedTabs = [6, 7, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+```
+
+### Conceitos-Chave
+
+**Endividamento vs Financiamentos:**
+- **Endividamento (Tab 6):** Dívidas EXISTENTES da empresa (curto/longo prazo, fornecedores, impostos)
+- **Financiamentos (Tab 13):** Funding NOVO sendo solicitado para o projeto (BNDES, FCO, FINEP)
+
+**Depreciação Segregada (Tab 17):**
+- **Existente:** Depreciação de ativos atuais da empresa
+- **Pós-Investimento:** Depreciação de novos ativos do projeto
+
+### Arquivos Modificados
+
+| Arquivo | Mudanças | Linhas |
+|---------|----------|--------|
+| `formulario-financiamento.html` | Navbar + 23 form-sections + 7 placeholders | +405 |
+| `tabs.js` | HierarchicalNavigation class + sectionMap | +621 |
+| `financiamento-styles.css` | Estilos navegação 2 níveis | +246 |
+| `ROADMAP_SPRINTS_CORRIGIDO.md` | Documentação v3.0 | Reescrito |
+
+**Total:** +1.272 linhas (excluindo ROADMAP), 4 arquivos modificados
+
+### Referências
+
+- **Documentação Completa:** `/documentos/financiamento/ROADMAP_SPRINTS_CORRIGIDO.md` (v3.0)
+- **Commit:** `4bad23a - feat(financiamento): implementa navegação hierárquica completa (Sprint 0)`
+
+---
+
 ## Formulário de Financiamento - Seção 1: A Empresa (SPRINT 4)
 
 ### Visão Geral
